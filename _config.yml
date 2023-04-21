@@ -1,0 +1,47 @@
+# Book settings
+# Learn more at https://jupyterbook.org/customize/config.html
+
+title: 经济学中的数据科学
+author: 史震涛 Shi Zhentao
+copyright: "2023"
+
+# logo: logo.png
+
+# Force re-execution of notebooks on each build.
+# See https://jupyterbook.org/content/execute.html
+execute:
+#  execute_notebooks: force
+  execute_notebooks: 'off'
+  only_build_toc_files: true
+
+# Define the name of the latex output file for PDF builds
+latex:
+  latex_documents:
+    targetname: book.tex
+
+# Add a bibtex file so that we can create citations
+# bibtex_bibfiles:
+#  - book.bib
+
+# Information about where the book exists on the web
+# repository:
+#  url: https://github.com/zhentaoshi/econ_data_science  # Online location of your book
+#  path_to_book: docs  # Optional path to your book, relative to the repository root
+#  branch: master  # Which branch of the repository should be used when creating links (optional)
+
+# Add GitHub buttons to your book
+# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
+
+html:
+#  use_issues_button: true
+#  use_repository_button: true
+
+# Add sphinx_proof extension
+sphinx:
+  config:
+    bibtex_reference_style: author_year
+    language: zh_CN
+    
+  extra_extensions:
+    - sphinx_proof
+#    - sphinx_exercise
