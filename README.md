@@ -25,7 +25,6 @@ Programming experience is helpful, but not prerequisite.
 
 * [CUHK SCRP](https://scrp-login.econ.cuhk.edu.hk/jupyter/hub/login?next=%2Fjupyter%2Fhub%2F)
 * [Gitpod](https://gitpod.io/#https://github.com/zhentaoshi/econ_data_science) based on [docker](https://hub.docker.com/r/ztshi/econ_data_sci/tags) provides a cloud-based collaborative virtual machine.
-* Software (Windows): [PuTTY](https://www.putty.org/), [WinSCP](https://winscp.net/eng/download.php)
 
 ## License
 
