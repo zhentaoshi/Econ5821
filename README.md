@@ -11,6 +11,8 @@ After completing this course, students are expected to be fluent in a data scien
 This course is design for students with economics training while are new to heavy duty data tasks.
 Programming experience is helpful, but not prerequisite.
 
+This repository contains all the slides and the accompanying data and scripts (in the folder `data_example`).
+
 ## Textbooks
 
 * [RDS] Wickham, Hadley and Grolemund, Garrett (2016). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O’Reilly Media, Inc. (Open access at https://r4ds.had.co.nz/)
@@ -24,10 +26,14 @@ Programming experience is helpful, but not prerequisite.
 ## Environments
 
 * [CUHK SCRP](https://scrp-login.econ.cuhk.edu.hk/jupyter/hub/login?next=%2Fjupyter%2Fhub%2F)
+<<<<<<< HEAD
 * [Gitpod](https://gitpod.io/#https://github.com/zhentaoshi/econ_data_science) based on [docker](https://hub.docker.com/r/ztshi/econ_data_sci/tags) provides a cloud-based collaborative virtual machine.
+=======
+* [Gitpod](https://gitpod.io/#https://github.com/zhentaoshi/Econ5821) based on [docker](https://hub.docker.com/r/ztshi/econ_data_sci/tags) provides a cloud-based collaborative virtual machine.
+
+>>>>>>> 5b2c31c9b72ba9d8d01905b630811f53232b56b4
 
 ## License
-
 
 This work is licensed under
 [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License][cc-by-nc-sa].

@@ -1,7 +1,7 @@
 
 FROM ztshi/econ_data_sci:gbm
-# tag “lastest”. updated on 2023-1-24
-# tag "python", updated on 2023-03-08
+
+# tag “gbm”. updated on 2023-4-22
 
 
 RUN R --slave -e 'install.packages("mcmc", repos="https://cran.r-project.org/")'
