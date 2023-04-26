@@ -26,12 +26,8 @@ This repository contains all the slides and the accompanying data and scripts (i
 ## Environments
 
 * [CUHK SCRP](https://scrp-login.econ.cuhk.edu.hk/jupyter/hub/login?next=%2Fjupyter%2Fhub%2F)
-<<<<<<< HEAD
-* [Gitpod](https://gitpod.io/#https://github.com/zhentaoshi/econ_data_science) based on [docker](https://hub.docker.com/r/ztshi/econ_data_sci/tags) provides a cloud-based collaborative virtual machine.
-=======
-* [Gitpod](https://gitpod.io/#https://github.com/zhentaoshi/Econ5821) based on [docker](https://hub.docker.com/r/ztshi/econ_data_sci/tags) provides a cloud-based collaborative virtual machine.
 
->>>>>>> 5b2c31c9b72ba9d8d01905b630811f53232b56b4
+* [Gitpod](https://gitpod.io/#https://github.com/zhentaoshi/econ_data_science) based on [docker](https://hub.docker.com/r/ztshi/econ_data_sci/tags) provides a cloud-based collaborative virtual machine.
 
 ## License
 
