@@ -17,7 +17,7 @@ This repository contains all the slides and the accompanying data and scripts (i
 
 * [RDS] Wickham, Hadley and Grolemund, Garrett (2016). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O’Reilly Media, Inc. (Open access at https://r4ds.had.co.nz/)
 
-* [CASI] Efron, Bradley and Hastie, Trevor (2016). Computer Age Statistical Inference: Algorithms, Evidence and Data Science (Open access at https://hastie.su.domains/CASI/)
+<!-- * [CASI] Efron, Bradley and Hastie, Trevor (2016). Computer Age Statistical Inference: Algorithms, Evidence and Data Science (Open access at https://hastie.su.domains/CASI/) -->
 
 * [ISLR] James, Gareth., Witten, Daniela., Hastie, Trevor., & Tibshirani, Robert. (2017). An introduction to statistical learning (Vol. 112, p. 18). New York: springer. (Open access at https://www.statlearning.com/)
 
@@ -27,7 +27,7 @@ This repository contains all the slides and the accompanying data and scripts (i
 
 * [CUHK SCRP](https://scrp-login.econ.cuhk.edu.hk/jupyter/hub/login?next=%2Fjupyter%2Fhub%2F)
 
-* [Gitpod](https://gitpod.io/#https://github.com/zhentaoshi/econ_data_science) based on [docker](https://hub.docker.com/r/ztshi/econ_data_sci/tags) provides a cloud-based collaborative virtual machine.
+* [Gitpod](https://gitpod.io/#https://github.com/zhentaoshi/Econ5821) based on [docker](https://hub.docker.com/r/ztshi/econ_data_sci/tags) provides a cloud-based collaborative virtual machine.
 
 ## License
 
