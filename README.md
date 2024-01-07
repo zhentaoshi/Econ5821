@@ -5,7 +5,8 @@
 
 ## Introduction
 
-The is a data science course with applications to economic problems. The data operations and analytics will be demonstrated in the `R` language.
+The is a data science course with applications to economic problems. The data operations and analytics will be demonstrated in the `R` language, and `python`
+will be used as a complement. 
 After completing this course, students are expected to be fluent in a data science programming language and be able to independently conduct data analysis.
 
 This course is design for students with economics training while are new to heavy duty data tasks.
