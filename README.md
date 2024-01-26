@@ -43,4 +43,9 @@ This work is licensed under
 [cc-by-nc-sa-image]: https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png
 [cc-by-nc-sa-shield]: https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg
 
+## Reading
 
+* 2024-1-19: R-intro: beginning--Sec 5
+* 2024-1-26:
+  * R-intro: Sec 5--11
+  * [Wickham and Grolemund](https://r4ds.hadley.nz/): Ch 2: workflow: basics
