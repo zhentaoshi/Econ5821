@@ -1,6 +1,6 @@
 *ipynb_checkpoints*/
 .ipynb_checkpoints/*.*
-*.pdf
+
 _build/
 
 ## LyX
