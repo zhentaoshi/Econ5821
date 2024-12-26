@@ -5,7 +5,7 @@
 
 ## Introduction
 
-The is a data science course with applications to economic problems. The data operations and analytics will be demonstrated in the `R` language, and `python`
+The is a data science course with applications to economic problems. The data operations and analytics will be demonstrated mainly in `python` (and `R` for some particular econometric methods).
 will be used as a complement. 
 After completing this course, students are expected to be fluent in a data science programming language and be able to independently conduct data analysis.
 
@@ -16,9 +16,11 @@ This repository contains all the slides and the accompanying data and scripts (i
 
 ## Textbooks
 
-* [RDS] Wickham, Hadley and Grolemund, Garrett (2016). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O’Reilly Media, Inc. (Open access at https://r4ds.had.co.nz/)
+<!-- * [RDS] Wickham, Hadley and Grolemund, Garrett (2016). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O’Reilly Media, Inc. (Open access at https://r4ds.had.co.nz/) -->
 
 <!-- * [CASI] Efron, Bradley and Hastie, Trevor (2016). Computer Age Statistical Inference: Algorithms, Evidence and Data Science (Open access at https://hastie.su.domains/CASI/) -->
+
+* Wes McKinney (2022): "[Python for Data Analysis](https://wesmckinney.com/book/)".
 
 * [ISLR] James, Gareth., Witten, Daniela., Hastie, Trevor., & Tibshirani, Robert. (2017). An introduction to statistical learning (Vol. 112, p. 18). New York: springer. (Open access at https://www.statlearning.com/)
 
@@ -28,7 +30,7 @@ This repository contains all the slides and the accompanying data and scripts (i
 
 * [CUHK SCRP](https://scrp-login.econ.cuhk.edu.hk/jupyter/hub/login?next=%2Fjupyter%2Fhub%2F)
 
-* [Gitpod](https://gitpod.io/#https://github.com/zhentaoshi/Econ5821) based on [docker](https://hub.docker.com/r/ztshi/econ_data_sci/tags) provides a cloud-based collaborative virtual machine.
+<!-- * [Gitpod](https://gitpod.io/#https://github.com/zhentaoshi/Econ5821) based on [docker](https://hub.docker.com/r/ztshi/econ_data_sci/tags) provides a cloud-based collaborative virtual machine. -->
 
 ## License
 
@@ -45,7 +47,6 @@ This work is licensed under
 
 ## Reading
 
-* 2024-1-19: R-intro: beginning--Sec 5
-* 2024-1-26:
-  * R-intro: Sec 5--11
-  * [Wickham and Grolemund](https://r4ds.hadley.nz/): Ch 2: workflow: basics
+To be fill as the course progresses
+
+
