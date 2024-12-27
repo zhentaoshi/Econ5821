@@ -1,12 +1,13 @@
 # Econ5181: Data Science for Economists
 
-
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
+
+* Time: Friday 9:30am – 12:15pm
+* Venue: Room 202, Esther Lee Building
 
 ## Introduction
 
 The is a data science course with applications to economic problems. The data operations and analytics will be demonstrated mainly in `python` (and `R` for some particular econometric methods).
-will be used as a complement. 
 After completing this course, students are expected to be fluent in a data science programming language and be able to independently conduct data analysis.
 
 This course is design for students with economics training while are new to heavy duty data tasks.
