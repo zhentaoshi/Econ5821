@@ -1,5 +1,7 @@
 # Econ5181: Data Science for Economists
 
+**Spring 2025**
+
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
 * Time: Friday 9:30am – 12:15pm
@@ -21,11 +23,11 @@ This repository contains all the slides and the accompanying data and scripts (i
 
 <!-- * [CASI] Efron, Bradley and Hastie, Trevor (2016). Computer Age Statistical Inference: Algorithms, Evidence and Data Science (Open access at https://hastie.su.domains/CASI/) -->
 
-* Wes McKinney (2022): "[Python for Data Analysis](https://wesmckinney.com/book/)".
+* Wes McKinney (2022): [Python for Data Analysis](https://wesmckinney.com/book/).
 
 * [ISLR] James, Gareth., Witten, Daniela., Hastie, Trevor., & Tibshirani, Robert. (2017). An introduction to statistical learning (Vol. 112, p. 18). New York: springer. (Open access at https://www.statlearning.com/)
 
-
+* Arthur Turrell: [Coding for Economists](https://aeturrell.github.io/coding-for-economists/).
 
 ## Environments
 
@@ -40,7 +42,6 @@ This work is licensed under
 
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-image]][cc-by-nc-sa]
 
-[Reflection from Paul Romer](https://paulromer.net/jupyter-mathematica-and-the-future-of-the-research-paper/) on Jupyter notebook and open-source science.
 
 [cc-by-nc-sa]: http://creativecommons.org/licenses/by-nc-sa/4.0/
 [cc-by-nc-sa-image]: https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png
