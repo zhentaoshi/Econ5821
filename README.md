@@ -2,7 +2,7 @@
 
 **Spring 2025**
 
-[![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
+<!-- [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa] -->
 
 * Time: Friday 9:30am – 12:15pm
 * Venue: Room 202, Esther Lee Building
