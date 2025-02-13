@@ -21,27 +21,30 @@ def capture(i):
     return (bounds['lower'] <= mu) & (mu <= bounds['upper'])
 
 
-# Rep = 200; sample_size = 2000000
+# Rep = 200; sample_size = 200000
+Rep = 2000; sample_size = 20
 
-Rep = 10000; sample_size = 10
+# Rep = 10000; sample_size = 10
+print(f"Sample size = {sample_size}, replications = {Rep}:")
+    
 
 pts0 = time.time()  # check time
 out = [capture(i) for i in range(Rep)]  # single-core execution of capture function
 pts1 = time.time() - pts0  # check time elapsed
-print(f"single-core loop takes {pts1} seconds")
+print(f"* single-core loop takes {pts1} seconds")
 
 
 # start parallel execution
 from multiprocessing import Pool
 
-num_cores = 2  # number of cores
-pts0 = time.time()  # check time
+num_cores = 8  # number of cores
+pts2 = time.time()  # check time
 
 if __name__ == '__main__':  # required for Windows
     with Pool(num_cores) as pool:  # open 2 CPUs
         out = pool.map(capture, range(Rep))
 
-    pts1 = time.time() - pts0  # check time elapsed
-    print(f"{num_cores}-core parallel loop takes {pts1} seconds")
-    print(f"coverage =  {np.mean(out):.4f}")
+    pts3 = time.time() - pts2  # check time elapsed
+    print(f"* {num_cores}-core parallel loop takes {pts1} seconds")
+    # print(f"* coverage =  {np.mean(out):.4f}")
 # %%
