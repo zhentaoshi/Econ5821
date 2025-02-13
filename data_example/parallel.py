@@ -21,8 +21,8 @@ def capture(i):
     return (bounds['lower'] <= mu) & (mu <= bounds['upper'])
 
 
-# Rep = 200; sample_size = 200000
-Rep = 2000; sample_size = 20
+Rep = 200; sample_size = 200000
+# Rep = 2000; sample_size = 20
 
 # Rep = 10000; sample_size = 10
 print(f"Sample size = {sample_size}, replications = {Rep}:")
@@ -45,6 +45,6 @@ if __name__ == '__main__':  # required for Windows
         out = pool.map(capture, range(Rep))
 
     pts3 = time.time() - pts2  # check time elapsed
-    print(f"* {num_cores}-core parallel loop takes {pts1} seconds")
+    print(f"* {num_cores}-core parallel loop takes {pts3} seconds")
     # print(f"* coverage =  {np.mean(out):.4f}")
 # %%
