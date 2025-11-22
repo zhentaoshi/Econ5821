@@ -23,8 +23,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 
 WORKDIR /home/jovyan/work
-RUN git clone --depth=1 https://github.com/zhentaoshi/Econ5821.git .
-# COPY . /home/jovyan/work
+# RUN git clone --depth=1 https://github.com/zhentaoshi/Econ5821.git .
+COPY . /home/jovyan/work
 
 RUN fix-permissions "/home/${NB_USER}"
 
