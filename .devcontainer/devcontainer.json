@@ -1,5 +1,5 @@
 {
-  "image": "ztshi/econ5821:intial",
+  "image": "ztshi/econ5821:v0.1",
   "hostRequirements": {
     "cpus": 2
   },
