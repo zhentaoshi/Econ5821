@@ -1,0 +1,13 @@
+.git
+.gitignore
+**/.ipynb_checkpoints
+.Rhistory
+.RData
+.Rproj.user
+*.Rproj
+__pycache__
+*.py[cod]
+.env
+.envrc
+.DS_Store
+Thumbs.db
