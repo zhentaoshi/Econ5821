@@ -13,6 +13,7 @@ format:
     center: false
     width: 1280
     height: 720
+    css: blue_theme.css
 jupyter: ir
 execute:
   echo: true
