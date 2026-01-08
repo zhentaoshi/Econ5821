@@ -1,8 +1,8 @@
 # Econ5181: Data Science for Economists
 
-**Spring 2025**
+**Spring 2026**
 
-<!-- [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa] -->
+[![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
 * Time: Friday 9:30am – 12:15pm
 * Venue: Room 202, Esther Lee Building
@@ -12,7 +12,7 @@
 The is a data science course with applications to economic problems. The data operations and analytics will be demonstrated mainly in `python` (and `R` for some particular econometric methods).
 After completing this course, students are expected to be fluent in a data science programming language and be able to independently conduct data analysis.
 
-This course is design for students with economics training while are new to heavy duty data tasks.
+This course is design for students with economics training but are new to heavy duty data tasks.
 Programming experience is helpful, but not prerequisite.
 
 This repository contains all the slides and the accompanying data and scripts (in the folder `data_example`).
@@ -33,7 +33,6 @@ This repository contains all the slides and the accompanying data and scripts (i
 
 * [CUHK SCRP](https://scrp-login.econ.cuhk.edu.hk/jupyter/hub/login?next=%2Fjupyter%2Fhub%2F)
 
-<!-- * [Gitpod](https://gitpod.io/#https://github.com/zhentaoshi/Econ5821) based on [docker](https://hub.docker.com/r/ztshi/econ_data_sci/tags) provides a cloud-based collaborative virtual machine. -->
 
 ## License
 
