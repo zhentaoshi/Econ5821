@@ -1,0 +1,146 @@
+---
+title: "Data Science for Economists"
+author: Zhentao Shi
+format:
+  revealjs:
+    slide-number: true
+    incremental: true
+    transition: slide
+    chalkboard: false
+    code-fold: false
+    embed-resources: true
+    theme: simple
+    center: false
+    width: 1280
+    height: 720
+jupyter: ir
+execute:
+  echo: true
+  warning: false
+  message: false
+  error: false
+---
+
+## Big data
+
+-   Information technology.
+
+-   Digitalized information.
+
+    -   Easy to collect, transport, store, and distribute.
+    -   Engineering questions.
+
+------------------------------------------------------------------------
+
+## Data Science in Economics
+
+-   Data science is about the life cycle of data analysis.
+
+-   Economics gives data science purposes
+    -   Start with a question
+    -   Locate, clean, and analyze data
+    -   Interpret, and present data
+
+------------------------------------------------------------------------
+
+## Why data
+
+-   Scientific research. e.g. Physics.
+    -   Theory and experimental evidence.
+
+-   Economics research
+    -   Modeling causality
+    -   Experimental causality
+
+-   Business analytics
+    -   Descriptive statistics
+    -   Prediction
+    -   Inference
+
+## Three questions
+
+-   How much do Msc students earn? (unsurprised learning / descriptive)
+
+-   Is a student's academic performance related to future salary? (supervised learning)
+
+-   Does higher GPA **boost** my salary? (Causal question)
+
+------------------------------------------------------------------------
+
+## Structured data
+
+-   Cross-sectional data
+-   Time series
+-   Panel data
+    -   tall and narrow (FRED-MD)
+    -   short and wide (Health survey)
+    -   tall and wide (High frequency financial data in market)
+-   Tensor data
+
+------------------------------------------------------------------------
+
+## Unstructured data
+
+-   Texts
+-   Graphs
+
+-   Audios
+-   Videos
+
+
+------------------------------------------------------------------------
+
+## Programming
+
+-   Essential skill
+-   Low-level languages: `C`, `Fortran`, ...
+-   High-level languages: `Python`, `R`, `Matlab`, ...
+
+::: fragment
+-   This course used Python as the primary language
+
+-   R serves as a complement
+
+-   Students can choose their own languages
+:::
+
+------------------------------------------------------------------------
+
+## Coverage
+
+-   Tools for productivity
+    -   Basic scientific programming
+    -   Advanced scientific programming
+
+- General Techniques
+
+    -   Simulations, Resampling, Optimization
+
+-   Methods
+
+    -   Time series
+    -   Machine learning, Neural networks
+
+------------------------------------------------------------------------
+
+## AI
+
+-   Chats
+
+-   Github Copilot
+
+-   Agents
+
+------------------------------------------------------------------------
+
+## Environment
+
+-   [Github](https://github.com/zhentaoshi/Econ5821)
+
+-   [CUHK SCRP](https://scrp-login.econ.cuhk.edu.hk/)
+
+ 
+
+::: notes
+[The Missing Semester of Your CS Education](https://missing.csail.mit.edu/)
+:::

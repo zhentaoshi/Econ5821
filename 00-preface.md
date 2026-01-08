@@ -1,6 +1,5 @@
 ﻿# Preface
 
-
 Programming is an essential skill for researchers in economic analysis.
 In the time of big data, empirical economic research becomes main stream.
 
@@ -47,7 +46,7 @@ algorithms but do not cover the theoretical components. We will provide a review
 
 ## Personal Reflection
 
--- about `R` (Written in 2017)
+-- about my beloved `R` (Written in 2017)
 
 Thirty years ago aspiring young econometricians picked up GAUSS.
 Twenty years ago the new blood began with MATLAB.
