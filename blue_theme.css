@@ -114,8 +114,25 @@
   box-shadow: 0 0 12px rgba(255, 179, 71, 0.8);
 }
 
+/* .reveal ul li ul li::before {
+  top: 18px;
+  width: 8px;
+  height: 8px;
+  border-radius: 0;
+  background: #ffe36d;
+  box-shadow: none;
+} */
+
 .reveal strong {
   color: var(--accent-cyan);
+}
+
+.reveal :not(pre) > code {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 6px;
+  padding: 0.1em 0.35em;
 }
 
 .reveal a {
