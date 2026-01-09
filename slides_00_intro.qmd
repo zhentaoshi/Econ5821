@@ -1,25 +1,43 @@
 ---
 title: "Data Science for Economists"
 author: Zhentao Shi
+# format:
+#   revealjs:
+#     slide-number: true
+#     incremental: true
+#     transition: slide
+#     chalkboard: false
+#     code-fold: false
+#     embed-resources: true
+#     theme: simple
+#     center: false
+#     width: 1280
+#     height: 720
+#     css: blue_theme.css
+# jupyter: ir
+# execute:
+#   echo: true
+#   warning: false
+#   message: false
+#   error: false
 format:
   revealjs:
     slide-number: true
     incremental: true
     transition: slide
-    chalkboard: false
-    code-fold: false
-    embed-resources: true
     theme: simple
     center: false
     width: 1280
     height: 720
     css: blue_theme.css
-jupyter: ir
+# jupyter: ir
 execute:
   echo: true
   warning: false
   message: false
   error: false
+
+
 ---
 
 ## Big data
@@ -136,7 +154,8 @@ execute:
 
 ## Environment
 
--   [Github](https://github.com/zhentaoshi/Econ5821)
+-   [Course repo](https://github.com/zhentaoshi/Econ5821)
 
 -   [CUHK SCRP](https://scrp-login.econ.cuhk.edu.hk/)
 
+-   [CUHK Resources](https://www.datacamp.com/). log-in with CUHK account. Free.

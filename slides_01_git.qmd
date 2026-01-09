@@ -11,7 +11,7 @@ format:
     width: 1280
     height: 720
     css: blue_theme.css
-jupyter: ir
+# jupyter: ir
 execute:
   echo: true
   warning: false
