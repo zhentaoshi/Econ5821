@@ -140,8 +140,3 @@ execute:
 
 -   [CUHK SCRP](https://scrp-login.econ.cuhk.edu.hk/)
 
- 
-
-::: notes
-[The Missing Semester of Your CS Education](https://missing.csail.mit.edu/)
-:::
