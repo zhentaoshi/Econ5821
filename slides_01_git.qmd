@@ -141,8 +141,8 @@ The ultimate goal is to merge that feature into the master branch.
 ## GitHub
 
 * Cloud git services:
-  * GitHub
-  * gitee (China) ...
+  * [GitHub](https://github.com/)
+  * [gitee (China)](https://gitee.com/) ...
 
 ::: {.fragment}
 * GitHub most popular
@@ -201,7 +201,7 @@ Collaboration typically works as the following:
 * [VS Code](https://code.visualstudio.com/) <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Visual_Studio_Code_1.18_icon.svg/1200px-Visual_Studio_Code_1.18_icon.svg.png" width="100">
 
 
-* Powerful tools
+* [Powerful tools](https://www.youtube.com/watch?v=jXp5D5ZnxGM)
 
 ![](https://upload.wikimedia.org/wikipedia/commons/8/8a/GitHub_Copilot_logo.svg)
 
