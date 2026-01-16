@@ -35,6 +35,11 @@ This repository contains all the slides and the accompanying data and scripts (i
 Approach 4 – Use is freely permitted without acknowledgement
 
 
+## Progress
+
+* Week 1: introduction, Linux
+* Week 2: git, basic python
+
 ## License
 
 This work is licensed under
