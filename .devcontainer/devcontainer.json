@@ -1,6 +1,7 @@
 {
   // "image": "ztshi/econ5821:v0.1",
-  "image": "jupyter/pyspark-notebook-7.0.6",
+  // "image": "jupyter/pyspark-notebook-7.0.6",
+  "image": "jupyter/datascience-notebook:x86_64-python-3.11",
   "hostRequirements": {
     "cpus": 2
   },
