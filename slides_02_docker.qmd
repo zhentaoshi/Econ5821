@@ -1,0 +1,151 @@
+---
+title: "Docker and Docker Hub"
+author: Zhentao Shi
+format:
+  revealjs:
+    slide-number: true
+    incremental: true
+    transition: slide
+    theme: simple
+    center: false
+    width: 1280
+    height: 720
+    css: blue_theme.css
+# jupyter: ir
+execute:
+  echo: true
+  warning: false
+  message: false
+  error: false
+---
+
+## Why Containers?
+
+- Ship software with its runtime and system dependencies
+- Eliminate "works on my machine" issues
+- Reproducible environments for research and teaching
+
+::: fragment
+Docker is a tool to build, ship, and run applications as containers based on images.
+:::
+
+---
+
+## Core Concepts
+
+- Image: a read-only template
+- Container: a running instance of an image
+- Registry: a place to store and retrieve images
+- Docker Hub: the default public registry
+
+---
+
+## Images vs. Containers
+
+::: fragment
+Image:
+
+- Built once, reused many times
+- Versioned by tags (e.g., `ztshi/econ5821:v0.1`)
+:::
+
+::: fragment
+Container:
+
+- A live, isolated process
+- Has its own filesystem, but shares the host kernel
+:::
+
+---
+
+## Basic Commands
+
+```bash
+docker pull ztshi/econ5821:v0.1
+docker run --rm -it ztshi/econ5821:v0.1 -V
+docker stop <container_id>
+```
+
+---
+
+## Anatomy of a Dockerfile
+
+```dockerfile
+FROM jupyter/datascience-notebook:x86_64-python-3.11.6
+
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libxml2-dev \
+    libssl-dev \
+    libcurl4-openssl-dev \
+    libcairo2-dev \
+    libxt6 \
+    libfontconfig1-dev \
+    libfreetype6-dev \
+    libpng-dev \
+    libtiff5-dev \
+    libjpeg-dev && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /home/jovyan/work
+COPY . /home/jovyan/work
+RUN fix-permissions "/home/${NB_USER}"
+EXPOSE 8888
+```
+
+---
+
+## Build an Image
+
+```bash
+docker build -t myimage:0.1 .
+docker images
+```
+Tags are just names pointing to an image ID.
+
+---
+
+## Docker Hub Basics
+
+- Public registry for images
+- Official images maintained by Docker or vendors
+- You can publish your own images
+
+
+::: fragment
+
+Pull and Push
+
+```bash
+docker login
+docker tag myimage:0.1 yourname/myimage:0.1
+docker push yourname/myimage:0.1
+docker pull yourname/myimage:0.1
+```
+:::
+
+---
+
+## Tags and Versions
+
+- `latest` is just a tag, not always the newest
+- Prefer explicit versions for reproducibility
+- Example: `ztshi/econ5821:v0.1`
+
+---
+
+## Minimal Reproducible Workflow
+
+1. Write a `Dockerfile`
+2. Build an image
+3. Run containers locally
+4. Push to Docker Hub
+5. Pull and run anywhere
+
+---
+
+## Summary
+
+- Docker packages apps as images and runs them as containers
+- Docker Hub is the default registry
+- Reproducibility is the main win for research workflows
