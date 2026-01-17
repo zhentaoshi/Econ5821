@@ -1,0 +1,148 @@
+---
+title: "Jupyter Notebook for Scientific Research"
+author: Zhentao Shi
+format:
+	revealjs:
+		slide-number: true
+		incremental: true
+		transition: slide
+		theme: simple
+		center: false
+		width: 1280
+		height: 720
+		css: blue_theme.css
+execute:
+	echo: true
+	warning: false
+	message: false
+	error: false
+---
+
+
+---
+
+## What is a Jupyter Notebook?
+
+* A document that mixes
+	- narrative text (Markdown)
+	- equations (LaTeX)
+	- code (Python/R/Julia/...)
+	- outputs (tables, figures, interactive widgets)
+
+::: fragment
+Good for *research that needs to be explained and verified*, not just executed.
+:::
+
+---
+
+## Why notebooks in scientific research?
+
+* Reproducibility: code + outputs + explanation in one place
+* Transparency: show assumptions, steps, and diagnostics
+* Exploration: rapid iteration, visualization, and hypothesis generation
+* Communication: easier to share with collaborators and future-you
+
+---
+
+## A typical research workflow
+
+* Question → data → cleaning → analysis → validation → write-up
+* Notebooks can support the whole pipeline:
+	- data audit and cleaning logs
+	- exploratory analysis and model development
+	- robustness checks
+	- plots and summary tables for papers/slides
+
+---
+
+## Anatomy of a notebook
+
+* **Cells**
+	- Markdown cells: explanation, formulas, interpretation
+	- Code cells: computation
+* **Kernel**: the runtime that executes your code
+* **State**: variables persist across cells (powerful, but risky)
+
+---
+
+## Markdown with math
+
+* Use headings, bullet points, and links to guide the reader
+* Use LaTeX for math
+
+$$
+\hat{\beta} = (X'X)^{-1}X'y
+$$
+
+---
+
+## Outputs that matter in science
+
+* Tables: descriptive stats, regression outputs
+* Figures: distributions, time series, diagnostics
+* Interactive: sliders / widgets (useful for teaching & sensitivity checks)
+
+::: fragment
+Tip: outputs should answer a question, not just “look nice”.
+:::
+
+---
+
+## Reproducibility
+
+* A new user can run from top to bottom and get the same results
+* The environment is specified
+	- Python version and packages
+	- data sources (where they come from)
+* Randomness is controlled (set seeds)
+
+---
+
+## Reproducibility pitfalls
+
+* Hidden state: running cells out of order
+* Hard-coded file paths ("/Users/..." or "C:\\...")
+* Downloading data without recording version/date
+* Manual edits to data files with no log
+
+---
+
+## Best practices
+
+* Restart kernel and **Run All** before sharing
+* Keep notebooks focused: one notebook = one story
+* Put reusable code in scripts/modules (not copied across notebooks)
+* Separate:
+	- raw data (read-only)
+	- processed data
+	- results/figures
+
+---
+
+## Version control with notebooks
+
+* Use Git for:
+	- code, text, configs
+	- small/medium data (not huge raw datasets)
+* Notebooks contain outputs → diffs can be noisy
+
+::: fragment
+Options: clear outputs before committing, or use tools that produce cleaner diffs.
+:::
+
+---
+
+## JupyterLab, VS Code, and Quarto
+
+* **JupyterLab**: classic notebook-focused IDE
+* **VS Code**: notebooks + Python tooling + Git in one place
+* **Quarto**: turn notebooks/Markdown into reports and slides
+
+---
+
+## Summary
+
+* Notebooks are excellent for research exploration and communication
+* Treat them like scientific documents: clarity + traceability
+* Pair notebooks with good habits: environments, version control, and rerunnable workflows
+
