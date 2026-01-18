@@ -1,21 +1,22 @@
 ---
-title: "Jupyter Notebook for Scientific Research"
+title: "Jupyter Notebook"
 author: Zhentao Shi
 format:
-	revealjs:
-		slide-number: true
-		incremental: true
-		transition: slide
-		theme: simple
-		center: false
-		width: 1280
-		height: 720
-		css: blue_theme.css
+  revealjs:
+    slide-number: true
+    incremental: true
+    transition: slide
+    theme: simple
+    center: false
+    width: 1280
+    height: 720
+    css: blue_theme.css
+# jupyter: ir
 execute:
-	echo: true
-	warning: false
-	message: false
-	error: false
+  echo: true
+  warning: false
+  message: false
+  error: false
 ---
 
 
@@ -35,7 +36,7 @@ Good for *research that needs to be explained and verified*, not just executed.
 
 ---
 
-## Why notebooks in scientific research?
+## Why notebooks?
 
 * Reproducibility: code + outputs + explanation in one place
 * Transparency: show assumptions, steps, and diagnostics
