@@ -62,7 +62,7 @@ Good for *research that needs to be explained and verified*, not just executed.
 	- Markdown cells: explanation, formulas, interpretation
 	- Code cells: computation
 * **Kernel**: the runtime that executes your code
-* **State**: variables persist across cells (powerful, but risky)
+
 
 ---
 
@@ -81,7 +81,7 @@ $$
 
 * Tables: descriptive stats, regression outputs
 * Figures: distributions, time series, diagnostics
-* Interactive: sliders / widgets (useful for teaching & sensitivity checks)
+* Interactive: sliders
 
 ::: fragment
 Tip: outputs should answer a question, not just “look nice”.
@@ -97,14 +97,6 @@ Tip: outputs should answer a question, not just “look nice”.
 	- data sources (where they come from)
 * Randomness is controlled (set seeds)
 
----
-
-## Reproducibility pitfalls
-
-* Hidden state: running cells out of order
-* Hard-coded file paths ("/Users/..." or "C:\\...")
-* Downloading data without recording version/date
-* Manual edits to data files with no log
 
 ---
 
