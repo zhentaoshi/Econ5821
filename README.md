@@ -20,11 +20,9 @@ This repository contains all the slides and the accompanying data and scripts (i
 
 ## Textbooks
 
-* [ISLR] James, Gareth., Witten, Daniela., Hastie, Trevor., & Tibshirani, Robert. (2017). An introduction to statistical learning (Vol. 112, p. 18). New York: springer. (Open access at https://www.statlearning.com/)
-
 * Arthur Turrell: [Coding for Economists](https://aeturrell.github.io/coding-for-economists/).
-
 * Wes McKinney (2022): [Python for Data Analysis](https://wesmckinney.com/book/).
+* [ISLR] James, Gareth., Witten, Daniela., Hastie, Trevor., & Tibshirani, Robert. (2017). An introduction to statistical learning (Vol. 112, p. 18). New York: springer. (Open access at https://www.statlearning.com/)
 
 ## Environments
 
@@ -39,6 +37,7 @@ Approach 4 – Use is freely permitted without acknowledgement
 
 * Week 1: introduction, Linux
 * Week 2: git, basic python
+* Week 3: jupyter notebook, basic python, data sources
 
 ## License
 
