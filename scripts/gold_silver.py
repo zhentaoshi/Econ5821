@@ -8,7 +8,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import yfinance as yf
 
-def fetch_prices(start="2025-07-01"):
+def fetch_prices(start):
 
     tickers = {"Gold": "GC=F", "Silver": "SI=F"}
     # yfinance allows downloading multiple tickers
