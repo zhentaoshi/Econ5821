@@ -37,7 +37,8 @@ Approach 4 – Use is freely permitted without acknowledgement
 
 * Week 1: introduction, Linux
 * Week 2: git, basic python
-* Week 3: jupyter notebook, basic python, data sources
+* Week 3: Jupyter notebook, basic python, data sources
+* Week 4: data sources, data manipulation
 
 ## License
 
