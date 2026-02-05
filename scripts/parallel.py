@@ -21,10 +21,10 @@ def capture(i):
     return (bounds['lower'] <= mu) & (mu <= bounds['upper'])
 
 
-Rep = 200; sample_size = 200000
+# Rep = 200; sample_size = 200000
 # Rep = 2000; sample_size = 20
 
-# Rep = 10000; sample_size = 10
+Rep = 100000; sample_size = 5
 print(f"Sample size = {sample_size}, replications = {Rep}:")
     
 
