@@ -36,7 +36,7 @@ Docker is a tool to build, ship, and run applications as containers based on ima
 - Image: a read-only template
 - Container: a running instance of an image
 - Registry: a place to store and retrieve images
-- Docker Hub: the default public registry
+- DockerHub: the default public registry
 
 ---
 
@@ -105,11 +105,12 @@ Tags are just names pointing to an image ID.
 
 ---
 
-## Docker Hub Basics
+## DockerHub Basics
 
 - Public registry for images
 - Official images maintained by Docker or vendors
 - You can publish your own images
+- My DockerHub profile: [ztshi](https://hub.docker.com/repositories/ztshi)
 
 
 ::: fragment
