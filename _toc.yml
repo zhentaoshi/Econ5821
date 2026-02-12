@@ -6,16 +6,14 @@ root: 00-preface
 options:
   numbered: True
 chapters:
-- file: slides_00_intro
-- file: slides_01_git
-- file: slides_02_basic_R
-- file: slides_03_data_sources
-- file: slides_04_visualization
-- file: slides_05_advanced_R
-- file: slides_06_cloud_computing
-- file: slides_07_simulation
-- file: slides_08_integration
-- file: slides_09_optimization
-- file: slides_10_time_series
-- file: slides_11_ML
-
+- file: py_01_basic
+- file: py_02_data_sources
+- file: py_03_plot
+- file: py_04_advance
+- file: py_05_simulations
+- file: py_06_integration
+- file: py_07_optimization
+- file: py_08_time_series
+- file: py_09_ML
+- file: py_10_NN
+- file: py_11_causal_inference

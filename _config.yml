@@ -3,7 +3,7 @@
 
 title: 经济学中的数据科学
 author: 史震涛 Shi Zhentao
-copyright: "2023"
+copyright: "2026"
 
 # logo: logo.png
 
@@ -12,7 +12,8 @@ copyright: "2023"
 execute:
 #  execute_notebooks: force
   execute_notebooks: 'off'
-  only_build_toc_files: true
+
+only_build_toc_files: true
 
 # Define the name of the latex output file for PDF builds
 latex:
@@ -32,15 +33,27 @@ latex:
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
 
-html:
+html: {}
 #  use_issues_button: true
 #  use_repository_button: true
 
 # Add sphinx_proof extension
 sphinx:
   config:
-    bibtex_reference_style: author_year
     language: zh_CN
+    exclude_patterns:
+      - _build
+      - .virtual_documents/**
+      - .ipynb_checkpoints
+      - .github/**
+      - data_example/**
+      - docs/**
+      - lec_2024/**
+      - references/**
+      - scripts/**
+      - AGENTS.md
+      - README.md
+      - tools_productivity.md
     
   extra_extensions:
     - sphinx_proof
