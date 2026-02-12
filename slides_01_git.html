@@ -1,0 +1,695 @@
+
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2. Git and Github &#8212; 经济学中的数据科学</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="3. Basic R" href="slides_02_basic_R.html" />
+    <link rel="prev" title="1. Data Science for Economists" href="slides_00_intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="zh-CN">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">经济学中的数据科学</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="搜索这本书..." aria-label="搜索这本书..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00-preface.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_00_intro.html">
+   1. Data Science for Economists
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   2. Git and Github
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_02_basic_R.html">
+   3. Basic R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_03_data_sources.html">
+   5. Data Sources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_04_visualization.html">
+   6. Visualization and Communication
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_05_advanced_R.html">
+   7. Advanced R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_06_cloud_computing.html">
+   8. Cloud Computing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_07_simulation.html">
+   9. Simulation and Bootstrap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_08_integration.html">
+   10. Integration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_09_optimization.html">
+   11. Numerical Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_10_time_series.html">
+   12. Time Series Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_11_ML.html">
+   18. Machine Learning
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="切换导航" aria-controls="site-navigation"
+                title="切换导航" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="下载此页面"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/slides_01_git.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="下载源文件" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="列印成PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="全屏模式"
+        title="全屏模式"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/slides_01_git.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="发射 Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> 内容
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#version-control">
+   2.1. Version Control
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#full-length-tutorials">
+   2.2. Full-Length Tutorials
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interfaces">
+   2.3. Interfaces
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linux">
+   2.4. Linux
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#basic-commands">
+   2.5. Basic Commands
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#identity">
+     2.5.1. Identity
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#local">
+     2.5.2. Local
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#eraser-like-features">
+       2.5.2.1. Eraser-like features
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#branch">
+       2.5.2.2. Branch
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#github">
+   2.6. Github
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#remote">
+     2.6.1. Remote
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#conflict">
+       2.6.1.1. Conflict
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#markdown">
+   2.7. Markdown
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   2.8. Exercises
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#readings">
+   2.9. Readings
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Git and Github</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> 内容 </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#version-control">
+   2.1. Version Control
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#full-length-tutorials">
+   2.2. Full-Length Tutorials
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interfaces">
+   2.3. Interfaces
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linux">
+   2.4. Linux
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#basic-commands">
+   2.5. Basic Commands
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#identity">
+     2.5.1. Identity
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#local">
+     2.5.2. Local
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#eraser-like-features">
+       2.5.2.1. Eraser-like features
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#branch">
+       2.5.2.2. Branch
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#github">
+   2.6. Github
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#remote">
+     2.6.1. Remote
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#conflict">
+       2.6.1.1. Conflict
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#markdown">
+   2.7. Markdown
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   2.8. Exercises
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#readings">
+   2.9. Readings
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="git-and-github">
+<h1><span class="section-number">2. </span>Git and Github<a class="headerlink" href="#git-and-github" title="Permalink to this heading">¶</a></h1>
+<p>Zhentao Shi</p>
+<div class="section" id="version-control">
+<h2><span class="section-number">2.1. </span>Version Control<a class="headerlink" href="#version-control" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://git-scm.com/">Git</a></p>
+<ul>
+<li><p>coding projects</p></li>
+<li><p>long documents</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://github.com/">Github</a></p>
+<ul>
+<li><p>online copy</p></li>
+<li><p>collaboration</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="full-length-tutorials">
+<h2><span class="section-number">2.2. </span>Full-Length Tutorials<a class="headerlink" href="#full-length-tutorials" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.atlassian.com/git/tutorials">Atlassian Online Tutorial</a></p></li>
+<li><p><a class="reference external" href="https://happygitwithr.com/">Happy Git with R</a></p></li>
+<li><p><a class="reference external" href="http://git-scm.com/book/en/v2">Pro Git</a></p></li>
+</ul>
+<p>Short tutorials are listed at the end of the slides as reading assignments.</p>
+</div>
+<div class="section" id="interfaces">
+<h2><span class="section-number">2.3. </span>Interfaces<a class="headerlink" href="#interfaces" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Command line interface (CLI)</p></li>
+<li><p>Graphic user interface</p>
+<ul>
+<li><p><a class="reference external" href="https://www.sourcetreeapp.com/">SourceTree</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="linux">
+<h2><span class="section-number">2.4. </span>Linux<a class="headerlink" href="#linux" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>GUI for PC</p></li>
+<li><p>Command line for cloud compting</p>
+<ul>
+<li><p>E.g: <a class="reference external" href="https://scrp-login.econ.cuhk.edu.hk/">CUHK SCRP</a></p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mkdir</span></code>: make directory</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span></code>: change directory</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span></code>: display files</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cp</span></code>: copy a file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nano</span></code>: open a file in a text editor called “nano”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uname</span></code>: name of the system</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">R</span></code>: Open R</p></li>
+</ul>
+</div>
+<div class="section" id="basic-commands">
+<h2><span class="section-number">2.5. </span>Basic Commands<a class="headerlink" href="#basic-commands" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="identity">
+<h3><span class="section-number">2.5.1. </span>Identity<a class="headerlink" href="#identity" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">user.name</span> <span class="pre">&lt;name&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">user.email</span> <span class="pre">&lt;email&gt;</span></code></p></li>
+</ul>
+<p>(for Windows) <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span>&#160; <span class="pre">--global</span> <span class="pre">core.autocrlf</span> <span class="pre">true</span></code> (Other OS replace <code class="docutils literal notranslate"><span class="pre">true</span></code> with <code class="docutils literal notranslate"><span class="pre">input</span></code>)</p>
+</div>
+<div class="section" id="local">
+<h3><span class="section-number">2.5.2. </span>Local<a class="headerlink" href="#local" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>.gitignore</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">help</span> <span class="pre">&lt;command&gt;</span></code> gets help for a git command</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code>  creates a new git repo, with data stored in the <code class="docutils literal notranslate"><span class="pre">.git</span></code> directory</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> inspects the contents of the working directory and staging area.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">filename</span></code> adds files to the staging area from working directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">filename1</span> <span class="pre">filename2</span></code> adds multiple files to the staging area.</p></li>
+</ul>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code> stores changes from the staging area to the repository.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;Commit</span> <span class="pre">Message&quot;</span></code> The commit message must be in the quotation marks.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code> displays historical commits stored chronologically in the repository.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">tag</span> <span class="pre">-a</span> <span class="pre">v1.0</span> <span class="pre">-m</span> <span class="pre">'message'</span> <span class="pre">[optional:commit-id]</span></code></p></li>
+</ul>
+<div class="section" id="eraser-like-features">
+<h4><span class="section-number">2.5.2.1. </span>Eraser-like features<a class="headerlink" href="#eraser-like-features" title="Permalink to this heading">¶</a></h4>
+<p>The latest commit is called <strong>HEAD</strong> commit</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">show</span> <span class="pre">HEAD</span></code>  displays view the HEAD commit.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">HEAD</span> <span class="pre">filename</span></code> restores the file in the working directory to what you made in last commit.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">HEAD</span> <span class="pre">filename</span></code> unstages the file from committing in the staging area. It does not discard file changes from the working directory; it just removes them from the staging area.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">SHA</span></code> works by using <strong>the first 7 characters</strong> of the SHA of a previous commit.</p></li>
+</ul>
+</div>
+<div class="section" id="branch">
+<h4><span class="section-number">2.5.2.2. </span>Branch<a class="headerlink" href="#branch" title="Permalink to this heading">¶</a></h4>
+<p>Branches can be created for new project features.</p>
+<p>The ultimate goal is to merge that feature into the master branch.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span></code> displays the current branch.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">brach_name</span></code> creates a new branch</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">branch_name</span></code> switches to a branch</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span> <span class="pre">branch_name</span></code> merges the branch</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="github">
+<h2><span class="section-number">2.6. </span>Github<a class="headerlink" href="#github" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Cloud git services:</p>
+<ul>
+<li><p>github</p></li>
+<li><p>bitbucket</p></li>
+<li><p>gitlab</p></li>
+<li><p>gitee (China) …</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Github most popular</p>
+<ul>
+<li><p>Free Pro account for students</p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="remote">
+<h3><span class="section-number">2.6.1. </span>Remote<a class="headerlink" href="#remote" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/user_name/repo_name</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">add</span> <span class="pre">origin</span></code> adds the origin remote’s URL.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">-v</span></code> lists git project’s remote copies.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">master</span></code> uploads local commits to the remote repository.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code> downloads the remote copy and merge.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span></code> fetches the remote copy to the local hard disk.</p></li>
+</ul>
+<p>Collaboration typically works as follows:</p>
+<ol class="simple">
+<li><p>Fetch and merge changes from a remote repository;</p></li>
+<li><p>Create a branch to work on a new project feature;</p></li>
+<li><p>Develop the feature on your branch and commit your work;</p></li>
+<li><p>Fetch and merge from the remote again (in case other collaborators have uploaded new commits while you were working);</p></li>
+<li><p>Push your branch up to the remote for review.</p></li>
+</ol>
+<div class="section" id="conflict">
+<h4><span class="section-number">2.6.1.1. </span>Conflict<a class="headerlink" href="#conflict" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Collaborators working separately on the same line of a file may easily encounter conflicts.</p></li>
+<li><p>If so, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code> will not merge changes from the remote into local repo.</p></li>
+<li><p>Need to resolve the conflicts</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="markdown">
+<h2><span class="section-number">2.7. </span>Markdown<a class="headerlink" href="#markdown" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Text only.</p></li>
+<li><p>Simple syntax.</p></li>
+<li><p><a class="reference external" href="https://www.markdownguide.org/cheat-sheet/">Cheat sheet</a></p></li>
+</ul>
+</div>
+<div class="section" id="exercises">
+<h2><span class="section-number">2.8. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">¶</a></h2>
+<ol class="simple">
+<li><p>Initial a git repo in a folder (either local or on SCRP)</p></li>
+<li><p>Create an md file called <code class="docutils literal notranslate"><span class="pre">hello.md</span></code>, and write “Hello World!” in it.</p></li>
+<li><p>Commit the changes.</p></li>
+<li><p>Register a github account (if you haven’t done so).</p></li>
+<li><p>Push the latest commit to github.</p></li>
+</ol>
+</div>
+<div class="section" id="readings">
+<h2><span class="section-number">2.9. </span>Readings<a class="headerlink" href="#readings" title="Permalink to this heading">¶</a></h2>
+<p>As a general tool for coding, there are plenty of excellent tutorials online.</p>
+<ul class="simple">
+<li><p>Grant McDermott’s lecture notes: <a class="reference external" href="https://raw.githack.com/uo-ec510-2020-spring/lectures/master/02-git/02-git.html#1">Git</a>, <a class="reference external" href="https://raw.githack.com/uo-ec510-2020-spring/lectures/master/03-shell/03-shell.html#1">Shell</a></p></li>
+<li><p>Youtube videos</p>
+<ul>
+<li><p>10-min <a class="reference external" href="https://www.youtube.com/watch?v=q4CQBuZ4IGo">video</a> in Chinese.</p></li>
+<li><p>1-hour <a class="reference external" href="https://www.youtube.com/watch?v=RGOj5yH7evk">video</a> for beginners.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Final words</strong>:
+Don’t expect you can be a Git guru in one day.
+It is learning by doing.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="slides_00_intro.html" title="上一页 页">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">上一页</p>
+            <p class="prev-next-title"><span class="section-number">1. </span>Data Science for Economists</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="slides_02_basic_R.html" title="下一页 页">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Basic R</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      通过 史震涛 Shi Zhentao<br/>
+    
+        &copy; 版权 2023.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,511 @@
+
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scraping Lianjia Data &#8212; 经济学中的数据科学</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="zh-CN">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">经济学中的数据科学</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="搜索这本书..." aria-label="搜索这本书..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00-preface.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../slides_00_intro.html">
+   1. Data Science for Economists
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../slides_01_git.html">
+   2. Git and Github
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../slides_02_basic_R.html">
+   3. Basic R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../slides_03_data_sources.html">
+   5. Data Sources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../slides_04_visualization.html">
+   6. Visualization and Communication
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../slides_05_advanced_R.html">
+   7. Advanced R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../slides_06_cloud_computing.html">
+   8. Cloud Computing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../slides_07_simulation.html">
+   9. Simulation and Bootstrap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../slides_08_integration.html">
+   10. Integration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../slides_09_optimization.html">
+   11. Numerical Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../slides_10_time_series.html">
+   12. Time Series Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../slides_11_ML.html">
+   18. Machine Learning
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="切换导航" aria-controls="site-navigation"
+                title="切换导航" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="下载此页面"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/data_example/Scrape_Lianjia.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="下载源文件" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="列印成PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="全屏模式"
+        title="全屏模式"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/data_example/Scrape_Lianjia.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="发射 Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Scraping Lianjia Data</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="scraping-lianjia-data">
+<h1>Scraping Lianjia Data<a class="headerlink" href="#scraping-lianjia-data" title="Permalink to this heading">¶</a></h1>
+<p>We applied machine learning methods by training on a Beijing Lianjia transaction dataset to predict housing price in our paper “<em>Unfolding Beijing in a Hedonic Way</em>”. See this paper here: <a class="reference external" href="https://www.researchgate.net/publication/355732617_Unfolding_Beijing_in_a_Hedonic_Way">https://www.researchgate.net/publication/355732617_Unfolding_Beijing_in_a_Hedonic_Way</a>.</p>
+<p>Real transaction records used to be accessible on the Lianjia websites. But sadly, due to some policy restrictions arised in 2021 just after we finished the paper, Lianjia no longer shows the transaction webpages to the public. As a consequence, the webpage example we provided in the paper, <a class="reference external" href="https://bj.lianjia.com/chengjiao/101084782030.html">https://bj.lianjia.com/chengjiao/101084782030.html</a>, is no longer available.</p>
+<p>Here, for illustration purpose, we show how to scrape the on-sale second-hand property data  (<a class="reference external" href="https://bj.lianjia.com/ershoufang/">https://bj.lianjia.com/ershoufang/</a>), instead of the sold-out transaction data (<a class="reference external" href="https://bj.lianjia.com/chengjiao/">https://bj.lianjia.com/chengjiao/</a>) from the Beijing Lianjia website.</p>
+<p>First, we need to import some packages, where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">selenium</span></code> fetches the webpage source code；</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BeautifulSoup</span></code> organizes the fetched html code and searches the information we need in it.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A webpage, e.g. <strong>Firefox</strong> or <strong>Chrome</strong>, is need for <code class="docutils literal notranslate"><span class="pre">selenium</span></code> to open a webpage in the background. To call the browser, we need a corresponding <strong>webdriver</strong>. To download and know more about the webdrivers, see:</p>
+<ul class="simple">
+<li><p>Firefox: <a class="reference external" href="https://github.com/mozilla/geckodriver/releases">https://github.com/mozilla/geckodriver/releases</a>;</p></li>
+<li><p>Chrome: <a class="reference external" href="https://chromedriver.chromium.org/">https://chromedriver.chromium.org/</a>.</p></li>
+</ul>
+<p>Here, we use the Firefox webdriver as an example.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">options</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">firefox</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">Options</span><span class="p">()</span>
+<span class="n">options</span><span class="o">.</span><span class="n">headless</span> <span class="o">=</span> <span class="kc">True</span> <span class="c1"># call the browser in the background</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Firefox</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">)</span> <span class="c1"># Firefox webdriver must be put into PATH (windows)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">implicitly_wait</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># set the maximum waiting time to load the webpage completely</span>
+
+<span class="c1"># If you want to use the Chrome webdriver, please uncomment and run the code in the following cell. </span>
+
+<span class="c1"># options = webdriver.chrome.options.Options()</span>
+<span class="c1"># options.headless = True</span>
+<span class="c1"># driver = webdriver.Chrome(options=options)</span>
+<span class="c1"># driver.implicitly_wait(10)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>See an example objective webpage here: <a class="reference external" href="https://bj.lianjia.com/ershoufang/101114772718.html">https://bj.lianjia.com/ershoufang/101114772718.html</a>. What we want is a program that given a <strong>url</strong>, returns many information fields on the webpage, including attributes of the house, price, location, and etc. Here, we define a function <code class="docutils literal notranslate"><span class="pre">Scrape_Lianjia</span></code> to fulfill this demand.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Scrape_Lianjia</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
+    
+    <span class="c1"># Fetch the page</span>
+    <span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    
+    <span class="c1"># Load the page into BeautifulSoup</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">page_source</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># Initialize the container as a dictionary</span>
+    <span class="n">info</span> <span class="o">=</span> <span class="p">{}</span>
+    
+    <span class="c1"># Basic information</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">:</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">label</span><span class="o">.</span><span class="n">next_sibling</span>
+        <span class="k">while</span> <span class="n">content</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">==</span><span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">next_sibling</span>
+        <span class="n">info</span><span class="p">[</span><span class="n">label</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\xa0</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;举报&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;㎡&#39;</span><span class="p">,</span> <span class="s1">&#39;平米&#39;</span><span class="p">)</span>
+    <span class="n">info</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;风险提示&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># Follower</span>
+    <span class="n">follow</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+    <span class="n">info</span><span class="p">[</span><span class="s1">&#39;关注人数&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">follow</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    
+    <span class="c1"># Total Price</span>
+    <span class="n">price_total</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;total&#39;</span><span class="p">)</span>
+    <span class="n">price_unit</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;unit&#39;</span><span class="p">)</span>
+    <span class="n">info</span><span class="p">[</span><span class="s1">&#39;总价&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">price_total</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">+</span><span class="n">price_unit</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">+</span><span class="s1">&#39;元&#39;</span>
+    
+    <span class="c1"># Unit Price</span>
+    <span class="n">unitPrice</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;unitPriceValue&#39;</span><span class="p">)</span>
+    <span class="n">info</span><span class="p">[</span><span class="s1">&#39;单价&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">unitPrice</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    
+    <span class="c1"># Construction Year</span>
+    <span class="n">constructYear</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;subInfo noHidden&#39;</span><span class="p">)</span>
+    <span class="n">info</span><span class="p">[</span><span class="s1">&#39;建成时间&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;.+年建&#39;</span><span class="p">,</span> <span class="n">constructYear</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="c1"># Coordinates and Uniqueness</span>
+    <span class="n">scripts</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">script</span> <span class="ow">in</span> <span class="n">scripts</span><span class="p">:</span>
+        <span class="n">isUnique</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;isUnique:&#39;\w+&#39;&quot;</span><span class="p">,</span> <span class="n">script</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+        <span class="n">coord</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;resblockPosition:&#39;\d+\.\d+,\d+\.\d+&#39;&quot;</span><span class="p">,</span> <span class="n">script</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">isUnique</span> <span class="o">!=</span> <span class="p">[]:</span>
+            <span class="n">isUnique</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;[&#39;:]&quot;</span><span class="p">,</span> <span class="n">isUnique</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">info</span><span class="p">[</span><span class="s1">&#39;是否唯一&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">isUnique</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">coord</span> <span class="o">!=</span> <span class="p">[]:</span>
+            <span class="n">coord</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;[&#39;:,]&quot;</span><span class="p">,</span> <span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">info</span><span class="p">[</span><span class="s1">&#39;Longitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">coord</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">info</span><span class="p">[</span><span class="s1">&#39;Latitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">coord</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">info</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>See how this program work on the example webpage.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Scrape_Lianjia</span><span class="p">(</span><span class="s1">&#39;https://bj.lianjia.com/ershoufang/101114772718.html&#39;</span><span class="p">,</span> <span class="n">driver</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;小区名称&#39;: &#39;莫奈花园&#39;,
+ &#39;所在区域&#39;: &#39;顺义 后沙峪 五至六环&#39;,
+ &#39;看房时间&#39;: &#39;提前预约随时可看&#39;,
+ &#39;链家编号&#39;: &#39;101114772718&#39;,
+ &#39;房屋户型&#39;: &#39;4室2厅1厨4卫&#39;,
+ &#39;所在楼层&#39;: &#39;中楼层 (共4层)&#39;,
+ &#39;建筑面积&#39;: &#39;212.87平米&#39;,
+ &#39;户型结构&#39;: &#39;复式&#39;,
+ &#39;套内面积&#39;: &#39;194.33平米&#39;,
+ &#39;建筑类型&#39;: &#39;板楼&#39;,
+ &#39;房屋朝向&#39;: &#39;南 北&#39;,
+ &#39;建筑结构&#39;: &#39;混合结构&#39;,
+ &#39;装修情况&#39;: &#39;精装&#39;,
+ &#39;梯户比例&#39;: &#39;一梯九户&#39;,
+ &#39;供暖方式&#39;: &#39;自供暖&#39;,
+ &#39;配备电梯&#39;: &#39;无&#39;,
+ &#39;挂牌时间&#39;: &#39;2022-04-05&#39;,
+ &#39;交易权属&#39;: &#39;商品房&#39;,
+ &#39;上次交易&#39;: &#39;2017-01-23&#39;,
+ &#39;房屋用途&#39;: &#39;普通住宅&#39;,
+ &#39;房屋年限&#39;: &#39;满五年&#39;,
+ &#39;产权所属&#39;: &#39;非共有&#39;,
+ &#39;抵押信息&#39;: &#39;有抵押 350万元 工商银行 客户偿还&#39;,
+ &#39;房本备件&#39;: &#39;已上传房本照片&#39;,
+ &#39;关注人数&#39;: &#39;20&#39;,
+ &#39;总价&#39;: &#39;930万元&#39;,
+ &#39;单价&#39;: &#39;43689元/平米&#39;,
+ &#39;建成时间&#39;: &#39;2005年建&#39;,
+ &#39;是否唯一&#39;: &#39;唯一住宅&#39;,
+ &#39;Longitude&#39;: &#39;116.53916&#39;,
+ &#39;Latitude&#39;: &#39;40.107599&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>The program works well. Since one url is corresponding for one house on sale, then the next question is how to get all these urls. It can be easily observed that the lists of the on-sale houses are shown on a series of webpages from <a class="reference external" href="https://bj.lianjia.com/ershoufang/pg1/">https://bj.lianjia.com/ershoufang/pg1/</a> to <a class="reference external" href="https://bj.lianjia.com/ershoufang/pg100/">https://bj.lianjia.com/ershoufang/pg100/</a> in a good order, where <code class="docutils literal notranslate"><span class="pre">pg</span></code> stands for “page” and there are 100 pages of house lists under <a class="reference external" href="https://bj.lianjia.com/ershoufang/">https://bj.lianjia.com/ershoufang/</a>. Here, as an example, we collect all housing urls in the first 5 pages.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">page_max</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># set the number of pages to search here</span>
+
+<span class="n">urls</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">page_max</span><span class="o">+</span><span class="mi">1</span><span class="p">)):</span>
+    <span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://bj.lianjia.com/ershoufang/pg&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">page_source</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+    <span class="n">items</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;noresultRecommend img LOGCLICKDATA&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
+        <span class="n">urls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>See what are contained in the list <code class="docutils literal notranslate"><span class="pre">urls</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">urls</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;https://bj.lianjia.com/ershoufang/101115028158.html&#39;,
+ &#39;https://bj.lianjia.com/ershoufang/101114580929.html&#39;,
+ &#39;https://bj.lianjia.com/ershoufang/101115003779.html&#39;,
+ &#39;https://bj.lianjia.com/ershoufang/101113640862.html&#39;,
+ &#39;https://bj.lianjia.com/ershoufang/101111602994.html&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, what we need to do is just run our program <code class="docutils literal notranslate"><span class="pre">Scrape_Lianjia</span></code> through all urls inside the list <code class="docutils literal notranslate"><span class="pre">urls</span></code>, and then save the result.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lianjia</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">urls</span><span class="p">:</span>
+    <span class="n">info</span> <span class="o">=</span> <span class="n">Scrape_Lianjia</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">driver</span><span class="p">)</span>
+    <span class="n">lianjia</span> <span class="o">=</span> <span class="n">lianjia</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">info</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">lianjia</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;lianjia.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>See what we got!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lianjia</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./data_example"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      通过 史震涛 Shi Zhentao<br/>
+    
+        &copy; 版权 2023.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

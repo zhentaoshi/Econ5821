@@ -1,0 +1,1137 @@
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>5. Lecture 5: Uncertainty &#8212; 经济学中的数据科学</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=cc3ee377" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=946197a6"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/translations.js?v=beaddf03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'py_05_simulations';</script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="6. Integration" href="py_06_integration.html" />
+    <link rel="prev" title="4. Lecture 4: Advanced Python" href="py_04_advance.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="00-preface.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">经济学中的数据科学</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">搜索</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="00-preface.html">
+                    Preface
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="py_01_basic.html">1. Lecture 1: Python for Scientific Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_02_data_sources.html">2. Lecture 2: Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_03_plot.html">3. Lecture 3: Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_04_advance.html">4. Lecture 4: Advanced Python</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Lecture 5: Uncertainty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_06_integration.html">6. Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_07_optimization.html">7. ECON 5821: Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_08_time_series.html">8. Time Series Analysis</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="py_09_ML.html">27. Machine Learning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="py_10_NN.html">47. Neural Networks</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="py_11_causal_inference.html">50. Lecture 11: Causal Inference and Program Evaluation</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="下载此页面">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/py_05_simulations.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="下载源文件"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="列印成 PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全屏模式"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lecture 5: Uncertainty</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目录 </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zhentao-shi">5.1. Zhentao Shi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">5.2. Simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appetizer">5.3. Appetizer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handwriting-scripts">5.4. Handwriting Scripts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-sample-evaluation">5.5. Finite Sample Evaluation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">5.6. Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#t-statistic">5.6.1. <span class="math notranslate nohighlight">\(t\)</span>-statistic</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-results">5.6.2. Simulation Results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observations">5.6.3. Observations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#justification">5.6.4. Justification</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ai-agent">5.7. AI Agent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#world-view-about-uncertainty">5.8. World View about Uncertainty</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap">5.9. Bootstrap</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-idea">5.9.1. Key Idea</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-to-asymptotic-theory">5.9.2. Compare to Asymptotic Theory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nonparametric-bootstrap">5.9.3. Nonparametric Bootstrap</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variants-of-bootstrap-schemes">5.9.4. Variants of Bootstrap Schemes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap-estimation">5.9.5. Bootstrap Estimation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap-test">5.9.6. Bootstrap Test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">5.9.7. Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap-world">5.9.8. Bootstrap World</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#design-the-statistic">5.9.9. Design the Statistic</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#results">5.9.10. Results</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lecture-5-uncertainty">
+<h1><span class="section-number">5. </span>Lecture 5: Uncertainty<a class="headerlink" href="#lecture-5-uncertainty" title="Link to this heading">#</a></h1>
+<section id="zhentao-shi">
+<h2><span class="section-number">5.1. </span>Zhentao Shi<a class="headerlink" href="#zhentao-shi" title="Link to this heading">#</a></h2>
+<img src="graph/macau.jpg" width="1000"><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">random</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="simulation">
+<h2><span class="section-number">5.2. </span>Simulation<a class="headerlink" href="#simulation" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>check finite-sample performance</p></li>
+<li><p>bootstrap, a data-driven inference procedure</p></li>
+<li><p>generate non-standard distributions</p></li>
+<li><p>approximate integrals with no analytic expressions</p></li>
+</ul>
+</section>
+<section id="appetizer">
+<h2><span class="section-number">5.3. </span>Appetizer<a class="headerlink" href="#appetizer" title="Link to this heading">#</a></h2>
+<p>calculating <span class="math notranslate nohighlight">\(\pi\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">Circle</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>By laws of large numbers, <span class="math notranslate nohighlight">\(\pi\)</span> can be approximated by a stochastic algorithm</p>
+<div class="math notranslate nohighlight">
+\[
+E\left[\boldsymbol{1}\left\{ x^{2}+y^{2}\leq1\right\} \right] = \frac{\pi r^{2}}{\left(2r\right)^{2}}= \frac{\pi}{4}
+\]</div>
+<p>it implies  <span class="math notranslate nohighlight">\(\pi=4\times E[ 1 \{  x^{2}+y^{2}\leq1 \}]\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">20000000</span>
+
+<span class="c1"># set a random seed</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">20250221</span><span class="p">)</span>
+
+<span class="n">Z</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="c1"># uniform distribution in [-1, 1]</span>
+
+<span class="n">inside</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Z</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The estimated pi = </span><span class="si">{</span><span class="n">inside</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">4</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Sample size can be made as large as the computer’s memory permits.</p></li>
+<li><p>Iterate it with average of averages and so on, for higher accuracy.</p></li>
+</ul>
+</section>
+<section id="handwriting-scripts">
+<h2><span class="section-number">5.4. </span>Handwriting Scripts<a class="headerlink" href="#handwriting-scripts" title="Link to this heading">#</a></h2>
+<p>This course promotes vibe coding.</p>
+<p>Human wrote code by hand, before AI.</p>
+<ul class="simple">
+<li><p>A script is a piece of code for a particular purpose.</p></li>
+<li><p>Thousands of lines are not written from the beginning to the end.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Recursive development</p>
+<ul>
+<li><p>small manageable tasks</p></li>
+<li><p>test code constantly</p></li>
+<li><p>encapsulate into DIY functions</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Integrate small pieces into the super structure.</p></li>
+<li><p>Add comments to the script to facilitate readability</p></li>
+<li><p>Scprit (<a class="reference external" href="http://XXX.py">XXX.py</a>) is more suitable than Jupyter notebook</p></li>
+</ul>
+</section>
+<section id="finite-sample-evaluation">
+<h2><span class="section-number">5.5. </span>Finite Sample Evaluation<a class="headerlink" href="#finite-sample-evaluation" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Real world sample is finite</p></li>
+<li><p>Asymptotic theory is a mathematical apparatus to approximate finite sample distributions</p></li>
+<li><p>Modern econometric theory is built on asymptotics</p></li>
+<li><p>Simulation is one way to evaluate the accuracy of approximation.</p></li>
+</ul>
+</section>
+<section id="example">
+<h2><span class="section-number">5.6. </span>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h2>
+<p>For the OLS estimator,</p>
+<ul class="simple">
+<li><p>Classical views <span class="math notranslate nohighlight">\(X\)</span> as fixed regressions and only cares about the randomness of the error term.</p></li>
+<li><p>Modern econometrics textbook emphasizes that a random <span class="math notranslate nohighlight">\(X\)</span> is more appropriate
+for econometrics applications.</p></li>
+<li><p>In rigorous textbooks, the moment of <span class="math notranslate nohighlight">\(X\)</span> is explicitly stated as <span class="math notranslate nohighlight">\(E[X_i X_i'] &lt; \infty\)</span>.</p></li>
+</ul>
+<ul class="simple">
+<li><p>A Pareto distribution with shape coefficient between 1 and 2 has finite population mean, but infinite variance.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(X\)</span> follows a
+<a class="reference external" href="https://en.wikipedia.org/wiki/Pareto_distribution">Pareto distribution</a> with shape coefficient 1.5, it violates the assumptions for OLS stated in most of econometric textbooks.</p></li>
+<li><p>Question: Is asymptotic inferential theory for the OLS estimator valid?</p></li>
+</ul>
+<p>We write a script to investigate this problem. The following steps develop the code.</p>
+<ol class="arabic simple">
+<li><p>given a sample size, get the OLS <code class="docutils literal notranslate"><span class="pre">b_hat</span></code> and its associated <code class="docutils literal notranslate"><span class="pre">t_value</span></code>.</p></li>
+<li><p>wrap <code class="docutils literal notranslate"><span class="pre">t_value</span></code> as a user-defined function so that we can reuse it for many times.</p></li>
+<li><p>given a sample size, report the size under two distributions.</p></li>
+<li><p>wrap step 3 again as a user-defined function, ready for different sample sizes.</p></li>
+<li><p>develop the super structure to connect the workhorse functions.</p></li>
+<li><p>add comments and documentation.</p></li>
+</ol>
+<section id="t-statistic">
+<h3><span class="section-number">5.6.1. </span><span class="math notranslate nohighlight">\(t\)</span>-statistic<a class="headerlink" href="#t-statistic" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+\sqrt{n} (\hat{\beta} - \beta_0) |X = (X'X/n)^{-1}  (X' e /\sqrt{n}),
+\]</div>
+<p>the <span class="math notranslate nohighlight">\(k\)</span>-th element of the vector coefficient conditional on <span class="math notranslate nohighlight">\(X\)</span> is
+$<span class="math notranslate nohighlight">\(
+\widehat{\beta}_{k}|X=\eta_{k}'\widehat{\beta}|X
+\sim N\left(\beta_{k},\sigma^{2}\left(X'X\right)_{kk}^{-1}\right).
+\)</span>$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span><span class="p">,</span> <span class="n">t</span>
+
+<span class="k">def</span> <span class="nf">simulation</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simulate the t-value of the second parameter in a linear regression model</span>
+<span class="sd">    with n samples and the specified distribution of errors.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">if</span> <span class="n">dist</span> <span class="o">==</span> <span class="s1">&#39;normal&#39;</span><span class="p">:</span>
+        <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">dist</span> <span class="o">==</span> <span class="s1">&#39;t&#39;</span><span class="p">:</span>
+        <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">standard_t</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+
+    <span class="n">b0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">pareto</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)))</span>
+    <span class="c1"># the above X is generated from a Pareto distribution</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">b0</span><span class="p">)</span> <span class="o">+</span> <span class="n">e</span>
+
+    <span class="n">bhat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Y</span><span class="p">)</span>
+    <span class="n">bhat2</span> <span class="o">=</span> <span class="n">bhat</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># parameter we want to test</span>
+
+    <span class="n">e_hat</span> <span class="o">=</span> <span class="n">Y</span> <span class="o">-</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">bhat</span><span class="p">)</span>
+    <span class="n">sigma_hat_square</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">e_hat</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">sig_B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">))</span> <span class="o">*</span> <span class="n">sigma_hat_square</span>
+    <span class="n">t_value_2</span> <span class="o">=</span> <span class="p">(</span><span class="n">bhat2</span> <span class="o">-</span> <span class="n">b0</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sig_B</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">t_value_2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">t</span><span class="p">,</span> <span class="n">norm</span>
+
+<span class="k">def</span> <span class="nf">report</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">Rep</span><span class="p">):</span>
+    <span class="c1"># collect the test size from the two distributions</span>
+    <span class="c1"># this function contains some repetitive code, but is OK for such a simple one</span>
+    <span class="n">TEST_SIZE</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="c1"># e ~ normal distribution, under which the t-dist is exact</span>
+    <span class="c1"># generate the t-statistics from the normal distribution</span>
+    <span class="n">Res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">simulation</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s1">&#39;normal&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Rep</span><span class="p">)])</span>
+    
+    <span class="n">TEST_SIZE</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Res</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.975</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">TEST_SIZE</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Res</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.975</span><span class="p">))</span>
+
+    <span class="c1"># e ~ t-distribution, under which the exact distribution is complicated.</span>
+    <span class="c1"># we rely on asymptotic normal distribution for inference instead</span>
+    <span class="n">Res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">simulation</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Rep</span><span class="p">)])</span>
+    <span class="n">TEST_SIZE</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Res</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.975</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">TEST_SIZE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Rep</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">df</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># t dist. with df = 1 is Cauchy</span>
+
+<span class="c1"># run the calculation of the empirical sizes for different sample sizes</span>
+<span class="n">NN</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">20000</span><span class="p">]</span>
+
+<span class="n">RES</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">NN</span><span class="p">),</span> <span class="mi">4</span><span class="p">)),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;exact&#39;</span><span class="p">,</span> <span class="s1">&#39;normal.asym&#39;</span><span class="p">,</span> <span class="s1">&#39;cauchy.asym&#39;</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">NN</span><span class="p">):</span> <span class="c1"># loop over different sample sizes</span>
+    <span class="c1"># enumerate is a built-in Python function that returns an iterator containing the index and value of a list</span>
+
+    <span class="n">RES</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span>
+    <span class="n">RES</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">report</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">Rep</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">RES</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="simulation-results">
+<h3><span class="section-number">5.6.2. </span>Simulation Results<a class="headerlink" href="#simulation-results" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>1st column: the error is normal, use exact distribution theory to find the critical value (according to <span class="math notranslate nohighlight">\(t\)</span>-distribution.)</p></li>
+<li><p>2nd column: still uses the normal error</p>
+<ul>
+<li><p>change the critical value to asymptotic normal distribution</p></li>
+</ul>
+</li>
+<li><p>3rd column: error distribution is Cauchy</p>
+<ul>
+<li><p>asymptotic approximation breaks down</p></li>
+<li><p>test size does not converge to the nominal 5%</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="observations">
+<h3><span class="section-number">5.6.3. </span>Observations<a class="headerlink" href="#observations" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(X\)</span> is always Pareto</p></li>
+<li><p>distribution of <span class="math notranslate nohighlight">\(X\)</span> doesn’t matter in our simulations</p></li>
+</ul>
+</section>
+<section id="justification">
+<h3><span class="section-number">5.6.4. </span>Justification<a class="headerlink" href="#justification" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Self-normalized <span class="math notranslate nohighlight">\(t\)</span> statistic does not break down despite that <span class="math notranslate nohighlight">\(X'X/n\)</span> does not converge</p></li>
+<li><p>Regardless the distribution of <span class="math notranslate nohighlight">\(X\)</span>, when the error term is normal</p>
+<ul>
+<li><p>numerator follows <span class="math notranslate nohighlight">\(N(0,1)\)</span></p></li>
+<li><p>demonimator follows <span class="math notranslate nohighlight">\(\chi^2\)</span></p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="ai-agent">
+<h2><span class="section-number">5.7. </span>AI Agent<a class="headerlink" href="#ai-agent" title="Link to this heading">#</a></h2>
+<p>to be implemented in SCRP.</p>
+<ul class="simple">
+<li><p><strong>Prompt</strong>: Create a demo of using simulations to evaluat the value-at-risk of a portfolio of two assets.</p></li>
+<li><p><strong>Prompt</strong>: Create another py script similar to “var_demo.py”. Name is “var_heavy_tail.py”. The only change is to replace the normal distribution by a heavy tail distribution. Maintain the correlation between the two assets.</p></li>
+</ul>
+</section>
+<section id="world-view-about-uncertainty">
+<h2><span class="section-number">5.8. </span>World View about Uncertainty<a class="headerlink" href="#world-view-about-uncertainty" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Fundamental question: how to quantify uncertainty.</p>
+<ul>
+<li><p>data <span class="math notranslate nohighlight">\((X_1,X_2,\ldots,X_n)\)</span></p></li>
+<li><p>sample mean <span class="math notranslate nohighlight">\(\bar{X}\)</span></p></li>
+<li><p>sample variance <span class="math notranslate nohighlight">\(s\)</span></p></li>
+<li><p>frequentist confidence interval about the population mean</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Asymptotics is imaginary.</p></li>
+<li><p>Let’s be realistic: we have a finite sample <span class="math notranslate nohighlight">\(n\)</span>.</p></li>
+</ul>
+</section>
+<section id="bootstrap">
+<h2><span class="section-number">5.9. </span>Bootstrap<a class="headerlink" href="#bootstrap" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Let <span class="math notranslate nohighlight">\(X_1, X_2, \ldots, X_n \sim F\)</span> be an i.i.d. sample of <span class="math notranslate nohighlight">\(n\)</span> observations following a distribution <span class="math notranslate nohighlight">\(F\)</span>.</p></li>
+<li><p>The finite sample distribution of a statistic <span class="math notranslate nohighlight">\(T_n(\theta)\sim G_n(\cdot, F)\)</span> usually depends on the sample size <span class="math notranslate nohighlight">\(n\)</span>, as well as the unknown true distribution <span class="math notranslate nohighlight">\(F\)</span>.</p></li>
+</ul>
+<section id="key-idea">
+<h3><span class="section-number">5.9.1. </span>Key Idea<a class="headerlink" href="#key-idea" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Bootstrap replaces the unknown distribution <span class="math notranslate nohighlight">\(F\)</span> in <span class="math notranslate nohighlight">\(G_n(\cdot, F)\)</span> by the empirical distribution function</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\hat{F}_n(\cdot) = n^{-1} \sum_{i=1}^n 1\{\cdot \leq X_i\}
+\]</div>
+<ul class="simple">
+<li><p>Bootstrap inference is drawn from the bootstrap distribution</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+G_n(\cdot, \hat{F}_n)
+\]</div>
+</section>
+<section id="compare-to-asymptotic-theory">
+<h3><span class="section-number">5.9.2. </span>Compare to Asymptotic Theory<a class="headerlink" href="#compare-to-asymptotic-theory" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Bootstrap is a finite-sample practice</p></li>
+<li><p>It doesn’t refer to an imaginary world where <span class="math notranslate nohighlight">\(n\to \infty\)</span> at its face value</p></li>
+<li><p>Asymptotic theory approximates <span class="math notranslate nohighlight">\(G_n(\cdot, F)\)</span> by its limit</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+G(\cdot, F) := \lim_{n\to\infty} G_n(\cdot, F).
+\]</div>
+<ul class="simple">
+<li><p>In many cases <span class="math notranslate nohighlight">\(G(\cdot, F)\)</span> is independent of <span class="math notranslate nohighlight">\(F\)</span> and it becomes <span class="math notranslate nohighlight">\(G(\cdot)\)</span>. Such a <span class="math notranslate nohighlight">\(T_n(\theta)\)</span> is called <em>asymptotically pivotal</em>,</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">statsmodels.distributions.empirical_distribution</span> <span class="kn">import</span> <span class="n">ECDF</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">ecdf</span> <span class="o">=</span> <span class="n">ECDF</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># get unique sorted values of x and corresponding values of y</span>
+<span class="n">ux</span><span class="p">,</span> <span class="n">uy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">ecdf</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">return_index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">return_inverse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">ecdf</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">ecdf</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">return_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">return_inverse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="mi">1</span><span class="p">]]</span>
+
+<span class="c1"># add last point (1,1) to the step function</span>
+<span class="n">ux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">ux</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="n">uy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">uy</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+<span class="c1"># create step function with horizontal lines</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ux</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">uy</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">drawstyle</span><span class="o">=</span><span class="s1">&#39;steps-pre&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">ux</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">ux</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">uy</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">uy</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C0&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">ux</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">ux</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">uy</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">uy</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C0&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;ECDF for uniform distribution&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="nonparametric-bootstrap">
+<h3><span class="section-number">5.9.3. </span>Nonparametric Bootstrap<a class="headerlink" href="#nonparametric-bootstrap" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Implementation of bootstrap is a simulation exercise.</p></li>
+<li><p>In an i.i.d. environment, <span class="math notranslate nohighlight">\(n\)</span> observations are drawn with equal weight and <strong>with replacement</strong> from the realized sample</p></li>
+</ul>
+</section>
+<section id="variants-of-bootstrap-schemes">
+<h3><span class="section-number">5.9.4. </span>Variants of Bootstrap Schemes<a class="headerlink" href="#variants-of-bootstrap-schemes" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Block bootstrap: preserve dependence structure</p>
+<ul>
+<li><p>dependent dataset such as time series</p></li>
+<li><p>clustering data or networks</p></li>
+</ul>
+</li>
+<li><p>parametric bootstrap</p>
+<ul>
+<li><p>In regressions we fix the regressors <span class="math notranslate nohighlight">\(X\)</span></p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">9</span>  <span class="c1"># real sample size</span>
+<span class="n">d0</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d0</span><span class="p">)</span>
+
+<span class="c1"># bootstrap</span>
+<span class="n">boot_Rep</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># bootstrap 3 times</span>
+<span class="n">d_boot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">boot_Rep</span><span class="p">))</span>  <span class="c1"># save the bootstrap sample</span>
+<span class="n">d_boot_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">boot_Rep</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>  <span class="c1"># save the bootstrap sample index</span>
+<span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">boot_Rep</span><span class="p">):</span>
+    <span class="n">boot_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">d0</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># sampling with replacement</span>
+    <span class="n">d_boot</span><span class="p">[:,</span> <span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="n">d0</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">boot_index</span><span class="p">]</span>
+    <span class="n">d_boot_index</span><span class="p">[:,</span> <span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="n">boot_index</span>
+
+<span class="n">d_boot_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">d_boot</span><span class="p">)</span>  <span class="c1"># convert the bootstrap samples to DataFrame</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d_boot_df</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d_boot_index</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Example</strong>: In one sample, there is only one sample mean. How to compute the variance of the sample mean?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">d0</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">n</span> <span class="c1"># the variance of the sample mean</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What if you forget the formula?</p>
+</section>
+<section id="bootstrap-estimation">
+<h3><span class="section-number">5.9.5. </span>Bootstrap Estimation<a class="headerlink" href="#bootstrap-estimation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Bootstrap is nothing but a loop.</p></li>
+<li><p>Bootstrap is convenient.</p>
+<ul>
+<li><p>Analytic formula of the variance of an econometric estimator can be complex to derive or code up.</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">boot_Rep</span> <span class="o">=</span> <span class="mi">10000</span>  <span class="c1"># bootstrap many times times</span>
+<span class="n">d_boot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">boot_Rep</span><span class="p">))</span>  <span class="c1"># save the bootstrap sample </span>
+<span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">boot_Rep</span><span class="p">):</span>
+    <span class="n">boot_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">d_boot</span><span class="p">[:,</span> <span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="n">d0</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">][</span><span class="n">boot_index</span><span class="p">]</span>
+ 
+<span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">d_boot</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">var</span><span class="p">()</span>  <span class="c1"># standard deviation of the bootstrap means across boot samples</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="bootstrap-test">
+<h3><span class="section-number">5.9.6. </span>Bootstrap Test<a class="headerlink" href="#bootstrap-test" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Bootstrap is particularly helpful in inference</p></li>
+</ul>
+</section>
+<section id="id1">
+<h3><span class="section-number">5.9.7. </span>Example<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Test a hypothesis about the population mean.</p></li>
+<li><p>Use <span class="math notranslate nohighlight">\(t\)</span>-statistic</p></li>
+<li><p>Distribution of the sample is either</p>
+<ul>
+<li><p>normal</p></li>
+<li><p>zero-centered chi-square</p></li>
+</ul>
+</li>
+<li><p>We will show that the bootstrap test size is
+more precise than that of the asymptotic approximation.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">T_stat</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">mu</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">boot_test</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">boot_Rep</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+    <span class="n">boot_T</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">boot_Rep</span><span class="p">):</span>
+        
+        <span class="n">resampled_Y</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)]</span>
+        <span class="n">boot_T</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">T_stat</span><span class="p">(</span><span class="n">resampled_Y</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Y</span><span class="p">))))</span>
+        <span class="c1"># this is a key line</span>
+        <span class="c1"># `mu` must be replaced as mean(Y)</span>
+
+    <span class="n">boot_critical_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">boot_T</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">boot_critical_value</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="bootstrap-world">
+<h3><span class="section-number">5.9.8. </span>Bootstrap World<a class="headerlink" href="#bootstrap-world" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The null hypothesis must be imposed no matter the hypothesized parameter is true value or not.</p></li>
+<li><p>Bootstrap <span class="math notranslate nohighlight">\(t\)</span>-statistic is</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+T^{*}_{n} = \frac{\sqrt{n} (\bar{X^{*}} - \bar{X}) } { s^{*}  }.
+\]</div>
+</section>
+<section id="design-the-statistic">
+<h3><span class="section-number">5.9.9. </span>Design the Statistic<a class="headerlink" href="#design-the-statistic" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>In the bootstrap world the <strong>true</strong> distribution is <span class="math notranslate nohighlight">\(F_n\)</span></p></li>
+<li><p>The bootstrap <span class="math notranslate nohighlight">\(t\)</span>-statistic is centered around <span class="math notranslate nohighlight">\(\bar{X}\)</span>, the sample mean of <span class="math notranslate nohighlight">\(F_n\)</span></p></li>
+<li><p>If we wrongly center it around the population mean <span class="math notranslate nohighlight">\(\theta\)</span>, then the test will have no power when the null hypothesis is false.</p></li>
+</ul>
+<p>The following chuck of code report the rejection probability from three decision rules.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">t</span><span class="p">,</span> <span class="n">norm</span><span class="p">,</span> <span class="n">chi2</span>
+
+<span class="k">def</span> <span class="nf">compare</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">distribution</span> <span class="o">==</span> <span class="s2">&quot;normal&quot;</span><span class="p">:</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">distribution</span> <span class="o">==</span> <span class="s2">&quot;chisq&quot;</span><span class="p">:</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">chi2</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">t_value_X</span> <span class="o">=</span> <span class="n">T_stat</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">mu</span><span class="p">)</span>
+
+    <span class="n">exact</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">t_value_X</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">asym</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">t_value_X</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">boot_rule</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">t_value_X</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">boot_test</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">boot_Rep</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">exact</span><span class="p">,</span> <span class="n">asym</span><span class="p">,</span> <span class="n">boot_rule</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">distribution</span> <span class="o">=</span> <span class="s2">&quot;normal&quot;</span>
+<span class="n">boot_Rep</span> <span class="o">=</span> <span class="mi">199</span>
+<span class="n">MC_rep</span> <span class="o">=</span> <span class="mi">2000</span> <span class="c1"># number of Monte Carlo replications</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">res</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">MC_rep</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;exact&#39;</span><span class="p">,</span> <span class="s1">&#39;asym&#39;</span><span class="p">,</span> <span class="s1">&#39;boot&#39;</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">MC_rep</span><span class="p">):</span>
+    <span class="n">res</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">compare</span><span class="p">()</span>
+
+<span class="n">res</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="results">
+<h3><span class="section-number">5.9.10. </span>Results<a class="headerlink" href="#results" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The program reports the empirical size.</p></li>
+<li><p>Nominal size of the test is 5%.</p></li>
+<li><p>Bootstrap test is more accurate</p></li>
+</ul>
+<ul class="simple">
+<li><p>When the underlying distribution is a <span class="math notranslate nohighlight">\(\chi^2\)</span>, the exact distribution is difficult
+to derive analytically.</p></li>
+<li><p>However, we can still compare the asymptotic size with the bootstrap size.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">distribution</span> <span class="o">=</span> <span class="s2">&quot;chisq&quot;</span>
+<span class="n">boot_Rep</span> <span class="o">=</span> <span class="mi">199</span>
+<span class="n">MC_rep</span> <span class="o">=</span> <span class="mi">2000</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">MC_rep</span><span class="p">):</span>
+    <span class="n">res</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">compare</span><span class="p">()</span>
+
+<span class="n">res</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Here the “exact test” is no longer exact.</p></li>
+<li><p>The asymptotic test works fairly reasonable</p></li>
+<li><p>Bootstrap is closer to the nominal size 5%.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="py_04_advance.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">上一页</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Lecture 4: Advanced Python</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="py_06_integration.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Integration</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目录
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zhentao-shi">5.1. Zhentao Shi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">5.2. Simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appetizer">5.3. Appetizer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handwriting-scripts">5.4. Handwriting Scripts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-sample-evaluation">5.5. Finite Sample Evaluation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">5.6. Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#t-statistic">5.6.1. <span class="math notranslate nohighlight">\(t\)</span>-statistic</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-results">5.6.2. Simulation Results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observations">5.6.3. Observations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#justification">5.6.4. Justification</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ai-agent">5.7. AI Agent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#world-view-about-uncertainty">5.8. World View about Uncertainty</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap">5.9. Bootstrap</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-idea">5.9.1. Key Idea</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-to-asymptotic-theory">5.9.2. Compare to Asymptotic Theory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nonparametric-bootstrap">5.9.3. Nonparametric Bootstrap</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variants-of-bootstrap-schemes">5.9.4. Variants of Bootstrap Schemes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap-estimation">5.9.5. Bootstrap Estimation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap-test">5.9.6. Bootstrap Test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">5.9.7. Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap-world">5.9.8. Bootstrap World</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#design-the-statistic">5.9.9. Design the Statistic</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#results">5.9.10. Results</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+作者： 史震涛 Shi Zhentao
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

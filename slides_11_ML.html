@@ -1,0 +1,1672 @@
+
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>12. Machine Learning &#8212; 经济学中的数据科学</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="prev" title="11. Time Series Analysis" href="slides_10_time_series.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="zh-CN">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">经济学中的数据科学</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="搜索这本书..." aria-label="搜索这本书..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00-preface.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_00_intro.html">
+   1. Data Science for Economists
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_01_git.html">
+   2. Git and Github
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_02_basic_R.html">
+   3. Basic R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_03_data_sources.html">
+   4. Data Sources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_04_visualization.html">
+   5. Visualization and Communication
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_05_advanced_R.html">
+   6. Advanced R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_06_cloud_computing.html">
+   7. Cloud Computing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_07_simulation.html">
+   8. Simulation and Bootstrap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_08_integration.html">
+   9. Integration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_09_optimization.html">
+   10. Numerical Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_10_time_series.html">
+   11. Time Series Analysis
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   12. Machine Learning
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="切换导航" aria-controls="site-navigation"
+                title="切换导航" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="下载此页面"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/slides_11_ML.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="下载源文件" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="列印成PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="全屏模式"
+        title="全屏模式"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/slides_11_ML.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="发射 Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> 内容
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   12. Machine Learning
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#introduction">
+     12.1. Introduction
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reference">
+     12.2. Reference
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#supervised-learning">
+     12.3. Supervised Learning
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#unsupervised-learning">
+   13. Unsupervised Learning
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conventional-statistics">
+   14. Conventional Statistics
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#machine-learning-s-responses">
+   15. Machine Learning’s Responses
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#first-generation">
+   16. First Generation
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nonparametric-estimation">
+     16.1. Nonparametric Estimation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-density-estimation">
+   17. Example: Density Estimation
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#variance-bias-tradeoff">
+     17.1. Variance-Bias Tradeoff
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-conditional-mean">
+       17.1.1. Example: Conditional Mean
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#series-estimation">
+   18. Series Estimation
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#penalization">
+   19. Penalization
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tuning-parameter">
+   20. Tuning Parameter
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#econometrics-workflow">
+   21. Econometrics Workflow
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-splitting">
+     21.1. Data Splitting
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     21.2. Data Splitting
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#caret-package">
+   22.
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     Caret
+    </span>
+   </code>
+   Package
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cross-validation-cross-sectional-data">
+     22.1. Cross Validation (cross sectional data)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#goodness-of-fit-out-of-sample">
+     22.2. Goodness of Fit (Out of Sample)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cross-validation-time-series-data">
+     22.3. Cross Validation (time series data)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#variable-selection">
+     22.4. Variable Selection
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lasso">
+   23. Lasso
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scad">
+   24. SCAD
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#adaptive-lasso">
+   25. Adaptive Lasso
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#diy-lasso-by-cvxr">
+     25.1. DIY Lasso by
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       CVXR
+      </span>
+     </code>
+     .
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stagewise-forward-selection">
+   26. Stagewise Forward Selection
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#second-generation">
+   27. Second Generation
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prediction-oriented-methods">
+   28. Prediction-Oriented Methods
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regression-tree">
+   29. Regression Tree
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bagging">
+   30. Bagging
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#random-forest">
+   31. Random Forest
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gradient-boosting">
+     31.1. Gradient Boosting
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#real-data-example">
+     31.2. Real Data Example
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#neural-network">
+     31.3. Neural Network
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#theory-is-underdeveloped">
+   32. Theory is Underdeveloped
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computation">
+   33. Computation
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stochastic-gradient-descent-sgd">
+     33.1. Stochastic Gradient Descent (SGD)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#experiment">
+       33.1.1. Experiment
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   34. Summary
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Machine Learning</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> 内容 </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   12. Machine Learning
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#introduction">
+     12.1. Introduction
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reference">
+     12.2. Reference
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#supervised-learning">
+     12.3. Supervised Learning
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#unsupervised-learning">
+   13. Unsupervised Learning
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conventional-statistics">
+   14. Conventional Statistics
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#machine-learning-s-responses">
+   15. Machine Learning’s Responses
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#first-generation">
+   16. First Generation
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nonparametric-estimation">
+     16.1. Nonparametric Estimation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-density-estimation">
+   17. Example: Density Estimation
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#variance-bias-tradeoff">
+     17.1. Variance-Bias Tradeoff
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-conditional-mean">
+       17.1.1. Example: Conditional Mean
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#series-estimation">
+   18. Series Estimation
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#penalization">
+   19. Penalization
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tuning-parameter">
+   20. Tuning Parameter
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#econometrics-workflow">
+   21. Econometrics Workflow
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-splitting">
+     21.1. Data Splitting
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     21.2. Data Splitting
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#caret-package">
+   22.
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     Caret
+    </span>
+   </code>
+   Package
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cross-validation-cross-sectional-data">
+     22.1. Cross Validation (cross sectional data)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#goodness-of-fit-out-of-sample">
+     22.2. Goodness of Fit (Out of Sample)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cross-validation-time-series-data">
+     22.3. Cross Validation (time series data)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#variable-selection">
+     22.4. Variable Selection
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lasso">
+   23. Lasso
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scad">
+   24. SCAD
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#adaptive-lasso">
+   25. Adaptive Lasso
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#diy-lasso-by-cvxr">
+     25.1. DIY Lasso by
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       CVXR
+      </span>
+     </code>
+     .
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stagewise-forward-selection">
+   26. Stagewise Forward Selection
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#second-generation">
+   27. Second Generation
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prediction-oriented-methods">
+   28. Prediction-Oriented Methods
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regression-tree">
+   29. Regression Tree
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bagging">
+   30. Bagging
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#random-forest">
+   31. Random Forest
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gradient-boosting">
+     31.1. Gradient Boosting
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#real-data-example">
+     31.2. Real Data Example
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#neural-network">
+     31.3. Neural Network
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#theory-is-underdeveloped">
+   32. Theory is Underdeveloped
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computation">
+   33. Computation
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stochastic-gradient-descent-sgd">
+     33.1. Stochastic Gradient Descent (SGD)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#experiment">
+       33.1.1. Experiment
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   34. Summary
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="machine-learning">
+<h1><span class="section-number">12. </span>Machine Learning<a class="headerlink" href="#machine-learning" title="Permalink to this heading">¶</a></h1>
+<p>Zhentao Shi</p>
+<div class="section" id="introduction">
+<h2><span class="section-number">12.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>Machine learning and artificial intelligence:</p>
+<ul class="simple">
+<li><p>Technology or alchemy?</p></li>
+<li><p>Statistics or biology?</p></li>
+<li><p><a class="reference external" href="https://www.project-syndicate.org/commentary/artificial-intelligence-new-economic-models-by-thomas-j-sargent-2019-11">Tom Sargent</a></p></li>
+</ul>
+</div>
+<div class="section" id="reference">
+<h2><span class="section-number">12.2. </span>Reference<a class="headerlink" href="#reference" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>[ISLR] James, Gareth., Witten, Daniela., Hastie, Trevor., &amp; Tibshirani, Robert. (2017). An introduction to statistical learning.  (Open access at <a class="reference external" href="https://www.statlearning.com/">https://www.statlearning.com/</a>)</p></li>
+<li><p>[ESL] Friendman, Hastie and Tibshirani (2001, 2008): Elements of Statistical Learning (Open access at <a class="reference external" href="https://hastie.su.domains/Papers/ESLII.pdf">https://hastie.su.domains/Papers/ESLII.pdf</a>)</p></li>
+</ul>
+<ul class="simple">
+<li><p>Athey (2018)</p></li>
+<li><p>Mullainathan and Spiess (2017)</p></li>
+</ul>
+</div>
+<div class="section" id="supervised-learning">
+<h2><span class="section-number">12.3. </span>Supervised Learning<a class="headerlink" href="#supervised-learning" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Connection between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span></p></li>
+<li><p>Regression and classification</p></li>
+</ul>
+<p>A set of data fitting procedures focusing on out-of-sample prediction</p>
+<ul class="simple">
+<li><p>Repeat a scientific experiment for <span class="math notranslate nohighlight">\(n\)</span> times and obtain a dataset <span class="math notranslate nohighlight">\((y_i, x_i)_{i=1}^n\)</span>.</p></li>
+<li><p>How to best predict <span class="math notranslate nohighlight">\(y_{n+1}\)</span> given <span class="math notranslate nohighlight">\(x_{n+1}\)</span>?</p></li>
+</ul>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="unsupervised-learning">
+<h1><span class="section-number">13. </span>Unsupervised Learning<a class="headerlink" href="#unsupervised-learning" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>Only about <span class="math notranslate nohighlight">\(X\)</span></p></li>
+<li><p>Density estimation, principal component analysis, and clustering</p></li>
+</ul>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="conventional-statistics">
+<h1><span class="section-number">14. </span>Conventional Statistics<a class="headerlink" href="#conventional-statistics" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>Consistency</p></li>
+<li><p>Asymptotic distribution (hopefully normal)</p></li>
+<li><p>Efficiency</p></li>
+</ul>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="machine-learning-s-responses">
+<h1><span class="section-number">15. </span>Machine Learning’s Responses<a class="headerlink" href="#machine-learning-s-responses" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>Efficiency is mostly irrelevant given big data</p></li>
+<li><p>Statistical inference may not be the goal</p>
+<ul>
+<li><p>Recommendation system on Amazon or Taobao</p></li>
+<li><p>Care about the prediction accuracy, not the causal link</p></li>
+</ul>
+</li>
+<li><p>Is there a data generating process (DGP)?</p></li>
+</ul>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="first-generation">
+<h1><span class="section-number">16. </span>First Generation<a class="headerlink" href="#first-generation" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="nonparametric-estimation">
+<h2><span class="section-number">16.1. </span>Nonparametric Estimation<a class="headerlink" href="#nonparametric-estimation" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><em>Parametric</em>: a finite number of parameters</p></li>
+<li><p><em>Nonparametric</em>: an infinite number of parameters</p></li>
+<li><p>Some ideas in nonparametric estimation is directly related to machine learning</p></li>
+</ul>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="example-density-estimation">
+<h1><span class="section-number">17. </span>Example: Density Estimation<a class="headerlink" href="#example-density-estimation" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>Density estimation given a sample <span class="math notranslate nohighlight">\((x_1,\ldots,x_n)\)</span></p></li>
+<li><p>If drawn from a parametric family, MLE for estimation</p></li>
+<li><p>Misspecification</p></li>
+</ul>
+<ul class="simple">
+<li><p>Histogram is nonparametric</p>
+<ul>
+<li><p>If grid too fine, small bias but large variance</p></li>
+<li><p>If grid too coarse, small variance but large bias</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">&lt;-</span> <span class="m">200</span>
+
+<span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">3</span><span class="p">))</span>
+<span class="nf">par</span><span class="p">(</span><span class="n">mar</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">))</span>
+
+<span class="n">x_base</span> <span class="o">&lt;-</span> <span class="nf">seq</span><span class="p">(</span><span class="m">0.01</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="n">by</span> <span class="o">=</span> <span class="m">0.01</span><span class="p">)</span>
+<span class="n">breaks_list</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">12</span><span class="p">,</span> <span class="m">60</span><span class="p">)</span>
+
+<span class="nf">for </span><span class="p">(</span><span class="n">ii</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">){</span>
+  <span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">rbeta</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span> <span class="c1"># beta distribution</span>
+  <span class="nf">for </span><span class="p">(</span> <span class="n">bb</span> <span class="n">in</span> <span class="n">breaks_list</span><span class="p">){</span>
+    <span class="nf">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">breaks</span> <span class="o">=</span> <span class="n">bb</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">freq</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="n">ylim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">3</span><span class="p">),</span><span class="n">xlim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+    <span class="nf">lines</span><span class="p">(</span> <span class="n">y</span> <span class="o">=</span> <span class="nf">dbeta</span><span class="p">(</span> <span class="n">x_base</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">),</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x_base</span> <span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;red&quot;</span> <span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="variance-bias-tradeoff">
+<h2><span class="section-number">17.1. </span>Variance-Bias Tradeoff<a class="headerlink" href="#variance-bias-tradeoff" title="Permalink to this heading">¶</a></h2>
+<p><img alt="" src="_images/bias_variance.png" /></p>
+<div class="section" id="example-conditional-mean">
+<h3><span class="section-number">17.1.1. </span>Example: Conditional Mean<a class="headerlink" href="#example-conditional-mean" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Conditional mean $<span class="math notranslate nohighlight">\(f(x) = E[y_i |x_i = x]\)</span><span class="math notranslate nohighlight">\( given a sample \)</span>(y_i, x_i)$.</p></li>
+<li><p>Solve
+$<span class="math notranslate nohighlight">\(
+\min_f E[ (y_i - f(x_i) )^2 ]
+\)</span>$</p></li>
+<li><p>In general <span class="math notranslate nohighlight">\(f(x)\)</span> is a nonlinear function.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Restrict the class of functions to search for minimizer</p>
+<ul>
+<li><p>Assume differentiability</p></li>
+</ul>
+</li>
+<li><p>One way is kernel method based on density estimation</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="series-estimation">
+<h1><span class="section-number">18. </span>Series Estimation<a class="headerlink" href="#series-estimation" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>Series expansion to approximate <span class="math notranslate nohighlight">\(f(x)\)</span></p></li>
+<li><p>Generates many additive regressors</p>
+<ul>
+<li><p>Ex: bounded, continuous and differentiate function has a series
+representation <span class="math notranslate nohighlight">\(f(x) = \sum_{k=0}^{\infty} \beta_k \cos (\frac{k}{2}\pi x )\)</span>.</p></li>
+<li><p>In finite sample, choose a finite <span class="math notranslate nohighlight">\(K\)</span>, usually much smaller than <span class="math notranslate nohighlight">\(n\)</span></p></li>
+<li><p>Asymptotically <span class="math notranslate nohighlight">\(K \to \infty\)</span> as <span class="math notranslate nohighlight">\(n \to \infty\)</span> so that
+$<span class="math notranslate nohighlight">\(
+f_K(x) = \sum_{k=0}^{K} \beta_k \cos \left(\frac{k}{2}\pi x \right) \to f(x).
+\)</span>$</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Bias-variance trade-off</p>
+<ul>
+<li><p>Big <span class="math notranslate nohighlight">\(K\)</span>: small bias and large variance</p></li>
+<li><p>Small <span class="math notranslate nohighlight">\(K\)</span>: small variance and large bias</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="penalization">
+<h1><span class="section-number">19. </span>Penalization<a class="headerlink" href="#penalization" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>Specify a sufficiently large <span class="math notranslate nohighlight">\(K\)</span>, and then add a penalty term to control the complexity</p></li>
+<li><p>Eg: <em>Ridge regression</em>:
+$$
+\min_\beta \  \frac{1}{2n}  \sum_{i=1}^n \left(y_i - \sum_{k=0}^{K} \beta_k f_k(x_i) \right)^2</p></li>
+</ul>
+<ul class="simple">
+<li><p>\lambda \sum_{k=0}^K \beta_k^2,
+$<span class="math notranslate nohighlight">\(
+where \)</span>\lambda<span class="math notranslate nohighlight">\( is the tuning parameter such that \)</span>\lambda \to 0<span class="math notranslate nohighlight">\( as \)</span>n\to \infty<span class="math notranslate nohighlight">\(, and
+\)</span>f_k(x_i) = \cos \left(\frac{k}{2}\pi x_i \right)$.</p></li>
+</ul>
+<p>In compact notation, let <span class="math notranslate nohighlight">\(Y=(y_1,\ldots,y_n)'\)</span> and
+<span class="math notranslate nohighlight">\(X = (X_{ik} = f_k(x_i) )\)</span>, the above problem can be written as
+$<span class="math notranslate nohighlight">\(
+(2n)^{-1} (Y-X\beta)'(Y-X\beta) + \lambda \Vert \beta \Vert_2 ^2
+\)</span>$</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="tuning-parameter">
+<h1><span class="section-number">20. </span>Tuning Parameter<a class="headerlink" href="#tuning-parameter" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p><em>Information criterion</em>: AIC, BIC</p></li>
+<li><p><em>Cross validation</em></p></li>
+<li><p>Active statistical research, but has little economics</p></li>
+</ul>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="econometrics-workflow">
+<h1><span class="section-number">21. </span>Econometrics Workflow<a class="headerlink" href="#econometrics-workflow" title="Permalink to this heading">¶</a></h1>
+<p><img alt="" src="_images/metric_flow.png" /></p>
+<div class="section" id="data-splitting">
+<h2><span class="section-number">21.1. </span>Data Splitting<a class="headerlink" href="#data-splitting" title="Permalink to this heading">¶</a></h2>
+<p><img alt=" " src="_images/ML_flow.png" /></p>
+</div>
+<div class="section" id="id1">
+<h2><span class="section-number">21.2. </span>Data Splitting<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Machine learning’s main purpose is often prediction</p></li>
+<li><p>Agnostic about the DGP.</p></li>
+<li><p>Models are measured by their performance in prediction.</p></li>
+<li><p>Tuning.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Training dataset</p></li>
+<li><p>Validation dataset</p></li>
+</ul>
+<ul class="simple">
+<li><p>Testing sample</p></li>
+</ul>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="caret-package">
+<h1><span class="section-number">22. </span><code class="docutils literal notranslate"><span class="pre">Caret</span></code> Package<a class="headerlink" href="#caret-package" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>R package <code class="docutils literal notranslate"><span class="pre">caret</span></code> (Classification And REgression Training): a framework for many machine learning methods</p></li>
+<li><p>The function <a class="reference external" href="https://topepo.github.io/caret/data-splitting.html"><code class="docutils literal notranslate"><span class="pre">createDataPartition</span></code></a>
+splits the sample for both cross sectional data and time series.</p></li>
+</ul>
+<div class="section" id="cross-validation-cross-sectional-data">
+<h2><span class="section-number">22.1. </span>Cross Validation (cross sectional data)<a class="headerlink" href="#cross-validation-cross-sectional-data" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(S\)</span>-fold cross validation partitions the dataset into <span class="math notranslate nohighlight">\(S\)</span> disjoint sections</p></li>
+<li><p>Each iteration picks one of the sections as the (quasi) validation sample</p></li>
+<li><p>The other <span class="math notranslate nohighlight">\(S-1\)</span> sections as the training sample.</p></li>
+<li><p>Compute an out-of-sample goodness-of-fit measurement</p></li>
+</ul>
+</div>
+<div class="section" id="goodness-of-fit-out-of-sample">
+<h2><span class="section-number">22.2. </span>Goodness of Fit (Out of Sample)<a class="headerlink" href="#goodness-of-fit-out-of-sample" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><em>Mean-squared prediction error</em> <span class="math notranslate nohighlight">\({n_v}^{-1} \sum_{i \in val} (y_i - \hat{y}_i)^2\)</span> where <span class="math notranslate nohighlight">\(val\)</span> is the validation set and <span class="math notranslate nohighlight">\(n_v\)</span> is its cardinality,</p></li>
+<li><p><em>Mean-absolute prediction error</em> <span class="math notranslate nohighlight">\({n_v}^{-1}\sum_{i \in val} |y_i - \hat{y}_i|\)</span>.</p></li>
+<li><p><em>Out of sample R-squared</em> (OOS <span class="math notranslate nohighlight">\(R^2\)</span>):</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+1 - \frac{{n_v}^{-1} \sum_{i \in val} (y_i - \hat{y}_i)^2}{{n_v}^{-1} \sum_{i \in val} y_i^2}
+\]</div>
+<ul class="simple">
+<li><p>Repeat this process for <span class="math notranslate nohighlight">\(S\)</span> times so that each of the <span class="math notranslate nohighlight">\(S\)</span> sections are treated as the validation sample,</p></li>
+<li><p>Average the goodness-of-fit measurement over the <span class="math notranslate nohighlight">\(S\)</span> sections to determined the best tuning parameter.</p></li>
+<li><p>In practice we can use  <span class="math notranslate nohighlight">\(S=5\)</span> for 10</p></li>
+</ul>
+</div>
+<div class="section" id="cross-validation-time-series-data">
+<h2><span class="section-number">22.3. </span>Cross Validation (time series data)<a class="headerlink" href="#cross-validation-time-series-data" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>In time series context, cross validation must preserve the dependence structure.</p></li>
+<li><p>If the time series is stationary, we can partition the data into <span class="math notranslate nohighlight">\(S\)</span> consecutive blocks.</p></li>
+</ul>
+<p>(i will skip this slide)</p>
+<ul class="simple">
+<li><p>If the purpose is forecasting, then we can use nested CV.
+<img alt=" " src="_images/CV_Figure.png" /></p></li>
+<li><p>Nested CV with fixed-length rolling window scheme</p></li>
+<li><p>The sub-training data can also be an extending rolling window.</p></li>
+</ul>
+</div>
+<div class="section" id="variable-selection">
+<h2><span class="section-number">22.4. </span>Variable Selection<a class="headerlink" href="#variable-selection" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Number of covariates <span class="math notranslate nohighlight">\(x_i\)</span> can be large.</p></li>
+<li><p>Conventional attitude: prior knowledge</p></li>
+<li><p>Recently economists wake up from the long lasting negligence.</p>
+<ul>
+<li><p>Stock and Watson (2012): forecasting 143 US macroeconomic indicators.</p></li>
+<li><p>A horse race of several variable selection methods.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="lasso">
+<h1><span class="section-number">23. </span>Lasso<a class="headerlink" href="#lasso" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>least-absolute-shrinkage-and-selection-operator
+(Lasso) (Tibshirani, 1996)</p></li>
+<li><p>Penalizes the <span class="math notranslate nohighlight">\(L_1\)</span> norm of the coefficients.
+The criterion function of Lasso is written as
+$<span class="math notranslate nohighlight">\(
+(2n)^{-1} (Y-X\beta)'(Y-X\beta) + \lambda \Vert \beta \Vert_1
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span>\lambda \geq 0$ is a tuning parameter.</p></li>
+</ul>
+<p>Lasso shrinks some coefficients exactly to 0, in a wide range of values of <span class="math notranslate nohighlight">\(\lambda\)</span></p>
+<p><img alt=" " src="_images/lasso_regression2.png" /></p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="scad">
+<h1><span class="section-number">24. </span>SCAD<a class="headerlink" href="#scad" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>Smoothly-clipped-absolute-deviation (SCAD) Fan and Li (2001):
+$<span class="math notranslate nohighlight">\(
+(2n)^{-1} (Y-X\beta)'(Y-X\beta) + \sum_{j=1}^d \rho_{\lambda}( |\beta_j| )
+\)</span><span class="math notranslate nohighlight">\(
+where
+\)</span><span class="math notranslate nohighlight">\(
+\rho_{\lambda}^{\prime} (\theta) = \lambda \left\{ 1\{\theta\leq \lambda \} +
+\frac{(a\lambda - \theta)_+}{(a-1)\lambda} \cdot 1 \{\theta &gt; \lambda\} \right\}
+\)</span><span class="math notranslate nohighlight">\(
+for some \)</span>a&gt;2<span class="math notranslate nohighlight">\( and \)</span>\theta&gt;0$.</p></li>
+<li><p>SCAD enjoys <em>oracle property</em>.</p></li>
+</ul>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="adaptive-lasso">
+<h1><span class="section-number">25. </span>Adaptive Lasso<a class="headerlink" href="#adaptive-lasso" title="Permalink to this heading">¶</a></h1>
+<p><em>Adaptive Lasso</em> (Zou, 2006) also enjoys the oracle property.</p>
+<p>Two-step algorithm:</p>
+<ol class="simple">
+<li><p>First run a Lasso or ridge regression and save the estimator <span class="math notranslate nohighlight">\(\hat{\beta}^{(1)}\)</span></p></li>
+<li><p>Solve
+<span class="math notranslate nohighlight">\((2n)^{-1} (Y-X\beta)'(Y-X\beta) + \lambda \sum_{j=1}^d  w_j |\beta_j|\)</span>
+where <span class="math notranslate nohighlight">\(w_j = 1 /  |\hat{\beta}_j^{(1)} |^a\)</span> and <span class="math notranslate nohighlight">\(a\geq 1\)</span> is a constant. (Common choice is <span class="math notranslate nohighlight">\(a = 1\)</span> or 2).</p></li>
+</ol>
+<ul class="simple">
+<li><p>Lee, Shi and Gao (2022)</p></li>
+</ul>
+<p>R packages</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">glmnet</span></code> or <code class="docutils literal notranslate"><span class="pre">LARS</span></code> implements Lasso</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ncvreg</span></code> carries out SCAD.</p></li>
+<li><p>Adaptive Lasso by setting the weight via the argument <code class="docutils literal notranslate"><span class="pre">penalty.factor</span></code> in <code class="docutils literal notranslate"><span class="pre">glmnet</span></code>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">magrittr</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">&lt;-</span> <span class="m">40</span>
+<span class="n">p</span> <span class="o">&lt;-</span> <span class="m">50</span>
+<span class="n">b0</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">10</span><span class="p">),</span> <span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">p</span> <span class="o">-</span> <span class="m">10</span><span class="p">))</span>
+<span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">p</span><span class="p">),</span> <span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">&lt;-</span> <span class="n">x</span> <span class="o">%*%</span> <span class="n">b0</span> <span class="o">+</span> <span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">ols</span> <span class="o">&lt;-</span> <span class="n">MASS</span><span class="o">::</span><span class="nf">ginv</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">%*%</span> <span class="n">x</span><span class="p">)</span> <span class="o">%*%</span> <span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">%*%</span> <span class="n">y</span><span class="p">)</span> <span class="c1"># OLS</span>
+<span class="c1"># Implement Lasso by glmnet</span>
+<span class="n">cv_lasso</span> <span class="o">&lt;-</span> <span class="n">glmnet</span><span class="o">::</span><span class="nf">cv.glmnet</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">lasso_result</span> <span class="o">&lt;-</span> <span class="n">glmnet</span><span class="o">::</span><span class="nf">glmnet</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lambda</span> <span class="o">=</span> <span class="n">cv_lasso</span><span class="o">$</span><span class="n">lambda.min</span><span class="p">)</span>
+
+<span class="c1"># Get weights</span>
+<span class="n">b_temp</span> <span class="o">&lt;-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">lasso_result</span><span class="o">$</span><span class="n">beta</span><span class="p">)</span>
+<span class="n">b_temp</span><span class="p">[</span><span class="n">b_temp</span> <span class="o">==</span> <span class="m">0</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="m">1e-8</span>
+<span class="n">w</span> <span class="o">&lt;-</span> <span class="m">1</span> <span class="o">/</span> <span class="nf">abs</span><span class="p">(</span><span class="n">b_temp</span><span class="p">)</span> <span class="c1"># Let gamma = 1</span>
+
+<span class="c1"># Implement Adaptive Lasso by glmnet</span>
+<span class="n">cv_alasso</span> <span class="o">&lt;-</span> <span class="n">glmnet</span><span class="o">::</span><span class="nf">cv.glmnet</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">penalty.factor</span> <span class="o">=</span> <span class="n">w</span><span class="p">)</span>
+<span class="n">alasso_result</span> <span class="o">&lt;-</span>
+  <span class="n">glmnet</span><span class="o">::</span><span class="nf">glmnet</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">penalty.factor</span> <span class="o">=</span> <span class="n">w</span><span class="p">,</span> <span class="n">lambda</span> <span class="o">=</span> <span class="n">cv_alasso</span><span class="o">$</span><span class="n">lambda.min</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">b0</span><span class="p">,</span> <span class="n">ylim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-0.8</span><span class="p">,</span> <span class="m">1.5</span><span class="p">),</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;coefficient&quot;</span><span class="p">)</span>
+<span class="nf">points</span><span class="p">(</span><span class="n">lasso_result</span><span class="o">$</span><span class="n">beta</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">6</span><span class="p">)</span>
+<span class="nf">points</span><span class="p">(</span><span class="n">alasso_result</span><span class="o">$</span><span class="n">beta</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">5</span><span class="p">)</span>
+<span class="nf">points</span><span class="p">(</span><span class="n">ols</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;green&quot;</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+ 
+<span class="c1"># out of sample prediction</span>
+<span class="n">x_new</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">p</span><span class="p">),</span> <span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">y_new</span> <span class="o">&lt;-</span> <span class="n">x_new</span> <span class="o">%*%</span> <span class="n">b0</span> <span class="o">+</span> <span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">lasso_msfe</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">y_new</span> <span class="o">-</span> <span class="nf">predict</span><span class="p">(</span><span class="n">lasso_result</span><span class="p">,</span> <span class="n">newx</span> <span class="o">=</span> <span class="n">x_new</span><span class="p">))</span> <span class="o">%&gt;%</span> <span class="nf">var</span><span class="p">()</span>
+<span class="n">alasso_msfe</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">y_new</span> <span class="o">-</span> <span class="nf">predict</span><span class="p">(</span><span class="n">alasso_result</span><span class="p">,</span> <span class="n">newx</span> <span class="o">=</span> <span class="n">x_new</span><span class="p">))</span> <span class="o">%&gt;%</span> <span class="nf">var</span><span class="p">()</span>
+<span class="n">ols_msfe</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">y_new</span> <span class="o">-</span> <span class="n">x_new</span> <span class="o">%*%</span> <span class="n">ols</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">var</span><span class="p">()</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">lasso_msfe</span><span class="p">,</span> <span class="n">alasso_msfe</span><span class="p">,</span> <span class="n">ols_msfe</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="diy-lasso-by-cvxr">
+<h2><span class="section-number">25.1. </span>DIY Lasso by <code class="docutils literal notranslate"><span class="pre">CVXR</span></code>.<a class="headerlink" href="#diy-lasso-by-cvxr" title="Permalink to this heading">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">CVXR</span><span class="p">)</span>
+
+<span class="n">lambda</span> <span class="o">&lt;-</span> <span class="m">2</span> <span class="o">*</span> <span class="n">cv_lasso</span><span class="o">$</span><span class="n">lambda.min</span> <span class="c1"># tuning parameter</span>
+
+<span class="c1"># CVXR for Lasso</span>
+<span class="n">beta_cvxr</span> <span class="o">&lt;-</span> <span class="nf">Variable</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="n">obj</span> <span class="o">&lt;-</span> <span class="nf">sum_squares</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">x</span> <span class="o">%*%</span> <span class="n">beta_cvxr</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="m">2</span> <span class="o">*</span> <span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="n">lambda</span> <span class="o">*</span> <span class="nf">p_norm</span><span class="p">(</span><span class="n">beta_cvxr</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span>
+<span class="n">prob</span> <span class="o">&lt;-</span> <span class="nf">Problem</span><span class="p">(</span><span class="nf">Minimize</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+<span class="n">lasso_cvxr</span> <span class="o">&lt;-</span> <span class="nf">solve</span><span class="p">(</span><span class="n">prob</span><span class="p">)</span>
+<span class="n">beta_cvxr_hat</span> <span class="o">&lt;-</span> <span class="n">lasso_cvxr</span><span class="o">$</span><span class="nf">getValue</span><span class="p">(</span><span class="n">beta_cvxr</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">as.vector</span><span class="p">()</span> <span class="o">%&gt;%</span> <span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="stagewise-forward-selection">
+<h1><span class="section-number">26. </span>Stagewise Forward Selection<a class="headerlink" href="#stagewise-forward-selection" title="Permalink to this heading">¶</a></h1>
+<p>More methods are available if prediction of the response variables is the sole purpose of the regression.</p>
+<p>Eg: <em>stagewise forward selection</em></p>
+<ol class="simple">
+<li><p>Start from an empty model.</p></li>
+<li><p>Given many candidate <span class="math notranslate nohighlight">\(x_j\)</span>, in each round we add the regressor that can
+produce the biggest <span class="math notranslate nohighlight">\(R^2\)</span>.</p></li>
+</ol>
+<p>Close to the idea of <em><span class="math notranslate nohighlight">\(L_2\)</span> componentwise boosting</em>
+which does not adjust the coefficients fitted earlier</p>
+<ul class="simple">
+<li><p>Shi and Huang (2023)</p></li>
+</ul>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="second-generation">
+<h1><span class="section-number">27. </span>Second Generation<a class="headerlink" href="#second-generation" title="Permalink to this heading">¶</a></h1>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="prediction-oriented-methods">
+<h1><span class="section-number">28. </span>Prediction-Oriented Methods<a class="headerlink" href="#prediction-oriented-methods" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>Methods that induces data-driven interaction of the covariates.</p></li>
+<li><p>Interaction makes the covariates much more flexible</p></li>
+<li><p>Insufficient theoretical understanding</p></li>
+<li><p>“Black-boxes” methods</p></li>
+<li><p>Surprisingly superior performance</p></li>
+<li><p>Industry insiders are pondering “alchemy”</p></li>
+</ul>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="regression-tree">
+<h1><span class="section-number">29. </span>Regression Tree<a class="headerlink" href="#regression-tree" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>Supervised learning: <span class="math notranslate nohighlight">\(x \to y \)</span></p></li>
+<li><p>Regression tree (Breiman, 1984) recursively partitions the space of the regressors</p>
+<ul>
+<li><p>Each time a covariate is split into two dummies</p></li>
+<li><p>Splitting criterion is aggressive reduction of the SSR</p></li>
+<li><p>Tuning parameter is the depth of the tree</p></li>
+<li><p>Given a dataset <span class="math notranslate nohighlight">\(d\)</span> and the depth of the tree, the fitted tree <span class="math notranslate nohighlight">\(\hat{r}(d)\)</span> is deterministic</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Example: Using longitude and latitude for Beijing housing price.</p></li>
+</ul>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="bagging">
+<h1><span class="section-number">30. </span>Bagging<a class="headerlink" href="#bagging" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>Tree is unstable</p></li>
+<li><p><em>Bootstrap averaging</em>, or <em>bagging</em>, reduces variance of trees (Breiman, 1996)</p>
+<ul>
+<li><p>Grow a tree for each bootstrap sample</p></li>
+<li><p>Simple average</p></li>
+</ul>
+</li>
+<li><p>An example of the <em>ensemble learning</em>.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Inoue and Kilian (2008): an early application of bagging in time series forecast.</p></li>
+<li><p>Hirano and Wright (2017): a theoretical perspective on the risk reduction of bagging.</p></li>
+</ul>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="random-forest">
+<h1><span class="section-number">31. </span>Random Forest<a class="headerlink" href="#random-forest" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p><em>Random forest</em> (Breiman, 2001):</p>
+<ul>
+<li><p>Draw a bootstrap sample</p></li>
+<li><p>Before each split, shakes up the regressors by randomly sampling <span class="math notranslate nohighlight">\(m\)</span> out of the total <span class="math notranslate nohighlight">\(p\)</span> covarites. Stop until the depth of the tree is reached.</p></li>
+<li><p>Average the trees over the bootstrap samples</p></li>
+</ul>
+</li>
+<li><p>The tuning parameters are the tree depth and <span class="math notranslate nohighlight">\(m\)</span></p></li>
+<li><p>More stable than bagging thanks to “de-correlation”</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">require</span><span class="p">(</span><span class="n">randomForest</span><span class="p">)</span>
+<span class="nf">require</span><span class="p">(</span><span class="n">MASS</span><span class="p">)</span><span class="c1">#Package which contains the Boston housing dataset</span>
+<span class="nf">attach</span><span class="p">(</span><span class="n">Boston</span><span class="p">)</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">101</span><span class="p">)</span>
+
+<span class="c1">#training Sample with 300 observations</span>
+<span class="n">train</span><span class="o">=</span><span class="nf">sample</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">Boston</span><span class="p">),</span><span class="m">300</span><span class="p">)</span>
+
+<span class="n">Boston.rf</span><span class="o">=</span><span class="nf">randomForest</span><span class="p">(</span><span class="n">medv</span> <span class="o">~</span> <span class="n">.</span> <span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">Boston</span><span class="p">,</span> <span class="n">subset</span> <span class="o">=</span> <span class="n">train</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">Boston.rf</span><span class="p">)</span>
+
+<span class="c1"># getTree(Boston.rf)</span>
+<span class="nf">importance</span><span class="p">(</span><span class="n">Boston.rf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Consistency of random forest is not proved
+until Scornet, Biau, and Vert (2015)</p></li>
+<li><p>Inferential theory was first established by
+Wager Athey (2018)  in the context of treatment effect estimation</p></li>
+<li><p>Athey, Tibshirani, and Wager (2019) generalizes CART to local maximum likelihood.</p></li>
+</ul>
+<div class="section" id="gradient-boosting">
+<h2><span class="section-number">31.1. </span>Gradient Boosting<a class="headerlink" href="#gradient-boosting" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Bagging and random forest use equal weight on each generated tree for the ensemble</p></li>
+<li><p>Tree boosting takes a deterministic approach for the weights</p>
+<ol class="simple">
+<li><p>Use the original data <span class="math notranslate nohighlight">\(d^0=(x_i,y_i)\)</span> to grow a shallow tree <span class="math notranslate nohighlight">\(\hat{r}^{0}(d^0)\)</span>. Save the prediction <span class="math notranslate nohighlight">\(f^0_i = \alpha \cdot \hat{r}^0 (d^0, x_i)\)</span> where
+<span class="math notranslate nohighlight">\(\alpha\in [0,1]\)</span> is a shrinkage tuning parameter. Save
+the residual <span class="math notranslate nohighlight">\(e_i^{0} = y_i - f^0_i\)</span>. Set <span class="math notranslate nohighlight">\(m=1\)</span>.</p></li>
+<li><p>In the <span class="math notranslate nohighlight">\(m\)</span>-th iteration, use the data <span class="math notranslate nohighlight">\(d^m = (x_i,e_i^{m-1})\)</span> to grow a shallow tree <span class="math notranslate nohighlight">\(\hat{r}^{m}(d^m)\)</span>. Save the prediction <span class="math notranslate nohighlight">\(f^m_i =  f^{m-1}_i +  \alpha \cdot \hat{r}^m (d, x_i)\)</span>. Save
+the residual <span class="math notranslate nohighlight">\(e_i^{m} = y_i - f^m_i\)</span>. Update <span class="math notranslate nohighlight">\(m = m+1\)</span>.</p></li>
+<li><p>Repeat Step 2 until <span class="math notranslate nohighlight">\(m &gt; M\)</span>.</p></li>
+</ol>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Boosting has three tuning parameters: the tree depth,  the shrinkage level <span class="math notranslate nohighlight">\(\alpha\)</span>, and the number of iterations <span class="math notranslate nohighlight">\(M\)</span></p></li>
+<li><p>The algorithm can be sensitive to any of the three tuning parameters</p></li>
+<li><p>When a model is tuned well, it can performs remarkably</p>
+<ul>
+<li><p>Example: Beijing housing data.</p></li>
+<li><p>Gradient boosting via the package <code class="docutils literal notranslate"><span class="pre">gbm</span></code></p></li>
+</ul>
+</li>
+</ul>
+<p>Statisticians view boosting as a gradient descent algorithm to reduce the risk. The fitted
+tree in each iteration is the deepest descent direction, while the shrinkage tames the fitting to avoid proceeding too aggressively.</p>
+</div>
+<div class="section" id="real-data-example">
+<h2><span class="section-number">31.2. </span>Real Data Example<a class="headerlink" href="#real-data-example" title="Permalink to this heading">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">caret</span><span class="p">)</span>
+
+
+<span class="nf">load</span><span class="p">(</span><span class="s">&quot;data_example/lianjia.RData&quot;</span><span class="p">)</span>
+<span class="n">N</span> <span class="o">&lt;-</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">lianjia</span><span class="p">)</span> <span class="c1"># a smaller sample</span>
+<span class="n">lianjia</span> <span class="o">&lt;-</span> <span class="n">lianjia</span><span class="p">[</span><span class="n">base</span><span class="o">::</span><span class="nf">sample</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">,</span> <span class="nf">round</span><span class="p">(</span><span class="n">N</span> <span class="o">*</span> <span class="m">0.05</span> <span class="p">)),</span> <span class="p">]</span>
+
+<span class="n">train_ind</span> <span class="o">&lt;-</span> <span class="n">caret</span><span class="o">::</span><span class="nf">createDataPartition</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">lianjia</span><span class="p">),</span> <span class="n">p</span> <span class="o">=</span> <span class="m">0.1</span><span class="p">)</span><span class="o">$</span><span class="n">Resample1</span>
+<span class="c1"># p = 0.1 to save time. Better to use p = 0.75</span>
+
+<span class="n">gbmGrid</span> <span class="o">&lt;-</span> <span class="nf">expand.grid</span><span class="p">(</span>
+  <span class="n">interaction.depth</span> <span class="o">=</span> <span class="nf">seq</span><span class="p">(</span><span class="n">from</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span> <span class="n">to</span> <span class="o">=</span> <span class="m">50</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="m">30</span><span class="p">),</span>
+  <span class="n">n.trees</span> <span class="o">=</span> <span class="nf">seq</span><span class="p">(</span><span class="n">from</span> <span class="o">=</span> <span class="m">1000</span><span class="p">,</span> <span class="n">to</span> <span class="o">=</span> <span class="m">10000</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="m">4000</span><span class="p">),</span>
+  <span class="n">shrinkage</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0.01</span><span class="p">),</span>
+  <span class="n">n.minobsinnode</span> <span class="o">=</span> <span class="m">20</span>
+<span class="p">)</span>
+
+<span class="n">gbmControl</span> <span class="o">&lt;-</span> <span class="n">caret</span><span class="o">::</span><span class="nf">trainControl</span><span class="p">(</span><span class="n">method</span> <span class="o">=</span> <span class="s">&quot;cv&quot;</span><span class="p">,</span> <span class="n">number</span> <span class="o">=</span> <span class="m">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">formula.GBM</span> <span class="o">&lt;-</span> <span class="n">price</span> <span class="o">~</span>
+  <span class="n">square</span> <span class="o">+</span> <span class="n">livingRoom</span> <span class="o">+</span> <span class="n">drawingRoom</span> <span class="o">+</span> <span class="n">kitchen</span> <span class="o">+</span> <span class="n">bathRoom</span> <span class="o">+</span>
+  <span class="n">floor_type</span> <span class="o">+</span> <span class="n">floor_total</span> <span class="o">+</span> <span class="n">elevator</span> <span class="o">+</span> <span class="n">ladderRatio</span> <span class="o">+</span>
+  <span class="n">age</span> <span class="o">+</span> <span class="n">DOM</span> <span class="o">+</span> <span class="n">followers</span> <span class="o">+</span> <span class="n">fiveYearsProperty</span> <span class="o">+</span>
+  <span class="n">subway</span> <span class="o">+</span> <span class="n">district</span> <span class="o">+</span> <span class="n">Lng</span> <span class="o">+</span> <span class="n">Lat</span> <span class="o">+</span> <span class="n">t_trade</span> <span class="o">+</span>
+  <span class="n">communityAverage</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">doParallel</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">gbm</span><span class="p">)</span>
+
+<span class="n">gbmControl</span><span class="o">=</span><span class="nf">trainControl</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s">&quot;repeatedcv&quot;</span><span class="p">,</span><span class="n">number</span><span class="o">=</span><span class="m">5</span><span class="p">,</span><span class="n">repeats</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+
+<span class="nf">registerDoParallel</span><span class="p">(</span><span class="m">8</span><span class="p">)</span>
+<span class="n">t</span><span class="o">=</span><span class="nf">Sys.time</span><span class="p">()</span>
+<span class="n">boostingReg</span><span class="o">=</span><span class="nf">train</span><span class="p">(</span><span class="n">formula.GBM</span><span class="p">,</span> 
+                  <span class="n">data</span><span class="o">=</span><span class="n">lianjia</span><span class="p">[</span><span class="n">train_ind</span><span class="p">,],</span>
+                  <span class="n">method</span><span class="o">=</span><span class="s">&quot;gbm&quot;</span><span class="p">,</span>
+                  <span class="n">distribution</span><span class="o">=</span><span class="s">&quot;gaussian&quot;</span><span class="p">,</span>
+                  <span class="n">trControl</span><span class="o">=</span><span class="n">gbmControl</span><span class="p">,</span>
+                  <span class="n">tuneGrid</span><span class="o">=</span><span class="n">gbmGrid</span><span class="p">,</span>
+                  <span class="n">metric</span><span class="o">=</span><span class="s">&quot;Rsquared&quot;</span><span class="p">,</span>
+                  <span class="n">verbose</span><span class="o">=</span><span class="bp">F</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Time Cost of Finding Best Tuning Parameters:&quot;</span><span class="p">,</span><span class="nf">Sys.time</span><span class="p">()</span><span class="o">-</span><span class="n">t</span><span class="p">,</span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="n">doParallel</span><span class="o">::</span><span class="nf">stopImplicitCluster</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">gbmTune</span> <span class="o">=</span> <span class="n">boostingReg</span><span class="o">$</span><span class="n">bestTune</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;The best tuning parameters for GBM are: \n&quot;</span><span class="p">);</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">gbmTune</span><span class="p">)</span>
+
+<span class="n">pred.boosting</span><span class="o">=</span><span class="nf">predict</span><span class="p">(</span><span class="n">boostingReg</span><span class="p">,</span><span class="n">newdata</span><span class="o">=</span><span class="n">lianjia</span><span class="p">[</span><span class="o">-</span><span class="n">train_ind</span><span class="p">,])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lmReg</span><span class="o">=</span><span class="nf">lm</span><span class="p">(</span><span class="n">formula.GBM</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">lianjia</span><span class="p">[</span><span class="n">train_ind</span><span class="p">,])</span>
+<span class="n">pred.lm</span><span class="o">=</span><span class="nf">predict</span><span class="p">(</span><span class="n">lmReg</span><span class="p">,</span><span class="n">newdata</span><span class="o">=</span><span class="n">lianjia</span><span class="p">[</span><span class="o">-</span><span class="n">train_ind</span><span class="p">,])</span>
+
+
+<span class="c1"># Comparison</span>
+
+<span class="n">target</span><span class="o">=</span><span class="n">lianjia</span><span class="p">[</span><span class="o">-</span><span class="n">train_ind</span><span class="p">,]</span><span class="o">$</span><span class="n">price</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;R-squared of GBM prediction =&quot;</span><span class="p">,</span><span class="n">miscTools</span><span class="o">::</span><span class="nf">rSquared</span><span class="p">(</span><span class="n">target</span><span class="p">,</span><span class="n">target</span><span class="o">-</span><span class="n">pred.boosting</span><span class="p">),</span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;R-squared of LM prediction =&quot;</span><span class="p">,</span><span class="n">miscTools</span><span class="o">::</span><span class="nf">rSquared</span><span class="p">(</span><span class="n">target</span><span class="p">,</span><span class="n">target</span><span class="o">-</span><span class="n">pred.lm</span><span class="p">),</span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Many variants of boosting algorithms</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(L_2\)</span>-boosting</p></li>
+<li><p>componentwise boosting</p></li>
+<li><p>AdaBoosting, etc</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="neural-network">
+<h2><span class="section-number">31.3. </span>Neural Network<a class="headerlink" href="#neural-network" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Artificial neural network (ANN) is the workhorse behind Alpha-Go and self-driven cars</p></li>
+<li><p>A particular type of nonlinear models.</p></li>
+</ul>
+<p><img alt="ANN" src="_images/Colored_neural_network.png" /></p>
+<ul class="simple">
+<li><p>The transition from layer <span class="math notranslate nohighlight">\(k-1\)</span> to layer <span class="math notranslate nohighlight">\(k\)</span> can be written as</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray*}
+z_l^{(k)} &amp; = &amp; w_{l0}^{(k-1)} + \sum_{j=1}^{p_{k-1} } w_{lj}^{(k-1)} a_j^{(k-1)} \\ 
+a_l^{(k)} &amp; = &amp; g^{(k)} ( z_l^{(k)}), 
+\end{eqnarray*}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\( a_j^{(0)} = x_j\)</span> is the input.</p>
+<ul class="simple">
+<li><p>The latent variable <span class="math notranslate nohighlight">\(z_l^{(k)}\)</span> usually takes a linear form</p></li>
+<li><p><em>Activation function</em> <span class="math notranslate nohighlight">\(g(\cdot)\)</span> is usually a simple nonlinear function</p></li>
+<li><p>Popular choice: sigmoid (<span class="math notranslate nohighlight">\(1/(1+\exp(-x))\)</span>); ReLu, <span class="math notranslate nohighlight">\(z\cdot 1\{x\geq 0\}\)</span>)</p></li>
+</ul>
+<p>A user has several decisions to make</p>
+<ul class="simple">
+<li><p>Activation function</p></li>
+<li><p>Number of hidden layers</p></li>
+<li><p>Number of nodes in each layer</p></li>
+<li><p>Many free parameters are generated from the multiple layer and multiple nodes</p></li>
+<li><p>In estimation often regularization methods are employed to penalize
+the <span class="math notranslate nohighlight">\(l_1\)</span> and/or <span class="math notranslate nohighlight">\(l_2\)</span> norms, which requires extra tuning parameters</p></li>
+</ul>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="theory-is-underdeveloped">
+<h1><span class="section-number">32. </span>Theory is Underdeveloped<a class="headerlink" href="#theory-is-underdeveloped" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>Theoretical understanding about its behavior is scant</p></li>
+<li><p>Hornik, Stinchcombe, and White (1989):</p>
+<ul>
+<li><p>A single hidden layer neural network, given enough many nodes, is a <em>universal approximator</em> for any
+measurable function.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="computation">
+<h1><span class="section-number">33. </span>Computation<a class="headerlink" href="#computation" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>Free parameters must be determined by
+numerical optimization</p></li>
+<li><p>Nonlinear complex structure makes the optimization
+very challenging and the global optimizer is beyond guarantee</p></li>
+<li><p>De facto optimization algorithm
+is <em>stochastic gradient descent</em></p></li>
+<li><p>Google’s <code class="docutils literal notranslate"><span class="pre">tensorflow</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">keras</span></code> is the deep learning modeling language</p></li>
+</ul>
+<div class="section" id="stochastic-gradient-descent-sgd">
+<h2><span class="section-number">33.1. </span>Stochastic Gradient Descent (SGD)<a class="headerlink" href="#stochastic-gradient-descent-sgd" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>In optimization the update formula</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\beta_{k+1} = \beta_{k} + a_k p_k,
+\]</div>
+<ul class="simple">
+<li><p>step length <span class="math notranslate nohighlight">\(a_k \in \mathbb{R}\)</span></p></li>
+<li><p>vector direction <span class="math notranslate nohighlight">\(p_k\)</span></p></li>
+</ul>
+<ul class="simple">
+<li><p>Talyor expansion,
+$<span class="math notranslate nohighlight">\(
+f(\beta_{k+1}) = f(\beta_k + a_k p_k ) \approx f(\beta_k) + a_k \nabla f(\beta_k) p_k,
+\)</span>$</p></li>
+<li><p>Choose <span class="math notranslate nohighlight">\(p_k\)</span> to reduce <span class="math notranslate nohighlight">\(f(x)\)</span></p></li>
+<li><p>A simple choice is <span class="math notranslate nohighlight">\(p_k =-\nabla f(\beta_k)\)</span>.</p></li>
+</ul>
+<p>c.f.:</p>
+<ul class="simple">
+<li><p>Newton’s method:<span class="math notranslate nohighlight">\(p_k =- (\nabla^2 f(\beta_k))^{-1}  \nabla f(\beta_k)\)</span></p></li>
+<li><p>BFGS uses a low-rank matrix to approximate <span class="math notranslate nohighlight">\(\nabla^2 f(\beta_k)\)</span></p></li>
+</ul>
+<ul class="simple">
+<li><p>When sample size and/or number of parameter is big, prohibitively expensive to evaluate gradient</p></li>
+<li><p>SGD uses a small batch of the sample to evaluate the gradient in each iteration.</p></li>
+<li><p>SGD involves tuning parameters</p>
+<ul>
+<li><p>say, batch size</p></li>
+<li><p>learning rate</p></li>
+</ul>
+</li>
+<li><p>Careful experiments must be carried out before serious implementation.</p></li>
+</ul>
+<div class="section" id="experiment">
+<h3><span class="section-number">33.1.1. </span>Experiment<a class="headerlink" href="#experiment" title="Permalink to this heading">¶</a></h3>
+<p>Use SGD in the PPMLE</p>
+<ul class="simple">
+<li><p>sample size 100,000</p></li>
+<li><p>the number of parameters 100</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">poisson.loglik</span> <span class="o">=</span> <span class="nf">function</span><span class="p">(</span> <span class="n">b</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">X</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="n">b</span> <span class="o">=</span> <span class="nf">as.matrix</span><span class="p">(</span> <span class="n">b</span> <span class="p">)</span>
+  <span class="n">lambda</span> <span class="o">=</span>  <span class="nf">exp</span><span class="p">(</span> <span class="n">X</span> <span class="o">%*%</span> <span class="n">b</span> <span class="p">)</span>
+  <span class="n">ell</span> <span class="o">=</span> <span class="o">-</span><span class="nf">mean</span><span class="p">(</span> <span class="o">-</span><span class="n">lambda</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span>  <span class="nf">log</span><span class="p">(</span><span class="n">lambda</span><span class="p">)</span> <span class="p">)</span>
+  <span class="nf">return</span><span class="p">(</span><span class="n">ell</span><span class="p">)</span>
+<span class="p">}</span>
+
+
+<span class="n">poisson.loglik.grad</span> <span class="o">=</span> <span class="nf">function</span><span class="p">(</span> <span class="n">b</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">X</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="n">b</span> <span class="o">=</span> <span class="nf">as.matrix</span><span class="p">(</span> <span class="n">b</span> <span class="p">)</span>
+  <span class="n">lambda</span> <span class="o">=</span>  <span class="nf">as.vector</span><span class="p">(</span> <span class="nf">exp</span><span class="p">(</span> <span class="n">X</span> <span class="o">%*%</span> <span class="n">b</span> <span class="p">)</span> <span class="p">)</span>
+  <span class="n">ell</span> <span class="o">=</span> <span class="o">-</span><span class="nf">colMeans</span><span class="p">(</span> <span class="o">-</span><span class="n">lambda</span> <span class="o">*</span> <span class="n">X</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="n">X</span> <span class="p">)</span>
+  <span class="n">ell_eta</span> <span class="o">=</span> <span class="n">ell</span>
+  <span class="nf">return</span><span class="p">(</span><span class="n">ell_eta</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">##### generate the artificial data</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">898</span><span class="p">)</span>
+<span class="n">nn</span> <span class="o">=</span> <span class="m">1e5</span><span class="p">;</span> <span class="n">K</span> <span class="o">=</span> <span class="m">100</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="nf">cbind</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="nf">matrix</span><span class="p">(</span> <span class="nf">runif</span><span class="p">(</span> <span class="n">nn</span><span class="o">*</span><span class="p">(</span><span class="n">K</span><span class="m">-1</span><span class="p">)</span> <span class="p">),</span> <span class="n">ncol</span> <span class="o">=</span> <span class="n">K</span><span class="m">-1</span> <span class="p">)</span> <span class="p">)</span>
+<span class="n">b0</span> <span class="o">=</span> <span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span> <span class="o">/</span> <span class="n">K</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">rpois</span><span class="p">(</span><span class="n">nn</span><span class="p">,</span> <span class="nf">exp</span><span class="p">(</span> <span class="n">X</span> <span class="o">%*%</span> <span class="n">b0</span> <span class="p">)</span> <span class="p">)</span>
+
+
+<span class="n">b.init</span> <span class="o">=</span> <span class="nf">runif</span><span class="p">(</span><span class="n">K</span><span class="p">);</span> <span class="n">b.init</span>  <span class="o">=</span> <span class="m">2</span> <span class="o">*</span> <span class="n">b.init</span> <span class="o">/</span> <span class="nf">sum</span><span class="p">(</span><span class="n">b.init</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># and these tuning parameters are related to N and K</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="nf">length</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">test_ind</span> <span class="o">=</span> <span class="nf">sample</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="n">n</span><span class="p">,</span> <span class="nf">round</span><span class="p">(</span><span class="m">0.2</span><span class="o">*</span><span class="n">n</span><span class="p">)</span> <span class="p">)</span> 
+
+<span class="c1"># 80% training data</span>
+<span class="c1"># 20% testing data</span>
+
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">test_ind</span><span class="p">]</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">test_ind</span><span class="p">,</span> <span class="p">]</span>
+
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="n">test_ind</span> <span class="p">]</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="o">-</span><span class="n">test_ind</span><span class="p">,</span> <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># optimization parameters</span>
+
+<span class="c1"># sgd depends on</span>
+<span class="c1"># * eta: the learning rate</span>
+<span class="c1"># * epoch: the averaging small batch</span>
+<span class="c1"># * the initial value</span>
+
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">105</span><span class="p">)</span>
+
+<span class="n">max_iter</span> <span class="o">=</span> <span class="m">5000</span>
+<span class="n">min_iter</span> <span class="o">=</span> <span class="m">20</span>
+<span class="n">eta</span><span class="o">=</span><span class="m">0.01</span>
+<span class="n">epoch</span> <span class="o">=</span> <span class="nf">round</span><span class="p">(</span> <span class="m">100</span><span class="o">*</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">K</span><span class="p">)</span> <span class="p">)</span>
+
+
+<span class="n">b_old</span> <span class="o">=</span> <span class="n">b.init</span>
+
+<span class="n">pts0</span> <span class="o">=</span> <span class="nf">Sys.time</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># the iteration of gradient</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">max_iter</span> <span class="p">){</span>
+
+  <span class="n">loglik_old</span> <span class="o">=</span> <span class="nf">poisson.loglik</span><span class="p">(</span><span class="n">b_old</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_train</span><span class="p">)</span>
+  <span class="n">i_sample</span> <span class="o">=</span> <span class="nf">sample</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">y_train</span><span class="p">),</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">replace</span> <span class="o">=</span> <span class="kc">TRUE</span> <span class="p">)</span>
+  <span class="n">b_new</span> <span class="o">=</span> <span class="n">b_old</span> <span class="o">-</span> <span class="n">eta</span> <span class="o">*</span> <span class="nf">poisson.loglik.grad</span><span class="p">(</span><span class="n">b_old</span><span class="p">,</span> <span class="n">y_train</span><span class="p">[</span><span class="n">i_sample</span><span class="p">],</span> <span class="n">X_train</span><span class="p">[</span><span class="n">i_sample</span><span class="p">,</span> <span class="p">])</span>
+  <span class="n">loglik_new</span> <span class="o">=</span> <span class="nf">poisson.loglik</span><span class="p">(</span><span class="n">b_new</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">X_test</span><span class="p">)</span>
+  <span class="n">b_old</span> <span class="o">=</span> <span class="n">b_new</span> <span class="c1"># update</span>
+
+  <span class="n">criterion</span> <span class="o">=</span>  <span class="n">loglik_old</span> <span class="o">-</span> <span class="n">loglik_new</span>  
+  <span class="nf">if </span><span class="p">(</span>  <span class="n">criterion</span> <span class="o">&lt;</span> <span class="m">0.0001</span> <span class="o">&amp;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="n">min_iter</span> <span class="p">)</span> <span class="n">break</span>
+<span class="p">}</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;point estimate =&quot;</span><span class="p">,</span> <span class="n">b_new</span><span class="p">,</span> <span class="s">&quot;, log_lik = &quot;</span><span class="p">,</span> <span class="n">loglik_new</span><span class="p">,</span> <span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="n">pts1</span> <span class="o">=</span> <span class="nf">Sys.time</span><span class="p">(</span> <span class="p">)</span> <span class="o">-</span> <span class="n">pts0</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">pts1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># optimx is too slow for this dataset.</span>
+<span class="c1"># Nelder-Mead method is too slow for this dataset</span>
+
+<span class="c1"># thus we only sgd with NLoptr</span>
+
+<span class="n">opts</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="s">&quot;algorithm&quot;</span><span class="o">=</span><span class="s">&quot;NLOPT_LD_SLSQP&quot;</span><span class="p">,</span><span class="s">&quot;xtol_rel&quot;</span><span class="o">=</span><span class="m">1.0e-7</span><span class="p">,</span> <span class="n">maxeval</span> <span class="o">=</span> <span class="m">5000</span><span class="p">)</span>
+
+
+<span class="n">pts0</span> <span class="o">=</span> <span class="nf">Sys.time</span><span class="p">(</span> <span class="p">)</span>
+<span class="n">res_BFGS</span> <span class="o">=</span> <span class="n">nloptr</span><span class="o">::</span><span class="nf">nloptr</span><span class="p">(</span> <span class="n">x0</span><span class="o">=</span><span class="n">b.init</span><span class="p">,</span>
+                 <span class="n">eval_f</span><span class="o">=</span><span class="n">poisson.loglik</span><span class="p">,</span>
+                 <span class="n">eval_grad_f</span> <span class="o">=</span> <span class="n">poisson.loglik.grad</span><span class="p">,</span>
+                 <span class="n">opts</span><span class="o">=</span><span class="n">opts</span><span class="p">,</span>
+                 <span class="n">y</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span> <span class="n">res_BFGS</span> <span class="p">)</span>
+<span class="n">pts1</span> <span class="o">=</span> <span class="nf">Sys.time</span><span class="p">(</span> <span class="p">)</span> <span class="o">-</span> <span class="n">pts0</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">pts1</span><span class="p">)</span>
+
+<span class="n">b_hat_nlopt</span> <span class="o">=</span> <span class="n">res_BFGS</span><span class="o">$</span><span class="n">solution</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#### evaluation in the test sample</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\n\n\n\n\n\n\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;log lik in test data by sgd = &quot;</span><span class="p">,</span> <span class="nf">poisson.loglik</span><span class="p">(</span><span class="n">b_new</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">X_test</span><span class="p">),</span> <span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;log lik in test data by nlopt = &quot;</span><span class="p">,</span> <span class="nf">poisson.loglik</span><span class="p">(</span><span class="n">b_hat_nlopt</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">X_test</span><span class="p">),</span> <span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;log lik in test data by oracle = &quot;</span><span class="p">,</span> <span class="nf">poisson.loglik</span><span class="p">(</span><span class="n">b0</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">X_test</span><span class="p">),</span> <span class="s">&quot;\n&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="summary">
+<h1><span class="section-number">34. </span>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>Mature algorithms for implementation</p></li>
+<li><p>Theoretical investigation is in progress</p></li>
+<li><p>Economic applications are emerging</p></li>
+</ul>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="slides_10_time_series.html" title="上一页 页">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">上一页</p>
+            <p class="prev-next-title"><span class="section-number">11. </span>Time Series Analysis</p>
+        </div>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      通过 史震涛 Shi Zhentao<br/>
+    
+        &copy; 版权 2023.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

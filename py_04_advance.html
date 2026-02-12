@@ -1,0 +1,946 @@
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>4. Lecture 4: Advanced Python &#8212; 经济学中的数据科学</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=cc3ee377" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=946197a6"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/translations.js?v=beaddf03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'py_04_advance';</script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="5. Lecture 5: Uncertainty" href="py_05_simulations.html" />
+    <link rel="prev" title="3. Lecture 3: Visualization" href="py_03_plot.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="00-preface.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">经济学中的数据科学</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">搜索</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="00-preface.html">
+                    Preface
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="py_01_basic.html">1. Lecture 1: Python for Scientific Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_02_data_sources.html">2. Lecture 2: Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_03_plot.html">3. Lecture 3: Visualization</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Lecture 4: Advanced Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_05_simulations.html">5. Lecture 5: Uncertainty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_06_integration.html">6. Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_07_optimization.html">7. ECON 5821: Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_08_time_series.html">8. Time Series Analysis</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="py_09_ML.html">27. Machine Learning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="py_10_NN.html">47. Neural Networks</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="py_11_causal_inference.html">50. Lecture 11: Causal Inference and Program Evaluation</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="下载此页面">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/py_04_advance.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="下载源文件"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="列印成 PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全屏模式"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lecture 4: Advanced Python</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目录 </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zhentao-shi">4.1. Zhentao Shi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#speed">4.2. Speed</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vectorization">4.3. Vectorization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#econometrics-example">4.3.1. Econometrics Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loops">4.4. Loops</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-computing">4.5. Parallel Computing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu">4.5.1. GPU</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-computing">4.6. Cloud Computing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow">4.6.1. Workflow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-source">4.6.2. Open Source</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#user-experience">4.6.3. User Experience</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuhk-econ">4.6.4. CUHK Econ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#long-jobs">4.6.5. Long jobs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-in-advance">4.6.6. Prepare in Advance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducibility">4.7. Reproducibility</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lecture-4-advanced-python">
+<h1><span class="section-number">4. </span>Lecture 4: Advanced Python<a class="headerlink" href="#lecture-4-advanced-python" title="Link to this heading">#</a></h1>
+<img src="graph/shenwei.jpg" width="1000">
+<section id="zhentao-shi">
+<h2><span class="section-number">4.1. </span>Zhentao Shi<a class="headerlink" href="#zhentao-shi" title="Link to this heading">#</a></h2>
+</section>
+<section id="speed">
+<h2><span class="section-number">4.2. </span>Speed<a class="headerlink" href="#speed" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Efficient computation in Python.</p></li>
+<li><p>Python is a high-level language.</p>
+<ul>
+<li><p>In most cases, vectorization speeds up computation.</p></li>
+</ul>
+</li>
+<li><p>Multiple CPUs for parallel execution</p>
+<ul>
+<li><p>Save time after optimizing the code for speed.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="vectorization">
+<h2><span class="section-number">4.3. </span>Vectorization<a class="headerlink" href="#vectorization" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Mathematical equivalence <span class="math notranslate nohighlight">\(\neq\)</span> computation equivalence</p></li>
+<li><p>Speed matter in</p>
+<ul>
+<li><p>Big data</p></li>
+<li><p>Simulations</p></li>
+<li><p>Hyper parameter tuning</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>For example, the preferred algorithm in Lin, Shi, Wang and Yan (2022)</p>
+<ul>
+<li><p>8 hours on 24 cores = 192 core-hours</p></li>
+</ul>
+</li>
+<li><p>Code optimization is essential for such problems.</p></li>
+<li><p>Optimizing code takes human (and AI) time.</p></li>
+<li><p>Tradeoff between coding time and computer time.</p></li>
+</ul>
+<section id="econometrics-example">
+<h3><span class="section-number">4.3.1. </span>Econometrics Example<a class="headerlink" href="#econometrics-example" title="Link to this heading">#</a></h3>
+<p>In OLS regression, under heteroskedasticity
+<span class="math notranslate nohighlight">\(
+\sqrt{n}\left(\widehat{\beta}-\beta_{0}\right)\stackrel{d}{\to}N\left(0,E\left[x_{i}x_{i}'\right]^{-1}\mathrm{var}\left(x_{i}e_{i}\right)E\left[x_{i}x_{i}'\right]^{-1}\right)
+\)</span>
+where <span class="math notranslate nohighlight">\(\mathrm{var}\left(x_{i}e_{i}\right)\)</span> can be estimated by</p>
+<div class="math notranslate nohighlight">
+\[
+\underset{\mathrm{opt1}}{\frac{1}{n}\sum_{i=1}^{n}x_{i}x_{i}'\widehat{e}_{i}^{2}}=\underset{\mathrm{opt2,3}}{\frac{1}{n}X'DX}=\underset{\mathrm{opt 4}}{\frac{1}{n}\left(X'D^{1/2}\right)\left(D^{1/2}X\right)}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(D\)</span> is a diagonal matrix of <span class="math notranslate nohighlight">\(\left(\widehat{e}_{1}^{2},\widehat{e}_{2,}^{2},\ldots,\widehat{e}_{n}^{2}\right)\)</span>.</p>
+<p>At least 4 mathematically equivalent ways:</p>
+<ol class="arabic simple">
+<li><p>literally sum <span class="math notranslate nohighlight">\(\hat{e}_i^2 x_i x_i'\)</span>  over <span class="math notranslate nohighlight">\(i=1,\ldots,n\)</span> one by one.</p></li>
+<li><p><span class="math notranslate nohighlight">\(X' \mathrm{diag}(\hat{e}^2) X\)</span>, with a dense central matrix.</p></li>
+<li><p><span class="math notranslate nohighlight">\(X' \mathrm{diag}(\hat{e}^2) X\)</span>, with a sparse central matrix.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">csr_matrix</span> 
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">lpm</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="c1"># estimation in a linear probability model</span>
+
+    <span class="c1"># set the parameters</span>
+    <span class="n">b0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+    <span class="c1"># generate the data</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">))))</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span> <span class="o">@</span> <span class="n">b0</span> <span class="o">+</span> <span class="n">e</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># OLS estimation</span>
+    <span class="n">bhat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Y</span><span class="p">)</span>
+
+    <span class="c1"># calculate the t-value</span>
+    <span class="n">e_hat</span> <span class="o">=</span> <span class="n">Y</span> <span class="o">-</span> <span class="n">X</span> <span class="o">@</span> <span class="n">bhat</span>
+    <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">e_hat</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We run the 3 estimators for the same data, and compare the time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">diags</span>
+
+<span class="c1"># an example of robust variance matrix.</span>
+<span class="c1"># compare the implementation via matrix and vectorization.</span>
+
+<span class="c1"># n = 5000; Rep = 10 # large matrix</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">;</span> <span class="n">Rep</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># small matrix</span>
+
+<span class="k">for</span> <span class="n">opt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+    <span class="n">pts0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    
+    <span class="c1"># initialize the matrix for computing the variance-covariance matrix</span>
+    <span class="n">XXe2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+    <span class="c1"># loop over the replications and compute the variance-covariance matrix</span>
+    <span class="k">for</span> <span class="nb">iter</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Rep</span><span class="p">):</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="nb">iter</span><span class="p">)</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">e_hat</span> <span class="o">=</span> <span class="n">lpm</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        
+        <span class="c1"># compute the variance-covariance matrix using element-by-element calculation</span>
+        <span class="k">if</span> <span class="n">opt</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+                <span class="n">XXe2</span> <span class="o">+=</span> <span class="n">e_hat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,]</span> <span class="p">)</span>
+        
+        <span class="c1"># compute the variance-covariance matrix using matrix multiplication with dense matrices</span>
+        <span class="k">elif</span> <span class="n">opt</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">e_hat2_M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">e_hat2_M</span><span class="p">,</span> <span class="n">e_hat</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">XXe2</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">e_hat2_M</span> <span class="o">@</span> <span class="n">X</span>
+        
+        <span class="c1"># compute the variance-covariance matrix using matrix multiplication with sparse matrices</span>
+        <span class="k">elif</span> <span class="n">opt</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">e_hat2_M</span> <span class="o">=</span> <span class="n">diags</span><span class="p">(</span><span class="n">e_hat</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;csr&#39;</span><span class="p">)</span>
+            <span class="c1"># The format=&#39;csr&#39; argument specifies that the resulting sparse matrix </span>
+            <span class="c1"># should be in Compressed Sparse Row (CSR)</span>
+            <span class="n">XXe2</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">e_hat2_M</span> <span class="o">@</span> <span class="n">X</span>
+        
+        <span class="k">elif</span> <span class="n">opt</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="n">e_hat2_M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+            <span class="c1"># Xe = X * np.repeat(e_hat[:, np.newaxis], 2, axis=1)</span>
+            <span class="n">Xe</span> <span class="o">=</span> <span class="n">X</span> <span class="o">*</span> <span class="n">e_hat</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">XXe2</span> <span class="o">=</span>  <span class="n">Xe</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Xe</span>
+        
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;n =&quot;</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="s2">&quot;, Rep =&quot;</span><span class="p">,</span> <span class="n">Rep</span><span class="p">,</span> <span class="s2">&quot;, opt =&quot;</span><span class="p">,</span> <span class="n">opt</span><span class="p">,</span> <span class="s2">&quot;,time =&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">pts0</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n = 5000 , Rep = 10 , opt = 1 ,time = 0.0960092544555664 
+
+n = 5000 , Rep = 10 , opt = 2 ,time = 0.3656589984893799 
+
+n = 5000 , Rep = 10 , opt = 3 ,time = 0.023998022079467773 
+
+n = 5000 , Rep = 10 , opt = 4 ,time = 0.005000114440917969 
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Sparse matrix is useful for big matrix.</p></li>
+<li><p>If the matrix is small, imposing sparsity does not help with speed.</p></li>
+</ul>
+</section>
+</section>
+<section id="loops">
+<h2><span class="section-number">4.4. </span>Loops<a class="headerlink" href="#loops" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Python is efficient at managing the memory.</p>
+<ul>
+<li><p>Pre-defintion is useful in other languages such as R and Matlab</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Empirical coverage probability of a Poisson distribution</p></li>
+<li><p>Write a DIY <code class="docutils literal notranslate"><span class="pre">CI</span></code> for confidence interval</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">mu</span> <span class="o">=</span> <span class="mi">2</span> 
+
+<span class="k">def</span> <span class="nf">CI</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="c1"># x is a numpy array of random variables</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">sig</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">upper</span> <span class="o">=</span> <span class="n">mu</span> <span class="o">+</span> <span class="mf">1.96</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="n">sig</span>
+    <span class="n">lower</span> <span class="o">=</span> <span class="n">mu</span> <span class="o">-</span> <span class="mf">1.96</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="n">sig</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;lower&quot;</span><span class="p">:</span> <span class="n">lower</span><span class="p">,</span> <span class="s2">&quot;upper&quot;</span><span class="p">:</span> <span class="n">upper</span><span class="p">}</span>
+
+
+<span class="k">def</span> <span class="nf">capture</span><span class="p">(</span><span class="n">_</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">)</span>
+    <span class="n">bounds</span> <span class="o">=</span> <span class="n">CI</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># You need to define the CI function in Python</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="s1">&#39;lower&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">mu</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">mu</span> <span class="o">&lt;=</span> <span class="n">bounds</span><span class="p">[</span><span class="s1">&#39;upper&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Rep</span> <span class="o">=</span> <span class="mi">1000000</span> <span class="c1"># or whatever value you choose</span>
+<span class="n">sample_size</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># or whatever value you choose</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># or whatever value you choose</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># set seed for reproducibility</span>
+<span class="n">out</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># initialize out as empty list</span>
+<span class="n">pts0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="c1"># check time</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">Rep</span><span class="p">:</span>
+    <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">capture</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">pts1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">pts0</span> <span class="c1"># check time elapsed</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;loop without pre-definition takes&quot;</span><span class="p">,</span> <span class="n">pts1</span><span class="p">,</span> <span class="s2">&quot;seconds&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loop without pre-definition takes 15.215884685516357 seconds
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define an empty np array</span>
+<span class="n">pts0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="c1"># check time</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Rep</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">out2</span> <span class="o">=</span> <span class="n">capture</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">out2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">out2</span><span class="p">,</span> <span class="n">capture</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+
+<span class="n">pts1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">pts0</span> <span class="c1"># check time elapsed</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;loop with appending&quot;</span><span class="p">,</span> <span class="n">pts1</span><span class="p">,</span> <span class="s2">&quot;seconds&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loop with appending 26.808299779891968 seconds
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="parallel-computing">
+<h2><span class="section-number">4.5. </span>Parallel Computing<a class="headerlink" href="#parallel-computing" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Parallel computing becomes essential when the data size is beyond the storage of a single computer.</p></li>
+<li><p>We explore the speed gain of parallel computing on a multicore machine.</p></li>
+<li><p>The package <code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code> is the choice for parallel computing in Python.</p></li>
+<li><p>Example: See the py script <code class="docutils literal notranslate"><span class="pre">scripts/parallel.py</span></code>.</p></li>
+</ul>
+<p>If we have two CPUs running simultaneously, in theory we can cut the time to a half of that on a single CPU. Is that what happening in practice?</p>
+<section id="gpu">
+<h3><span class="section-number">4.5.1. </span>GPU<a class="headerlink" href="#gpu" title="Link to this heading">#</a></h3>
+<p>The following two scripts must be run on SCRP.</p>
+<ul class="simple">
+<li><p>script</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srun</span> <span class="o">-</span><span class="n">c</span> <span class="mi">4</span> <span class="o">--</span><span class="n">mem</span><span class="o">=</span><span class="mi">12</span><span class="n">G</span> <span class="o">-</span><span class="n">I</span> <span class="o">-</span><span class="n">p</span> <span class="n">gpu</span> <span class="o">--</span><span class="n">gres</span><span class="o">=</span><span class="n">gpu</span><span class="p">:</span><span class="n">rtx3060</span><span class="p">:</span><span class="mi">1</span> <span class="n">python</span> <span class="n">scripts</span><span class="o">/</span><span class="n">gpu_benchmark</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>or</p>
+<ul class="simple">
+<li><p>ipynb</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srun</span> <span class="o">-</span><span class="n">c</span> <span class="mi">4</span> <span class="o">--</span><span class="n">mem</span><span class="o">=</span><span class="mi">12</span><span class="n">G</span> <span class="o">-</span><span class="n">I</span> <span class="o">-</span><span class="n">p</span> <span class="n">gpu</span> <span class="o">--</span><span class="n">gres</span><span class="o">=</span><span class="n">gpu</span><span class="p">:</span><span class="n">rtx3060</span><span class="p">:</span><span class="mi">1</span> <span class="n">jupyter</span> <span class="n">nbconvert</span> <span class="o">--</span><span class="n">execute</span> <span class="o">--</span><span class="n">to</span> <span class="n">notebook</span> <span class="o">--</span><span class="n">inplace</span> <span class="n">parallel_gpu</span><span class="o">.</span><span class="n">ipynb</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="cloud-computing">
+<h2><span class="section-number">4.6. </span>Cloud Computing<a class="headerlink" href="#cloud-computing" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Remote servers are more powerful than personal computers</p></li>
+<li><p>Instruments for intensive jobs</p></li>
+<li><p>Cloud storage</p></li>
+<li><p>Cloud computing</p></li>
+</ul>
+<section id="workflow">
+<h3><span class="section-number">4.6.1. </span>Workflow<a class="headerlink" href="#workflow" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>No fundamental difference lies between local and cloud</p></li>
+<li><p>Prepare in the cloud serve the data and code</p></li>
+<li><p>Open a shell for communication, run the code, and collect the results</p></li>
+<li><p>Command-line interface (CLI)</p></li>
+</ul>
+</section>
+<section id="open-source">
+<h3><span class="section-number">4.6.2. </span>Open Source<a class="headerlink" href="#open-source" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Strong justification for open-source languages</p></li>
+<li><p>Installation with no limitations</p></li>
+</ul>
+</section>
+<section id="user-experience">
+<h3><span class="section-number">4.6.3. </span>User Experience<a class="headerlink" href="#user-experience" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Cost and barrier of remote computing have reduced significantly</p></li>
+<li><p>Remote desktop best mimics the familiar operation system on a local computer</p></li>
+<li><p>Internet latency</p></li>
+<li><p>CLI flexible</p></li>
+</ul>
+<ul class="simple">
+<li><p>Remote Jupyter notebook work via a web browser as an interface</p></li>
+<li><p>Command is send from the browser to the remote computer</p></li>
+<li><p>Results are send back to the browser for display</p></li>
+<li><p>IDEs have file management, to partially replace WinSCP</p></li>
+</ul>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SCRP</span></code></p>
+<ul>
+<li><p>resembles a workplace environment in a small company</p></li>
+<li><p>always online (with VPN connection)</p></li>
+<li><p>more powerful than the best local computer we can afford.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Amazon</span> <span class="pre">Web</span> <span class="pre">Service</span> <span class="pre">Cloud</span></code> or <code class="docutils literal notranslate"><span class="pre">阿里云</span></code></p>
+<ul>
+<li><p>commercial service tailored according to budget</p></li>
+<li><p>from tiny demonstrative display to big enterprise business applications</p></li>
+<li><p>need to be configured</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="cuhk-econ">
+<h3><span class="section-number">4.6.4. </span>CUHK Econ<a class="headerlink" href="#cuhk-econ" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Students have access to powerful remote computers</p></li>
+<li><p>Cluster’s single-core performance may not as good as your laptop</p></li>
+<li><p>The advantage of cluster comes from parallel execution</p></li>
+</ul>
+<img src="graph/scrp2.jpg" width="1000"><img src="graph/scrp1.jpg" width="1000"><ol class="arabic simple">
+<li><p>Log in <code class="docutils literal notranslate"><span class="pre">scrp-login-2.econ.cuhk.edu.hk</span></code>;</p></li>
+<li><p>Upload scripts and data to the server;</p></li>
+<li><p>In a shell, run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">&lt;file_name.py&gt;</span> <span class="pre">result_file_name.txt</span></code>;</p></li>
+<li><p>To run a command in the background, add “<code class="docutils literal notranslate"><span class="pre">&amp;</span></code>” at the end of the above command.</p></li>
+</ol>
+<p><strong>Example</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">info</span> <span class="o">--</span><span class="n">env</span>
+
+<span class="n">conda</span> <span class="n">activate</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">network</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">pytorch</span><span class="o">-</span><span class="mf">2.4</span>
+<span class="n">python</span> <span class="n">parallel</span><span class="o">.</span><span class="n">py</span>
+
+<span class="n">python</span> <span class="o">&lt;</span><span class="n">parallel</span><span class="o">.</span><span class="n">py</span><span class="o">&gt;</span> <span class="n">py_print_out</span><span class="o">.</span><span class="n">txt</span> <span class="o">&amp;</span> 
+</pre></div>
+</div>
+</section>
+<section id="long-jobs">
+<h3><span class="section-number">4.6.5. </span>Long jobs<a class="headerlink" href="#long-jobs" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Keep jobs running on the background</p></li>
+<li><p>Terminal can be freed for other task</p></li>
+<li><p>Disconnect with the server and the task is still running</p></li>
+<li><p>Otherwise, the task will be terminated immediately once we close window, disconnect with the server, or lose Internet or VPN connection.</p></li>
+</ul>
+</section>
+<section id="prepare-in-advance">
+<h3><span class="section-number">4.6.6. </span>Prepare in Advance<a class="headerlink" href="#prepare-in-advance" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Test the input and output in small scale on  local computer or graphic cloud server</p>
+<ul>
+<li><p>Work in CLI means no interaction with intermediate results</p></li>
+<li><p>Don’t debug in CLI</p></li>
+</ul>
+</li>
+<li><p>Think in advance how to retrieve the results</p></li>
+<li><p>Export key results as data files (say, <code class="docutils literal notranslate"><span class="pre">csv</span></code>…) or graph files (pdf, jpeg, png).</p></li>
+</ul>
+</section>
+</section>
+<section id="reproducibility">
+<h2><span class="section-number">4.7. </span>Reproducibility<a class="headerlink" href="#reproducibility" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Configure environment</p></li>
+<li><p>Virtual machine</p></li>
+<li><p><a class="reference external" href="https://hub.docker.com/repository/docker/ztshi/econ5821">Docker</a></p>
+<ul>
+<li><p>Codespaces</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="py_03_plot.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">上一页</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Lecture 3: Visualization</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="py_05_simulations.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Lecture 5: Uncertainty</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目录
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zhentao-shi">4.1. Zhentao Shi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#speed">4.2. Speed</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vectorization">4.3. Vectorization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#econometrics-example">4.3.1. Econometrics Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loops">4.4. Loops</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-computing">4.5. Parallel Computing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu">4.5.1. GPU</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-computing">4.6. Cloud Computing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow">4.6.1. Workflow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-source">4.6.2. Open Source</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#user-experience">4.6.3. User Experience</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuhk-econ">4.6.4. CUHK Econ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#long-jobs">4.6.5. Long jobs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-in-advance">4.6.6. Prepare in Advance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducibility">4.7. Reproducibility</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+作者： 史震涛 Shi Zhentao
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1225 @@
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>7. ECON 5821: Numerical Optimization &#8212; 经济学中的数据科学</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=cc3ee377" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=946197a6"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/translations.js?v=beaddf03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'py_07_optimization';</script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="8. Time Series Analysis" href="py_08_time_series.html" />
+    <link rel="prev" title="6. Integration" href="py_06_integration.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="00-preface.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">经济学中的数据科学</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">搜索</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="00-preface.html">
+                    Preface
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="py_01_basic.html">1. Lecture 1: Python for Scientific Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_02_data_sources.html">2. Lecture 2: Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_03_plot.html">3. Lecture 3: Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_04_advance.html">4. Lecture 4: Advanced Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_05_simulations.html">5. Lecture 5: Uncertainty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_06_integration.html">6. Integration</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. ECON 5821: Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_08_time_series.html">8. Time Series Analysis</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="py_09_ML.html">27. Machine Learning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="py_10_NN.html">47. Neural Networks</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="py_11_causal_inference.html">50. Lecture 11: Causal Inference and Program Evaluation</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="下载此页面">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/py_07_optimization.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="下载源文件"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="列印成 PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全屏模式"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>ECON 5821: Numerical Optimization</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目录 </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization">7.1. Optimization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#user-cases">7.1.1. User Cases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convenience-vs-efficiency">7.1.2. Convenience vs. Efficiency</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">7.2. Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#newton-s-method">7.3. Newton’s Method</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iteartions">7.3.1. Iteartions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mechanism">7.3.2. Mechanism</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update">7.3.3. Update</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#features-of-newton-s-method">7.4. Features of Newton’s Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quasi-newton-method">7.5. Quasi-Newton Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent">7.6. Gradient Descent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derivative-free-method">7.7. Derivative-Free Method</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">7.7.1. Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poisson-mle">7.7.2. Poisson MLE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-formulation">7.7.3. Alternative Formulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caveats">7.7.4. Caveats</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">7.7.5. Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nlopt">7.7.6. NLOPT</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">7.7.7. Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convex-optimization">7.8. Convex Optimization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">7.8.1. Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">7.9. Example</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="econ-5821-numerical-optimization">
+<h1><span class="section-number">7. </span>ECON 5821: Numerical Optimization<a class="headerlink" href="#econ-5821-numerical-optimization" title="Link to this heading">#</a></h1>
+<p>Zhentao Shi</p>
+<img src="graph/chongchicollege.png" width="1000">
+<!-- code is tested on SCRP --><section id="optimization">
+<h2><span class="section-number">7.1. </span>Optimization<a class="headerlink" href="#optimization" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Economics curriculum does not pay enough attention to numerical optimization</p></li>
+<li><p>Most estimators solve optimization</p></li>
+</ul>
+<ul class="simple">
+<li><p>Operational research</p></li>
+<li><p>Understand the essence</p></li>
+</ul>
+<section id="user-cases">
+<h3><span class="section-number">7.1.1. </span>User Cases<a class="headerlink" href="#user-cases" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Maximum likelihood estimation</p></li>
+<li><p>Discrete / mixed data type</p></li>
+<li><p>Machine learning / regularization</p></li>
+<li><p>Classification</p></li>
+</ul>
+<ul class="simple">
+<li><p>Big data stochastic algorithm</p></li>
+</ul>
+<ul class="simple">
+<li><p>Generic optimization problem</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\min_{\theta \in \Theta } f(\theta) \,\, \mathrm{ s.t. }\,\,  g(\theta) = 0,\, h(\theta) \leq 0,
+\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(f(\cdot)\in \mathbb{R}\)</span>: criterion function</p></li>
+<li><p><span class="math notranslate nohighlight">\(g(\theta) = 0\)</span>: a vector of equality constraints</p></li>
+<li><p><span class="math notranslate nohighlight">\(h(\theta)\leq 0\)</span>: a vector of inequality constraints.</p></li>
+</ul>
+<ul class="simple">
+<li><p>unconstrained</p></li>
+<li><p>constrained</p></li>
+<li><p>Lagrangian</p></li>
+</ul>
+</section>
+<section id="convenience-vs-efficiency">
+<h3><span class="section-number">7.1.2. </span>Convenience vs. Efficiency<a class="headerlink" href="#convenience-vs-efficiency" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Convenience: readability of the mathematical expressions and the code</p></li>
+<li><p>Efficiency:  computing speed</p></li>
+<li><p>Put convenience as priority at the trial-and-error stage,</p></li>
+<li><p>Improve efficiency when necessary at a later stage for full-scale execution.</p></li>
+</ul>
+</section>
+</section>
+<section id="methods">
+<h2><span class="section-number">7.2. </span>Methods<a class="headerlink" href="#methods" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Many optimization algorithms</p></li>
+<li><p>Variants of a few fundamental principles.</p></li>
+</ul>
+</section>
+<section id="newton-s-method">
+<h2><span class="section-number">7.3. </span>Newton’s Method<a class="headerlink" href="#newton-s-method" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Essential idea for optimizing a twice-differentiable objective function</p></li>
+<li><p>Necessary condition: the first-order condition</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+s(\theta) = \partial f(\theta) / \partial \theta = 0
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># define functions</span>
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">5</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">s</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">5</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">h</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">0.2</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># create x array</span>
+<span class="n">x_base</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+
+<span class="c1"># create plots</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_base</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x_base</span><span class="p">),</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_base</span><span class="p">,</span> <span class="n">s</span><span class="p">(</span><span class="n">x_base</span><span class="p">))</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;score&#39;</span><span class="p">)</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_base</span><span class="p">,</span> <span class="n">h</span><span class="p">(</span><span class="n">x_base</span><span class="p">))</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Hessian&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/9da851de5af6d95d22045f6bb63a21d925e14248d12c9cb0314043015e6755ec.png" src="_images/9da851de5af6d95d22045f6bb63a21d925e14248d12c9cb0314043015e6755ec.png" />
+</div>
+</div>
+<section id="iteartions">
+<h3><span class="section-number">7.3.1. </span>Iteartions<a class="headerlink" href="#iteartions" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Initial trial value <span class="math notranslate nohighlight">\(\theta_0\)</span>,</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(s(\theta_0) \neq 0\)</span>, updated by</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\theta_{t+1} = \theta_{t} -  \left( H(\theta_t)  \right)^{-1}  s(\theta_t)
+\]</div>
+<p>for the index of iteration <span class="math notranslate nohighlight">\(t=0,1,\cdots\)</span></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H(\theta) = \frac{ \partial^2 s(\theta) }  {\partial \theta \partial \theta'} = \frac{ \partial s(\theta )}{ \partial \theta'}\)</span> is the Hessian.</p></li>
+</ul>
+</section>
+<section id="mechanism">
+<h3><span class="section-number">7.3.2. </span>Mechanism<a class="headerlink" href="#mechanism" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Consider a <span class="math notranslate nohighlight">\(\theta_t\)</span> close to the optimal value <span class="math notranslate nohighlight">\(\theta^{\star}\)</span>.</p></li>
+<li><p>Taylor expansion
+at <span class="math notranslate nohighlight">\(\theta_t\)</span> round  <span class="math notranslate nohighlight">\(\theta_{\star}\)</span>, a root of <span class="math notranslate nohighlight">\(s(\cdot)\)</span>.</p></li>
+<li><p>Because <span class="math notranslate nohighlight">\(\theta_{ \star }\)</span>  is a root,</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+0 = s(\theta_{\star}) = s(\theta_t) + H(\theta_t) (\theta_{\star} - \theta_t) + O( (\theta_{\star} - \theta_t)^2 ).
+\]</div>
+</section>
+<section id="update">
+<h3><span class="section-number">7.3.3. </span>Update<a class="headerlink" href="#update" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Ignore the high-order term and rearrange,</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\theta_{\star} = \theta_{t} -  \left( H(\theta_t)  \right)^{-1}  s(\theta_t)
+\]</div>
+<ul class="simple">
+<li><p>iteration formula by replacing <span class="math notranslate nohighlight">\(\theta_{\star}\)</span> with the updated <span class="math notranslate nohighlight">\(\theta_{t+1}\)</span>.</p></li>
+<li><p>Iterate until <span class="math notranslate nohighlight">\(|\theta_{t+1} -\theta_{t}| &lt; \epsilon\)</span> (absolute criterion) and/or
+<span class="math notranslate nohighlight">\(|\theta_{t+1} -\theta_{t}|/|\theta_{t}| &lt; \epsilon\)</span> (relative criterion),</p></li>
+<li><p><span class="math notranslate nohighlight">\(\epsilon\)</span> is a small positive number chosen as a tolerance level.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Newton</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">-</span> <span class="n">s</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="n">h</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_init</span> <span class="o">=</span> <span class="mi">6</span> <span class="c1"># can experiment with various initial values</span>
+
+<span class="n">gap</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.001</span>  <span class="c1"># tolerance</span>
+<span class="k">while</span> <span class="n">gap</span> <span class="o">&gt;</span> <span class="n">epsilon</span><span class="p">:</span>
+    <span class="n">x_new</span> <span class="o">=</span> <span class="n">Newton</span><span class="p">(</span><span class="n">x_init</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x_new</span><span class="p">)</span>
+    <span class="n">gap</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x_init</span> <span class="o">-</span> <span class="n">x_new</span><span class="p">)</span>
+    <span class="n">x_init</span> <span class="o">=</span> <span class="n">x_new</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.6306685575825846
+6.611216774253945
+6.611301507665787
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="features-of-newton-s-method">
+<h2><span class="section-number">7.4. </span>Features of Newton’s Method<a class="headerlink" href="#features-of-newton-s-method" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>It seeks the solution to <span class="math notranslate nohighlight">\(s(\theta) = 0\)</span></p></li>
+<li><p>The first-order condition is necessary but not sufficient</p></li>
+<li><p>Verify the second-order condition</p></li>
+<li><p>Compare the value of multiple minima for global minimum</p></li>
+<li><p>It requires gradient <span class="math notranslate nohighlight">\(s(\theta)\)</span> and the Hessian <span class="math notranslate nohighlight">\(H(\theta)\)</span>.</p></li>
+<li><p>It numerically converges at quadratic rate.</p></li>
+</ul>
+</section>
+<section id="quasi-newton-method">
+<h2><span class="section-number">7.5. </span>Quasi-Newton Method<a class="headerlink" href="#quasi-newton-method" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Most well-known quasi-Newton algorithm is <a class="reference external" href="http://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm">BFGS</a></p></li>
+<li><p>It avoids explicit calculation of Hessian</p></li>
+<li><p>It starts from an initial (inverse) Hessian</p></li>
+<li><p>Updates Hessian by an explicit formula via quadratic approximation</p></li>
+</ul>
+</section>
+<section id="gradient-descent">
+<h2><span class="section-number">7.6. </span>Gradient Descent<a class="headerlink" href="#gradient-descent" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Completely ignore the Hessian. Replace it by the identity matrix.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\theta_{t+1} = \theta_{t} -  \alpha_t \cdot  s(\theta_t)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha_t &gt; 0\)</span> is the <strong>learning rate</strong>.</p>
+<ul class="simple">
+<li><p>Linear rate of convergence.</p></li>
+<li><p>Less costly in computation. Better for big data.</p></li>
+</ul>
+<ul class="simple">
+<li><p><strong>Motivation</strong>: Talyor expansion,</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+f(\theta_{t+1}) = f(\theta_t + a_t \cdot p_t ) \approx f(\theta_t) + a_t \cdot  p_t' s(\theta_t),
+\]</div>
+<ul class="simple">
+<li><p>If in each step we want the value of the criterion function
+<span class="math notranslate nohighlight">\(f(x)\)</span> to decrease, we need <span class="math notranslate nohighlight">\( p_t' s(\theta_t) \leq 0\)</span>.</p></li>
+<li><p>A simple choice is <span class="math notranslate nohighlight">\(p_t =-s(\theta_t)\)</span>, which is called the deepest decent.</p></li>
+<li><p>The learning rate is a tuning parameter.</p>
+<ul>
+<li><p>In practice, just choose a small number, say <span class="math notranslate nohighlight">\(0.01\)</span> or <span class="math notranslate nohighlight">\(0.001\)</span>.</p></li>
+<li><p>A small learning rate makes a small step ahead in each iteration</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="derivative-free-method">
+<h2><span class="section-number">7.7. </span>Derivative-Free Method<a class="headerlink" href="#derivative-free-method" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="http://en.wikipedia.org/wiki/Nelder%E2%80%93Mead_method">Nelder-Mead</a></p></li>
+<li><p>Simplex method</p></li>
+<li><p>Search a local minimum</p>
+<ul>
+<li><p>reflection</p></li>
+<li><p>expansion</p></li>
+<li><p>contraction</p></li>
+</ul>
+</li>
+</ul>
+<section id="example">
+<h3><span class="section-number">7.7.1. </span>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Pseudo Poisson maximum likelihood estimation (PPML)</p></li>
+<li><p>Popular estimator for cross-country bilateral trade</p></li>
+<li><p>Conditional mean model</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+E[y_i | x_i] = \exp( x_i' \beta),
+\]</div>
+</section>
+<section id="poisson-mle">
+<h3><span class="section-number">7.7.2. </span>Poisson MLE<a class="headerlink" href="#poisson-mle" title="Link to this heading">#</a></h3>
+<p>If <span class="math notranslate nohighlight">\(Z \sim Poisson(\lambda)\)</span>, then</p>
+<div class="math notranslate nohighlight">
+\[
+\Pr(Z = k) = \frac{\mathrm{e}^{-\lambda} \lambda^k}{k!}, \mathrm{ for }\, \, k=0,1,2,\ldots,
+\]</div>
+<p>and the log-likelihood</p>
+<div class="math notranslate nohighlight">
+\[
+\log \Pr(Y = y | x) =  -\exp(x'\beta) + y\cdot x'\theta - \log k!
+\]</div>
+<ul class="simple">
+<li><p>Log-likelihood function of the sample</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\ell(\beta) = \log \Pr( \mathbf{y} | \mathbf{x};\beta ) =
+-\sum_{i=1}^n \exp(x_i'\beta) + \sum_{i=1}^n y_i x_i'\beta.
+\]</div>
+<ul class="simple">
+<li><p>gradient</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+s(\beta) =\frac{\partial \ell(\beta)}{\partial \beta} =
+-\sum_{i=1}^n \exp(x_i'\beta)x_i + \sum_{i=1}^n y_i x_i.
+\]</div>
+<ul class="simple">
+<li><p>Hessian</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+H(\beta) = \frac{\partial^2 \ell(\beta)}{\partial \beta \partial \beta'} =
+-\sum_{i=1}^n \exp(x_i'\beta)x_i x_i'
+\]</div>
+<p>is negative definite.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\ell(\beta)\)</span> is strictly concave in <span class="math notranslate nohighlight">\(\beta\)</span>.</p></li>
+<li><p>Default optimization is minimization</p></li>
+<li><p>Use <em>negative</em> log-likelihood</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">poisson_loglik</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+    <span class="n">lambda_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">X</span> <span class="o">@</span> <span class="n">b</span><span class="p">)</span>
+    <span class="n">ell</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">-</span><span class="n">lambda_</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">lambda_</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">ell</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Write the criterion as a function of the parameter to be optimized</p></li>
+<li><p>Data can be fed inside or outside of the function.</p>
+<ul>
+<li><p>If the data is provided as additional arguments, these arguments must be explicit.</p></li>
+</ul>
+</li>
+<li><p>Python is flexible. Matlab is rigid.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+
+<span class="c1">## prepare the data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">get_rdataset</span><span class="p">(</span><span class="s1">&#39;RecreationDemand&#39;</span><span class="p">,</span> <span class="s1">&#39;AER&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;trips&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;income&#39;</span><span class="p">]]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## estimation</span>
+<span class="n">b_init</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1"># initial value</span>
+<span class="n">b_hat_bfgs</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">poisson_loglik</span><span class="p">,</span> <span class="n">b_init</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;BFGS&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;gtol&#39;</span><span class="p">:</span> <span class="mf">1e-7</span><span class="p">,</span> <span class="s1">&#39;disp&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
+<span class="n">b_hat_nm</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">poisson_loglik</span><span class="p">,</span> <span class="n">b_init</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;Nelder-Mead&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;xtol&#39;</span><span class="p">:</span> <span class="mf">1e-7</span><span class="p">,</span> <span class="s1">&#39;disp&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;BFGS: </span><span class="si">{</span><span class="n">b_hat_bfgs</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         Current function value: 261.114078
+         Iterations: 18
+         Function evaluations: 75
+         Gradient evaluations: 25
+Optimization terminated successfully.
+         Current function value: 261.114078
+         Iterations: 83
+         Function evaluations: 150
+BFGS:   message: Desired error not necessarily achieved due to precision loss.
+  success: False
+   status: 2
+      fun: 261.1140782953316
+        x: [ 1.177e+00 -9.994e-02]
+      nit: 18
+      jac: [ 7.629e-06  2.670e-05]
+ hess_inv: [[ 7.812e-05 -5.401e-05]
+            [-5.401e-05  7.897e-05]]
+     nfev: 75
+     njev: 25
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\zhent\anaconda3\envs\pytorch\Lib\site-packages\scipy\optimize\_minimize.py:705: OptimizeWarning: Desired error not necessarily achieved due to precision loss.
+  res = _minimize_bfgs(fun, x0, args, jac, callback, **options)
+C:\Users\zhent\AppData\Local\Temp\ipykernel_31808\1949817795.py:4: OptimizeWarning: Unknown solver options: xtol
+  b_hat_nm = minimize(poisson_loglik, b_init, method=&#39;Nelder-Mead&#39;, options={&#39;xtol&#39;: 1e-7, &#39;disp&#39;: True})
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Nelder-Mead: </span><span class="si">{</span><span class="n">b_hat_nm</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Nelder-Mead:        message: Optimization terminated successfully.
+       success: True
+        status: 0
+           fun: 261.11407845438714
+             x: [ 1.177e+00 -9.993e-02]
+           nit: 83
+          nfev: 150
+ final_simplex: (array([[ 1.177e+00, -9.993e-02],
+                       [ 1.177e+00, -9.995e-02],
+                       [ 1.177e+00, -9.995e-02]]), array([ 2.611e+02,  2.611e+02,  2.611e+02]))
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="alternative-formulation">
+<h3><span class="section-number">7.7.3. </span>Alternative Formulation<a class="headerlink" href="#alternative-formulation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Nonlinear least squares (NLS) is also valid in theory.</p></li>
+<li><p>NLS minimizes</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i=1}^n (y_i - \exp(x_i \beta))^2
+\]</div>
+<ul class="simple">
+<li><p>Why PPML is preferred?</p></li>
+</ul>
+<ul class="simple">
+<li><p>PPML’s optimization for the linear index is globally convex.</p></li>
+<li><p>Numerical optimization of PPML is easier and more robust</p></li>
+</ul>
+</section>
+<section id="caveats">
+<h3><span class="section-number">7.7.4. </span>Caveats<a class="headerlink" href="#caveats" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>No algorithm suits all problems.</p></li>
+<li><p>Simulation is helpful to check the accuracy of optimization</p></li>
+<li><p>Contour plot helps visualize the function surface/manifold</p></li>
+</ul>
+</section>
+<section id="id1">
+<h3><span class="section-number">7.7.5. </span>Example<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## generate contour plot</span>
+<span class="n">x_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">)</span>
+<span class="n">x_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_grid</span><span class="p">)</span>
+<span class="n">y_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">y_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_grid</span><span class="p">)</span>
+
+<span class="n">z_contour</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">x_length</span><span class="p">,</span> <span class="n">y_length</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x_length</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">y_length</span><span class="p">):</span>
+        <span class="n">z_contour</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">poisson_loglik</span><span class="p">([</span><span class="n">x_grid</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">y_grid</span><span class="p">[</span><span class="n">j</span><span class="p">]])</span>
+
+<span class="c1">## generate filled contour plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">x_grid</span><span class="p">,</span> <span class="n">y_grid</span><span class="p">,</span> <span class="n">z_contour</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Filled Contour Plot&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/44d3eaa6a962b4d2817534b09ebc50085481c543c4f49fcca7da575fd87aee98.png" src="_images/44d3eaa6a962b4d2817534b09ebc50085481c543c4f49fcca7da575fd87aee98.png" />
+</div>
+</div>
+</section>
+<section id="nlopt">
+<h3><span class="section-number">7.7.6. </span>NLOPT<a class="headerlink" href="#nlopt" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Third-party standalone solvers</p></li>
+<li><p><a class="reference external" href="http://ab-initio.mit.edu/wiki/index.php/NLopt_Installation"><code class="docutils literal notranslate"><span class="pre">NLopt</span></code></a></p></li>
+<li><p><a class="reference external" href="http://ab-initio.mit.edu/wiki/index.php/NLopt_Algorithms#SLSQP">Extensive list of algorithms</a></p></li>
+</ul>
+</section>
+<section id="id2">
+<h3><span class="section-number">7.7.7. </span>Example<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>We first carry out the Nelder-Mead algorithm in NLOPT.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nlopt</span>
+
+<span class="c1"># Define the objective function with gradient for nlopt</span>
+<span class="k">def</span> <span class="nf">poisson_loglik_grad_nlopt</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">grad</span><span class="p">):</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+    <span class="n">lambda_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">X</span> <span class="o">@</span> <span class="n">b</span><span class="p">)</span>
+    <span class="n">ell</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">-</span><span class="n">lambda_</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">lambda_</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">grad</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">grad</span><span class="p">[:]</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">lambda_</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">ell</span>
+
+<span class="c1"># Set up the optimization problem</span>
+<span class="n">opt</span> <span class="o">=</span> <span class="n">nlopt</span><span class="o">.</span><span class="n">opt</span><span class="p">(</span><span class="n">nlopt</span><span class="o">.</span><span class="n">LD_LBFGS</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># is the dimension of the parameter X.shape[1]</span>
+<span class="n">opt</span><span class="o">.</span><span class="n">set_min_objective</span><span class="p">(</span><span class="n">poisson_loglik_grad_nlopt</span><span class="p">)</span>
+<span class="n">opt</span><span class="o">.</span><span class="n">set_xtol_rel</span><span class="p">(</span><span class="mf">1e-7</span><span class="p">)</span>
+
+<span class="c1"># Set the initial parameter values</span>
+<span class="n">b_init</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Run the optimization</span>
+<span class="n">b_opt</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">b_init</span><span class="p">)</span>
+<span class="n">minf</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">last_optimum_value</span><span class="p">()</span>
+
+<span class="c1"># Print the optimization result</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Optimized parameters: </span><span class="si">{</span><span class="n">b_opt</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Minimum value of the objective function: </span><span class="si">{</span><span class="n">minf</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimized parameters: [ 1.17739744 -0.09993984]
+Minimum value of the objective function: 261.1140782953287
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\zhent\anaconda3\envs\pytorch\Lib\site-packages\pandas\core\arraylike.py:399: RuntimeWarning: overflow encountered in exp
+  result = getattr(ufunc, method)(*inputs, **kwargs)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>To invoke BFGS in NLOPT, we must code up the gradient <span class="math notranslate nohighlight">\(s(\beta)\)</span>.</p></li>
+<li><p>It was an error-prone task for humans.</p></li>
+<li><p>In AI time, it becomes much easier for standard models.</p></li>
+<li><p>AI is not panacea!</p></li>
+</ul>
+</section>
+</section>
+<section id="convex-optimization">
+<h2><span class="section-number">7.8. </span>Convex Optimization<a class="headerlink" href="#convex-optimization" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Local minimum is a global minimum.</p></li>
+<li><p>Particularly important in high-dimensional problems</p></li>
+<li><p><a class="reference external" href="https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf">Boyd and Vandenberghe (2004)</a></p></li>
+<li><p>“Convex optimization is technology; all other optimizations are arts.”</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Define the functions</span>
+<span class="n">f1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="n">f2</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">f3</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.4</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+<span class="c1"># Set up the plots</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># Plot f1</span>
+<span class="n">x_base</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_base</span><span class="p">,</span> <span class="n">f1</span><span class="p">(</span><span class="n">x_base</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;differentiable&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot f2</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_base</span><span class="p">,</span> <span class="n">f2</span><span class="p">(</span><span class="n">x_base</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;non-differentiable&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot f3</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_base</span><span class="p">,</span> <span class="n">f3</span><span class="p">(</span><span class="n">x_base</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;multiple minimizers&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/aae526c5ed39317b73626d487878b65c30ba1fe3f1d46777af836f7b91faff39.png" src="_images/aae526c5ed39317b73626d487878b65c30ba1fe3f1d46777af836f7b91faff39.png" />
+</div>
+</div>
+<section id="id3">
+<h3><span class="section-number">7.8.1. </span>Example<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Linear regression model MLE</p></li>
+<li><p>Normal MLE. The (negative) log-likelihood</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\ell (\beta, \sigma) = \log \sigma + \frac{1}{2\sigma^2}\sum_{i=1}^n (y_i - x_i' \beta)^2
+\]</div>
+<p>is not convex</p>
+<ul class="simple">
+<li><p>Re-parameterize the criterion function by <span class="math notranslate nohighlight">\(\gamma = 1/\sigma\)</span> and <span class="math notranslate nohighlight">\(\alpha = \beta / \sigma\)</span>, then</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\ell (\alpha, \gamma) = -\log \gamma + \frac{1}{2}
+\sum_{i=1}^n (\gamma y_i - x_i' \alpha)^2
+\]</div>
+<p>is convex in <span class="math notranslate nohighlight">\(\alpha, \gamma\)</span></p>
+<ul class="simple">
+<li><p>Many MLE estimators in econometric textbooks are convex.</p></li>
+</ul>
+</section>
+</section>
+<section id="id4">
+<h2><span class="section-number">7.9. </span>Example<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>The criterion function of Lasso estimation is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+\min_{\beta} \left\{ \frac{1}{2n} \sum_{i=1}^n (y_i - X_i \beta)^2 + \lambda \|\beta\|_1 \right\}
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+
+<span class="c1"># Generate synthetic data</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># number of samples</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mi">20</span>   <span class="c1"># number of features</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+
+<span class="c1"># create a sparse coefficient vector of p dimensions</span>
+
+<span class="n">beta_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="n">beta_true</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="n">beta_true</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># Define the Lasso problem</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="n">lambda_</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">nonneg</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">objective</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Minimize</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">cp</span><span class="o">.</span><span class="n">sum_squares</span><span class="p">(</span><span class="n">X</span> <span class="o">@</span> <span class="n">beta</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="n">lambda_</span> <span class="o">*</span> <span class="n">cp</span><span class="o">.</span><span class="n">norm1</span><span class="p">(</span><span class="n">beta</span><span class="p">))</span>
+<span class="n">problem</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">objective</span><span class="p">)</span>
+
+<span class="c1"># Solve the problem for a range of lambda values</span>
+<span class="n">lambda_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">beta_vals</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">lambda_vals</span><span class="p">:</span>
+    <span class="n">lambda_</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">val</span>
+    <span class="n">problem</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+    <span class="n">beta_vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">beta</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+<span class="c1"># Convert results to numpy array for plotting</span>
+<span class="n">beta_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">beta_vals</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the coefficient paths</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lambda_vals</span><span class="p">,</span> <span class="n">beta_vals</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Beta </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Lambda&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Coefficients&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Lasso Paths&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ae446d55eb4385af8014afa8e4f2edc716c2cfafdb9f2e70bf7dfbb84abb3a73.png" src="_images/ae446d55eb4385af8014afa8e4f2edc716c2cfafdb9f2e70bf7dfbb84abb3a73.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="py_06_integration.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">上一页</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Integration</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="py_08_time_series.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Time Series Analysis</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目录
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization">7.1. Optimization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#user-cases">7.1.1. User Cases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convenience-vs-efficiency">7.1.2. Convenience vs. Efficiency</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">7.2. Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#newton-s-method">7.3. Newton’s Method</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iteartions">7.3.1. Iteartions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mechanism">7.3.2. Mechanism</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update">7.3.3. Update</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#features-of-newton-s-method">7.4. Features of Newton’s Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quasi-newton-method">7.5. Quasi-Newton Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent">7.6. Gradient Descent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derivative-free-method">7.7. Derivative-Free Method</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">7.7.1. Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poisson-mle">7.7.2. Poisson MLE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-formulation">7.7.3. Alternative Formulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caveats">7.7.4. Caveats</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">7.7.5. Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nlopt">7.7.6. NLOPT</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">7.7.7. Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convex-optimization">7.8. Convex Optimization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">7.8.1. Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">7.9. Example</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+作者： 史震涛 Shi Zhentao
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

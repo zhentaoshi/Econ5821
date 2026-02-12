@@ -1,0 +1,1007 @@
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2. Lecture 2: Data Sources &#8212; 经济学中的数据科学</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=cc3ee377" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=946197a6"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/translations.js?v=beaddf03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'py_02_data_sources';</script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="3. Lecture 3: Visualization" href="py_03_plot.html" />
+    <link rel="prev" title="1. Lecture 1: Python for Scientific Computing" href="py_01_basic.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="00-preface.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">经济学中的数据科学</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">搜索</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="00-preface.html">
+                    Preface
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="py_01_basic.html">1. Lecture 1: Python for Scientific Computing</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Lecture 2: Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_03_plot.html">3. Lecture 3: Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_04_advance.html">4. Lecture 4: Advanced Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_05_simulations.html">5. Lecture 5: Uncertainty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_06_integration.html">6. Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_07_optimization.html">7. ECON 5821: Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_08_time_series.html">8. Time Series Analysis</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="py_09_ML.html">27. Machine Learning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="py_10_NN.html">47. Neural Networks</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="py_11_causal_inference.html">50. Lecture 11: Causal Inference and Program Evaluation</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="下载此页面">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/py_02_data_sources.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="下载源文件"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="列印成 PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全屏模式"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lecture 2: Data Sources</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目录 </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zhentao-shi">2.1. Zhentao Shi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#public-data">2.2. Public data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gated-data">2.3. Gated Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cuhk-library">2.4. CUHK Library</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#econ-department">2.5. Econ Department</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series">2.6. Time Series</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hk-gdp">2.7. HK GDP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#china-gdp">2.8. China GDP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finance-data">2.9. Finance Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shanghai-composite-index">2.9.1. Shanghai Composite Index</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ss-return">2.9.2. 000001.SS Return</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prices-of-gold-and-silver">2.10. Prices of Gold and Silver</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#repeated-data-download">2.11. Repeated Data Download</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#access-database">2.12. Access Database</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bank-marketing-data">2.12.1. Bank Marketing Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-transformation">2.13. Data Transformation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summarize">2.14. Summarize</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lecture-2-data-sources">
+<h1><span class="section-number">2. </span>Lecture 2: Data Sources<a class="headerlink" href="#lecture-2-data-sources" title="Link to this heading">#</a></h1>
+<section id="zhentao-shi">
+<h2><span class="section-number">2.1. </span>Zhentao Shi<a class="headerlink" href="#zhentao-shi" title="Link to this heading">#</a></h2>
+<p>kernel: base (python 3.11.3)</p>
+<ul class="simple">
+<li><p>Online archives</p></li>
+<li><p>API (Application Programming Interface)</p></li>
+<li><p>Proprietary data</p></li>
+<li><p>Survey data</p></li>
+</ul>
+</section>
+<section id="public-data">
+<h2><span class="section-number">2.2. </span>Public data<a class="headerlink" href="#public-data" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Time Series</p>
+<ul>
+<li><p>Natural ordering of observations</p></li>
+<li><p>A single realization in history</p></li>
+<li><p>eg. GDP, stock prices</p></li>
+</ul>
+</li>
+<li><p>Microeconomic data</p>
+<ul>
+<li><p>No natural ordering</p></li>
+<li><p>Collected at the same time, or time does not matter</p></li>
+<li><p><a class="reference external" href="https://capcp.la.psu.edu/data-and-software/alaska-oil-and-gas-auction-data/">Auction data</a></p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Aggregate panel data</p>
+<ul>
+<li><p><a class="reference external" href="https://www.rug.nl/ggdc/productivity/pwt/?lang=en">Penn World Table</a></p></li>
+<li><p><a class="reference external" href="https://atlas.cid.harvard.edu/about-data">Atlas Trade Data</a></p></li>
+<li><p><a class="reference external" href="https://data.imf.org/?sk=388DFA60-1D26-4ADE-B505-A05A558D9A42&amp;amp;sId=1479329132316">IMF databases</a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="gated-data">
+<h2><span class="section-number">2.3. </span>Gated Data<a class="headerlink" href="#gated-data" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Applications needed</p>
+<ul>
+<li><p>Chinese Longitudinal Healthy Longevity Survey <a class="reference external" href="https://www.icpsr.umich.edu/web/NACDA/studies/36692">link</a></p></li>
+<li><p>China Household Finance Survey <a class="reference external" href="https://chfs.swufe.edu.cn/">link</a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="cuhk-library">
+<h2><span class="section-number">2.4. </span>CUHK Library<a class="headerlink" href="#cuhk-library" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="http://easyaccess1.lib.cuhk.edu.hk/limited/refinitiv.html">LSEG (formerly Refinitiv)</a></p></li>
+<li><p><a class="reference external" href="http://easyaccess1.lib.cuhk.edu.hk/limited/wrds.htm">WRDS</a></p></li>
+<li><p><a class="reference external" href="https://cas-ceicdata-com.easyaccess1.lib.cuhk.edu.hk/login#">CEIC</a></p></li>
+</ul>
+</section>
+<section id="econ-department">
+<h2><span class="section-number">2.5. </span>Econ Department<a class="headerlink" href="#econ-department" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>WIND</p></li>
+<li><p>CEIC</p></li>
+<li><p>Bloomberg</p></li>
+<li><p>China Census</p></li>
+</ul>
+</section>
+<section id="time-series">
+<h2><span class="section-number">2.6. </span>Time Series<a class="headerlink" href="#time-series" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Macroeconomics</p>
+<ul>
+<li><p>China’s <a class="reference external" href="https://data.stats.gov.cn/easyquery.htm?cn=B01">National Bureau of Statistics</a></p></li>
+<li><p>Federal Reserve <a class="reference external" href="https://research.stlouisfed.org/econ/mccracken/fred-databases/">FRED database</a></p></li>
+</ul>
+</li>
+<li><p>Financial</p>
+<ul>
+<li><p><a class="reference external" href="https://finance.yahoo.com/">Yahoo Finance</a></p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">pandas_datareader</span> <span class="k">as</span> <span class="nn">pdr</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We load requests, pandas, json, pandas_datareader, matplotlib, and numpy so the notebook can fetch remote data, manipulate tables, and create plots.</p>
+</section>
+<section id="hk-gdp">
+<h2><span class="section-number">2.7. </span>HK GDP<a class="headerlink" href="#hk-gdp" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.censtatd.gov.hk/en/web_table.html?id=33#">Census and Statistics Department</a></p>
+<ul>
+<li><p>Webpage With API</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Prompt</strong>: Write code to download data via API. The webpage provides the following py code to download data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="n">url_path</span> <span class="o">=</span> <span class="s2">&quot;https://www.censtatd.gov.hk/api/get.php?id=310-31003&amp;lang=en&amp;param=N4KABGBEDGBukC4yghSBxAIgBQPoGEB5AWW0IDkBRcgFUTAG1xU0AxTSAGmZckw+4s02fJS49UGUeKFQsrfKxlDI+AJIA1ZbwAa6AMrbJxA0bR6zUHYcEqTlyMUMSAuswC+tyAGd4SFJJE5PRMspAASgCGAO64xLgAFgDWACa4KQ4AmgD2mbgAjCkADrgApLjekK4eXkUApgBOAJbZGf4SPgAukQ2d9JAATAAMAwDMQ-lVEJ7MkE1tUKP5QwC0S0NDo8qQADaRAHYA5v11+1XuQA&quot;</span>
+<span class="k">with</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">url</span><span class="p">:</span>
+	<span class="n">s</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span>
+	<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>python<span class="w"> </span>-u<span class="w"> </span><span class="s2">&quot;scripts/censtatd_download.py&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="china-gdp">
+<h2><span class="section-number">2.8. </span>China GDP<a class="headerlink" href="#china-gdp" title="Link to this heading">#</a></h2>
+<p><strong>Prompt</strong>:
+Write code to download China’s GDP time series and plot a graph.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>python<span class="w"> </span>-u<span class="w"> </span><span class="s2">&quot;scripts/china_gdp.py&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Another example: <a class="reference external" href="https://fred.stlouisfed.org/series/IPB50001SQ">Quarterly US Industrial Production Index</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pdr</span><span class="o">.</span><span class="n">get_data_fred</span><span class="p">(</span><span class="s1">&#39;IPB50001SQ&#39;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we pull the US industrial production index from FRED and immediately plot it, giving a quick view of cyclical movements in manufacturing.</p>
+</section>
+<section id="finance-data">
+<h2><span class="section-number">2.9. </span>Finance Data<a class="headerlink" href="#finance-data" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://finance.yahoo.com/">Yahoo Finance</a></p></li>
+<li><p>Tick <code class="docutils literal notranslate"><span class="pre">AAPL</span></code> for <em>Apple Inc.</em></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">yfinance</span> <span class="k">as</span> <span class="nn">yf</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;AAPL&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
+
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The yfinance download brings in historical Apple prices, shows the most recent observations, and plots the closing price to illustrate the equity trend.</p>
+<section id="shanghai-composite-index">
+<h3><span class="section-number">2.9.1. </span>Shanghai Composite Index<a class="headerlink" href="#shanghai-composite-index" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">&quot;000001.SS&quot;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s1">&#39;2000-01-01&#39;</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We repeat the yfinance request for the Shanghai Composite Index and plot the closing levels to compare mainland equity dynamics.</p>
+</section>
+<section id="ss-return">
+<h3><span class="section-number">2.9.2. </span>000001.SS Return<a class="headerlink" href="#ss-return" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">SH</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">]</span>
+<span class="n">SH_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">SH</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">SH_diff</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>By taking log differences of the Shanghai Composite closes, we approximate daily returns and plot them to highlight volatility rather than price levels.</p>
+</section>
+</section>
+<section id="prices-of-gold-and-silver">
+<h2><span class="section-number">2.10. </span>Prices of Gold and Silver<a class="headerlink" href="#prices-of-gold-and-silver" title="Link to this heading">#</a></h2>
+<p><strong>Prompt 1</strong>: Download daily gold price and silver price since 2025-07-01. Plot the two time seres in one graph.</p>
+<p><strong>Prompt 2</strong>: Put the two time series into the same graph. The left-y axis for gold, and right-y-axis for silver.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>python<span class="w"> </span>-u<span class="w"> </span><span class="s2">&quot;scripts/gold_silver.py&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="repeated-data-download">
+<h2><span class="section-number">2.11. </span>Repeated Data Download<a class="headerlink" href="#repeated-data-download" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Example: HKMA <a class="reference external" href="https://apidocs.hkma.gov.hk/documentation/market-data-and-statistics/daily-monetary-statistics/daily-figures-interbank-liquidity/">API</a></p>
+<ul>
+<li><p>Save as a csv file</p></li>
+<li><p>Repeat the regular job via <code class="docutils literal notranslate"><span class="pre">cron</span></code> in Linux</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://api.hkma.gov.hk/public/market-data-and-statistics/daily-monetary-statistics/daily-figures-interbank-liquidity&quot;</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+<span class="n">hkma</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">])</span>
+<span class="n">hkma</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;hkma.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The code queries the HKMA market data API, converts the JSON result into a DataFrame, and saves the snapshot to ‘hkma.csv’ for offline use.</p>
+</section>
+<section id="access-database">
+<h2><span class="section-number">2.12. </span>Access Database<a class="headerlink" href="#access-database" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>API for CEIC</p></li>
+</ul>
+<section id="bank-marketing-data">
+<h3><span class="section-number">2.12.1. </span>Bank Marketing Data<a class="headerlink" href="#bank-marketing-data" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Direct marketing campaigns of a Portuguese banking institution.</p></li>
+<li><p>S. Moro, R. Laureano and P. Cortez. Using Data Mining for Bank Direct Marketing: An Application of the CRISP-DM Methodology. In P. Novais et al. (Eds.), Proceedings of the European Simulation and Modelling Conference - ESM’2011, pp. 117-121, GuimarÃ£es, Portugal, October, 2011. EUROSIS.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Read the CSV file</span>
+<span class="n">d0</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data_example/bank-full.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> 
+                 <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s1">&#39;job&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s1">&#39;balance&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">})</span>
+
+<span class="c1"># Display the first few rows</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d0</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+
+<span class="c1"># Display the column names</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d0</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We load the bank marketing CSV, specifying column types, then peek at the first rows and column names to understand the available fields.</p>
+</section>
+</section>
+<section id="data-transformation">
+<h2><span class="section-number">2.13. </span>Data Transformation<a class="headerlink" href="#data-transformation" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>pick out a subset of rows that satisfies some conditions</p></li>
+<li><p>pick out a subset of columns</p></li>
+<li><p>order rows. Default ordering is from low to high</p></li>
+<li><p>add columns produced by the existing ones</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select columns</span>
+<span class="n">d1</span> <span class="o">=</span> <span class="n">d0</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span><span class="s1">&#39;housing&#39;</span><span class="p">]</span>
+<span class="n">d1</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Selecting the columns from ‘age’ through ‘housing’ creates a narrower view of the data, and the final line previews the resulting subset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d1</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calling head(5) again reiterates the first five rows after the column selection to confirm the transformation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d1</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">9</span><span class="p">:</span><span class="mi">15</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d1</span><span class="p">[</span><span class="mi">9</span><span class="p">:</span><span class="mi">15</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d1</span><span class="p">[</span><span class="mi">9</span><span class="p">:</span><span class="mi">15</span><span class="p">][</span><span class="s2">&quot;age&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using iloc[9:20] pulls a slice of observations 9 through 19 so we can inspect a specific window of records.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select a subset by conditions</span>
+<span class="n">d1</span><span class="p">[(</span><span class="n">d1</span><span class="p">[</span><span class="s1">&#39;job&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;blue-collar&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">d1</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The boolean filter keeps only blue collar clients older than 50, showing how to apply multiple conditions on a single column.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d1</span><span class="p">[(</span><span class="n">d1</span><span class="p">[</span><span class="s1">&#39;job&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;blue-collar&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">d1</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">d1</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">30</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A similar filter isolates blue collar clients between ages 21 and 30 inclusive, illustrating compound range criteria.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># (re)arrange rows</span>
+<span class="n">d1</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;education&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sorting by age and education orders the DataFrame to make patterns across demographics easier to read.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d1</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;education&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we sort by age descending and education ascending, demonstrating how to control sort direction per column.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add generated columns (last column)</span>
+<span class="n">d1</span><span class="p">[</span><span class="s1">&#39;edu_f&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d1</span><span class="p">[</span><span class="s1">&#39;education&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">codes</span>
+<span class="n">d1</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Converting ‘education’ to categorical codes creates a numeric feature edu_f that can be fed into models while preserving category structure.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create new dataframe with specified columns</span>
+<span class="n">d1_transmuted</span> <span class="o">=</span> <span class="n">d1</span><span class="p">[[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;marital&#39;</span><span class="p">,</span> <span class="s1">&#39;education&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="n">d1_transmuted</span><span class="p">[</span><span class="s1">&#39;marital&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d1_transmuted</span><span class="p">[</span><span class="s1">&#39;marital&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">codes</span>
+<span class="n">d1_transmuted</span><span class="p">[</span><span class="s1">&#39;education&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d1_transmuted</span><span class="p">[</span><span class="s1">&#39;education&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">codes</span>
+<span class="n">d1_transmuted</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">copy()</span></code> method in python</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">a1</span> <span class="o">=</span> <span class="n">a0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a2</span> <span class="o">=</span> <span class="n">a0</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">a0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We build a new DataFrame of select columns and encode the categorical fields as integers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert the integer columns to strings so that they become dummy variables</span>
+<span class="n">d1_dummy</span> <span class="o">=</span> <span class="n">d1_transmuted</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Create dummy variables for all columns</span>
+<span class="n">dummies</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">d1_dummy</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;marital&#39;</span><span class="p">,</span> <span class="s1">&#39;education&#39;</span><span class="p">])</span>
+<span class="n">dummies</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Casting the encoded columns to strings and applying get_dummies produces one hot encoded dummy variables for downstream modeling.</p>
+</section>
+<section id="summarize">
+<h2><span class="section-number">2.14. </span>Summarize<a class="headerlink" href="#summarize" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">group_by</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Overall mean balance</span>
+<span class="n">mean_b</span> <span class="o">=</span> <span class="n">d1</span><span class="p">[</span><span class="s1">&#39;balance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mean Balance: </span><span class="si">{</span><span class="n">mean_b</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Computing the mean balance gives a single summary metric that describes the typical account size across all clients.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mean balance by groups</span>
+<span class="n">mean_balance_by_education</span> <span class="o">=</span> <span class="n">d1</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;education&#39;</span><span class="p">)[</span><span class="s1">&#39;balance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mean_balance_by_education</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Grouping by education and taking the mean shows how average balances differ by schooling level.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mean, standard deviation and count by groups</span>
+<span class="n">grouped</span> <span class="o">=</span> <span class="n">d1</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;education&#39;</span><span class="p">,</span> <span class="s1">&#39;marital&#39;</span><span class="p">])</span>
+<span class="n">summary</span> <span class="o">=</span> <span class="n">grouped</span><span class="p">[</span><span class="s1">&#39;balance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;std&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aggregating by education and marital status with mean, standard deviation, and count provides a richer summary of balance distributions across demographic segments.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="py_01_basic.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">上一页</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Lecture 1: Python for Scientific Computing</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="py_03_plot.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Lecture 3: Visualization</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目录
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zhentao-shi">2.1. Zhentao Shi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#public-data">2.2. Public data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gated-data">2.3. Gated Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cuhk-library">2.4. CUHK Library</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#econ-department">2.5. Econ Department</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series">2.6. Time Series</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hk-gdp">2.7. HK GDP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#china-gdp">2.8. China GDP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finance-data">2.9. Finance Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shanghai-composite-index">2.9.1. Shanghai Composite Index</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ss-return">2.9.2. 000001.SS Return</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prices-of-gold-and-silver">2.10. Prices of Gold and Silver</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#repeated-data-download">2.11. Repeated Data Download</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#access-database">2.12. Access Database</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bank-marketing-data">2.12.1. Bank Marketing Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-transformation">2.13. Data Transformation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summarize">2.14. Summarize</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+作者： 史震涛 Shi Zhentao
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

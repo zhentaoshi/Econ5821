@@ -1,0 +1,1010 @@
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>6. Integration &#8212; 经济学中的数据科学</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=cc3ee377" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=946197a6"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/translations.js?v=beaddf03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'py_06_integration';</script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="7. ECON 5821: Numerical Optimization" href="py_07_optimization.html" />
+    <link rel="prev" title="5. Lecture 5: Uncertainty" href="py_05_simulations.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="00-preface.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">经济学中的数据科学</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">搜索</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="00-preface.html">
+                    Preface
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="py_01_basic.html">1. Lecture 1: Python for Scientific Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_02_data_sources.html">2. Lecture 2: Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_03_plot.html">3. Lecture 3: Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_04_advance.html">4. Lecture 4: Advanced Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_05_simulations.html">5. Lecture 5: Uncertainty</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_07_optimization.html">7. ECON 5821: Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_08_time_series.html">8. Time Series Analysis</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="py_09_ML.html">27. Machine Learning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="py_10_NN.html">47. Neural Networks</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="py_11_causal_inference.html">50. Lecture 11: Causal Inference and Program Evaluation</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="下载此页面">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/py_06_integration.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="下载源文件"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="列印成 PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全屏模式"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Integration</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目录 </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zhentao-shi">6.1. Zhentao Shi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-methods">6.2. Numerical Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caution">6.3. Caution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stochastic-integration">6.4. Stochastic Integration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-variable-generation">6.4.1. Random Variable Generation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markov-chain-monte-carlo">6.5. Markov Chain Monte Carlo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metropolis-hastings-algorithm">6.5.1. Metropolis-Hastings Algorithm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">6.5.2. Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#outcomes">6.5.3. Outcomes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-inference">6.5.4. Bayesian Inference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-theorem">6.5.5. Bayes Theorem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classical-analytical-example">6.5.6. Classical Analytical Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-credible-set">6.5.7. Bayesian Credible Set</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frequentist-confidence-internval">6.5.8. Frequentist Confidence Internval</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison">6.5.9. Comparison</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-example">6.5.10. Code Example</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="integration">
+<h1><span class="section-number">6. </span>Integration<a class="headerlink" href="#integration" title="Link to this heading">#</a></h1>
+<section id="zhentao-shi">
+<h2><span class="section-number">6.1. </span>Zhentao Shi<a class="headerlink" href="#zhentao-shi" title="Link to this heading">#</a></h2>
+<img src="graph/damaoshan.jpeg" width="1000">
+<!-- code is tested on SCRP --><ul class="simple">
+<li><p>Stochastic integration</p></li>
+<li><p>Markov Chain Monte Carlo (MCMC)</p></li>
+</ul>
+</section>
+<section id="numerical-methods">
+<h2><span class="section-number">6.2. </span>Numerical Methods<a class="headerlink" href="#numerical-methods" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Numerical differentiation and integration</p></li>
+<li><p>Use case: To find the optimum for the objective function <span class="math notranslate nohighlight">\(f:R^K \mapsto R\)</span>
+by Newton’s method,</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(K\)</span>-dimensional gradient</p></li>
+<li><p><span class="math notranslate nohighlight">\(K\times K\)</span>-dimensional Hessian matrix.</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Programming up the gradient and the Hessian manually is a time-consuming and error-prone job</p></li>
+<li><p>Whenever we change the objective function, we have to redo the gradient and Hessian</p></li>
+<li><p>More efficient to use numerical differentiation instead of the analytical expressions</p></li>
+</ul>
+<p>The partial derivative of a multivariate function
+<span class="math notranslate nohighlight">\(f:R^K \mapsto R\)</span> at a point <span class="math notranslate nohighlight">\(x_0 \in R^K\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial f(x)}{\partial x_k}\bigg|_{x=x_0}=\lim_{\epsilon \to 0}
+\frac{f(x_0+\epsilon \cdot e_k) - f(x_0 - \epsilon \cdot e_k)}{2\epsilon},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(e_k = (0,\ldots,0,1,0,\ldots,0)\)</span> is the identifier of the <span class="math notranslate nohighlight">\(k\)</span>-th coordinate.</p>
+<ul class="simple">
+<li><p>Numerical execution in a computer follows the basic definition to evaluate
+<span class="math notranslate nohighlight">\(f(x_0\pm\epsilon \cdot e_k))\)</span> with a small
+<span class="math notranslate nohighlight">\(\epsilon\)</span>.</p></li>
+<li><p>How small is small? Usually we try a sequence of <span class="math notranslate nohighlight">\(\epsilon\)</span>’s until
+the numerical derivative is stable.</p></li>
+<li><p>There are also more sophisticated algorithms.</p></li>
+</ul>
+</section>
+<section id="caution">
+<h2><span class="section-number">6.3. </span>Caution<a class="headerlink" href="#caution" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Numerical methods are not panacea</p></li>
+<li><p>Not all functions are differentiable or integrable.</p></li>
+<li><p>Before turning to numerical methods, it is always imperative to try to understand the behavior of the function at the first place.</p></li>
+<li><p>AI tools can be very helpful in these math calculation and coding.</p></li>
+</ul>
+</section>
+<section id="stochastic-integration">
+<h2><span class="section-number">6.4. </span>Stochastic Integration<a class="headerlink" href="#stochastic-integration" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>An alternative to analytic/numerical integration is the stochastic methods.</p></li>
+<li><p>The underlying principle of stochastic integration is the law of large numbers.</p></li>
+<li><p>Let  <span class="math notranslate nohighlight">\(\int h(x) d F(x)\)</span> be an integral where <span class="math notranslate nohighlight">\(F(x)\)</span> is a probability distribution.</p></li>
+<li><p>Approximate the integral by
+<span class="math notranslate nohighlight">\(\int h(x) d F(x) \approx S^{-1} \sum_{s=1}^S h(x_s)\)</span>, where <span class="math notranslate nohighlight">\(x_s\)</span> is randomly
+generated from <span class="math notranslate nohighlight">\(F(x)\)</span>.</p></li>
+</ul>
+<ul class="simple">
+<li><p>When <span class="math notranslate nohighlight">\(S\)</span> is large, a law of large numbers gives</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+S^{-1} \sum_{s=1}^S h(x_s) \stackrel{\mathrm{p}}{\to} E[h(x)] = \int h(x) d F(x).
+\]</div>
+<ul class="simple">
+<li><p>If the integration is carried out not in the entire support of <span class="math notranslate nohighlight">\(F(x)\)</span> but on a subset <span class="math notranslate nohighlight">\(A\)</span>, then</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\int_A h(x) d F(x) \approx S^{-1} \sum_{s=1}^S h(x_s) \cdot 1\{x_s \in A\},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(1\{\cdot\}\)</span> is the indicator function.</p>
+<ul class="simple">
+<li><p>In theory, use an <span class="math notranslate nohighlight">\(S\)</span> as large as possible.</p></li>
+<li><p>In reality, constrained by the computer’s memory and computing time.</p></li>
+<li><p>No clear guidance of the size of <span class="math notranslate nohighlight">\(S\)</span> in practice.</p></li>
+<li><p>Preliminary experiment can help decide an <span class="math notranslate nohighlight">\(S\)</span> that produces stable results.</p></li>
+<li><p>Stochastic integration is popular in econometrics and statistics, thanks to its convenience in execution.</p></li>
+</ul>
+<p><strong>Example</strong>: Use simulated maximum likelihood to estimate the parameters of a binary choice model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">beta_true</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span>  <span class="c1"># True coefficients</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span>           <span class="c1"># Number of observations</span>
+<span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">beta_true</span><span class="p">)</span>      <span class="c1"># Number of coefficients</span>
+
+<span class="c1"># Generate data</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> 
+<span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Intercept</span>
+
+<span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<span class="n">y_latent</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">beta_true</span><span class="p">)</span> <span class="o">+</span> <span class="n">error</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_latent</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nlopt</span>
+
+<span class="c1"># Define the simulated likelihood function</span>
+<span class="k">def</span> <span class="nf">sim_likelihood</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">n_sims</span><span class="o">=</span><span class="mi">500</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simulated likelihood function for the Probit model.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">beta</span> <span class="o">=</span> <span class="n">params</span>
+    <span class="c1"># Simulate the latent variable</span>
+    <span class="n">error_sim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n_sims</span><span class="p">))</span>
+    <span class="n">y_latent_sim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span> <span class="p">(</span><span class="n">X</span> <span class="o">@</span> <span class="n">beta</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">n_sims</span><span class="p">)</span> <span class="o">+</span> <span class="n">error_sim</span>
+    <span class="c1"># Calculate the probability of observed y</span>
+    <span class="n">prob</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_latent_sim</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># Likelihood contribution</span>
+    <span class="n">ll</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">prob</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">prob</span><span class="p">))</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">ll</span>  <span class="c1"># Minimize the negative log-likelihood</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Estimate the parameters using SML</span>
+<span class="c1"># Initial guess for parameters</span>
+<span class="n">beta_guess</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]</span>
+
+<span class="c1"># Define the objective function for nlopt</span>
+<span class="k">def</span> <span class="nf">objective_function</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">grad</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">sim_likelihood</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+
+<span class="c1"># Set up the optimizer</span>
+<span class="n">opt</span> <span class="o">=</span> <span class="n">nlopt</span><span class="o">.</span><span class="n">opt</span><span class="p">(</span><span class="n">nlopt</span><span class="o">.</span><span class="n">LN_NELDERMEAD</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">beta_guess</span><span class="p">))</span>
+<span class="n">opt</span><span class="o">.</span><span class="n">set_min_objective</span><span class="p">(</span><span class="n">objective_function</span><span class="p">)</span>
+<span class="n">opt</span><span class="o">.</span><span class="n">set_xtol_rel</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">)</span>
+
+<span class="c1"># Run the optimization</span>
+<span class="n">beta_opt</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">beta_guess</span><span class="p">)</span>
+<span class="n">minf</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">last_optimum_value</span><span class="p">()</span>
+
+<span class="c1"># Print the results</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;True parameters:&quot;</span><span class="p">,</span> <span class="n">beta_true</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estimated parameters:&quot;</span><span class="p">,</span> <span class="n">beta_opt</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Value of the criterion function:&quot;</span><span class="p">,</span> <span class="n">minf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True parameters: [0.5, 0.5]
+Estimated parameters: [0.50016632 0.45031357]
+Value of the criterion function: 523.1066394422276
+</pre></div>
+</div>
+</div>
+</div>
+<section id="random-variable-generation">
+<h3><span class="section-number">6.4.1. </span>Random Variable Generation<a class="headerlink" href="#random-variable-generation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>If the CDF <span class="math notranslate nohighlight">\(F(X)\)</span> is known</strong>, we can generate random variables that follow such a distribution.</p>
+<ul>
+<li><p>Draw <span class="math notranslate nohighlight">\(U\)</span> from  <span class="math notranslate nohighlight">\(\mathrm{Uniform}(0,1)\)</span></p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(X = F^{-1}(U)\)</span></p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="markov-chain-monte-carlo">
+<h2><span class="section-number">6.5. </span>Markov Chain Monte Carlo<a class="headerlink" href="#markov-chain-monte-carlo" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>If the pdf <span class="math notranslate nohighlight">\(f(X)\)</span> is known</strong>, we can generate a sample by <em>importance sampling</em></p>
+<ul>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm">Metropolis-Hastings algorithm</a>
+(MH algorithm) is such a method.</p></li>
+<li><p>MH is one of the <a class="reference external" href="https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">Markov Chain Monte Carlo</a> methods.</p></li>
+</ul>
+</li>
+</ul>
+<section id="metropolis-hastings-algorithm">
+<h3><span class="section-number">6.5.1. </span>Metropolis-Hastings Algorithm<a class="headerlink" href="#metropolis-hastings-algorithm" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Theory of the MH requires long derivation</p></li>
+<li><p>Implementation is straightforward.</p></li>
+</ul>
+</section>
+<section id="example">
+<h3><span class="section-number">6.5.2. </span>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
+<p>Use MH to generate a sample of normally distributed observations with
+<span class="math notranslate nohighlight">\(\mu = 1\)</span> and <span class="math notranslate nohighlight">\(\sigma = 0.5\)</span>.</p>
+<ul class="simple">
+<li><p>In the function <code class="docutils literal notranslate"><span class="pre">metrop</span></code>, we provide the logarithm of the density of</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\log f(x) = -\frac{1}{2} \log (2\pi) - \log \sigma - \frac{1}{2\sigma^2} (x-\mu)^2
+\]</div>
+<ul class="simple">
+<li><p>The first term can be omitted as it is irrelevant to the parameter.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span><span class="p">,</span> <span class="n">gaussian_kde</span>
+
+<span class="c1"># the target distribution</span>
+<span class="k">def</span> <span class="nf">h</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">sd</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sd</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># a self-defined metropolis algorithm</span>
+
+<span class="k">def</span> <span class="nf">metropolis</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">initial</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">,</span> <span class="n">n_spac</span><span class="p">,</span> <span class="n">proposal_sd</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+<span class="c1"># h: log density function. It&#39;s a function. </span>
+<span class="c1"># initial: initial value</span>
+<span class="c1"># n_samples: total number of samples to generate</span>
+<span class="c1"># n_spac: number of samples to generate before saving one</span>
+<span class="c1"># proposal_sd: standard deviation of the normal proposal distribution</span>
+    
+    <span class="n">total_iter</span> <span class="o">=</span> <span class="n">n_samples</span> <span class="o">*</span> <span class="n">n_spac</span>
+    <span class="n">chain</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">current</span> <span class="o">=</span> <span class="n">initial</span>
+    <span class="n">current_h</span> <span class="o">=</span> <span class="n">h</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">total_iter</span><span class="p">):</span>
+        <span class="n">proposal</span> <span class="o">=</span> <span class="n">current</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">proposal_sd</span><span class="p">)</span> <span class="c1"># normal proposal distribution</span>
+        <span class="c1"># the proposal distribution is symmetric. It determines the acceptance probability</span>
+        <span class="n">proposal_h</span> <span class="o">=</span> <span class="n">h</span><span class="p">(</span><span class="n">proposal</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">())</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">proposal_h</span> <span class="o">-</span> <span class="n">current_h</span><span class="p">):</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">proposal</span>
+            <span class="n">current_h</span> <span class="o">=</span> <span class="n">proposal_h</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">n_spac</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">chain</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">chain</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+<span class="c1"># 1) Time series with flat steps: nbatch=100, nspac=1</span>
+<span class="n">chain1</span> <span class="o">=</span> <span class="n">metropolis</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_spac</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">chain1</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Time series with flat steps (nspac=1)&quot;</span><span class="p">)</span>
+
+<span class="c1"># 2) Time series with reduced serial correlation: nbatch=100, nspac=10</span>
+<span class="n">chain2</span> <span class="o">=</span> <span class="n">metropolis</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_spac</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">chain2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Time series looks like white noise (nspac=10)&quot;</span><span class="p">)</span>
+
+<span class="c1"># 3) Density estimate versus true density: nbatch=10000, nspac=10</span>
+<span class="n">chain3</span> <span class="o">=</span> <span class="n">metropolis</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">n_spac</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">density</span> <span class="o">=</span> <span class="n">gaussian_kde</span><span class="p">(</span><span class="n">chain3</span><span class="p">)</span>
+<span class="n">xbase</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xbase</span><span class="p">,</span> <span class="n">density</span><span class="p">(</span><span class="n">xbase</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Kernel Density&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xbase</span><span class="p">,</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">xbase</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;True Density&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Kernel density of simulated observations&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/862d65b89c4261f869e88e1e159c4da4dc00c81dd1dc849f35b0534111889896.png" src="_images/862d65b89c4261f869e88e1e159c4da4dc00c81dd1dc849f35b0534111889896.png" />
+</div>
+</div>
+</section>
+<section id="outcomes">
+<h3><span class="section-number">6.5.3. </span>Outcomes<a class="headerlink" href="#outcomes" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The first panel is a time series where
+the marginal distribution of each observations follows <span class="math notranslate nohighlight">\(N(1,0.5^2)\)</span>.</p>
+<ul>
+<li><p>Time dependence is visible</p></li>
+<li><p>flat regions are observed when the Markov chain rejects a new proposal
+so the value does not update over two periods.</p></li>
+</ul>
+</li>
+<li><p>The middle panel collects the time series every 10 observations on the Markov chain</p>
+<ul>
+<li><p>serial correlation is weakened</p></li>
+<li><p>No flat region is observed</p></li>
+</ul>
+</li>
+<li><p>The third panel compares</p>
+<ul>
+<li><p>kernel density of the simulated observations (black curve)</p></li>
+<li><p>density function of <span class="math notranslate nohighlight">\(N(1,0.5^2)\)</span> (red curve).</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="bayesian-inference">
+<h3><span class="section-number">6.5.4. </span>Bayesian Inference<a class="headerlink" href="#bayesian-inference" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Bayesian framework offers a coherent and natural language for statistical decision.</p></li>
+<li><p>Bayesian views both the data <span class="math notranslate nohighlight">\(\mathbf{X}_{n}\)</span> and the
+parameter <span class="math notranslate nohighlight">\(\theta\)</span> as random variables</p></li>
+<li><p>Before observeing the data, researcher holds a <em>prior distribution</em> <span class="math notranslate nohighlight">\(\pi\)</span> about <span class="math notranslate nohighlight">\(\theta\)</span></p></li>
+<li><p>After observing the data, researcher updates the prior distribution to a <em>posterior distribution</em> <span class="math notranslate nohighlight">\(p(\theta|\mathbf{X}_{n})\)</span>.</p></li>
+</ul>
+</section>
+<section id="bayes-theorem">
+<h3><span class="section-number">6.5.5. </span>Bayes Theorem<a class="headerlink" href="#bayes-theorem" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Let <span class="math notranslate nohighlight">\(f(\mathbf{X}_{n}|\theta)\)</span> be the likelihood</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(\pi\)</span> be the prior</p></li>
+<li><p>The celebrated Bayes Theorem is</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+p(\theta|\mathbf{X}_{n})\propto f(\mathbf{X}_{n}|\theta)\pi(\theta)
+\]</div>
+</section>
+<section id="classical-analytical-example">
+<h3><span class="section-number">6.5.6. </span>Classical Analytical Example<a class="headerlink" href="#classical-analytical-example" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf{X}_{n}=(X_{1},\ldots,X_{n})\)</span> is an iid sample drawn from a normal distribution with unknown <span class="math notranslate nohighlight">\(\theta\)</span> and known <span class="math notranslate nohighlight">\(\sigma\)</span></p></li>
+<li><p>If a researcher’s prior distribution
+<span class="math notranslate nohighlight">\(\theta\sim N(\theta_{0},\sigma_{0}^{2})\)</span>, her posterior distribution
+is, by some routine calculation, also a normal distribution</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+p(\theta|\mathbf{x}_{n})\sim N\left(\tilde{\theta},\tilde{\sigma}^{2}\right),
+\]</div>
+<p>where
+<span class="math notranslate nohighlight">\(\tilde{\theta}=\frac{\sigma_{0}^{2}}{n\sigma^{2}+\sigma_{0}^{2}}\theta_{0}+\frac{n\sigma^{2}}{n\sigma^{2}+\sigma_{0}^{2}}\bar{x}\)</span>
+and
+<span class="math notranslate nohighlight">\(\tilde{\sigma}^{2}=\frac{\sigma_{0}^{2}\sigma^{2}}{n\sigma_{0}^{2}+\sigma^{2}}\)</span>.</p>
+</section>
+<section id="bayesian-credible-set">
+<h3><span class="section-number">6.5.7. </span>Bayesian Credible Set<a class="headerlink" href="#bayesian-credible-set" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+\left(\tilde{\theta}-z_{1-\alpha/2}\cdot\tilde{\sigma},\ \tilde{\theta}+z_{1-\alpha/2}\cdot\tilde{\sigma}\right).
+\]</div>
+<ul class="simple">
+<li><p>Posterior distribution depends on <span class="math notranslate nohighlight">\(\theta_{0}\)</span> and <span class="math notranslate nohighlight">\(\sigma_{0}^{2}\)</span>
+from the prior.</p></li>
+<li><p>When the sample size is sufficiently, the data overwhelms the prior</p></li>
+</ul>
+</section>
+<section id="frequentist-confidence-internval">
+<h3><span class="section-number">6.5.8. </span>Frequentist Confidence Internval<a class="headerlink" href="#frequentist-confidence-internval" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{\theta}=\bar{x}\sim N(\theta,\sigma^{2}/n)\)</span>.</p></li>
+<li><p>Confidence interval is</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\left(\bar{x}-z_{1-\alpha/2}\cdot\sigma/\sqrt{n},\ \bar{x}-z_{1-\alpha/2}\cdot\sigma/\sqrt{n}\right).
+\]</div>
+</section>
+<section id="comparison">
+<h3><span class="section-number">6.5.9. </span>Comparison<a class="headerlink" href="#comparison" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Bayesian produces a posterior distribution</p>
+<ul>
+<li><p>The posterior distribution implies point estimates and credible set</p></li>
+<li><p>Data are fixed (invariant)</p></li>
+<li><p>A prior distribution is needed</p></li>
+</ul>
+</li>
+<li><p>Frequestist produces a point estimator</p>
+<ul>
+<li><p>Before data are observed, the point estimator is random</p></li>
+<li><p>Inference is imply by the point estimator <strong>before observation</strong></p></li>
+<li><p>Only data are realized, the point estimate is a fixed number</p></li>
+<li><p>No prior distribution is needed</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>The nature generates data</p></li>
+<li><p>The researcher correctly specifies the normal model</p></li>
+<li><p>Given the data, she infers <span class="math notranslate nohighlight">\(\theta\)</span> according to the posterior distribution</p></li>
+</ul>
+</section>
+<section id="code-example">
+<h3><span class="section-number">6.5.10. </span>Code Example<a class="headerlink" href="#code-example" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Conduct inference about the mean parameter of a normal with unit variance</p></li>
+<li><p>Prior distribution <span class="math notranslate nohighlight">\(\mu \sim Beta(2,2)\)</span></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Beta_distribution">Beta distribution</a> is flexible</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">beta</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">2000</span>
+
+<span class="c1"># generate n random numbers from a normal distribution</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.9</span>
+
+<span class="k">def</span> <span class="nf">loglik</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
+    <span class="c1"># Computes the sum of log densities of x ~ N(theta, 1)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">norm</span><span class="o">.</span><span class="n">logpdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">theta</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">posterior</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
+    <span class="c1"># Adds the log density of a Beta(2,2) prior to the log-likelihood</span>
+    <span class="k">return</span> <span class="n">loglik</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">+</span> <span class="n">beta</span><span class="o">.</span><span class="n">logpdf</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nbatch</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">metropolis</span><span class="p">(</span><span class="n">posterior</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="n">nbatch</span><span class="p">,</span> <span class="n">n_spac</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">burn_in</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">nbatch</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">out</span><span class="p">[</span><span class="n">burn_in</span><span class="p">:]</span>  <span class="c1"># remove the burn-in period</span>
+
+<span class="c1"># Plot the kernel density of the posterior draws</span>
+<span class="n">density_est</span> <span class="o">=</span> <span class="n">gaussian_kde</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+<span class="n">x_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">out</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">200</span><span class="p">)</span>
+
+<span class="c1"># Print the 95% quantile interval</span>
+<span class="n">quat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.025</span><span class="p">,</span> <span class="mf">0.975</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">quat</span><span class="p">)</span>
+
+<span class="c1"># plot the two values in quat as vertical lines</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_grid</span><span class="p">,</span> <span class="n">density_est</span><span class="p">(</span><span class="n">x_grid</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">quat</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">quat</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.84694723 0.93370605]
+</pre></div>
+</div>
+<img alt="_images/960eaea9b3fb620eeb9ffe707fa4c30116ea1ba0104cb347d947ff13cff15bd4.png" src="_images/960eaea9b3fb620eeb9ffe707fa4c30116ea1ba0104cb347d947ff13cff15bd4.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="py_05_simulations.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">上一页</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Lecture 5: Uncertainty</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="py_07_optimization.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>ECON 5821: Numerical Optimization</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目录
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zhentao-shi">6.1. Zhentao Shi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-methods">6.2. Numerical Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caution">6.3. Caution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stochastic-integration">6.4. Stochastic Integration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-variable-generation">6.4.1. Random Variable Generation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markov-chain-monte-carlo">6.5. Markov Chain Monte Carlo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metropolis-hastings-algorithm">6.5.1. Metropolis-Hastings Algorithm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">6.5.2. Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#outcomes">6.5.3. Outcomes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-inference">6.5.4. Bayesian Inference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-theorem">6.5.5. Bayes Theorem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classical-analytical-example">6.5.6. Classical Analytical Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-credible-set">6.5.7. Bayesian Credible Set</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frequentist-confidence-internval">6.5.8. Frequentist Confidence Internval</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison">6.5.9. Comparison</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-example">6.5.10. Code Example</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+作者： 史震涛 Shi Zhentao
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,953 @@
+
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4. Data Sources &#8212; 经济学中的数据科学</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="5. Visualization and Communication" href="slides_04_visualization.html" />
+    <link rel="prev" title="3. Basic R" href="slides_02_basic_R.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="zh-CN">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">经济学中的数据科学</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="搜索这本书..." aria-label="搜索这本书..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00-preface.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_00_intro.html">
+   1. Data Science for Economists
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_01_git.html">
+   2. Git and Github
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_02_basic_R.html">
+   3. Basic R
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   4. Data Sources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_04_visualization.html">
+   5. Visualization and Communication
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_05_advanced_R.html">
+   6. Advanced R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_06_cloud_computing.html">
+   7. Cloud Computing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_07_simulation.html">
+   8. Simulation and Bootstrap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_08_integration.html">
+   9. Integration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_09_optimization.html">
+   10. Numerical Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_10_time_series.html">
+   11. Time Series Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_11_ML.html">
+   12. Machine Learning
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="切换导航" aria-controls="site-navigation"
+                title="切换导航" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="下载此页面"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/slides_03_data_sources.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="下载源文件" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="列印成PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="全屏模式"
+        title="全屏模式"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/slides_03_data_sources.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="发射 Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> 内容
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#public-data">
+   4.1. Public data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gated-data">
+   4.2. Gated Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cuhk-library">
+   4.3. CUHK Library
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#econ-department">
+   4.4. Econ Department
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#time-series">
+   4.5. Time Series
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hk-gdp">
+   4.6. HK GDP
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#federal-reserve">
+   4.7. Federal Reserve
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#finance-data">
+   4.8. Finance Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#shanghai-composite-index">
+     4.8.1. Shanghai Composite Index
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ss-return">
+     4.8.2. 000001.SS Return
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cryptocurrencies">
+     4.8.3. Cryptocurrencies
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bitcoin-return">
+     4.8.4. Bitcoin return
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#repeated-data-download">
+   4.9. Repeated Data Download
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#access-database">
+   4.10. Access Database
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bank-marketing-data">
+     4.10.1. Bank Marketing Data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-transformation">
+   4.11. Data Transformation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summarize">
+   4.12. Summarize
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-scrapping">
+   4.13. Data Scrapping
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading">
+   4.14. Reading
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Data Sources</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> 内容 </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#public-data">
+   4.1. Public data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gated-data">
+   4.2. Gated Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cuhk-library">
+   4.3. CUHK Library
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#econ-department">
+   4.4. Econ Department
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#time-series">
+   4.5. Time Series
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hk-gdp">
+   4.6. HK GDP
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#federal-reserve">
+   4.7. Federal Reserve
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#finance-data">
+   4.8. Finance Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#shanghai-composite-index">
+     4.8.1. Shanghai Composite Index
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ss-return">
+     4.8.2. 000001.SS Return
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cryptocurrencies">
+     4.8.3. Cryptocurrencies
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bitcoin-return">
+     4.8.4. Bitcoin return
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#repeated-data-download">
+   4.9. Repeated Data Download
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#access-database">
+   4.10. Access Database
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bank-marketing-data">
+     4.10.1. Bank Marketing Data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-transformation">
+   4.11. Data Transformation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summarize">
+   4.12. Summarize
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-scrapping">
+   4.13. Data Scrapping
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading">
+   4.14. Reading
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="data-sources">
+<h1><span class="section-number">4. </span>Data Sources<a class="headerlink" href="#data-sources" title="Permalink to this heading">¶</a></h1>
+<p>Zhentao Shi</p>
+<!-- code is tested on SCRP --><ul class="simple">
+<li><p>Online archives</p></li>
+<li><p>API (Application Programming Interface)</p></li>
+<li><p>Proprietary data</p></li>
+<li><p>Survey data</p></li>
+</ul>
+<div class="section" id="public-data">
+<h2><span class="section-number">4.1. </span>Public data<a class="headerlink" href="#public-data" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Time Series</p>
+<ul>
+<li><p>Natural ordering of observations</p></li>
+<li><p>A single realization in history</p></li>
+<li><p>eg. GDP, stock prices</p></li>
+</ul>
+</li>
+<li><p>Microeconomic data</p>
+<ul>
+<li><p>No natural ordering</p></li>
+<li><p>Collected at the same time, or time does not matter</p></li>
+<li><p><a class="reference external" href="https://capcp.la.psu.edu/data-and-software/alaska-oil-and-gas-auction-data/">Auction data</a></p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Aggregate panel data</p>
+<ul>
+<li><p><a class="reference external" href="https://www.rug.nl/ggdc/productivity/pwt/?lang=en">Penn World Table</a></p></li>
+<li><p><a class="reference external" href="https://atlas.cid.harvard.edu/about-data">Atlas Trade Data</a></p></li>
+<li><p><a class="reference external" href="https://data.imf.org/?sk=388DFA60-1D26-4ADE-B505-A05A558D9A42&amp;sId=1479329132316">IMF databases</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="gated-data">
+<h2><span class="section-number">4.2. </span>Gated Data<a class="headerlink" href="#gated-data" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Applications needed</p>
+<ul>
+<li><p>Chinese Longitudinal Healthy Longevity Survey <a class="reference external" href="https://www.icpsr.umich.edu/web/NACDA/studies/36692">link</a></p></li>
+<li><p>China Household Finance Survey <a class="reference external" href="https://chfs.swufe.edu.cn/">link</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="cuhk-library">
+<h2><span class="section-number">4.3. </span>CUHK Library<a class="headerlink" href="#cuhk-library" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="http://easyaccess1.lib.cuhk.edu.hk/limited/refinitiv.html">Refinitiv</a></p></li>
+<li><p><a class="reference external" href="http://easyaccess1.lib.cuhk.edu.hk/limited/wrds.htm">WRDS</a></p></li>
+<li><p><a class="reference external" href="https://cas-ceicdata-com.easyaccess1.lib.cuhk.edu.hk/login">CEIC</a></p></li>
+</ul>
+</div>
+<div class="section" id="econ-department">
+<h2><span class="section-number">4.4. </span>Econ Department<a class="headerlink" href="#econ-department" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>WIND</p></li>
+<li><p>CEIC</p></li>
+<li><p>Bloomberg</p></li>
+<li><p>China Census</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">magrittr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">zoo</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">rvest</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">Quandl</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="time-series">
+<h2><span class="section-number">4.5. </span>Time Series<a class="headerlink" href="#time-series" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Macroeconomics</p>
+<ul>
+<li><p>国家统计局 <a class="reference external" href="https://data.stats.gov.cn/easyquery.htm?cn=B01">National Bureau of Statistics</a></p></li>
+<li><p>Federal Reserve <a class="reference external" href="https://research.stlouisfed.org/econ/mccracken/fred-databases/">FRED database</a></p></li>
+</ul>
+</li>
+<li><p>Financial</p>
+<ul>
+<li><p><a class="reference external" href="https://finance.yahoo.com/">Yahoo Finance</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="hk-gdp">
+<h2><span class="section-number">4.6. </span>HK GDP<a class="headerlink" href="#hk-gdp" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.censtatd.gov.hk/en/web_table.html?id=33">Census and Statistics Department</a></p>
+<ul>
+<li><p>Webpage With API</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">httr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">jsonlite</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">rjson</span><span class="p">)</span>
+
+<span class="n">url</span> <span class="o">&lt;-</span> <span class="s">&quot;https://www.censtatd.gov.hk/api/get.php?id=33&amp;lang=en&amp;param=N4IgxgbiBcoMJwJqJqAjDEAGHu+4HZ9iScQAaEAfQBcrMsLqAHe6bEAX0oEVUQM7AGJNabDpSqsGXSgHEAIgAUqYAPYBbZmoB2AUx01+AJkwF6kujMnT2GTtxABnKLBbjTlOAHkAcjABtEAAlAEMAdyoAWSoACwBrABMqRKZENUQqNETWAFIqHRAAXUcAGxgaACcAVz1OIA&quot;</span>
+<span class="nf">download.file</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">destfile</span><span class="o">=</span><span class="s">&quot;input.json&quot;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">&lt;-</span> <span class="n">jsonlite</span><span class="o">::</span><span class="nf">fromJSON</span><span class="p">(</span><span class="s">&quot;input.json&quot;</span><span class="p">)</span>
+
+<span class="nf">data.frame</span><span class="p">(</span><span class="n">result</span><span class="o">$</span><span class="n">dataSet</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="federal-reserve">
+<h2><span class="section-number">4.7. </span>Federal Reserve<a class="headerlink" href="#federal-reserve" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>China GDP [<a class="reference external" href="https://fred.stlouisfed.org/series/MKTGDPCNA646NWDB">link</a>]</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">quantmod</span><span class="o">::</span><span class="nf">getSymbols.FRED</span><span class="p">(</span><span class="n">Symbols</span> <span class="o">=</span> <span class="s">&quot;MKTGDPCNA646NWDB&quot;</span><span class="p">,</span> <span class="n">env</span> <span class="o">=</span> <span class="n">.GlobalEnv</span><span class="p">)</span> 
+<span class="nf">plot</span><span class="p">(</span><span class="n">MKTGDPCNA646NWDB</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Another example: <a class="reference external" href="https://fred.stlouisfed.org/series/IPB50001SQ">Quarterly US Industrial Production Index</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">quantmod</span><span class="o">::</span><span class="nf">getSymbols.FRED</span><span class="p">(</span><span class="n">Symbols</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;IPB50001SQ&quot;</span><span class="p">),</span> <span class="n">env</span> <span class="o">=</span> <span class="n">.GlobalEnv</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">IPB50001SQ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="finance-data">
+<h2><span class="section-number">4.8. </span>Finance Data<a class="headerlink" href="#finance-data" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://finance.yahoo.com/">Yahoo Finance</a></p></li>
+<li><p>Tick <code class="docutils literal notranslate"><span class="pre">AAPL</span></code> for <em>Apple Inc.</em></p>
+<ul>
+<li><p>Package <code class="docutils literal notranslate"><span class="pre">quantmod</span></code></p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">quantmod</span><span class="o">::</span><span class="nf">getSymbols</span><span class="p">(</span><span class="s">&quot;AAPL&quot;</span><span class="p">,</span> <span class="n">src</span> <span class="o">=</span> <span class="s">&quot;yahoo&quot;</span><span class="p">)</span>
+<span class="nf">tail</span><span class="p">(</span><span class="n">AAPL</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">AAPL</span><span class="o">$</span><span class="n">AAPL.Close</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="shanghai-composite-index">
+<h3><span class="section-number">4.8.1. </span>Shanghai Composite Index<a class="headerlink" href="#shanghai-composite-index" title="Permalink to this heading">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">tick</span> <span class="o">=</span> <span class="s">&quot;000001.SS&quot;</span> <span class="c1"># need to find the tick </span>
+<span class="n">SH</span> <span class="o">&lt;-</span> <span class="n">quantmod</span><span class="o">::</span><span class="nf">getSymbols</span><span class="p">(</span><span class="n">tick</span><span class="p">,</span> <span class="n">auto.assign</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> 
+         <span class="n">from</span> <span class="o">=</span> <span class="s">&quot;2000-01-01&quot;</span><span class="p">)[,</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">tick</span><span class="p">,</span><span class="s">&quot;.Close&quot;</span><span class="p">)]</span>
+
+<span class="nf">plot</span><span class="p">(</span><span class="n">SH</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="ss-return">
+<h3><span class="section-number">4.8.2. </span>000001.SS Return<a class="headerlink" href="#ss-return" title="Permalink to this heading">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">diff</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="n">SH</span><span class="p">))</span> <span class="o">%&gt;%</span> <span class="nf">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="cryptocurrencies">
+<h3><span class="section-number">4.8.3. </span>Cryptocurrencies<a class="headerlink" href="#cryptocurrencies" title="Permalink to this heading">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">BTC</span> <span class="o">&lt;-</span> <span class="n">quantmod</span><span class="o">::</span><span class="nf">getSymbols</span><span class="p">(</span><span class="s">&quot;BTC-USD&quot;</span><span class="p">,</span><span class="n">auto.assign</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="n">from</span> <span class="o">=</span> <span class="s">&quot;2021-07-01&quot;</span><span class="p">)[,</span><span class="m">4</span><span class="p">]</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">BTC</span><span class="p">)</span>
+
+<span class="n">ETH</span> <span class="o">&lt;-</span> <span class="n">quantmod</span><span class="o">::</span><span class="nf">getSymbols</span><span class="p">(</span><span class="s">&quot;ETH-USD&quot;</span><span class="p">,</span><span class="n">auto.assign</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="n">from</span> <span class="o">=</span> <span class="s">&quot;2021-07-01&quot;</span><span class="p">)[,</span><span class="m">4</span><span class="p">]</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">ETH</span><span class="p">)</span>
+
+<span class="nf">plot</span><span class="p">(</span> <span class="n">x</span> <span class="o">=</span> <span class="nf">as.vector</span><span class="p">(</span><span class="n">ETH</span><span class="p">),</span> <span class="n">y</span> <span class="o">=</span> <span class="nf">as.vector</span><span class="p">(</span><span class="n">BTC</span><span class="p">),</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;l&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="bitcoin-return">
+<h3><span class="section-number">4.8.4. </span>Bitcoin return<a class="headerlink" href="#bitcoin-return" title="Permalink to this heading">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">diff</span><span class="p">(</span> <span class="nf">log</span><span class="p">(</span><span class="n">BTC</span><span class="p">)</span> <span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">plot</span><span class="p">(</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="repeated-data-download">
+<h2><span class="section-number">4.9. </span>Repeated Data Download<a class="headerlink" href="#repeated-data-download" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Example: HKMA <a class="reference external" href="https://apidocs.hkma.gov.hk/documentation/market-data-and-statistics/daily-monetary-statistics/daily-figures-interbank-liquidity/">API</a></p>
+<ul>
+<li><p>Save as a csv file</p></li>
+<li><p>Repeat the regular job via <code class="docutils literal notranslate"><span class="pre">cron</span></code> in Linux</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cronR</span></code> provides an R interface to <code class="docutils literal notranslate"><span class="pre">cron</span></code></p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">httr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">jsonlite</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="s">&quot;rjson&quot;</span><span class="p">)</span>
+<span class="n">url</span> <span class="o">&lt;-</span> <span class="s">&quot;https://api.hkma.gov.hk/public/market-data-and-statistics/daily-monetary-statistics/daily-figures-interbank-liquidity&quot;</span>
+<span class="nf">download.file</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="n">destfile</span><span class="o">=</span><span class="s">&quot;input.json&quot;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">&lt;-</span> <span class="n">jsonlite</span><span class="o">::</span><span class="nf">fromJSON</span><span class="p">(</span><span class="s">&quot;input.json&quot;</span><span class="p">)</span>
+<span class="n">hkma</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">result</span><span class="o">$</span><span class="n">result</span><span class="p">)</span>
+<span class="nf">write.csv</span><span class="p">(</span><span class="n">hkma</span><span class="p">,</span><span class="s">&quot;hkma.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="s2">&quot;cronR&quot;</span><span class="p">)</span>
+
+<span class="n">cron_ls</span><span class="p">()</span> <span class="c1"># list existing cron tasks</span>
+
+<span class="n">cmd</span> <span class="o">&lt;-</span> <span class="n">cron_rscript</span><span class="p">(</span><span class="s2">&quot;HKMA_API.r&quot;</span><span class="p">,</span> <span class="n">rscript_log</span> <span class="o">=</span> <span class="s2">&quot;/root/HKMAdata.txt&quot;</span><span class="p">)</span> 
+<span class="c1"># specify a task and record the log into a txt file</span>
+
+<span class="n">cron_add</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;daily&quot;</span><span class="p">,</span> <span class="n">ask</span> <span class="o">=</span> <span class="s2">&quot;FALSE&quot;</span><span class="p">,</span> <span class="nb">id</span> <span class="o">=</span> <span class="s2">&quot;zt_econ5821&quot;</span><span class="p">)</span>
+<span class="c1"># specify the frequency of the task</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="access-database">
+<h2><span class="section-number">4.10. </span>Access Database<a class="headerlink" href="#access-database" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>API for CEIC</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Dai Qiyu (Jan, 2023)
+
+PackageList=c(&quot;R6&quot;,&quot;xml2&quot;,&quot;zoo&quot;,&quot;httr&quot;,&quot;getPass&quot;) 
+lapply(PackageList, require, character.only=TRUE)
+
+install.packages (&quot;ceic&quot;, repos = &quot;https://downloads.ceicdata.com/R/&quot;, 
+                  type = &quot;source&quot;)
+library(ceic)
+
+#log in
+ceic.login(username=&quot;cuhk_student_id@link.cuhk.edu.hk&quot;,
+           password=&quot;your_password&quot;)
+
+
+#Step 2: obtain China&#39;s quarterly GDP-----------------------------------------------
+CN_GDP_list=
+  ceic.series(c(&quot;2609f72b-16b5-4799-a347-35d8ac05e585&quot;), format = &quot;ts&quot;, 
+              lang = &quot;zh&quot;)
+CN_GDP=CN_GDP_list$timepoints
+CN_GDP
+
+
+#Finally, logout--------------------------------------------------------------------
+ceic.logout()
+</pre></div>
+</div>
+<div class="section" id="bank-marketing-data">
+<h3><span class="section-number">4.10.1. </span>Bank Marketing Data<a class="headerlink" href="#bank-marketing-data" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Direct marketing campaigns of a Portuguese banking institution.</p></li>
+<li><p>S. Moro, R. Laureano and P. Cortez. Using Data Mining for Bank Direct Marketing: An Application of the CRISP-DM Methodology. In P. Novais et al. (Eds.), Proceedings of the European Simulation and Modelling Conference - ESM’2011, pp. 117-121, Guimarães, Portugal, October, 2011. EUROSIS.</p></li>
+<li><p><strong>Data Import</strong>: <code class="docutils literal notranslate"><span class="pre">readr::read_delim</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
+
+<span class="c1"># `readr` packages has more flexible functions to import data</span>
+<span class="n">d0</span> <span class="o">=</span> <span class="n">readr</span><span class="o">::</span><span class="nf">read_delim</span><span class="p">(</span><span class="s">&quot;data_example/bank-full.csv&quot;</span><span class="p">,</span> <span class="n">delim</span> <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">,</span> <span class="n">col_names</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span>
+                       <span class="n">col_types</span> <span class="o">=</span> <span class="nf">cols</span><span class="p">(</span>
+                         <span class="n">age</span> <span class="o">=</span> <span class="s">&quot;i&quot;</span><span class="p">,</span>
+                         <span class="n">job</span> <span class="o">=</span> <span class="s">&quot;c&quot;</span><span class="p">,</span>
+                         <span class="n">marital</span> <span class="o">=</span> <span class="s">&quot;f&quot;</span><span class="p">,</span>
+                         <span class="n">education</span> <span class="o">=</span> <span class="s">&quot;f&quot;</span><span class="p">,</span>
+                         <span class="n">balance</span> <span class="o">=</span> <span class="s">&quot;i&quot;</span><span class="p">,</span>
+                         <span class="p">)</span>
+                       <span class="p">)</span>
+
+<span class="nf">head</span><span class="p">(</span><span class="n">d0</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">d0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data-transformation">
+<h2><span class="section-number">4.11. </span>Data Transformation<a class="headerlink" href="#data-transformation" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">filter</span></code>: pick out a subset of rows that satisfy some conditions</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">select</span></code>: pick out a subset of columns</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">arrange</span></code>: order rows. Default order from low to high</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mutate</span></code>: add columns produced by the existing ones</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># select columns</span>
+<span class="n">d1</span> <span class="o">=</span> <span class="nf">select</span><span class="p">(</span><span class="n">d0</span><span class="p">,</span> <span class="n">age</span><span class="o">:</span><span class="n">loan</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">d1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># select a subset by conditions</span>
+<span class="nf">filter</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">job</span> <span class="o">==</span> <span class="s">&quot;blue-collar&quot;</span><span class="p">,</span> <span class="n">age</span> <span class="o">&gt;</span> <span class="m">50</span><span class="p">)</span> 
+<span class="nf">filter</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">job</span> <span class="o">==</span> <span class="s">&quot;blue-collar&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">age</span> <span class="o">&gt;</span> <span class="m">20</span> <span class="o">&amp;</span> <span class="n">age</span> <span class="o">&lt;=</span> <span class="m">30</span><span class="p">)</span> <span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># (re)arrange rows</span>
+<span class="nf">arrange</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">education</span><span class="p">)</span>
+<span class="nf">arrange</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="nf">desc</span><span class="p">(</span><span class="n">age</span><span class="p">),</span> <span class="n">education</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># add generated columns (last column)</span>
+<span class="nf">mutate</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">edu_f</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">education</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">transmute</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> 
+          <span class="n">age</span> <span class="o">=</span> <span class="n">age</span><span class="p">,</span>
+          <span class="n">marital</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">marital</span><span class="p">),</span> 
+          <span class="n">education</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">education</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="summarize">
+<h2><span class="section-number">4.12. </span>Summarize<a class="headerlink" href="#summarize" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">group_by</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># overall mean balance </span>
+<span class="nf">summarize</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">mean_b</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">balance</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># mean balance by groups</span>
+<span class="nf">group_by</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">education</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">summarize</span><span class="p">(</span> <span class="n">mean_b</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">balance</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">d1</span> <span class="o">%&gt;%</span>
+  <span class="nf">group_by</span><span class="p">(</span><span class="n">education</span><span class="p">,</span> <span class="n">marital</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">summarize</span><span class="p">(</span> <span class="n">mean_b</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">balance</span><span class="p">),</span>
+             <span class="n">sd_b</span> <span class="o">=</span> <span class="nf">sd</span><span class="p">(</span><span class="n">balance</span><span class="p">),</span>
+             <span class="n">count</span> <span class="o">=</span> <span class="nf">n</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data-scrapping">
+<h2><span class="section-number">4.13. </span>Data Scrapping<a class="headerlink" href="#data-scrapping" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/zhentaoshi/econ_data_science/blob/master/data_example/Scrape_Lianjia.ipynb">Liangjia Shenzhen data</a> (by Wang Yishu)</p></li>
+<li><p>We can test it on SCRP.</p></li>
+</ul>
+</div>
+<div class="section" id="reading">
+<h2><span class="section-number">4.14. </span>Reading<a class="headerlink" href="#reading" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Wickham and Grolemund](<a class="reference external" href="https://r4ds.had.co.nz/">https://r4ds.had.co.nz/</a>)</p>
+<ul>
+<li><p>Ch.10: tibbles</p></li>
+<li><p>Ch.11: data import</p></li>
+<li><p>Ch.5:  data transformation</p></li>
+<li><p>Ch.18: pipes</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="slides_02_basic_R.html" title="上一页 页">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">上一页</p>
+            <p class="prev-next-title"><span class="section-number">3. </span>Basic R</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="slides_04_visualization.html" title="下一页 页">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Visualization and Communication</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      通过 史震涛 Shi Zhentao<br/>
+    
+        &copy; 版权 2023.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

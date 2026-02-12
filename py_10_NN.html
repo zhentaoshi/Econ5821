@@ -1,0 +1,983 @@
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>47. Neural Networks &#8212; 经济学中的数据科学</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=cc3ee377" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=946197a6"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/translations.js?v=beaddf03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'py_10_NN';</script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="50. Lecture 11: Causal Inference and Program Evaluation" href="py_11_causal_inference.html" />
+    <link rel="prev" title="27. Machine Learning" href="py_09_ML.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="00-preface.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">经济学中的数据科学</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">搜索</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="00-preface.html">
+                    Preface
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="py_01_basic.html">1. Lecture 1: Python for Scientific Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_02_data_sources.html">2. Lecture 2: Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_03_plot.html">3. Lecture 3: Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_04_advance.html">4. Lecture 4: Advanced Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_05_simulations.html">5. Lecture 5: Uncertainty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_06_integration.html">6. Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_07_optimization.html">7. ECON 5821: Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_08_time_series.html">8. Time Series Analysis</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="py_09_ML.html">27. Machine Learning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">47. Neural Networks</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="py_11_causal_inference.html">50. Lecture 11: Causal Inference and Program Evaluation</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="下载此页面">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/py_10_NN.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="下载源文件"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="列印成 PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全屏模式"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Neural Networks</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目录 </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">47. Neural Networks</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zhentao-shi">47.1. Zhentao Shi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-neural-networks">47.2. Types of Neural Networks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#layers">47.3. Layers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-does-it-work">47.4. Why Does It Work?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization">47.5. Optimization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#components-in-optimization">47.6. Components in Optimization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-method">47.7. Gradient method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backpropagation">47.8. Backpropagation</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#stochastic-gradient-descent">48. Stochastic Gradient Descent</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-example">48.1. Simulation Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regularization">48.2. Regularization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demonstrations">48.3. Demonstrations</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#theory-is-incomplete">49. Theory is Incomplete</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#large-language-model">49.1. Large Language Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-mechanism">49.2. Attention Mechanism</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analog-to-ols">49.3. Analog to OLS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-head-attention">49.4. Multi-head Attention</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#future">49.5. Future</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="neural-networks">
+<h1><span class="section-number">47. </span>Neural Networks<a class="headerlink" href="#neural-networks" title="Link to this heading">#</a></h1>
+<section id="zhentao-shi">
+<h2><span class="section-number">47.1. </span>Zhentao Shi<a class="headerlink" href="#zhentao-shi" title="Link to this heading">#</a></h2>
+<p><img alt="NN" src="_images/Colored_neural_network.png" /></p>
+<ul class="simple">
+<li><p>The workhorse of AI</p></li>
+</ul>
+</section>
+<section id="types-of-neural-networks">
+<h2><span class="section-number">47.2. </span>Types of Neural Networks<a class="headerlink" href="#types-of-neural-networks" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Feedforward (FNN)</p></li>
+<li><p>Convolution (CNN)</p></li>
+<li><p>Recurrent (RNN)</p></li>
+<li><p>Long short-term memory (LSTM)</p></li>
+<li><p>etc.</p></li>
+</ul>
+</section>
+<section id="layers">
+<h2><span class="section-number">47.3. </span>Layers<a class="headerlink" href="#layers" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The transition from layer <span class="math notranslate nohighlight">\(k-1\)</span> to layer <span class="math notranslate nohighlight">\(k\)</span> can be written as</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+z_l^{(k)} &amp; = b_{l0}^{(k-1)} + \sum_{j=1}^{p_{k-1} } w_{lj}^{(k-1)} a_j^{(k-1)} \\ 
+a_l^{(k)} &amp; = \sigma ( z_l^{(k)})
+\end{align*}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(a_j^{(0)} = x_j\)</span> is the input.</p>
+<ul class="simple">
+<li><p>The latent variable <span class="math notranslate nohighlight">\(z_l^{(k)}\)</span> usually takes a linear form</p></li>
+<li><p><em>Activation function</em> <span class="math notranslate nohighlight">\(\sigma(\cdot)\)</span> is usually a simple nonlinear function</p></li>
+<li><p>Popular choices</p>
+<ul>
+<li><p>Sigmoid: <span class="math notranslate nohighlight">\(1/(1+\exp(-x))\)</span></p></li>
+<li><p>Rectified linear unit (ReLu) <span class="math notranslate nohighlight">\(z\cdot 1\{x\geq 0\}\)</span></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="why-does-it-work">
+<h2><span class="section-number">47.4. </span>Why Does It Work?<a class="headerlink" href="#why-does-it-work" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Animated video by <a class="reference external" href="https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi">3Blue1Brown</a></p></li>
+<li><p>Feedforward: criterion evaluation</p></li>
+<li><p>Back propagation: parameter adjustment</p></li>
+</ul>
+</section>
+<section id="optimization">
+<h2><span class="section-number">47.5. </span>Optimization<a class="headerlink" href="#optimization" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>One-layer feedforward NN for demonstration</p></li>
+<li><p>Input: <span class="math notranslate nohighlight">\(p\)</span></p></li>
+<li><p>Hidden nodes: <span class="math notranslate nohighlight">\(K\)</span></p></li>
+<li><p>Criterion:
+$<span class="math notranslate nohighlight">\(
+\min_{\theta}   \frac{1}{2}\sum_{i=1}^n  Q_i \textrm{ where } Q_i = (y_i - \hat{y}_i )^2
+\)</span>$</p></li>
+</ul>
+</section>
+<section id="components-in-optimization">
+<h2><span class="section-number">47.6. </span>Components in Optimization<a class="headerlink" href="#components-in-optimization" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Input -&gt; hidden layer is indexed as (1),</p></li>
+<li><p>The hidden -&gt; output layer as (2):
+$<span class="math notranslate nohighlight">\(
+\begin{align*}
+\hat{y}_i &amp; =  b^{(2)} + \sum_{j=1}^K w_{j}^{(2)} a_j^{(1)} \\ 
+a_j^{(1)} &amp; = \sigma \left( z^{(1)}_j\right) \\
+z_j^{(1)} &amp; =b_j^{(1)} + \sum_{\ell=1}^p w_{j\ell}^{(1)} x_{i} 
+\end{align*}
+\)</span>$</p></li>
+<li><p>Intercept is called <strong>bias</strong></p></li>
+<li><p>Slope coefficient is called <strong>weight</strong></p></li>
+<li><p>Number of parameters: $<span class="math notranslate nohighlight">\( ( 1 + p_{K}) + \sum_{k=1}^K( 1 + p_{k-1}) ( 1 + p_{k})\)</span>$</p></li>
+</ul>
+</section>
+<section id="gradient-method">
+<h2><span class="section-number">47.7. </span>Gradient method<a class="headerlink" href="#gradient-method" title="Link to this heading">#</a></h2>
+<p>Taylor expansion</p>
+<div class="math notranslate nohighlight">
+\[
+Q(\theta_{t+1}) = Q(\theta_t) +  \nabla^{\top} Q(\theta_t) (\theta_{t+1}-\theta_{t}) + h.o.t.
+\]</div>
+<p>where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\nabla Q(\theta_t)\)</span> is <strong>Gradient</strong></p></li>
+<li><p><span class="math notranslate nohighlight">\((\theta_{t+1}-\theta_{t})\)</span> is unknown, use <span class="math notranslate nohighlight">\(p_t\)</span> to replace it as
+$<span class="math notranslate nohighlight">\(
+Q(\theta_{t+1}) = Q(\theta_t) +  \nabla^{\top} Q(\theta_t) p_t
+\)</span>$
+which direction reduces the value of function?</p></li>
+<li><p>Choose <span class="math notranslate nohighlight">\( \theta_{t+1}-\theta_{t} = p_t = - \alpha \cdot \nabla Q(\theta_t)\)</span> ensures reduction in <span class="math notranslate nohighlight">\(Q\)</span>, where <span class="math notranslate nohighlight">\(\alpha\)</span> is the <strong>learning rate</strong>, and we obtain the iterative formula
+$<span class="math notranslate nohighlight">\(
+\theta_{t+1} = \theta_{t} - \alpha \cdot \nabla Q(\theta_t)
+\)</span>$</p></li>
+</ul>
+</section>
+<section id="backpropagation">
+<h2><span class="section-number">47.8. </span>Backpropagation<a class="headerlink" href="#backpropagation" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Output layer -&gt; hidden layer
+\begin{align*}
+\frac{\partial Q_{i}}{\partial b^{(2)}} &amp; =-\left[y_{i}-f^{(2)}\left(X_{i}\right)\right]\
+\frac{\partial Q_{i}}{\partial w_{j}^{(2)}} &amp; =-\left[y_{i}-f^{(2)}\left(X_{i}\right)\right]\sigma\left(z_{j}\right)
+\end{align*}</p></li>
+<li><p>Hidden layer -&gt; input layer:</p>
+<ul>
+<li><p>NN is a composite function. By the chain rule
+\begin{align*}
+\frac{\partial Q_{i}}{\partial b^{(1)}} &amp; =\frac{\partial Q_{i}}{\partial b^{(2)}}\cdot\sigma’\left(z_{j}\right)\
+\frac{\partial Q_{i}}{\partial w_{j}^{(1)}} &amp; =\frac{\partial Q_{i}}{\partial w_{j}^{(2)}}\cdot\sigma’\left(z_{j}\right)x_{i}
+\end{align*}</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Example</strong>: Use NN to fit a linear model.</p>
+<ul class="simple">
+<li><p>Notice <span class="math notranslate nohighlight">\(x = \mathrm{ReLu}(x) - \mathrm{ReLu}(-x)\)</span>. A linear function can be exactly represented by NN with ReLu.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># simulate data</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># For reproducibility</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">*</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Linear relationship with noise</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Reshape to column vector (n, 1)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the Neural Network class</span>
+<span class="k">class</span> <span class="nc">NeuralNetwork</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">,</span> <span class="n">output_size</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize weights and biases.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">W1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.01</span>  <span class="c1"># Input to hidden weights</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">))</span>  <span class="c1"># bias</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">W2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">output_size</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.01</span>  <span class="c1"># Hidden to output weights</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">output_size</span><span class="p">))</span>  <span class="c1"># bias</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute the forward pass.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Z1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">W1</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">b1</span>  <span class="c1"># Input to hidden layer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">A1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Z1</span><span class="p">)</span>  <span class="c1"># ReLU activation</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">Z2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">W2</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">b2</span>  <span class="c1"># Hidden to output layer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">A2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Z2</span>  <span class="c1"># Linear activation (identity)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">A2</span>
+
+    <span class="k">def</span> <span class="nf">compute_loss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate Mean Squared Error loss.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y_true</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">backward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute gradients using backpropagation.&quot;&quot;&quot;</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># sample size</span>
+
+        <span class="c1"># Output layer gradients. 2nd layer is computed first.</span>
+        <span class="n">dZ2</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A2</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>  <span class="c1"># Gradient of loss w.r.t. Z2</span>
+        
+        <span class="n">dW2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A1</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">dZ2</span><span class="p">)</span>  <span class="c1"># Gradient of loss w.r.t. W2</span>
+        <span class="n">db2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dZ2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Gradient of loss w.r.t. b2</span>
+
+        <span class="c1"># Hidden layer gradients. 1st layer is computed last.</span>
+        <span class="n">dA1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">dZ2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">W2</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>  <span class="c1"># Gradient of loss w.r.t. A1</span>
+        <span class="n">dZ1</span> <span class="o">=</span> <span class="n">dA1</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Z1</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># Gradient of loss w.r.t. Z1 (ReLU derivative)</span>
+        <span class="n">dW1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">dZ1</span><span class="p">)</span>  <span class="c1"># Gradient of loss w.r.t. W1</span>
+        <span class="n">db1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dZ1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Gradient of loss w.r.t. b1</span>
+        <span class="k">return</span> <span class="n">dW1</span><span class="p">,</span> <span class="n">db1</span><span class="p">,</span> <span class="n">dW2</span><span class="p">,</span> <span class="n">db2</span>
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dW1</span><span class="p">,</span> <span class="n">db1</span><span class="p">,</span> <span class="n">dW2</span><span class="p">,</span> <span class="n">db2</span><span class="p">,</span> <span class="n">learning_rate</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update weights and biases using gradients.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">W1</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">dW1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b1</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">db1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">W2</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">dW2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b2</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">db2</span>
+
+    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">epochs</span><span class="p">,</span> <span class="n">learning_rate</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Train the neural network.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+            <span class="n">y_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <span class="c1"># Forward pass</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_loss</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>  <span class="c1"># Compute loss</span>
+            <span class="k">if</span> <span class="n">epoch</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># Print loss every 100 epochs</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Epoch </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s2">, Loss: </span><span class="si">{</span><span class="n">loss</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">dW1</span><span class="p">,</span> <span class="n">db1</span><span class="p">,</span> <span class="n">dW2</span><span class="p">,</span> <span class="n">db2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>  <span class="c1"># Backward pass</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">dW1</span><span class="p">,</span> <span class="n">db1</span><span class="p">,</span> <span class="n">dW2</span><span class="p">,</span> <span class="n">db2</span><span class="p">,</span> <span class="n">learning_rate</span><span class="p">)</span>  <span class="c1"># Update parameters</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Main execution</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># Initialize the neural network</span>
+    <span class="n">nn</span> <span class="o">=</span> <span class="n">NeuralNetwork</span><span class="p">(</span><span class="n">input_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">hidden_size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">output_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="c1"># Train the network</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+    
+    <span class="c1"># Evaluate the final performance</span>
+    <span class="n">final_pred</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">final_loss</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">compute_loss</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">final_pred</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Final Loss: </span><span class="si">{</span><span class="n">final_loss</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 0, Loss: 7.843827
+Epoch 100, Loss: 1.589406
+Epoch 200, Loss: 1.461798
+Epoch 300, Loss: 1.415684
+Epoch 400, Loss: 1.347697
+Epoch 500, Loss: 1.262448
+Epoch 600, Loss: 1.181384
+Epoch 700, Loss: 1.124319
+Epoch 800, Loss: 1.090392
+Epoch 900, Loss: 1.071762
+Final Loss: 1.061774
+</pre></div>
+</div>
+</div>
+</div>
+<p>A <code class="docutils literal notranslate"><span class="pre">pytorch</span></code> implementation of the same neural network</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
+
+<span class="c1"># Define the Neural Network class</span>
+<span class="k">class</span> <span class="nc">NeuralNetwork_torch</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">,</span> <span class="n">output_size</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">NeuralNetwork_torch</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">output_size</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">out</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span> <span class="c1"># Convert numpy arrays to torch tensors</span>
+<span class="n">x_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">y_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+<span class="c1"># Initialize the neural network</span>
+<span class="n">input_size</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">hidden_size</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">output_size</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">NeuralNetwork_torch</span><span class="p">(</span><span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">,</span> <span class="n">output_size</span><span class="p">)</span>
+
+<span class="c1"># Define the loss function and optimizer</span>
+<span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">()</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+
+<span class="c1"># Train the neural network</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+    <span class="c1"># Forward pass</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x_tensor</span><span class="p">)</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">y_tensor</span><span class="p">)</span>
+    
+    <span class="c1"># Backward pass and optimization</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+    
+    <span class="k">if</span> <span class="n">epoch</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Epoch </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s2">, Loss: </span><span class="si">{</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Evaluate the final performance</span>
+<span class="n">final_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x_tensor</span><span class="p">)</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="n">final_loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">final_pred</span><span class="p">),</span> <span class="n">y_tensor</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Final Loss: </span><span class="si">{</span><span class="n">final_loss</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 0, Loss: 8.963584
+Epoch 100, Loss: 1.196773
+Epoch 200, Loss: 1.137686
+Epoch 300, Loss: 1.098162
+Epoch 400, Loss: 1.073694
+Epoch 500, Loss: 1.059587
+Epoch 600, Loss: 1.051506
+Epoch 700, Loss: 1.046908
+Epoch 800, Loss: 1.044397
+Epoch 900, Loss: 1.043045
+Final Loss: 1.042303
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="stochastic-gradient-descent">
+<h1><span class="section-number">48. </span>Stochastic Gradient Descent<a class="headerlink" href="#stochastic-gradient-descent" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Large <span class="math notranslate nohighlight">\(n\)</span></p></li>
+<li><p>Sample a <em>minibatch</em></p>
+<ul>
+<li><p>Unbiased gradient, but large variance</p></li>
+</ul>
+</li>
+<li><p>Learning rate</p></li>
+<li><p>Many epochs</p></li>
+</ul>
+<section id="simulation-example">
+<h2><span class="section-number">48.1. </span>Simulation Example<a class="headerlink" href="#simulation-example" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Use NN to solve Poisson regression</p>
+<ul>
+<li><p>A trivial example for demonstration</p></li>
+<li><p>No hidden layer</p></li>
+<li><p>Keep the essence</p></li>
+</ul>
+</li>
+<li><p>See <code class="docutils literal notranslate"><span class="pre">data_example/nn_torch.ipynb</span></code></p></li>
+</ul>
+</section>
+<section id="regularization">
+<h2><span class="section-number">48.2. </span>Regularization<a class="headerlink" href="#regularization" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(L_1\)</span>-norm (Lasso)</p></li>
+<li><p><span class="math notranslate nohighlight">\(L_2\)</span>-norm (ridge)</p></li>
+<li><p>Learning rate</p></li>
+<li><p>Number of epochs and minibatches</p></li>
+</ul>
+</section>
+<section id="demonstrations">
+<h2><span class="section-number">48.3. </span>Demonstrations<a class="headerlink" href="#demonstrations" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">data_example/OLS_NN.ipynb</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_example/logit_NN.ipynb</span></code></p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="theory-is-incomplete">
+<h1><span class="section-number">49. </span>Theory is Incomplete<a class="headerlink" href="#theory-is-incomplete" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Theoretical understanding is an ongoing endeavor.</p></li>
+<li><p>Hornik, Stinchcombe, and White (1989):</p>
+<ul>
+<li><p>A single hidden layer neural network, given enough many nodes, is a <em>universal approximator</em> for any measurable function.</p></li>
+</ul>
+</li>
+</ul>
+<section id="large-language-model">
+<h2><span class="section-number">49.1. </span>Large Language Model<a class="headerlink" href="#large-language-model" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Transformer</p></li>
+</ul>
+<p><img alt="NN" src="_images/transformer.png" /></p>
+</section>
+<section id="attention-mechanism">
+<h2><span class="section-number">49.2. </span>Attention Mechanism<a class="headerlink" href="#attention-mechanism" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Vaswani et al. (2017): “Attention is all you need”</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(Q\)</span> (<span class="math notranslate nohighlight">\( N_q \times d_k\)</span>), <span class="math notranslate nohighlight">\(K\)</span> (<span class="math notranslate nohighlight">\( N_k \times d_k\)</span>), and <span class="math notranslate nohighlight">\(V = N_k \times d_v\)</span>
+$<span class="math notranslate nohighlight">\(
+Attention(Q, K, V) = softmax \left( \frac{Q K'}{\sqrt{d_k}} \right) V
+\)</span>$</p>
+<ul>
+<li><p>Q (queries): input vector seeking relevant information</p></li>
+<li><p>K (key): stored information to be retrieved</p></li>
+<li><p>V (value): actual contents to be weighted and aggregated</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="NN" src="_images/attention.png" /></p>
+</section>
+<section id="analog-to-ols">
+<h2><span class="section-number">49.3. </span>Analog to OLS<a class="headerlink" href="#analog-to-ols" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(Q \sim  X_{new}\)</span> <span class="math notranslate nohighlight">\((N_q \times p)\)</span>, <span class="math notranslate nohighlight">\(K \sim  X_{train}\)</span> <span class="math notranslate nohighlight">\((N \times p)\)</span>, and <span class="math notranslate nohighlight">\(V \sim  Y_{train}\)</span> <span class="math notranslate nohighlight">\((N \times 1)\)</span></p></li>
+<li><p>Attention is <span class="math notranslate nohighlight">\(\hat{Y}_{new}\)</span> <span class="math notranslate nohighlight">\((N_q \times 1)\)</span></p></li>
+<li><p>In natural language processing, <span class="math notranslate nohighlight">\(p\)</span> is the dim of vectorized word</p></li>
+<li><p><strong>Softmax</strong> is equivalent to Multinomial Logit</p></li>
+<li><p>Self-attention: <span class="math notranslate nohighlight">\(Q = X\)</span>, and thus <span class="math notranslate nohighlight">\(\hat{Y}\)</span> is in-sample fitting</p></li>
+</ul>
+</section>
+<section id="multi-head-attention">
+<h2><span class="section-number">49.4. </span>Multi-head Attention<a class="headerlink" href="#multi-head-attention" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Capture the same word in different contexts</p></li>
+<li><p>Linearly combine attentions from multiple heads</p></li>
+<li><p>Attention is to be used as inputs in FNN</p></li>
+</ul>
+<p><img alt="NN" src="_images/multi-head-att.png" /></p>
+</section>
+<section id="future">
+<h2><span class="section-number">49.5. </span>Future<a class="headerlink" href="#future" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Deep learning: engineering breakthrough</p></li>
+<li><p>Big data available</p></li>
+<li><p>Economics and finance researcher</p>
+<ul>
+<li><p>Use AI as a technology</p></li>
+<li><p>AI developers</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="py_09_ML.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">上一页</p>
+        <p class="prev-next-title"><span class="section-number">27. </span>Machine Learning</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="py_11_causal_inference.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title"><span class="section-number">50. </span>Lecture 11: Causal Inference and Program Evaluation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目录
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">47. Neural Networks</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zhentao-shi">47.1. Zhentao Shi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-neural-networks">47.2. Types of Neural Networks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#layers">47.3. Layers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-does-it-work">47.4. Why Does It Work?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization">47.5. Optimization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#components-in-optimization">47.6. Components in Optimization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-method">47.7. Gradient method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backpropagation">47.8. Backpropagation</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#stochastic-gradient-descent">48. Stochastic Gradient Descent</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-example">48.1. Simulation Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regularization">48.2. Regularization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demonstrations">48.3. Demonstrations</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#theory-is-incomplete">49. Theory is Incomplete</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#large-language-model">49.1. Large Language Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-mechanism">49.2. Attention Mechanism</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analog-to-ols">49.3. Analog to OLS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-head-attention">49.4. Multi-head Attention</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#future">49.5. Future</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+作者： 史震涛 Shi Zhentao
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

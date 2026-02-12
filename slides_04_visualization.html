@@ -1,0 +1,861 @@
+
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5. Visualization and Communication &#8212; 经济学中的数据科学</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="6. Advanced R" href="slides_05_advanced_R.html" />
+    <link rel="prev" title="4. Data Sources" href="slides_03_data_sources.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="zh-CN">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">经济学中的数据科学</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="搜索这本书..." aria-label="搜索这本书..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00-preface.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_00_intro.html">
+   1. Data Science for Economists
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_01_git.html">
+   2. Git and Github
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_02_basic_R.html">
+   3. Basic R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_03_data_sources.html">
+   4. Data Sources
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   5. Visualization and Communication
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_05_advanced_R.html">
+   6. Advanced R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_06_cloud_computing.html">
+   7. Cloud Computing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_07_simulation.html">
+   8. Simulation and Bootstrap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_08_integration.html">
+   9. Integration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_09_optimization.html">
+   10. Numerical Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_10_time_series.html">
+   11. Time Series Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_11_ML.html">
+   12. Machine Learning
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="切换导航" aria-controls="site-navigation"
+                title="切换导航" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="下载此页面"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/slides_04_visualization.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="下载源文件" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="列印成PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="全屏模式"
+        title="全屏模式"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/slides_04_visualization.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="发射 Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> 内容
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#graphs">
+   5.1. Graphs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plot">
+   5.2. Plot()
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ggplot2">
+   5.3. ggplot2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#syntax">
+   5.4. Syntax
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bank-marketing-data">
+     5.4.1. Bank Marketing Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#subgraphs">
+     5.4.2. Subgraphs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tidy-data">
+   5.5. Tidy data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#subgraphs-of-the-same-pattern">
+     5.5.1. Subgraphs of the same pattern
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example">
+     5.5.2. Example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interactive-graph">
+   5.6. Interactive Graph
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#r-markdown">
+   5.7. R Markdown
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#shiny-app">
+   5.8. Shiny App
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     5.8.1. Example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading">
+   5.9. Reading
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Visualization and Communication</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> 内容 </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#graphs">
+   5.1. Graphs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plot">
+   5.2. Plot()
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ggplot2">
+   5.3. ggplot2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#syntax">
+   5.4. Syntax
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bank-marketing-data">
+     5.4.1. Bank Marketing Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#subgraphs">
+     5.4.2. Subgraphs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tidy-data">
+   5.5. Tidy data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#subgraphs-of-the-same-pattern">
+     5.5.1. Subgraphs of the same pattern
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example">
+     5.5.2. Example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interactive-graph">
+   5.6. Interactive Graph
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#r-markdown">
+   5.7. R Markdown
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#shiny-app">
+   5.8. Shiny App
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     5.8.1. Example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading">
+   5.9. Reading
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="visualization-and-communication">
+<h1><span class="section-number">5. </span>Visualization and Communication<a class="headerlink" href="#visualization-and-communication" title="Permalink to this heading">¶</a></h1>
+<p>Zhentao Shi</p>
+<!-- code is tested on SCRP --><div class="section" id="graphs">
+<h2><span class="section-number">5.1. </span>Graphs<a class="headerlink" href="#graphs" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>“One picture is worth ten thousand words”.</p></li>
+<li><p>Modern graphs: web-based, interactive.</p></li>
+<li><p>Academia</p></li>
+<li><p>Journalism: Economist, SCMP, …</p></li>
+</ul>
+</div>
+<div class="section" id="plot">
+<h2><span class="section-number">5.2. </span>Plot()<a class="headerlink" href="#plot" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">plot</span></code> is a generic command for graphs in <code class="docutils literal notranslate"><span class="pre">r-base</span></code>.</p>
+<ul>
+<li><p>For preliminary statistical graphs.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">matplot</span></code> for multiple objects</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">quantmod</span><span class="o">::</span><span class="nf">getFX</span><span class="p">(</span><span class="s">&quot;USD/JPY&quot;</span><span class="p">)</span>
+<span class="n">quantmod</span><span class="o">::</span><span class="nf">getFX</span><span class="p">(</span><span class="s">&quot;HKD/JPY&quot;</span><span class="p">)</span>
+<span class="nf">matplot</span><span class="p">(</span> <span class="n">y</span> <span class="o">=</span> <span class="nf">cbind</span><span class="p">(</span><span class="n">USDJPY</span><span class="p">,</span> <span class="n">HKDJPY</span><span class="o">*</span><span class="m">7.8</span><span class="p">),</span> 
+         <span class="n">x</span> <span class="o">=</span> <span class="n">zoo</span><span class="o">::</span><span class="nf">index</span><span class="p">(</span><span class="n">USDJPY</span><span class="p">),</span> 
+         <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;l&quot;</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;time&quot;</span>  <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="ggplot2">
+<h2><span class="section-number">5.3. </span>ggplot2<a class="headerlink" href="#ggplot2" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Many proposals to enhance <code class="docutils literal notranslate"><span class="pre">plot</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ggplot2</span></code> is the most successful.</p></li>
+<li><p>Advanced system for high-quality statistical graphs.</p></li>
+<li><p>Many details</p>
+<ul>
+<li><p>Reference: <a class="reference external" href="http://link.springer.com/book/10.1007%2F978-0-387-98141-3"><strong>ggplot2 book</strong></a>,</p></li>
+<li><p>Downloadable inside CUHK campus network (VPN needed).</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="syntax">
+<h2><span class="section-number">5.4. </span>Syntax<a class="headerlink" href="#syntax" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ggplot()</span></code> specifies which dataset to use for the graph.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geom_XXX()</span></code> determines the shape to draw,</p>
+<ul>
+<li><p>scatter dots</p></li>
+<li><p>lines</p></li>
+<li><p>curves or areas…</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
+<span class="n">d0</span> <span class="o">=</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;data_example/AJR.csv&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="c1"># &quot;avexpr: average protection against expropriation risk</span>
+<span class="c1"># &quot;logpgp95&quot;: logarithm of GDP per capita in 1995</span>
+
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">d0</span><span class="p">)</span> <span class="o">+</span> <span class="nf">geom_point</span><span class="p">(</span><span class="n">mapping</span> <span class="o">=</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">avexpr</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">logpgp95</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="bank-marketing-data">
+<h3><span class="section-number">5.4.1. </span>Bank Marketing Data<a class="headerlink" href="#bank-marketing-data" title="Permalink to this heading">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">bank_0</span> <span class="o">=</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;data_example/bank-full.csv&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;;&quot;</span> <span class="p">)</span>
+<span class="nf">dim</span><span class="p">(</span><span class="n">bank_0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># scatter plot</span>
+<span class="n">p1</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">bank_0</span><span class="p">)</span> <span class="o">+</span> <span class="nf">geom_point</span><span class="p">(</span><span class="n">mapping</span> <span class="o">=</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">age</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">balance</span><span class="p">))</span> 
+<span class="c1"># balance: average yearly balance, in euros (numeric) </span>
+<span class="nf">print</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># scatter plot with groups</span>
+<span class="n">p2</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">bank_0</span><span class="p">)</span> <span class="o">+</span> <span class="nf">geom_point</span><span class="p">(</span><span class="n">mapping</span> <span class="o">=</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">age</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">balance</span><span class="p">,</span> 
+                                                       <span class="n">color</span> <span class="o">=</span> <span class="n">education</span><span class="p">,</span> 
+                                                       <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="subgraphs">
+<h3><span class="section-number">5.4.2. </span>Subgraphs<a class="headerlink" href="#subgraphs" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Subgraphs convey rich information and easy comparison.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ggplot2</span></code> is good at drawing multiple graphs, either of the same pattern or of
+different patterns.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p3</span> <span class="o">&lt;-</span> <span class="n">p1</span> <span class="o">+</span> <span class="nf">facet_wrap</span><span class="p">(</span> <span class="n">martial</span> <span class="o">~</span> <span class="n">education</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">p3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># educational levels in each ago</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">bank_0</span><span class="p">)</span> <span class="o">+</span> <span class="nf">geom_bar</span><span class="p">(</span><span class="n">mapping</span> <span class="o">=</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">age</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="n">education</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p4</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">bank_0</span><span class="p">)</span> <span class="o">+</span> <span class="nf">geom_bar</span><span class="p">(</span><span class="n">mapping</span> <span class="o">=</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">age</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="n">education</span><span class="p">),</span> <span class="n">position</span> <span class="o">=</span> <span class="s">&quot;dodge&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">p4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p5</span> <span class="o">&lt;-</span> <span class="n">p4</span> <span class="o">+</span> <span class="nf">coord_flip</span><span class="p">()</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">p5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="tidy-data">
+<h2><span class="section-number">5.5. </span>Tidy data<a class="headerlink" href="#tidy-data" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>ggplot adds elements in a graph one by one, and then print out the graph all together.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ggplot2</span></code> accommodates data frames of a particular format.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tidyr</span></code> is a package that helps prepare the data frames.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Example: <a class="reference external" href="https://www.rug.nl/ggdc/productivity/pwt/?lang=en">Penn World Table</a></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">d0</span> <span class="o">=</span> <span class="n">readr</span><span class="o">::</span><span class="nf">read_csv</span><span class="p">(</span><span class="s">&quot;data_example/PWT100.csv&quot;</span><span class="p">,</span> <span class="n">col_names</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">d0</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">d0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># work with a smaller dataset</span>
+
+<span class="n">d1</span> <span class="o">&lt;-</span> <span class="nf">select</span><span class="p">(</span><span class="n">d0</span><span class="p">,</span> <span class="n">countrycode</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">rgdpe</span><span class="p">,</span> <span class="n">pop</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">filter</span><span class="p">(</span><span class="n">countrycode</span> <span class="o">%in%</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;CHN&quot;</span><span class="p">,</span> <span class="s">&quot;RUS&quot;</span><span class="p">,</span> <span class="s">&quot;JPN&quot;</span><span class="p">,</span> <span class="s">&quot;USA&quot;</span><span class="p">))</span> <span class="o">%&gt;%</span>
+  <span class="nf">mutate</span><span class="p">(</span><span class="n">gdpcapita</span> <span class="o">=</span> <span class="n">rgdpe</span><span class="o">/</span><span class="n">pop</span><span class="p">)</span> 
+
+<span class="c1"># rgdpe: Expenditure-side real GDP at chained PPPs, </span>
+<span class="c1">#        to compare relative living standards across countries and over time</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">d1</span><span class="p">)</span>  
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">d1</span><span class="p">)</span> <span class="o">+</span> 
+  <span class="nf">geom_point</span><span class="p">(</span><span class="n">mapping</span> <span class="o">=</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">rgdpe</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">countrycode</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">d1</span><span class="p">)</span> <span class="o">+</span> 
+  <span class="nf">geom_line</span><span class="p">(</span><span class="n">mapping</span> <span class="o">=</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">gdpcapita</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">countrycode</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">s1</span> <span class="o">&lt;-</span> <span class="n">d1</span> <span class="o">%&gt;%</span> 
+  <span class="nf">select</span><span class="p">(</span> <span class="n">countrycode</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">pop</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">spread</span><span class="p">(</span> <span class="n">key</span> <span class="o">=</span> <span class="n">year</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">pop</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">gather</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="s">&#39;1950&#39;</span><span class="o">:</span><span class="s">&#39;2019&#39;</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="s">&quot;year&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="s">&quot;pop&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="subgraphs-of-the-same-pattern">
+<h3><span class="section-number">5.5.1. </span>Subgraphs of the same pattern<a class="headerlink" href="#subgraphs-of-the-same-pattern" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Example: Plot the density of two estimators under three different data generating processes.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">load</span><span class="p">(</span><span class="s">&quot;data_example/big150.Rdata&quot;</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">big150</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">big150_1</span> <span class="o">&lt;-</span> <span class="nf">select</span><span class="p">(</span><span class="n">big150</span><span class="p">,</span> <span class="n">typb</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">b1_c</span><span class="p">)</span> <span class="o">%&gt;%</span>
+            <span class="nf">gather</span><span class="p">(</span><span class="s">&quot;b1&quot;</span><span class="p">,</span> <span class="s">&quot;b1_c&quot;</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="s">&quot;estimator&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="s">&quot;value&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">big150_1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">theme</span></code> is to tune the supplementary elements like the background, the size and font of the axis text and so on.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">big150_1</span><span class="p">)</span>
+<span class="n">p1</span> <span class="o">&lt;-</span> <span class="n">p1</span> <span class="o">+</span> <span class="nf">geom_area</span><span class="p">(</span>
+  <span class="n">stat</span> <span class="o">=</span> <span class="s">&quot;density&quot;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="n">.</span><span class="m">25</span><span class="p">,</span>
+  <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">value</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="n">estimator</span><span class="p">),</span> <span class="n">position</span> <span class="o">=</span> <span class="s">&quot;identity&quot;</span>
+<span class="p">)</span>
+<span class="n">p1</span> <span class="o">&lt;-</span> <span class="n">p1</span> <span class="o">+</span> <span class="nf">facet_grid</span><span class="p">(</span><span class="n">.</span> <span class="o">~</span> <span class="n">typb</span><span class="p">)</span>
+<span class="n">p1</span> <span class="o">&lt;-</span> <span class="n">p1</span> <span class="o">+</span> <span class="nf">geom_vline</span><span class="p">(</span><span class="n">xintercept</span> <span class="o">=</span> <span class="m">0</span><span class="p">)</span>
+<span class="n">p1</span> <span class="o">&lt;-</span> <span class="n">p1</span> <span class="o">+</span> <span class="nf">theme_bw</span><span class="p">()</span>
+<span class="n">p1</span> <span class="o">&lt;-</span> <span class="n">p1</span> <span class="o">+</span> <span class="nf">theme</span><span class="p">(</span>
+  <span class="n">strip.text</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">12</span><span class="p">),</span>
+  <span class="n">axis.text</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">12</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="example">
+<h3><span class="section-number">5.5.2. </span>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>This example aligns two graphs of different patterns in one page.</p>
+<ul>
+<li><p>Similar graphs appear in <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1002/jae.2640">Shi and Zheng, 2018</a>.</p></li>
+<li><p>To unify the theme of the two subgraphs,
+define an object <code class="docutils literal notranslate"><span class="pre">theme1</span></code> and apply it in both graphic objects
+<code class="docutils literal notranslate"><span class="pre">p1</span></code> and <code class="docutils literal notranslate"><span class="pre">p2</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># graph packages</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">lattice</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">gridExtra</span><span class="p">)</span>
+
+<span class="nf">load</span><span class="p">(</span><span class="s">&quot;data_example/multigraph.Rdata&quot;</span><span class="p">)</span> <span class="c1"># load data</span>
+
+<span class="c1"># unify the theme in the two graphs</span>
+<span class="n">theme1</span> <span class="o">&lt;-</span> <span class="nf">theme_bw</span><span class="p">()</span> <span class="o">+</span> <span class="nf">theme</span><span class="p">(</span>
+  <span class="n">axis.title.x</span> <span class="o">=</span> <span class="nf">element_blank</span><span class="p">(),</span>
+  <span class="n">strip.text</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">12</span><span class="p">),</span>
+  <span class="n">axis.text</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">12</span><span class="p">),</span>
+  <span class="n">legend.position</span> <span class="o">=</span> <span class="s">&quot;bottom&quot;</span><span class="p">,</span> <span class="n">legend.title</span> <span class="o">=</span> <span class="nf">element_blank</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># sub-graph 1</span>
+<span class="n">d1</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">month</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="m">480</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="n">m_vec</span><span class="p">)</span>
+<span class="n">p1</span> <span class="o">&lt;-</span> <span class="nf">qplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">month</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">m</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">d1</span><span class="p">,</span> <span class="n">geom</span> <span class="o">=</span> <span class="s">&quot;line&quot;</span><span class="p">)</span>
+<span class="n">p1</span> <span class="o">&lt;-</span> <span class="n">p1</span> <span class="o">+</span> <span class="n">theme1</span> <span class="o">+</span> <span class="nf">ylab</span><span class="p">(</span><span class="s">&quot;fraction of chartists&quot;</span><span class="p">)</span>
+
+<span class="c1"># sug-graph 2</span>
+<span class="n">d2</span><span class="o">$</span><span class="n">month</span> <span class="o">&lt;-</span> <span class="m">1</span><span class="o">:</span><span class="m">480</span>
+<span class="n">p2</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">d2</span><span class="p">)</span> <span class="o">+</span> <span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">month</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">value</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">variable</span><span class="p">))</span>
+<span class="n">p2</span> <span class="o">&lt;-</span> <span class="n">p2</span> <span class="o">+</span> <span class="n">theme1</span> <span class="o">+</span> <span class="nf">ylab</span><span class="p">(</span><span class="s">&quot;price and fundamental&quot;</span><span class="p">)</span>
+
+<span class="c1"># generate the grahp</span>
+<span class="nf">grid.arrange</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">nrow</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="interactive-graph">
+<h2><span class="section-number">5.6. </span>Interactive Graph<a class="headerlink" href="#interactive-graph" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Users provides customized inputs</p></li>
+<li><p>Graph presents corresponding outcome</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flexboard.Rmd</span></code> is an example.</p></li>
+<li><p>Easy to convert a ggplot2 graph with <code class="docutils literal notranslate"><span class="pre">plotly::ggplotly()</span></code>.</p></li>
+</ul>
+</div>
+<div class="section" id="r-markdown">
+<h2><span class="section-number">5.7. </span>R Markdown<a class="headerlink" href="#r-markdown" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Provide R-basics from previous version of rmd file.</p></li>
+</ul>
+<p>Notebooks</p>
+<ul class="simple">
+<li><p>Rmd format</p></li>
+<li><p>Ipynb format</p></li>
+</ul>
+</div>
+<div class="section" id="shiny-app">
+<h2><span class="section-number">5.8. </span>Shiny App<a class="headerlink" href="#shiny-app" title="Permalink to this heading">¶</a></h2>
+<p>Web-based R package for interactive graph.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://shiny.rstudio.com/tutorial/">tutorial</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UI</span></code>: interface</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Server</span></code>: calculation of input data</p></li>
+</ul>
+<div class="section" id="id1">
+<h3><span class="section-number">5.8.1. </span>Example<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://zhentao-shi.shinyapps.io/ShenzhenHousing-Shiny/">Shenzhen housing price</a></p>
+<ul>
+<li><p><a class="reference external" href="https://github.com/metricshilab/Shenzhen-Housing">code</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://zwmei-metrics.shinyapps.io/boosted_hp_app/">HP filter</a></p>
+<ul>
+<li><p><a class="reference external" href="https://github.com/metricshilab/Boosted_HP_App">code</a></p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Also, see my script of Newton’s method.</strong></p>
+</div>
+</div>
+<div class="section" id="reading">
+<h2><span class="section-number">5.9. </span>Reading<a class="headerlink" href="#reading" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Wickham and Grolemund](<a class="reference external" href="https://r4ds.had.co.nz/">https://r4ds.had.co.nz/</a>)</p>
+<ul>
+<li><p>Ch 3: data visualization</p></li>
+<li><p>Ch.12: tidy data</p></li>
+<li><p>Ch 27: R markdown</p></li>
+<li><p>Ch 28: graphics for communication</p></li>
+<li><p>Ch 29: R markdown formats</p></li>
+<li><p>Ch 30: R markdown workflow</p></li>
+</ul>
+</li>
+<li><p>This <a class="reference external" href="https://cosx.org/2023/02/earthquake/">link</a> is a good example of using <code class="docutils literal notranslate"><span class="pre">ggplot2</span></code> to draw nice statistical graphs.</p></li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="slides_03_data_sources.html" title="上一页 页">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">上一页</p>
+            <p class="prev-next-title"><span class="section-number">4. </span>Data Sources</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="slides_05_advanced_R.html" title="下一页 页">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Advanced R</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      通过 史震涛 Shi Zhentao<br/>
+    
+        &copy; 版权 2023.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

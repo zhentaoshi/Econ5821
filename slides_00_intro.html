@@ -1,0 +1,577 @@
+
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1. Data Science for Economists &#8212; 经济学中的数据科学</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="2. Git and Github" href="slides_01_git.html" />
+    <link rel="prev" title="Preface" href="00-preface.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="zh-CN">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">经济学中的数据科学</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="搜索这本书..." aria-label="搜索这本书..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00-preface.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   1. Data Science for Economists
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_01_git.html">
+   2. Git and Github
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_02_basic_R.html">
+   3. Basic R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_03_data_sources.html">
+   5. Data Sources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_04_visualization.html">
+   6. Visualization and Communication
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_05_advanced_R.html">
+   7. Advanced R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_06_cloud_computing.html">
+   8. Cloud Computing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_07_simulation.html">
+   9. Simulation and Bootstrap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_08_integration.html">
+   10. Integration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_09_optimization.html">
+   11. Numerical Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_10_time_series.html">
+   12. Time Series Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_11_ML.html">
+   18. Machine Learning
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="切换导航" aria-controls="site-navigation"
+                title="切换导航" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="下载此页面"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/slides_00_intro.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="下载源文件" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="列印成PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="全屏模式"
+        title="全屏模式"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/slides_00_intro.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="发射 Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> 内容
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#big-data">
+   1.1. Big data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-science-in-economics">
+   1.2. Data Science in Economics
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-data">
+     1.2.1. Why data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#structured-data">
+     1.2.2. Structured data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unstructured-data">
+     1.2.3. Unstructured data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#programming">
+   1.3. Programming
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#coverage">
+   1.4. Coverage
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assessment">
+   1.5. Assessment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#environment">
+   1.6. Environment
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Data Science for Economists</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> 内容 </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#big-data">
+   1.1. Big data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-science-in-economics">
+   1.2. Data Science in Economics
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-data">
+     1.2.1. Why data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#structured-data">
+     1.2.2. Structured data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unstructured-data">
+     1.2.3. Unstructured data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#programming">
+   1.3. Programming
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#coverage">
+   1.4. Coverage
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assessment">
+   1.5. Assessment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#environment">
+   1.6. Environment
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="data-science-for-economists">
+<h1><span class="section-number">1. </span>Data Science for Economists<a class="headerlink" href="#data-science-for-economists" title="Permalink to this heading">¶</a></h1>
+<p><strong>Zhentao Shi</strong></p>
+<p>Department of Economics</p>
+<p>The Chinese University of Hong Kong</p>
+<div class="section" id="big-data">
+<h2><span class="section-number">1.1. </span>Big data<a class="headerlink" href="#big-data" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>A popular concept in formation.</p></li>
+<li><p>A basket of industrial applications.</p></li>
+<li><p>Digitalized information.</p>
+<ul>
+<li><p>Cheap to collect, transport, store, and distribute.</p></li>
+<li><p>These are engineering questions.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="data-science-in-economics">
+<h2><span class="section-number">1.2. </span>Data Science in Economics<a class="headerlink" href="#data-science-in-economics" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Data science is about the entire life cycle of data analysis.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Economics gives data science purposes</p>
+<ul>
+<li><p>Start with a question</p></li>
+<li><p>Find, clean, analyze data</p></li>
+<li><p>Interpret, present data</p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="why-data">
+<h3><span class="section-number">1.2.1. </span>Why data<a class="headerlink" href="#why-data" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Scientific research. e.g. Physics.</p>
+<ul>
+<li><p>Theory and experimental evidence.</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Economics research.</p>
+<ul>
+<li><p>Modeling causality</p></li>
+<li><p>Experimental causality</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Business analytics</p>
+<ul>
+<li><p>Descriptive statistics</p></li>
+<li><p>Prediction</p></li>
+<li><p>Inference</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="structured-data">
+<h3><span class="section-number">1.2.2. </span>Structured data<a class="headerlink" href="#structured-data" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Cross-sectional data</p></li>
+<li><p>Time series</p></li>
+<li><p>Panel data</p>
+<ul>
+<li><p>tall and narrow</p></li>
+<li><p>short and wide</p></li>
+<li><p>tall and wide</p></li>
+</ul>
+</li>
+<li><p>Tensor data</p></li>
+</ul>
+<ul class="simple">
+<li><p>Covid-19 data (<a class="reference external" href="https://github.com/owid/covid-19-data">https://github.com/owid/covid-19-data</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="unstructured-data">
+<h3><span class="section-number">1.2.3. </span>Unstructured data<a class="headerlink" href="#unstructured-data" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Texts</p></li>
+<li><p>Graphs</p></li>
+</ul>
+<ul class="simple">
+<li><p>Audios</p></li>
+<li><p>Videos</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="programming">
+<h2><span class="section-number">1.3. </span>Programming<a class="headerlink" href="#programming" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Essential skill</p></li>
+<li><p>Low-level languages: C, Fortran, …</p></li>
+<li><p>High-level languages: Python, R, Matlab, Stata, …</p></li>
+</ul>
+<ul class="simple">
+<li><p>This course uses R for demonstration</p></li>
+<li><p>Students can choose their own languages</p></li>
+</ul>
+</div>
+<div class="section" id="coverage">
+<h2><span class="section-number">1.4. </span>Coverage<a class="headerlink" href="#coverage" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Basic R</p></li>
+<li><p>Advanced R</p></li>
+<li><p>Tools for productivity</p></li>
+</ul>
+<ul class="simple">
+<li><p>Simulations</p>
+<ul>
+<li><p>resampling</p></li>
+</ul>
+</li>
+<li><p>Optimization</p></li>
+</ul>
+<ul class="simple">
+<li><p>panel data</p></li>
+<li><p>factor analysis</p></li>
+<li><p>nonparametric estimation</p></li>
+<li><p>machine learning</p></li>
+</ul>
+</div>
+<div class="section" id="assessment">
+<h2><span class="section-number">1.5. </span>Assessment<a class="headerlink" href="#assessment" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Take-home midterm (50%)</p></li>
+<li><p>Group project (50%)</p></li>
+</ul>
+</div>
+<div class="section" id="environment">
+<h2><span class="section-number">1.6. </span>Environment<a class="headerlink" href="#environment" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/zhentaoshi/econ_data_science">Github</a></p></li>
+<li><p><a class="reference external" href="https://scrp-login.econ.cuhk.edu.hk/">CUHK SCRP</a></p></li>
+</ul>
+<p><strong>The End</strong></p>
+<p>Recommended software (Windows)</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.putty.org/">PuTTY</a></p></li>
+<li><p><a class="reference external" href="https://winscp.net/eng/download.php">WinSCP</a></p></li>
+</ul>
+<p><a class="reference external" href="https://missing.csail.mit.edu/">The Missing Semester of Your CS Education</a></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="00-preface.html" title="上一页 页">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">上一页</p>
+            <p class="prev-next-title">Preface</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="slides_01_git.html" title="下一页 页">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Git and Github</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      通过 史震涛 Shi Zhentao<br/>
+    
+        &copy; 版权 2023.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

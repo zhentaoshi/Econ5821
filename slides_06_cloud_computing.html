@@ -1,0 +1,591 @@
+
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>7. Cloud Computing &#8212; 经济学中的数据科学</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="8. Simulation and Bootstrap" href="slides_07_simulation.html" />
+    <link rel="prev" title="6. Advanced R" href="slides_05_advanced_R.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="zh-CN">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">经济学中的数据科学</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="搜索这本书..." aria-label="搜索这本书..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00-preface.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_00_intro.html">
+   1. Data Science for Economists
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_01_git.html">
+   2. Git and Github
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_02_basic_R.html">
+   3. Basic R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_03_data_sources.html">
+   4. Data Sources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_04_visualization.html">
+   5. Visualization and Communication
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_05_advanced_R.html">
+   6. Advanced R
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   7. Cloud Computing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_07_simulation.html">
+   8. Simulation and Bootstrap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_08_integration.html">
+   9. Integration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_09_optimization.html">
+   10. Numerical Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_10_time_series.html">
+   11. Time Series Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_11_ML.html">
+   12. Machine Learning
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="切换导航" aria-controls="site-navigation"
+                title="切换导航" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="下载此页面"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/slides_06_cloud_computing.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="下载源文件" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="列印成PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="全屏模式"
+        title="全屏模式"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/slides_06_cloud_computing.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="发射 Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> 内容
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#workflow">
+   7.1. Workflow
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#windows-users">
+   7.2. Windows users
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#open-source">
+   7.3. Open Source
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#user-experience">
+   7.4. User Experience
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rstudio-server">
+   7.5. RStudio Server
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cuhk-econ">
+   7.6. CUHK Econ
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#long-jobs">
+   7.7. Long jobs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prepare-in-advance">
+   7.8. Prepare in Advance
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reproducibility">
+   7.9. Reproducibility
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   7.10. Exercises
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Cloud Computing</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> 内容 </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#workflow">
+   7.1. Workflow
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#windows-users">
+   7.2. Windows users
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#open-source">
+   7.3. Open Source
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#user-experience">
+   7.4. User Experience
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rstudio-server">
+   7.5. RStudio Server
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cuhk-econ">
+   7.6. CUHK Econ
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#long-jobs">
+   7.7. Long jobs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prepare-in-advance">
+   7.8. Prepare in Advance
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reproducibility">
+   7.9. Reproducibility
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   7.10. Exercises
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="cloud-computing">
+<h1><span class="section-number">7. </span>Cloud Computing<a class="headerlink" href="#cloud-computing" title="Permalink to this heading">¶</a></h1>
+<p>Zhentao Shi</p>
+<ul class="simple">
+<li><p>Remote server is more powerful personal computer</p></li>
+<li><p>Instruments for intensive jobs</p></li>
+<li><p>Cloud storage</p></li>
+<li><p>Cloud computing</p></li>
+</ul>
+<div class="section" id="workflow">
+<h2><span class="section-number">7.1. </span>Workflow<a class="headerlink" href="#workflow" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>No fundamental difference lies between local and cloud</p></li>
+<li><p>Prepare in the cloud serve the data and code</p></li>
+<li><p>Open a shell for communication, run the code, and collect the results</p></li>
+<li><p>Command-line interface (CLI)</p></li>
+</ul>
+</div>
+<div class="section" id="windows-users">
+<h2><span class="section-number">7.2. </span>Windows users<a class="headerlink" href="#windows-users" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.putty.org/"><code class="docutils literal notranslate"><span class="pre">PUTTY</span></code></a></p></li>
+<li><p><a class="reference external" href="http://winscp.net/eng/download.php"><code class="docutils literal notranslate"><span class="pre">WinSCP</span></code></a></p></li>
+</ul>
+</div>
+<div class="section" id="open-source">
+<h2><span class="section-number">7.3. </span>Open Source<a class="headerlink" href="#open-source" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Strong justification for open-source languages</p></li>
+<li><p>Installation with no limitations</p></li>
+</ul>
+</div>
+<div class="section" id="user-experience">
+<h2><span class="section-number">7.4. </span>User Experience<a class="headerlink" href="#user-experience" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Cost and barrier of remote computing have reduced significantly</p></li>
+<li><p>Remote desktop best mimics the familiar operation system on a local computer</p></li>
+<li><p>Internet latency</p></li>
+<li><p>CLI flexible</p></li>
+</ul>
+<ul class="simple">
+<li><p>Remote Jupyter and Rstudio works via a web browser as an interface</p></li>
+<li><p>Mouse and keyboard are still local</p></li>
+<li><p>Command is send from the browser to the remote computer</p></li>
+<li><p>Results are send back to the browser for display</p></li>
+<li><p>IDEs also have file management, to partially replace WinSCP</p></li>
+</ul>
+</div>
+<div class="section" id="rstudio-server">
+<h2><span class="section-number">7.5. </span>RStudio Server<a class="headerlink" href="#rstudio-server" title="Permalink to this heading">¶</a></h2>
+<p>The command line shells lack a graphic interface for interactive data analysis.
+<a class="reference external" href="https://rstudio.com/products/rstudio/#rstudio-server">RStudio server</a> offers a local-like
+environment via a web browser to communicate with a remote server.
+The remote server can be specified for users’ need.</p>
+<ul class="simple">
+<li><p>Rstudio on SCRP</p></li>
+<li><p>Jupyter Notebook on SCRP</p></li>
+</ul>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">RStudio</span> <span class="pre">Cloud</span></code></p>
+<ul>
+<li><p>a free service to facilitate teaching and demonstration</p></li>
+<li><p>computation unit is too weak to execute serious tasks.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SCRP</span></code></p>
+<ul>
+<li><p>resembles a workplace environment in a small company</p></li>
+<li><p>always online (with VPN connection)</p></li>
+<li><p>more powerful than the best local computer we can afford.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Amazon</span> <span class="pre">Web</span> <span class="pre">Service</span> <span class="pre">Cloud</span></code> or <code class="docutils literal notranslate"><span class="pre">阿里云</span></code></p>
+<ul>
+<li><p>commercial service tailored according to budget</p></li>
+<li><p>from tiny demonstrative display to big enterprise business applications</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="cuhk-econ">
+<h2><span class="section-number">7.6. </span>CUHK Econ<a class="headerlink" href="#cuhk-econ" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Students have access to powerful multi-core computers</p></li>
+</ul>
+<ol class="simple">
+<li><p>Log in <code class="docutils literal notranslate"><span class="pre">scrp-login-2.econ.cuhk.edu.hk</span></code>;</p></li>
+<li><p>Upload R scripts and data to the server;</p></li>
+<li><p>In a shell, run <code class="docutils literal notranslate"><span class="pre">R</span> <span class="pre">--no-save</span> <span class="pre">&lt;file_name.R&gt;</span> <span class="pre">result_file_name.out</span></code>;</p></li>
+<li><p>To run a command in the background, add <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> at the end of the above command.</p></li>
+</ol>
+<ul class="simple">
+<li><p>This example comes from &#64;lin2020.</p></li>
+<li><p>Only use 15% of the data and a sparse grid of tuning parameters</p></li>
+<li><p>It takes about 9 minutes with 24 cores on <code class="docutils literal notranslate"><span class="pre">econsuper</span></code> (27 min on <code class="docutils literal notranslate"><span class="pre">SCRP</span></code>)</p></li>
+</ul>
+<p>R packages <code class="docutils literal notranslate"><span class="pre">caret</span></code>, <code class="docutils literal notranslate"><span class="pre">doParallel</span></code>, and <code class="docutils literal notranslate"><span class="pre">gbm</span></code> are needed for the following script.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">zhentao</span><span class="o">.</span><span class="n">shi</span><span class="nd">@scrp</span><span class="o">-</span><span class="n">login</span><span class="o">-</span><span class="mf">2.</span><span class="n">econ</span><span class="o">.</span><span class="n">cuhk</span><span class="o">.</span><span class="n">edu</span><span class="o">.</span><span class="n">hk</span>
+<span class="n">cd</span> <span class="n">data_example</span>
+<span class="n">R</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">save</span> <span class="o">&lt;</span><span class="n">Beijing_housing_gbm</span><span class="o">.</span><span class="n">R</span><span class="o">&gt;</span> <span class="n">GBM_BJ</span><span class="o">.</span><span class="n">out</span> <span class="o">&amp;</span> 
+</pre></div>
+</div>
+</div>
+<div class="section" id="long-jobs">
+<h2><span class="section-number">7.7. </span>Long jobs<a class="headerlink" href="#long-jobs" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Keep jobs running on the background</p></li>
+<li><p>Terminal can be freed for other task</p></li>
+<li><p>Disconnect with the server and the task is still running</p></li>
+<li><p>Otherwise, the task will be terminated immediately once we close window, disconnect with the server, or lose Internet or VPN connection.</p></li>
+</ul>
+</div>
+<div class="section" id="prepare-in-advance">
+<h2><span class="section-number">7.8. </span>Prepare in Advance<a class="headerlink" href="#prepare-in-advance" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Test the input and output in small scale on  local computer or graphic cloud server</p>
+<ul>
+<li><p>Work in CLI means no interaction with intermediate results</p></li>
+<li><p>Don’t debug in CLI</p></li>
+</ul>
+</li>
+<li><p>Think in advance how to retrieve the results</p></li>
+<li><p>Export key results as data files (Rdata or csv…) or graph files (pdf, jpeg, png).</p></li>
+</ul>
+</div>
+<div class="section" id="reproducibility">
+<h2><span class="section-number">7.9. </span>Reproducibility<a class="headerlink" href="#reproducibility" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Keep the same environment across local computers and remote clusters</p></li>
+<li><p>Package system and version</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">renv</span></code></p></li>
+</ul>
+</li>
+<li><p>Virtual machine</p></li>
+<li><p><a class="reference external" href="https://hub.docker.com/repository/docker/ztshi/econ_data_sci/general">Docker</a></p></li>
+<li><p><a class="reference external" href="https://gitpod.io/#https://github.com/zhentaoshi/econ_data_science">Gitpod</a></p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">renv</span></code> provides a system to easily reproduce an environment.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">renv</span><span class="p">::</span><span class="n">init</span><span class="p">()</span> <span class="c1"># initiate a local environment</span>
+<span class="n">renv</span><span class="p">::</span><span class="n">snapshot</span><span class="p">()</span> <span class="c1"># scan the folder for packages and dependencies</span>
+<span class="n">renv</span><span class="p">::</span><span class="n">restore</span><span class="p">()</span> <span class="c1"># restore the environment recorded in `renv.lock`</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exercises">
+<h2><span class="section-number">7.10. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Write a simple R script</p></li>
+<li><p>Run it on SCRP with CLI</p></li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="slides_05_advanced_R.html" title="上一页 页">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">上一页</p>
+            <p class="prev-next-title"><span class="section-number">6. </span>Advanced R</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="slides_07_simulation.html" title="下一页 页">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Simulation and Bootstrap</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      通过 史震涛 Shi Zhentao<br/>
+    
+        &copy; 版权 2023.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

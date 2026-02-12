@@ -1,0 +1,1658 @@
+
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>11. Time Series Analysis &#8212; 经济学中的数据科学</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="12. Machine Learning" href="slides_11_ML.html" />
+    <link rel="prev" title="10. Numerical Optimization" href="slides_09_optimization.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="zh-CN">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">经济学中的数据科学</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="搜索这本书..." aria-label="搜索这本书..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00-preface.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_00_intro.html">
+   1. Data Science for Economists
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_01_git.html">
+   2. Git and Github
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_02_basic_R.html">
+   3. Basic R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_03_data_sources.html">
+   4. Data Sources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_04_visualization.html">
+   5. Visualization and Communication
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_05_advanced_R.html">
+   6. Advanced R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_06_cloud_computing.html">
+   7. Cloud Computing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_07_simulation.html">
+   8. Simulation and Bootstrap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_08_integration.html">
+   9. Integration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_09_optimization.html">
+   10. Numerical Optimization
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   11. Time Series Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_11_ML.html">
+   12. Machine Learning
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="切换导航" aria-controls="site-navigation"
+                title="切换导航" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="下载此页面"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/slides_10_time_series.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="下载源文件" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="列印成PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="全屏模式"
+        title="全屏模式"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/slides_10_time_series.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="发射 Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> 内容
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stationary-time-series">
+   11.1. Stationary Time Series
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#two-operations">
+   11.2. Two Operations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distributed-lags">
+   11.3. Distributed Lags
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#autoregressive-model">
+   11.4. Autoregressive model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#invertibility">
+   11.5. Invertibility
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numerical-example">
+     11.5.1. Numerical Example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#autoregressive-distributed-lag-models">
+     11.5.2. Autoregressive Distributed Lag Models
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example">
+     11.5.3. Example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ardl-1-1-regression-example">
+     11.5.4. ARDL(1,1) regression example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spurious-regression">
+   11.6. Spurious Regression
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discovery">
+     11.6.1. Discovery
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#autoregression-and-moving-average">
+     11.6.2. Autoregression and Moving Average
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#arma">
+   11.7. ARMA
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#autocorrelation-patterns">
+     11.7.1. Autocorrelation Patterns
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modeling">
+     11.7.2. Modeling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#seasonality">
+     11.7.3. Seasonality
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#estimation">
+     11.7.4. Estimation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#information-criteria">
+     11.7.5. Information criteria.
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#unit-root">
+   11.8. Unit Root
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#implication">
+     11.8.1. Implication
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#distribution">
+     11.8.2. Distribution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hypothesis-testing">
+     11.8.3. Hypothesis Testing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     11.8.4. Numerical Example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simulation-dicky-fuller-distribution">
+     11.8.5. Simulation Dicky-Fuller Distribution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#specification-of-df-test">
+   11.9. Specification of DF test
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-tests">
+   11.10. Other tests
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#time-series-filtering">
+   11.11. Time Series Filtering
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cointegration">
+   11.12. Cointegration
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#source-of-cointegration">
+     11.12.1. Source of Cointegration
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#definitions">
+   11.13. Definitions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#error-correction-model">
+   11.14. Error Correction Model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reformulation">
+     11.14.1. Reformulation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#predictive-regression">
+   11.15. Predictive Regression
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vector-autoregression-var">
+   11.16. Vector Autoregression (VAR)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   11.17. Invertibility
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#impulse-response-function">
+   11.18. Impulse Response Function
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#variables">
+   11.19. Variables
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#structural-var">
+   11.20. Structural VAR
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vecm-representation">
+   11.21. VECM Representation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#johansen-test">
+   11.22. Johansen Test
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#estimating-vecm-by-ols">
+     11.22.1. Estimating VECM by OLS
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#future-of-time-series-study">
+   11.23. Future of Time Series Study
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Time Series Analysis</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> 内容 </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stationary-time-series">
+   11.1. Stationary Time Series
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#two-operations">
+   11.2. Two Operations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distributed-lags">
+   11.3. Distributed Lags
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#autoregressive-model">
+   11.4. Autoregressive model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#invertibility">
+   11.5. Invertibility
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numerical-example">
+     11.5.1. Numerical Example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#autoregressive-distributed-lag-models">
+     11.5.2. Autoregressive Distributed Lag Models
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example">
+     11.5.3. Example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ardl-1-1-regression-example">
+     11.5.4. ARDL(1,1) regression example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spurious-regression">
+   11.6. Spurious Regression
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discovery">
+     11.6.1. Discovery
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#autoregression-and-moving-average">
+     11.6.2. Autoregression and Moving Average
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#arma">
+   11.7. ARMA
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#autocorrelation-patterns">
+     11.7.1. Autocorrelation Patterns
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modeling">
+     11.7.2. Modeling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#seasonality">
+     11.7.3. Seasonality
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#estimation">
+     11.7.4. Estimation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#information-criteria">
+     11.7.5. Information criteria.
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#unit-root">
+   11.8. Unit Root
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#implication">
+     11.8.1. Implication
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#distribution">
+     11.8.2. Distribution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hypothesis-testing">
+     11.8.3. Hypothesis Testing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     11.8.4. Numerical Example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simulation-dicky-fuller-distribution">
+     11.8.5. Simulation Dicky-Fuller Distribution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#specification-of-df-test">
+   11.9. Specification of DF test
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-tests">
+   11.10. Other tests
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#time-series-filtering">
+   11.11. Time Series Filtering
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cointegration">
+   11.12. Cointegration
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#source-of-cointegration">
+     11.12.1. Source of Cointegration
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#definitions">
+   11.13. Definitions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#error-correction-model">
+   11.14. Error Correction Model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reformulation">
+     11.14.1. Reformulation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#predictive-regression">
+   11.15. Predictive Regression
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vector-autoregression-var">
+   11.16. Vector Autoregression (VAR)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   11.17. Invertibility
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#impulse-response-function">
+   11.18. Impulse Response Function
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#variables">
+   11.19. Variables
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#structural-var">
+   11.20. Structural VAR
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vecm-representation">
+   11.21. VECM Representation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#johansen-test">
+   11.22. Johansen Test
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#estimating-vecm-by-ols">
+     11.22.1. Estimating VECM by OLS
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#future-of-time-series-study">
+   11.23. Future of Time Series Study
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="time-series-analysis">
+<h1><span class="section-number">11. </span>Time Series Analysis<a class="headerlink" href="#time-series-analysis" title="Permalink to this heading">¶</a></h1>
+<p>Zhentao Shi</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">zoo</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Practical topics</p></li>
+<li><p>Useful in business contexts</p></li>
+<li><p>Modeling choices and challenges</p></li>
+</ul>
+<ul class="simple">
+<li><p>Time Series Regression</p></li>
+<li><p>Univariate Time Series Models</p></li>
+<li><p>Nonstationary Time Series</p></li>
+<li><p>Multivariate Time Series</p></li>
+</ul>
+<ul class="simple">
+<li><p>Traditionally, small models</p></li>
+<li><p>High dimensional time series modeling is work in progress</p></li>
+<li><p>Predictive regression</p></li>
+</ul>
+<div class="section" id="stationary-time-series">
+<h2><span class="section-number">11.1. </span>Stationary Time Series<a class="headerlink" href="#stationary-time-series" title="Permalink to this heading">¶</a></h2>
+<p>For a univariate time series <span class="math notranslate nohighlight">\((y_t)_{t= - \infty} ^ {\infty}\)</span>,</p>
+<ul class="simple">
+<li><p><strong>Strictly stationary</strong>: joint distribution of any finite coordinate only depends on their relative position.</p></li>
+<li><p><strong>Weakly stationary</strong>: the first two moments of any pair <span class="math notranslate nohighlight">\(y_t\)</span> and <span class="math notranslate nohighlight">\(y_s\)</span> only depends on their relative position.</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(E[y_t] = \mu\)</span> for all <span class="math notranslate nohighlight">\(t\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathrm{var}[y_t] = \sigma^2\)</span> for all <span class="math notranslate nohighlight">\(t\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathrm{cov}[y_t, y_{t+\tau} ] \)</span> only depends on <span class="math notranslate nohighlight">\(\tau\)</span> independent of <span class="math notranslate nohighlight">\(t\)</span></p></li>
+</ul>
+</li>
+</ul>
+<p>This notions can be extended to multiple-variate time series, for example <span class="math notranslate nohighlight">\((y_t, x_t, e_t)\)</span>.</p>
+</div>
+<div class="section" id="two-operations">
+<h2><span class="section-number">11.2. </span>Two Operations<a class="headerlink" href="#two-operations" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Lag Operator</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[L x_t = x_{t-1}\]</div>
+<div class="math notranslate nohighlight">
+\[L^{\tau} x_t = x_{t-\tau}\]</div>
+<ul class="simple">
+<li><p>Difference operator
+$<span class="math notranslate nohighlight">\(\Delta x_t = x_t - x_{t-1} = (1-L) x_t\)</span>$</p></li>
+</ul>
+</div>
+<div class="section" id="distributed-lags">
+<h2><span class="section-number">11.3. </span>Distributed Lags<a class="headerlink" href="#distributed-lags" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Lagged <span class="math notranslate nohighlight">\(x\)</span> on the right-hand side</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+y_t = \alpha + \sum_{i=0}^{\infty} \beta_i  x_{t-i} + e_t = \alpha + B(L) x_t + e_t 
+\]</div>
+<p>where $<span class="math notranslate nohighlight">\(B(L) = \sum_{i=0}^{\infty} \beta_i L^i\)</span>$ is a polynomial of the lag operators.</p>
+</div>
+<div class="section" id="autoregressive-model">
+<h2><span class="section-number">11.4. </span>Autoregressive model<a class="headerlink" href="#autoregressive-model" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Lagged <span class="math notranslate nohighlight">\(y\)</span> on the right-hand side</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+y_t = \alpha + \sum_{i=1}^p \gamma_p y_{t-p} + e_t 
+\]</div>
+<p>can be written as
+<span class="math notranslate nohighlight">\(
+C(L) y_t = \alpha + e_t
+\)</span>
+where
+<span class="math notranslate nohighlight">\(
+C(L) = 1 -\gamma_1 L - \cdots - \gamma_p L^p
+\)</span>
+is a polynomial of the lag operators.</p>
+</div>
+<div class="section" id="invertibility">
+<h2><span class="section-number">11.5. </span>Invertibility<a class="headerlink" href="#invertibility" title="Permalink to this heading">¶</a></h2>
+<p>If the roots of the polynomial equation <span class="math notranslate nohighlight">\(C(z) = 0\)</span> <strong>all</strong> lies <strong>outside</strong> of the unit circle, we say the autoregressive model is invertible.</p>
+<p>If <span class="math notranslate nohighlight">\(e_t\)</span> is stationary with finite variance and <span class="math notranslate nohighlight">\(\alpha=0\)</span> (homogenous difference equation):</p>
+<ul class="simple">
+<li><p>If the module of the smallest root is bigger than 1, <span class="math notranslate nohighlight">\(y_t\)</span> is a stationary time series</p></li>
+<li><p>If the module of the smallest root is equal to 1, <span class="math notranslate nohighlight">\(y_t\)</span> is a <strong>unit root</strong> process</p></li>
+<li><p>If the module of the smallest root is smaller than 1, <span class="math notranslate nohighlight">\(y_t\)</span> is an <strong>explosive</strong> process</p></li>
+</ul>
+<div class="section" id="numerical-example">
+<h3><span class="section-number">11.5.1. </span>Numerical Example<a class="headerlink" href="#numerical-example" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(C(L) = 1 - 0.5L\)</span> is invertible.</p></li>
+<li><p><span class="math notranslate nohighlight">\(C(L) = 1 - L\)</span> is non-invertible.</p></li>
+<li><p><span class="math notranslate nohighlight">\(C(L) = 1 - 1.1L\)</span> is non-invertible.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">AR</span> <span class="o">=</span> <span class="nf">function</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="bp">T</span><span class="p">){</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="bp">T</span><span class="p">)</span>
+    <span class="nf">for </span><span class="p">(</span><span class="n">t</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="bp">T</span><span class="p">){</span>
+        <span class="nf">if </span><span class="p">(</span><span class="n">t</span> <span class="o">&gt;</span> <span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">y</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="n">t</span> <span class="o">-</span> <span class="m">1</span><span class="p">]</span> <span class="o">+</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nf">return</span><span class="p">(</span><span class="nf">ts</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="bp">T</span> <span class="o">=</span> <span class="m">100</span><span class="p">;</span> <span class="nf">plot</span><span class="p">(</span> <span class="n">x</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="bp">T</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nf">AR</span><span class="p">(</span><span class="m">0.9</span><span class="p">,</span> <span class="bp">T</span><span class="p">),</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;l&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="bp">T</span> <span class="o">=</span> <span class="m">100</span><span class="p">;</span> <span class="nf">plot</span><span class="p">(</span> <span class="n">x</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="bp">T</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nf">AR</span><span class="p">(</span><span class="m">1.0</span><span class="p">,</span> <span class="bp">T</span><span class="p">),</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;l&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="bp">T</span> <span class="o">=</span> <span class="m">100</span><span class="p">;</span> <span class="nf">plot</span><span class="p">(</span> <span class="n">x</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="bp">T</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nf">AR</span><span class="p">(</span><span class="m">1.05</span><span class="p">,</span><span class="bp">T</span><span class="p">),</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;l&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="autoregressive-distributed-lag-models">
+<h3><span class="section-number">11.5.2. </span>Autoregressive Distributed Lag Models<a class="headerlink" href="#autoregressive-distributed-lag-models" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>ARDL(p,r) model:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+C(L) y_t = \mu + B(L) x_t + e_t 
+\]</div>
+<p>where
+<span class="math notranslate nohighlight">\(
+C(L) = 1 -\gamma_1 L - \cdots - \gamma_p L^p
+\)</span>
+and
+<span class="math notranslate nohighlight">\(
+B(L) =  \beta_0 + \beta_1 L + \cdots + \beta_r L^r.
+\)</span></p>
+<ul class="simple">
+<li><p><strong>Granger causality</strong>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\beta_0 = \beta_1 = \cdots = \beta_r = 0
+\]</div>
+</div>
+<div class="section" id="example">
+<h3><span class="section-number">11.5.3. </span>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>In simple regression form</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+y_t = \beta_1 + \beta_2 x_t + \beta_3 x_{t-1} + \gamma y_{t-1} + e_t
+\]</div>
+<ul class="simple">
+<li><p>Temporal lags of effect. eg: policy lag</p></li>
+<li><p>Expectation formed from the past. eg: forecast</p></li>
+<li><p>Explicitly depends on history. eg: wealth accumulation</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">quantmod</span><span class="o">::</span><span class="nf">getSymbols.FRED</span><span class="p">(</span><span class="n">Symbols</span> <span class="o">=</span> <span class="s">&quot;POILBREUSDQ&quot;</span><span class="p">,</span> <span class="n">env</span> <span class="o">=</span> <span class="n">.GlobalEnv</span><span class="p">)</span> <span class="c1"># Brent Oil price</span>
+<span class="n">quantmod</span><span class="o">::</span><span class="nf">getSymbols.FRED</span><span class="p">(</span><span class="n">Symbols</span> <span class="o">=</span> <span class="s">&quot;IPB50001SQ&quot;</span><span class="p">,</span> <span class="n">env</span> <span class="o">=</span> <span class="n">.GlobalEnv</span><span class="p">)</span> <span class="c1"># industrial Index (quarterly data)</span>
+
+<span class="n">d0</span><span class="o">&lt;-</span> <span class="nf">merge</span><span class="p">(</span><span class="n">POILBREUSDQ</span><span class="p">,</span> <span class="n">IPB50001SQ</span><span class="p">,</span> <span class="n">retclass</span> <span class="o">=</span> <span class="s">&quot;data.frame&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+  <span class="n">dplyr</span><span class="o">::</span><span class="nf">filter</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">POILBREUSDQ</span><span class="p">))</span> <span class="o">%&gt;%</span>
+  <span class="nf">mutate</span><span class="p">(</span> <span class="n">x</span> <span class="o">=</span> <span class="nf">ts</span><span class="p">(</span><span class="n">POILBREUSDQ</span><span class="p">),</span> <span class="n">y</span> <span class="o">=</span> <span class="nf">ts</span><span class="p">(</span><span class="n">IPB50001SQ</span><span class="p">))</span>
+
+<span class="nf">rm</span><span class="p">(</span><span class="n">POILBREUSDQ</span><span class="p">,</span> <span class="n">IPB50001SQ</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">d0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">matplot</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">d0</span><span class="p">,</span> 
+        <span class="n">x</span> <span class="o">=</span> <span class="nf">as.Date</span><span class="p">(</span><span class="nf">row.names</span><span class="p">(</span><span class="n">d0</span><span class="p">),</span> <span class="s">&quot;%Y-%m-%d&quot;</span><span class="p">),</span> 
+        <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;l&quot;</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;year&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="ardl-1-1-regression-example">
+<h3><span class="section-number">11.5.4. </span>ARDL(1,1) regression example<a class="headerlink" href="#ardl-1-1-regression-example" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dynlm</span></code> only works with objects <code class="docutils literal notranslate"><span class="pre">ts()</span></code>. The transformation is essential</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dynlm</span><span class="o">::</span><span class="nf">dynlm</span><span class="p">(</span> <span class="n">y</span> <span class="o">~</span> <span class="nf">L</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">3</span> <span class="p">)</span> <span class="o">+</span> <span class="nf">L</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">12</span><span class="p">)</span> <span class="p">),</span> <span class="n">data</span> <span class="o">=</span> <span class="n">d0</span> <span class="p">)</span>  <span class="o">%&gt;%</span>
+      <span class="nf">summary</span><span class="p">(</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Differenced dependent variable (<code class="docutils literal notranslate"><span class="pre">d(</span> <span class="pre">)</span></code>)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dynlm</span><span class="o">::</span><span class="nf">dynlm</span><span class="p">(</span> <span class="nf">d</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">~</span> <span class="nf">L</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">)</span> <span class="p">)</span> <span class="o">+</span> <span class="nf">L</span><span class="p">(</span><span class="nf">d</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">1</span><span class="p">)</span> <span class="p">),</span> <span class="n">data</span> <span class="o">=</span> <span class="n">d0</span> <span class="p">)</span>  <span class="o">%&gt;%</span>
+      <span class="nf">summary</span><span class="p">(</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="spurious-regression">
+<h2><span class="section-number">11.6. </span>Spurious Regression<a class="headerlink" href="#spurious-regression" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>The two time series <span class="math notranslate nohighlight">\(\{y_t\}\)</span> and <span class="math notranslate nohighlight">\(\{x_t\}\)</span> are generated independently, so that <span class="math notranslate nohighlight">\(E[y_t|x_t] = 0\)</span>.</p></li>
+<li><p>However, we observe a high <span class="math notranslate nohighlight">\(R^2\)</span> and large t-value if we regression <span class="math notranslate nohighlight">\(y_t\)</span> against <span class="math notranslate nohighlight">\(x_t\)</span>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="bp">T</span> <span class="o">=</span> <span class="m">50</span>
+<span class="n">a</span> <span class="o">=</span> <span class="m">1</span>
+
+<span class="n">y</span> <span class="o">&lt;-</span> <span class="nf">AR</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="bp">T</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">AR</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="bp">T</span><span class="p">)</span>
+<span class="nf">matplot</span><span class="p">(</span> <span class="nf">cbind</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;l&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">reg</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">y</span> <span class="o">~</span> <span class="n">x</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">reg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="discovery">
+<h3><span class="section-number">11.6.1. </span>Discovery<a class="headerlink" href="#discovery" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Granger and Newbold (1974): If we naively use 1.96 as the critical value for the <span class="math notranslate nohighlight">\(t\)</span>-ratio, how often we would reject the null hypothesis that <span class="math notranslate nohighlight">\(\beta = 0\)</span>?</p></li>
+<li><p>The nominal asymptotic test size is <span class="math notranslate nohighlight">\(5\%\)</span> according to the standard asymptotic theory</p></li>
+<li><p>The empirical size is about 0.80 in this simulation</p></li>
+<li><p>The drastic deviation suggests that the standard asymptotic theory fails in the nonstationary environment</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">spurious</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="bp">T</span><span class="p">){</span>
+    <span class="n">y</span> <span class="o">&lt;-</span> <span class="nf">AR</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="bp">T</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">AR</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="bp">T</span><span class="p">)</span>
+    
+    <span class="n">reg</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">y</span> <span class="o">~</span> <span class="n">x</span><span class="p">)</span>
+    <span class="n">p.val</span> <span class="o">&lt;-</span> <span class="nf">summary</span><span class="p">(</span><span class="n">reg</span><span class="p">)[[</span><span class="m">4</span><span class="p">]][</span><span class="m">2</span><span class="p">,</span><span class="m">4</span><span class="p">]</span>
+    <span class="c1"># save the p-value of the estimate of x&#39;s coefficient</span>
+    <span class="nf">return</span><span class="p">(</span><span class="n">p.val</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">out</span> <span class="o">&lt;-</span> <span class="n">plyr</span><span class="o">::</span><span class="nf">ldply</span><span class="p">(</span><span class="n">.data</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="m">1000</span><span class="p">,</span> <span class="n">.fun</span> <span class="o">=</span> <span class="n">spurious</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="m">1.0</span> <span class="p">,</span> <span class="bp">T</span> <span class="o">=</span> <span class="m">1000</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span> <span class="nf">mean</span><span class="p">(</span><span class="n">out</span> <span class="o">&lt;</span> <span class="m">0.05</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="autoregression-and-moving-average">
+<h3><span class="section-number">11.6.2. </span>Autoregression and Moving Average<a class="headerlink" href="#autoregression-and-moving-average" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Box-Jenkins (1976): ARMA</p></li>
+<li><p>No economic theory. For fitting and prediction only.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Building block: <strong>White noise</strong></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(E[e_t] = 0\)</span>, <span class="math notranslate nohighlight">\(E[e_t^2] = \sigma_e^2\)</span>, and <span class="math notranslate nohighlight">\(E[e_t, e_s] = 0\)</span> for all <span class="math notranslate nohighlight">\(t\neq s\)</span>.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="arma">
+<h2><span class="section-number">11.7. </span>ARMA<a class="headerlink" href="#arma" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>AR(p):
+<span class="math notranslate nohighlight">\(
+y_t = \mu + \gamma_1 y_{t-1} + \cdots +\gamma_p y_{t-p} + e_t
+\)</span></p></li>
+<li><p>MA(q):
+<span class="math notranslate nohighlight">\(
+y_t = \mu + e_t + \theta_1 e_{t-1} +  \cdots + \theta_q e_{t-q}
+\)</span></p></li>
+<li><p>ARMA(p,q):
+<span class="math notranslate nohighlight">\(
+(1-\Gamma(L) ) y_t = \mu + \Theta (L) e_t
+\)</span></p></li>
+</ul>
+<p>Stationarity: in AR form whether all roots lies out of the unit cycle.</p>
+<div class="section" id="autocorrelation-patterns">
+<h3><span class="section-number">11.7.1. </span>Autocorrelation Patterns<a class="headerlink" href="#autocorrelation-patterns" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>MA(q): finite dependence</p></li>
+<li><p>AR(1): geometric decline</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(E[ y_t ] = \mu / (1-\gamma_1)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathrm{var}[y_t] = \sigma_e^2 / (1-\gamma_1^2 )\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(E[ y_t | y_{t-1} ] = \mu + \gamma_1 y_{t-1}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathrm{var}[y_t | y_{t-1} ] = \sigma_e^2 \)</span></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="modeling">
+<h3><span class="section-number">11.7.2. </span>Modeling<a class="headerlink" href="#modeling" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>ARIMA(p, r, q) $<span class="math notranslate nohighlight">\((1-\Gamma(L) ) \Delta^r y_t = \mu + \Theta (L) e_t\)</span>$</p></li>
+<li><p>Transform into stationary time series by taking logarithm and/or difference.</p></li>
+<li><p>Fit ARMA(p,q)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">reg1</span> <span class="o">&lt;-</span> <span class="nf">arima</span><span class="p">(</span><span class="n">d0</span><span class="o">$</span><span class="n">x</span><span class="p">,</span> <span class="n">order</span>  <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">0</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span> <span class="p">)</span><span class="c1"># arima(2,0,3)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">reg1</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">reg1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">reg2</span> <span class="o">&lt;-</span> <span class="nf">arima</span><span class="p">(</span><span class="n">d0</span><span class="o">$</span><span class="n">x</span><span class="p">,</span> <span class="n">order</span>  <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">)</span> <span class="p">)</span> <span class="c1"># arima(2,1,3)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">reg2</span><span class="o">$</span><span class="n">coef</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="seasonality">
+<h3><span class="section-number">11.7.3. </span>Seasonality<a class="headerlink" href="#seasonality" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Generated due to sampling frequency</p>
+<ul>
+<li><p><a class="reference external" href="https://www.kaggle.com/datasets/fedesoriano/traffic-prediction-dataset">Traffic data</a></p></li>
+<li><p><a class="reference external" href="https://www.kaggle.com/datasets/utathya/electricity-consumption">Electronic consumption</a></p></li>
+</ul>
+</li>
+<li><p>Add dummies to control seasonality</p></li>
+</ul>
+</div>
+<div class="section" id="estimation">
+<h3><span class="section-number">11.7.4. </span>Estimation<a class="headerlink" href="#estimation" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>MLE for MA(q)</p></li>
+<li><p>MLE for ARMA(p,q)</p></li>
+<li><p>OLS for AR(p)</p></li>
+</ul>
+</div>
+<div class="section" id="information-criteria">
+<h3><span class="section-number">11.7.5. </span>Information criteria.<a class="headerlink" href="#information-criteria" title="Permalink to this heading">¶</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(k\)</span> be the total number of slope coefficient in the model.</p>
+<ul class="simple">
+<li><p>Akaike information criterion: <span class="math notranslate nohighlight">\(\log( \hat{\sigma}^2 ) + 2\times (k / T )\)</span>.</p>
+<ul>
+<li><p>Tend to overfit, but better for prediction</p></li>
+</ul>
+</li>
+<li><p>Bayesian information criterion: <span class="math notranslate nohighlight">\(\log( \hat{\sigma}^2 ) + \log(T) \times (k / T )\)</span></p>
+<ul>
+<li><p>Model selection consistent</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Information criteria are not restricted to time series regressions.</p></li>
+<li><p>They are general statistical measures for model/variable selection.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span> <span class="n">reg1</span><span class="o">$</span><span class="n">aic</span> <span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span> <span class="n">reg2</span><span class="o">$</span><span class="n">aic</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="unit-root">
+<h2><span class="section-number">11.8. </span>Unit Root<a class="headerlink" href="#unit-root" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>AR(1) with AR coefficient equals 1. $<span class="math notranslate nohighlight">\(y_t = \mu + y_{t-1} + e_t \)</span>$</p></li>
+<li><p>Nonstationary</p></li>
+<li><p>Brownian motion: normal innovation</p></li>
+<li><p>Random walk</p></li>
+</ul>
+<div class="section" id="implication">
+<h3><span class="section-number">11.8.1. </span>Implication<a class="headerlink" href="#implication" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>conditional and unconditional mean</p></li>
+<li><p>conditional and unconditional variance</p></li>
+<li><p><span class="math notranslate nohighlight">\(h\)</span>-period ahead forecast</p></li>
+</ul>
+</div>
+<div class="section" id="distribution">
+<h3><span class="section-number">11.8.2. </span>Distribution<a class="headerlink" href="#distribution" title="Permalink to this heading">¶</a></h3>
+<p>The OLS estimator</p>
+<div class="math notranslate nohighlight">
+\[
+T(\hat{\gamma}_1 - 1) \stackrel{d}{\to} \text{ a stable distribution}.
+\]</div>
+<p>but the asymptotic distribution is not normal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">quantmod</span><span class="p">,</span> <span class="n">quietly</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">getSymbols</span><span class="p">(</span><span class="s">&quot;^GSPC&quot;</span><span class="p">)</span> <span class="c1"># S&amp;P 500</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">GSPC</span><span class="o">$</span><span class="n">GSPC.Close</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;l&quot;</span><span class="p">)</span>
+
+<span class="nf">tail</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="hypothesis-testing">
+<h3><span class="section-number">11.8.3. </span>Hypothesis Testing<a class="headerlink" href="#hypothesis-testing" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Null hypothesis: unit root.
+$<span class="math notranslate nohighlight">\( \Delta y_t = \mu + (\gamma_1 - 1 ) y_{t-1} + e_t = \mu+ \theta y_{t-1} + e_t\)</span><span class="math notranslate nohighlight">\(
+where \)</span> \theta = \gamma_1 - 1 <span class="math notranslate nohighlight">\(. Under the null, \)</span>\theta = 0$.</p></li>
+<li><p>The <span class="math notranslate nohighlight">\(t\)</span>-statistic is the test statistic for the Dicky-Fuller test.</p></li>
+<li><p>Under the null, the <span class="math notranslate nohighlight">\(t\)</span>-statistic asymptotically follows a pivotal distribution.</p></li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h3><span class="section-number">11.8.4. </span>Numerical Example<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>In this numerical example, the test does not reject the null.</p></li>
+</ul>
+<p>Notice: the test is one-sided.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">urca</span><span class="p">)</span> <span class="c1"># package for unit root and cointegration</span>
+<span class="nf">print</span><span class="p">(</span> <span class="nf">summary</span><span class="p">(</span><span class="nf">ur.df</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;drift&quot;</span><span class="p">,</span> <span class="n">lags</span> <span class="o">=</span> <span class="m">0</span><span class="p">)</span> <span class="p">)</span> <span class="p">)</span> <span class="c1"># y here is the S&amp;P 500 index</span>
+<span class="c1"># the test does not reject the null of &quot;unit root&quot;</span>
+<span class="c1"># loosely speaking, it is evidence in support of random walk</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="nf">arima.sim</span><span class="p">(</span> <span class="n">model</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">ar</span> <span class="o">=</span><span class="n">.</span><span class="m">8</span><span class="p">),</span> <span class="n">n</span> <span class="o">=</span> <span class="m">100</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span> <span class="n">urca</span><span class="o">::</span><span class="nf">ur.df</span><span class="p">(</span> <span class="n">y</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;none&quot;</span><span class="p">,</span> <span class="n">selectlags</span> <span class="o">=</span> <span class="s">&quot;AIC&quot;</span> <span class="p">)</span> <span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="simulation-dicky-fuller-distribution">
+<h3><span class="section-number">11.8.5. </span>Simulation Dicky-Fuller Distribution<a class="headerlink" href="#simulation-dicky-fuller-distribution" title="Permalink to this heading">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">dynlm</span><span class="p">)</span>
+
+<span class="n">DF.sim</span> <span class="o">=</span> <span class="nf">function</span><span class="p">(</span><span class="n">ar</span><span class="p">){</span>
+  <span class="n">Rep</span> <span class="o">=</span> <span class="m">500</span>
+  <span class="n">n</span> <span class="o">=</span> <span class="m">100</span>
+  
+  <span class="n">B.hat</span> <span class="o">=</span> <span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">Rep</span><span class="p">)</span>
+  
+  <span class="nf">for </span><span class="p">(</span><span class="n">r</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">Rep</span><span class="p">){</span>
+    <span class="nf">if </span><span class="p">(</span><span class="n">ar</span> <span class="o">&lt;</span> <span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">y</span> <span class="o">=</span> <span class="nf">arima.sim</span><span class="p">(</span> <span class="n">model</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">ar</span> <span class="o">=</span> <span class="n">ar</span><span class="p">),</span> <span class="n">n</span> <span class="o">=</span> <span class="n">n</span><span class="p">)</span>
+    <span class="p">}</span> <span class="n">else</span> <span class="nf">if </span><span class="p">(</span><span class="n">ar</span> <span class="o">==</span> <span class="m">1</span><span class="p">){</span>
+      <span class="n">y</span> <span class="o">=</span> <span class="nf">ts</span><span class="p">(</span> <span class="nf">cumsum</span><span class="p">(</span> <span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">)</span> <span class="p">)</span>
+    <span class="p">}</span>
+    <span class="n">reg.dyn</span> <span class="o">=</span> <span class="nf">dynlm</span><span class="p">(</span> <span class="n">y</span> <span class="o">~</span> <span class="nf">L</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="m">1</span><span class="p">)</span> <span class="p">)</span>
+    <span class="n">B.hat</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">=</span> <span class="nf">coef</span><span class="p">(</span><span class="n">reg.dyn</span><span class="p">)[</span><span class="m">2</span><span class="p">]</span>
+  <span class="p">}</span>
+  <span class="nf">return</span><span class="p">(</span><span class="n">B.hat</span><span class="p">)</span>
+  <span class="nf">print</span><span class="p">(</span><span class="s">&quot;simulation is done with ar = &quot;</span><span class="p">,</span> <span class="n">ar</span><span class="p">,</span> <span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="nf">DF.sim</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="nf">density</span><span class="p">(</span><span class="n">B</span><span class="p">),</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="n">xlim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1.1</span><span class="p">))</span>
+
+<span class="n">B</span> <span class="o">=</span> <span class="nf">DF.sim</span><span class="p">(</span><span class="m">0.5</span><span class="p">)</span>
+<span class="nf">lines</span><span class="p">(</span><span class="nf">density</span><span class="p">(</span><span class="n">B</span><span class="p">),</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">)</span>
+
+<span class="n">B</span> <span class="o">=</span> <span class="nf">DF.sim</span><span class="p">(</span><span class="m">0.9</span><span class="p">)</span>
+<span class="nf">lines</span><span class="p">(</span> <span class="nf">density</span><span class="p">(</span><span class="n">B</span><span class="p">),</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;purple&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="specification-of-df-test">
+<h2><span class="section-number">11.9. </span>Specification of DF test<a class="headerlink" href="#specification-of-df-test" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>The error term must be a white noise for the DF distribution</p></li>
+<li><p>DF test’s critical values vary with the specfication of drift and/or trend</p></li>
+<li><p>Augmented Dicky-Fuller test: add more differenced lag terms</p></li>
+</ul>
+</div>
+<div class="section" id="other-tests">
+<h2><span class="section-number">11.10. </span>Other tests<a class="headerlink" href="#other-tests" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Phillips-Perron test</p></li>
+<li><p>KPSS test</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span> <span class="n">urca</span><span class="o">::</span><span class="nf">ur.pp</span><span class="p">(</span> <span class="n">y</span> <span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span> <span class="n">urca</span><span class="o">::</span><span class="nf">ur.kpss</span><span class="p">(</span> <span class="n">y</span> <span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="time-series-filtering">
+<h2><span class="section-number">11.11. </span>Time Series Filtering<a class="headerlink" href="#time-series-filtering" title="Permalink to this heading">¶</a></h2>
+<p><strong>Hodrick-Prescott filter</strong>: Decompose a time series into <em>trend</em> and <em>cycle</em></p>
+<div class="math notranslate nohighlight">
+\[\hat{f}_{t}=\arg \min_{f_{t}}\left\{ \sum_{t=1}^{n}\left( y_{t}-f_{t}\right)^{2}+\lambda \sum_{t=3}^{n}\left( \Delta ^{2}f_{t}\right) ^{2}\right\}.\]</div>
+<ul class="simple">
+<li><p>The original paper (Hodrick Prescott, 1980, 1997) suggest <span class="math notranslate nohighlight">\(\lambda = 1600\)</span> for quarterly data.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda = 1600\)</span> is also the base of adjustment for different time series data frequency.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Phillips and Shi (2021)</p></li>
+<li><p>Mei, Phillips and Shi (2023)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">mFilter</span><span class="p">)</span>
+<span class="nf">data</span><span class="p">(</span><span class="n">unemp</span><span class="p">)</span>
+
+<span class="n">unemp.hp</span> <span class="o">&lt;-</span> <span class="nf">hpfilter</span><span class="p">(</span><span class="n">unemp</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">unemp.hp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="cointegration">
+<h2><span class="section-number">11.12. </span>Cointegration<a class="headerlink" href="#cointegration" title="Permalink to this heading">¶</a></h2>
+<p>In a regression
+$<span class="math notranslate nohighlight">\(y_t = \beta x_t  + e_t\)</span>$</p>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(y_t\)</span> and <span class="math notranslate nohighlight">\(x_t\)</span> are I(1) series</p></li>
+<li><p>But a linear combination <span class="math notranslate nohighlight">\(e_t = y_t - \beta x_t \)</span> is I(0)</p></li>
+</ul>
+<p>then we say <span class="math notranslate nohighlight">\(y_t\)</span> and <span class="math notranslate nohighlight">\(x_t\)</span> are cointegrated.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">BTC</span> <span class="o">&lt;-</span> <span class="n">quantmod</span><span class="o">::</span><span class="nf">getSymbols</span><span class="p">(</span><span class="s">&quot;BTC-USD&quot;</span><span class="p">,</span><span class="n">auto.assign</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="n">from</span> <span class="o">=</span> <span class="s">&quot;2021-07-01&quot;</span><span class="p">)[,</span><span class="m">4</span><span class="p">]</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">BTC</span><span class="p">)</span>
+
+<span class="n">ETH</span> <span class="o">&lt;-</span> <span class="n">quantmod</span><span class="o">::</span><span class="nf">getSymbols</span><span class="p">(</span><span class="s">&quot;ETH-USD&quot;</span><span class="p">,</span><span class="n">auto.assign</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="n">from</span> <span class="o">=</span> <span class="s">&quot;2021-07-01&quot;</span><span class="p">)[,</span><span class="m">4</span><span class="p">]</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">ETH</span><span class="p">)</span>
+
+<span class="nf">plot</span><span class="p">(</span> <span class="n">x</span> <span class="o">=</span> <span class="nf">as.vector</span><span class="p">(</span><span class="n">ETH</span><span class="p">),</span> <span class="n">y</span> <span class="o">=</span> <span class="nf">as.vector</span><span class="p">(</span><span class="n">BTC</span><span class="p">),</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;l&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">BTC</span> <span class="o">&lt;-</span> <span class="nf">as.vector</span><span class="p">(</span><span class="n">BTC</span><span class="p">)</span>
+<span class="n">ETH</span> <span class="o">&lt;-</span> <span class="nf">as.vector</span><span class="p">(</span><span class="n">ETH</span><span class="p">)</span>
+
+<span class="n">reg</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">BTC</span> <span class="o">~</span> <span class="m">-1</span> <span class="o">+</span> <span class="n">ETH</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="nf">residuals</span><span class="p">(</span><span class="n">reg</span><span class="p">),</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;l&quot;</span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span> <span class="n">h</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">lty</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span> <span class="n">urca</span><span class="o">::</span><span class="nf">ur.df</span><span class="p">(</span> <span class="nf">residuals</span><span class="p">(</span><span class="n">reg</span><span class="p">),</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;none&quot;</span><span class="p">,</span> <span class="n">selectlags</span> <span class="o">=</span> <span class="s">&quot;AIC&quot;</span> <span class="p">)</span>  <span class="o">%&gt;%</span> <span class="nf">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="source-of-cointegration">
+<h3><span class="section-number">11.12.1. </span>Source of Cointegration<a class="headerlink" href="#source-of-cointegration" title="Permalink to this heading">¶</a></h3>
+<p>Common shock is the source of cointegration</p>
+<p>For example, if <span class="math notranslate nohighlight">\(y_{1t} = \mu_1 + \beta_1 t + e_{1t}\)</span> and <span class="math notranslate nohighlight">\(y_{2t} = \mu_2 + \beta_2 t + e_{2t}\)</span>, where <span class="math notranslate nohighlight">\(e_{1t}\)</span> and <span class="math notranslate nohighlight">\(e_{2t}\)</span> are two white noises, then the cointegration vector must be <span class="math notranslate nohighlight">\((1,\theta)\)</span> where $<span class="math notranslate nohighlight">\(\theta = - \beta_1 / \beta_2.\)</span>$ The first coefficient 1 in this cointegration vector is for normalization.</p>
+<ul class="simple">
+<li><p>In this example, the common trend is a determistic one.</p></li>
+<li><p>In other examples, they can also share a stochastic trend.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="definitions">
+<h2><span class="section-number">11.13. </span>Definitions<a class="headerlink" href="#definitions" title="Permalink to this heading">¶</a></h2>
+<p>More generally, for an <span class="math notranslate nohighlight">\(m\)</span>-vector <span class="math notranslate nohighlight">\(y_t\)</span> is cointegrated if there exists a parameter vector <span class="math notranslate nohighlight">\(\gamma\)</span> (normalize the first element to be 1) such that <span class="math notranslate nohighlight">\(y_t ' \gamma\)</span> is I(0).</p>
+<ul class="simple">
+<li><p>The number of linear independent cointegrated vectors is called the <strong>cointegration rank</strong>.</p>
+<ul>
+<li><p>Cointegration rank arranges from 1 to <span class="math notranslate nohighlight">\(m-1\)</span>.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="error-correction-model">
+<h2><span class="section-number">11.14. </span>Error Correction Model<a class="headerlink" href="#error-correction-model" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Consider an ARDL(1,1) model</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ 
+y_t  = \mu + \beta_0 x_t + \beta_1 x_{t-1} + \gamma_1 y_{t-1} + e_t. 
+\]</div>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(\beta_0 = \beta_1 = 0\)</span>, no <strong>Granger causality</strong> between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>.</p></li>
+<li><p>Granger causality is a linear predictive relationship</p></li>
+</ul>
+<div class="section" id="reformulation">
+<h3><span class="section-number">11.14.1. </span>Reformulation<a class="headerlink" href="#reformulation" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>When <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are both nonstationary, standard OLS inference is invalid.</p></li>
+<li><p>Subtract <span class="math notranslate nohighlight">\(y_{t-1}\)</span> from both sides of</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\Delta y_t &amp; = \mu + \beta_0 x_t + \beta_1 x_{t-1} + (\gamma_1 -1 ) y_{t-1} + e_t  \\
+           &amp; = \mu + \beta_0 \Delta x_t + (\beta_1 + \beta_0) x_{t-1} + (\gamma_1 -1 ) y_{t-1} + e_t  \\
+           &amp; = \mu + \beta_0 \Delta x_t + (\gamma_1 -1 )( y_{t-1} - \theta x_{t-1} ) + e_t  
+\end{align*}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\theta =  (\beta_1 + \beta_0)/(1 - \gamma_1)\)</span>.</p>
+<ul class="simple">
+<li><p>A short-run relationship <span class="math notranslate nohighlight">\(\Delta y_t \sim \mu + \beta_0 \Delta x_t + e_t\)</span>.</p></li>
+<li><p>An long-run equilibrium error <span class="math notranslate nohighlight">\((\gamma_1 - 1 ) (y_{t-1} - \theta x_{t-1} ) \)</span></p>
+<ul>
+<li><p>Corrects the error term the differenced regression to maintain <span class="math notranslate nohighlight">\(\beta_0\)</span></p></li>
+</ul>
+</li>
+</ul>
+<p>ECM is useful when <span class="math notranslate nohighlight">\(y_t\)</span> is nonstationary</p>
+<ul class="simple">
+<li><p>First difference recovers stationarity</p></li>
+<li><p>Identify spurious regression (when <span class="math notranslate nohighlight">\(\beta_0 = 0\)</span>)</p></li>
+<li><p>ECM can be estimated either by</p>
+<ul>
+<li><p>OLS or NLS (constraints among parameters)</p></li>
+<li><p>MLE</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="predictive-regression">
+<h2><span class="section-number">11.15. </span>Predictive Regression<a class="headerlink" href="#predictive-regression" title="Permalink to this heading">¶</a></h2>
+<p>In the regression</p>
+<div class="math notranslate nohighlight">
+\[
+y_t = \mu_y + \beta_1 x_{t-1} + e_{yt}
+\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(y_t\)</span> is can be stationary (finance) or nonstationary (macroeconomics)</p></li>
+<li><p>The predictor <span class="math notranslate nohighlight">\(x_t\)</span> is highly persistent:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+x_t = \mu_x + \gamma x_{t-1} + e_{xt}
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(\gamma\)</span> is close to 1.</p>
+<ul class="simple">
+<li><p>Even if <span class="math notranslate nohighlight">\(E[e_{yt} | x_{t-1} ] = 0\)</span>, OLS estimator of <span class="math notranslate nohighlight">\(\beta_1\)</span> is biased in finite sample when <span class="math notranslate nohighlight">\(e_{yt}\)</span> and <span class="math notranslate nohighlight">\(e_{xt}\)</span> are correlated (Stambaugh, 1999).</p></li>
+</ul>
+<ul class="simple">
+<li><p>Welch and Goyal: “<a class="reference external" href="https://drive.google.com/file/d/1uvjBJ9D09T0_sp7kQppWpD-xelJ0KQhc/view">A Comprehensive Look at the Empirical Performance of Equity Premium Prediction</a>”, (<a class="reference external" href="https://docs.google.com/spreadsheets/d/1OArfD2Wv9IvGoLkJ8JyoXS0YMQLDZfY2/edit?usp=sharing&amp;ouid=113571510202500088860&amp;rtpof=true&amp;sd=true">dataset</a>)</p></li>
+</ul>
+<ul class="simple">
+<li><p>Lee, Shi and Gao (2022)</p></li>
+<li><p>Find new behavior of popular machine learning methods in predictive regression.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">d0</span> <span class="o">&lt;-</span> <span class="n">readr</span><span class="o">::</span><span class="nf">read_csv</span><span class="p">(</span><span class="s">&quot;data_example/PredictorData2021.csv&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
+          <span class="nf">filter</span><span class="p">(</span><span class="n">yyyymm</span> <span class="o">&gt;</span> <span class="m">196000</span><span class="p">)</span> <span class="o">%&gt;%</span>
+          <span class="nf">select</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">,</span> <span class="m">5</span><span class="o">:</span><span class="m">6</span><span class="p">,</span> <span class="m">9</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="m">12</span><span class="o">:</span><span class="m">16</span><span class="p">,</span> <span class="m">11</span><span class="p">)</span>
+          <span class="p">)</span>
+<span class="c1"># we will not demonstrate the predictive regression here</span>
+<span class="c1"># we will use this dataset to demonstrate VAR          </span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="vector-autoregression-var">
+<h2><span class="section-number">11.16. </span>Vector Autoregression (VAR)<a class="headerlink" href="#vector-autoregression-var" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Christopher Sims (Nobel Prize 2011)</p></li>
+<li><p>An <span class="math notranslate nohighlight">\(m\)</span>-equation system
+<span class="math notranslate nohighlight">\(y_t = \mu + \Gamma_1 y_{t-1} + \cdots + \Gamma_p y_{t-p} + v_t\)</span>
+where <span class="math notranslate nohighlight">\(E[ v_t v_t'] = \Omega\)</span>.</p></li>
+</ul>
+<p>For prediction purpose, as a reduced-form of structural simultaneous equations.</p>
+<ul class="simple">
+<li><p>For consistency and asymptotic normality, use OLS equation by equation</p></li>
+<li><p>For asymptotic efficient, use multiple-equation GLS</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2><span class="section-number">11.17. </span>Invertibility<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>Write the VAR(p) as
+$<span class="math notranslate nohighlight">\( (I_m - \Gamma (L) ) y_t = \mu + v_t \)</span><span class="math notranslate nohighlight">\( 
+where \)</span>\Gamma(z) = \Gamma_1 z + \cdots + \Gamma_p z^p$.</p>
+<p>Stable means that all roots of the <span class="math notranslate nohighlight">\(p\)</span>th order polynomial equation $<span class="math notranslate nohighlight">\( I_m - \Gamma(z)  = 0_m \)</span>$ lies out of the unit circle.</p>
+</div>
+<div class="section" id="impulse-response-function">
+<h2><span class="section-number">11.18. </span>Impulse Response Function<a class="headerlink" href="#impulse-response-function" title="Permalink to this heading">¶</a></h2>
+<p>IRF characterizes the diffusion of an exogenous shock with the dynamic system.</p>
+<p>$<span class="math notranslate nohighlight">\(
+\begin{align*}
+y_t &amp; = (I_m - \Gamma(L) )^{-1} (\mu + v_t) \\
+    &amp; = \bar{y} + \left( v_t + \sum_{i=1}^{\infty} A_i v_{t-i} \right)
+\end{align*}
+\)</span><span class="math notranslate nohighlight">\( where \)</span>\bar{y}$ is the unconditional mean.</p>
+</div>
+<div class="section" id="variables">
+<h2><span class="section-number">11.19. </span>Variables<a class="headerlink" href="#variables" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ntis</span></code>: net equity expansion</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tbl</span></code>: treasury bill rates</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lty</span></code>: long-term yield</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Rfree</span></code>: risk-free rate</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">d1</span> <span class="o">&lt;-</span> <span class="nf">select</span><span class="p">(</span><span class="n">d0</span><span class="p">,</span> <span class="n">tbl</span><span class="p">,</span> <span class="n">lty</span><span class="p">,</span> <span class="n">Rfree</span><span class="p">,</span> <span class="n">ntis</span><span class="p">)</span> 
+<span class="nf">plot</span><span class="p">(</span><span class="nf">ts</span><span class="p">(</span><span class="n">d1</span><span class="p">),</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">## For VAR</span>
+<span class="n">mod_var</span> <span class="o">&lt;-</span> <span class="n">vars</span><span class="o">::</span><span class="nf">VAR</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">mod_var</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">irf_var</span> <span class="o">=</span> <span class="n">vars</span><span class="o">::</span><span class="nf">irf</span><span class="p">(</span><span class="n">mod_var</span><span class="p">,</span> <span class="n">impulse</span> <span class="o">=</span> <span class="s">&quot;Rfree&quot;</span><span class="p">,</span> <span class="n">response</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;Rfree&quot;</span><span class="p">,</span> <span class="s">&quot;tbl&quot;</span><span class="p">),</span> <span class="n">boot</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+<span class="c1"># no matter stationary or not, OLS point estimator is always valid</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">irf_var</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">irf_var</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="structural-var">
+<h2><span class="section-number">11.20. </span>Structural VAR<a class="headerlink" href="#structural-var" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Unrestricted VAR: too many parameters? <span class="math notranslate nohighlight">\(m+p\cdot m^2 + m(m+1)/2\)</span></p></li>
+<li><p>Use economic theory to reduce the number of unknown parameters</p></li>
+</ul>
+</div>
+<div class="section" id="vecm-representation">
+<h2><span class="section-number">11.21. </span>VECM Representation<a class="headerlink" href="#vecm-representation" title="Permalink to this heading">¶</a></h2>
+<p>Suppose there are <span class="math notranslate nohighlight">\(r\)</span> cointegration relationship in <span class="math notranslate nohighlight">\(y_t\)</span>. For the <span class="math notranslate nohighlight">\(m\)</span>-equation VAR system</p>
+<div class="math notranslate nohighlight">
+\[
+y_t = \Gamma y_{t-1} + e_t,
+\]</div>
+<p>we can rewrite it as</p>
+<div class="math notranslate nohighlight">
+\[ 
+\Delta y_t = (\Gamma - I_m) y_{t-1} + e_t = \Pi y_{t-1} + e_t.
+\]</div>
+<ul class="simple">
+<li><p>Since LHS is stationary, the <span class="math notranslate nohighlight">\(m\times m\)</span> matrix <span class="math notranslate nohighlight">\(\Pi = \Gamma - I_m\)</span> on the RHS must only have rank at most <span class="math notranslate nohighlight">\(r\)</span>.</p></li>
+<li><p>Otherwise, the RHS will be I(1) and the two sides of the equation are unbalanced.</p></li>
+</ul>
+</div>
+<div class="section" id="johansen-test">
+<h2><span class="section-number">11.22. </span>Johansen Test<a class="headerlink" href="#johansen-test" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>VECM is the base for the cointegration rank test (Johansen, 1992).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">urca</span><span class="p">)</span>
+<span class="n">wg.vecm</span> <span class="o">=</span> <span class="n">urca</span><span class="o">::</span><span class="nf">ca.jo</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">ecdet</span> <span class="o">=</span> <span class="s">&quot;const&quot;</span><span class="p">,</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;eigen&quot;</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">spec</span><span class="o">=</span><span class="s">&quot;longrun&quot;</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">wg.vecm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">vars</span><span class="o">::</span><span class="nf">vec2var</span><span class="p">(</span><span class="n">wg.vecm</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="n">vars</span><span class="o">::</span><span class="nf">irf</span><span class="p">(</span><span class="n">impulse</span> <span class="o">=</span> <span class="s">&quot;Rfree&quot;</span><span class="p">,</span> <span class="n">response</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;Rfree&quot;</span><span class="p">,</span> <span class="s">&quot;tbl&quot;</span><span class="p">),</span> <span class="n">boot</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="estimating-vecm-by-ols">
+<h3><span class="section-number">11.22.1. </span>Estimating VECM by OLS<a class="headerlink" href="#estimating-vecm-by-ols" title="Permalink to this heading">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mod_VECM.ols</span> <span class="o">&lt;-</span> <span class="n">urca</span><span class="o">::</span><span class="nf">cajorls</span><span class="p">(</span> <span class="n">wg.vecm</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="m">2</span> <span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">mod_VECM.ols</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Additional references</strong>: For more details, see <a class="reference external" href="https://www.r-bloggers.com/2021/12/vector-error-correction-model-vecm-using-r/">this blog post</a></p>
+</div>
+</div>
+<div class="section" id="future-of-time-series-study">
+<h2><span class="section-number">11.23. </span>Future of Time Series Study<a class="headerlink" href="#future-of-time-series-study" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Classical methods</p></li>
+<li><p>Time series model for discrete choice model</p></li>
+<li><p>Time series dimension of big data</p>
+<ul>
+<li><p>Unstructured data</p></li>
+<li><p><strong>Panel data</strong></p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="slides_09_optimization.html" title="上一页 页">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">上一页</p>
+            <p class="prev-next-title"><span class="section-number">10. </span>Numerical Optimization</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="slides_11_ML.html" title="下一页 页">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>Machine Learning</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      通过 史震涛 Shi Zhentao<br/>
+    
+        &copy; 版权 2023.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

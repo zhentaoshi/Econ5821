@@ -1,0 +1,1106 @@
+
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>9. Integration &#8212; 经济学中的数据科学</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="10. Numerical Optimization" href="slides_09_optimization.html" />
+    <link rel="prev" title="8. Simulation and Bootstrap" href="slides_07_simulation.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="zh-CN">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">经济学中的数据科学</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="搜索这本书..." aria-label="搜索这本书..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00-preface.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_00_intro.html">
+   1. Data Science for Economists
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_01_git.html">
+   2. Git and Github
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_02_basic_R.html">
+   3. Basic R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_03_data_sources.html">
+   4. Data Sources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_04_visualization.html">
+   5. Visualization and Communication
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_05_advanced_R.html">
+   6. Advanced R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_06_cloud_computing.html">
+   7. Cloud Computing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_07_simulation.html">
+   8. Simulation and Bootstrap
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   9. Integration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_09_optimization.html">
+   10. Numerical Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_10_time_series.html">
+   11. Time Series Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides_11_ML.html">
+   12. Machine Learning
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="切换导航" aria-controls="site-navigation"
+                title="切换导航" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="下载此页面"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/slides_08_integration.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="下载源文件" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="列印成PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="全屏模式"
+        title="全屏模式"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/slides_08_integration.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="发射 Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> 内容
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numerical-methods">
+   9.1. Numerical Methods
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   9.2. Integration
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#caution">
+   9.3. Caution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stochastic-methods">
+   9.4. Stochastic Methods
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example">
+     9.4.1. Example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#indirect-inference">
+     9.4.2. Indirect Inference
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#random-variable-generation">
+     9.4.3. Random Variable Generation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#markov-chain-monte-carlo">
+   9.5. Markov Chain Monte Carlo
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#metropolis-hastings-algorithm">
+     9.5.1. Metropolis-Hastings Algorithm
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     9.5.2. Example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#outcomes">
+     9.5.3. Outcomes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bayesian-inference">
+     9.5.4. Bayesian Inference
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bayes-theorem">
+     9.5.5. Bayes Theorem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classical-analytical-example">
+     9.5.6. Classical Analytical Example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bayesian-credible-set">
+     9.5.7. Bayesian Credible Set
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#frequentist-confidence-internval">
+     9.5.8. Frequentist Confidence Internval
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comparison">
+     9.5.9. Comparison
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-example">
+     9.5.10. Code Example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#laplace-type-estimator">
+     9.5.11. Laplace-type Estimator
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading">
+   9.6. Reading
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Integration</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> 内容 </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numerical-methods">
+   9.1. Numerical Methods
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   9.2. Integration
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#caution">
+   9.3. Caution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stochastic-methods">
+   9.4. Stochastic Methods
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example">
+     9.4.1. Example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#indirect-inference">
+     9.4.2. Indirect Inference
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#random-variable-generation">
+     9.4.3. Random Variable Generation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#markov-chain-monte-carlo">
+   9.5. Markov Chain Monte Carlo
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#metropolis-hastings-algorithm">
+     9.5.1. Metropolis-Hastings Algorithm
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     9.5.2. Example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#outcomes">
+     9.5.3. Outcomes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bayesian-inference">
+     9.5.4. Bayesian Inference
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bayes-theorem">
+     9.5.5. Bayes Theorem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classical-analytical-example">
+     9.5.6. Classical Analytical Example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bayesian-credible-set">
+     9.5.7. Bayesian Credible Set
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#frequentist-confidence-internval">
+     9.5.8. Frequentist Confidence Internval
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comparison">
+     9.5.9. Comparison
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-example">
+     9.5.10. Code Example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#laplace-type-estimator">
+     9.5.11. Laplace-type Estimator
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading">
+   9.6. Reading
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="integration">
+<h1><span class="section-number">9. </span>Integration<a class="headerlink" href="#integration" title="Permalink to this heading">¶</a></h1>
+<p>Zhentao Shi</p>
+<!-- code is tested on SCRP --><ul class="simple">
+<li><p>Mathematically, integration and differentiation involve taking limit</p></li>
+<li><p>Computer is a finite-precision machine</p></li>
+</ul>
+<ul class="simple">
+<li><p>Numerical integration</p></li>
+<li><p>Stochastic methods with examples from econometrics</p>
+<ul>
+<li><p>Simulated method of moments</p></li>
+<li><p>Indirect inference</p></li>
+</ul>
+</li>
+<li><p>Markov Chain Monte Carlo (MCMC)</p></li>
+</ul>
+<div class="section" id="numerical-methods">
+<h2><span class="section-number">9.1. </span>Numerical Methods<a class="headerlink" href="#numerical-methods" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Numerical differentiation and integration</p></li>
+<li><p>Nothing to do with economics or econometrics</p></li>
+</ul>
+<ul class="simple">
+<li><p>To find the optimum for the objective function <span class="math notranslate nohighlight">\(f:R^K \mapsto R\)</span>
+by Newton’s method,</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(K\)</span>-dimensional gradient</p></li>
+<li><p><span class="math notranslate nohighlight">\(K\times K\)</span>-dimensional Hessian matrix.</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Programming up the gradient and the Hessian manually is a time-consuming and error-prone job</p></li>
+<li><p>Whenever we change the objective function, we have to redo the gradient and Hessian</p></li>
+<li><p>More efficient to use numerical differentiation instead of the analytical expressions</p></li>
+</ul>
+<p>The partial derivative of a multivariate function
+<span class="math notranslate nohighlight">\(f:R^K \mapsto R\)</span> at a point <span class="math notranslate nohighlight">\(x_0 \in R^K\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial f(x)}{\partial x_k}\bigg|_{x=x_0}=\lim_{\epsilon \to 0}
+\frac{f(x_0+\epsilon \cdot e_k) - f(x_0 - \epsilon \cdot e_k)}{2\epsilon},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(e_k = (0,\ldots,0,1,0,\ldots,0)\)</span> is the identifier of the <span class="math notranslate nohighlight">\(k\)</span>-th coordinate.</p>
+<ul class="simple">
+<li><p>Numerical execution in a computer follows the basic definition to evaluate
+<span class="math notranslate nohighlight">\(f(x_0\pm\epsilon \cdot e_k))\)</span> with a small
+<span class="math notranslate nohighlight">\(\epsilon\)</span>.</p></li>
+<li><p>How small is small? Usually we try a sequence of <span class="math notranslate nohighlight">\(\epsilon\)</span>’s until
+the numerical derivative is stable.</p></li>
+<li><p>There are also more sophisticated algorithms.</p></li>
+</ul>
+<p>In R, the package <code class="docutils literal notranslate"><span class="pre">numDeriv</span></code> conducts numerical differentiation, in which</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">grad</span></code> for a scalar-valued function;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jacobian</span></code> for a real-vector-valued function;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hessian</span></code> for a scalar-valued function;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">genD</span></code> for a real-vector-valued function.</p></li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2><span class="section-number">9.2. </span>Integration<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">integrate</span></code> carries out one-dimensional quadrature</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">adaptIntegrate</span></code> in the package <code class="docutils literal notranslate"><span class="pre">cubature</span></code> deals with multi-dimensional quadrature.</p></li>
+</ul>
+</div>
+<div class="section" id="caution">
+<h2><span class="section-number">9.3. </span>Caution<a class="headerlink" href="#caution" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Numerical methods are not panacea</p></li>
+<li><p>Not all functions are differentiable or integrable.</p></li>
+<li><p>Before turning to numerical methods, it is always imperative to try to understand the behavior of the function at the first place.</p></li>
+<li><p>Some symbolic software, such as <code class="docutils literal notranslate"><span class="pre">Mathematica</span></code> or <code class="docutils literal notranslate"><span class="pre">Wolfram</span> <span class="pre">Alpha</span></code>, is a useful tool for this purpose.</p></li>
+<li><p>R is weak in symbolic calculation despite the existence of a few packages for this purpose.</p></li>
+</ul>
+</div>
+<div class="section" id="stochastic-methods">
+<h2><span class="section-number">9.4. </span>Stochastic Methods<a class="headerlink" href="#stochastic-methods" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>An alternative to numerical integration is the stochastic methods.</p></li>
+<li><p>The underlying principle of stochastic integration is the law of large numbers.</p></li>
+<li><p>Let  <span class="math notranslate nohighlight">\(\int h(x) d F(x)\)</span> be an integral where <span class="math notranslate nohighlight">\(F(x)\)</span> is a probability distribution.</p></li>
+<li><p>Approximate the integral by
+<span class="math notranslate nohighlight">\(\int h(x) d F(x) \approx S^{-1} \sum_{s=1}^S h(x_s)\)</span>, where <span class="math notranslate nohighlight">\(x_s\)</span> is randomly
+generated from <span class="math notranslate nohighlight">\(F(x)\)</span>.</p></li>
+</ul>
+<ul class="simple">
+<li><p>When <span class="math notranslate nohighlight">\(S\)</span> is large, a law of large numbers gives</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+S^{-1} \sum_{s=1}^S h(x_s) \stackrel{\mathrm{p}}{\to} E[h(x)] = \int h(x) d F(x).
+\]</div>
+<ul class="simple">
+<li><p>If the integration is carried out not in the entire support of <span class="math notranslate nohighlight">\(F(x)\)</span> but on a subset <span class="math notranslate nohighlight">\(A\)</span>, then</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\int_A h(x) d F(x) \approx S^{-1} \sum_{s=1}^S h(x_s) \cdot 1\{x_s \in A\},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(1\{\cdot\}\)</span> is the indicator function.</p>
+<ul class="simple">
+<li><p>In theory, use an <span class="math notranslate nohighlight">\(S\)</span> as large as possible.</p></li>
+<li><p>In reality, constrained by the computer’s memory and computing time.</p></li>
+<li><p>No clear guidance of the size of <span class="math notranslate nohighlight">\(S\)</span> in practice.</p></li>
+<li><p>Preliminary experiment can help decide an <span class="math notranslate nohighlight">\(S\)</span> that produces stable results.</p></li>
+<li><p>Stochastic integration is popular in econometrics and statistics, thanks to its convenience in execution.</p></li>
+</ul>
+<div class="section" id="example">
+<h3><span class="section-number">9.4.1. </span>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h3>
+<p>Structural econometric estimation starts from economic principles. In an economic model,
+some elements unobservable to the econometrician dictate an economic agent’s decision.
+<a class="reference external" href="https://academic.oup.com/oep/article-abstract/3/2/135/2360754">[Roy, 1951]</a> proposes such a structural model with latent variables, and the Roy model is
+the foundation of self-selection in labor economics.</p>
+<p>In the original paper of the Roy model, an economic agent
+must be either a farmer or a fisher.
+The utility of being a farmer is <span class="math notranslate nohighlight">\(U_1^{\star} = x' \beta_1 + e_1\)</span> and that of
+being a fisher is <span class="math notranslate nohighlight">\(U_2^{\star} = x' \beta_2 + e_2\)</span>,
+where <span class="math notranslate nohighlight">\(U_1^{\star}\)</span> and <span class="math notranslate nohighlight">\(U_2^{\star}\)</span> are latent (unobservable).
+The econometrician observes the binary outcome <span class="math notranslate nohighlight">\(y=\mathbf{1}\{U_1^{\star}&gt; U_2^{\star}\}\)</span>. If
+<span class="math notranslate nohighlight">\((e_1,e_2)\)</span> is independent of <span class="math notranslate nohighlight">\(x\)</span>, and</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+e_1\\e_2
+\end{bmatrix}
+\sim N \left(
+\begin{bmatrix}
+0 \\ 0
+\end{bmatrix},
+  \begin{bmatrix}
+  \sigma_1^2 &amp; \sigma_{12} \\ \sigma_{12} &amp; 1
+  \end{bmatrix}\right)
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\sigma_2\)</span> is normalized to be 1, we can write down the log-likelihood as</p>
+<div class="math notranslate nohighlight">
+\[
+L(\theta) = \sum_{i = 1}^n  \left\{ y_i \log P( U_{i1}^{\star} &gt; U_{i2}^{\star} )
++ (1-y_i)\log P( U_{i1}^* \leq  U_{i2}^{\star} ) \right\}.
+\]</div>
+<p>Let <span class="math notranslate nohighlight">\(\theta = (\beta_1, \beta_2, \sigma_1, \sigma_{12}).\)</span>
+Given a trial value <span class="math notranslate nohighlight">\(\theta\)</span>,
+we can compute</p>
+<div class="math notranslate nohighlight">
+\[
+p(\theta|x_i) = P\left( U^{\star}_{i1}(\theta) &gt; U^{\star}_{i2}(\theta) \right)
+= P\left( x_i'(\beta_1 - \beta_2) &gt; e_{i2} -e_{i1} \right).
+\]</div>
+<p>Under the joint normal assumption, <span class="math notranslate nohighlight">\(e_{i2} - e_{i1} \sim N(0, \sigma_1^2 - 2\sigma_{12}+1)\)</span> so that</p>
+<div class="math notranslate nohighlight">
+\[
+p(\theta|x_i) = \Phi \left(  \frac{x_i'(\beta_1 - \beta_2)}{\sqrt{\sigma_1^2 - 2\sigma_{12}+1}} \right)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Phi(\cdot)\)</span> is the CDF of the standard normal.</p>
+<p>However, notice that the analytical form depends on the joint normal assumption and cannot be
+easily extended to other distributions. As long as the joint distribution of <span class="math notranslate nohighlight">\((e_{i1}, e_{i2})\)</span>, no matter it is normal or not,
+can be generated from the computer, we can use the stochastic method.
+We estimate</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{p}(\theta|x_i) = \frac{1}{S} \sum_{i=1}^S \mathbf{1}\left( U^{s*}_{i1}(\theta) &gt; U^{s*}_{i2}(\theta) \right),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(s=1,\ldots,S\)</span> is the index of simulation and <span class="math notranslate nohighlight">\(S\)</span> is the total number of simulation replications.</p>
+<p>Next, we match moments generated the theoretical model with their empirical counterparts.
+The choice of the moments to be matched is to be decided by the user.
+A set of valid choice for the Roy model example is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+g_1(\theta) &amp; =  n^{-1} \sum_{i=1}^n x_i (y_i - \hat{p}(\theta | x_i))  \approx  0\\
+g_2(\theta) &amp; =  n^{-1} \sum_{i=1}^n (y_i - \bar{y})^2 - \bar{\hat{p}}(\theta| x_i) (1- \bar{\hat{p}}(\theta| x_i))  \approx  0\\
+g_3(\theta) &amp; =  n^{-1} \sum_{i=1}^n (x_i - \bar{x} ) (y_i - \hat{p}(\theta | x_i))^2  \approx  0
+\end{align*}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\bar{y} = n^{-1} \sum_{i=1}^n y_i\)</span> and
+<span class="math notranslate nohighlight">\(\bar{\hat{p}}(\theta) = n^{-1} \sum_{i=1}^n p(\theta|x_i)\)</span>.</p>
+<p>The first set of moments is justified by the independence of <span class="math notranslate nohighlight">\((e_{i1}, e_{i2})\)</span>
+and <span class="math notranslate nohighlight">\(x_i\)</span> so that <span class="math notranslate nohighlight">\(E[x_i y_i] = x_i E[y_i | x_i] = x_i p(\theta|x_i)\)</span>,
+and the second set matches the variance of <span class="math notranslate nohighlight">\(y_i\)</span>.
+Since the moment conditions <span class="math notranslate nohighlight">\((g_j(\theta))_{j=1}^3\)</span> equals the number of unknown parameters,
+these moment conditions just-identifies the parameter <span class="math notranslate nohighlight">\(\theta\)</span>.
+We need to come up with more moment conditions for over-identification.
+Moreover, we need to choose a weighting matrix <span class="math notranslate nohighlight">\(W\)</span> to form a quadratic criterion for GMM in
+over-identification.</p>
+<p>The above example can be viewed as an application of simulated maximum likelihood. In parallel,
+we can simulate a moment condition if its explicit form is unavailable.
+<a class="reference external" href="https://www.jstor.org/stable/1913622">[Pakes, 1989]</a> provide the theoretical foundation of the
+simulated method of moments (SMM).</p>
+</div>
+<div class="section" id="indirect-inference">
+<h3><span class="section-number">9.4.2. </span>Indirect Inference<a class="headerlink" href="#indirect-inference" title="Permalink to this heading">¶</a></h3>
+<p>Indirect inference <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1002/jae.3950080506">[Smith, 1993]</a>, <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1002/jae.3950080507">[Gourieroux, 1993]</a>
+is yet another simulated-based estimation method.
+Indirect inference is extensively used in structural model estimation <a class="reference external" href="https://citeseerx.ist.psu.edu/document?repid=rep1&amp;type=pdf&amp;doi=21af27a288937ffb0753ec0f7ce40fa43fbc50aa">[Li, 2010]</a>.
+Theoretical analysis of indirect inference reveals its nice properties in
+bias deduction via a proper choice of the binding function <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA9350">[Phillips, 2012]</a>.</p>
+<p>The basic idea of indirect inference is to recover the structural parameter from
+an <em>auxiliary model</em>—usually an reduced-form regression.
+The reduced-form regression ignores the underlying economic structure and is a purely statistical
+procedure; thus the reduced-form regression is relatively easier to implement.
+A <em>binding function</em> is a one-to-one mapping from the parameter space of the reduced-form to that
+of the structural form. Once the reduced-form parameter is estimated, we can recover the
+structural parameter via the binding function. When the reduced-form parameter can be expressed in closed-form, we can utilize the analytical form to match the theoretical prediction and the empirical outcomes, as in <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1002/jae.2640">Shi, 2018</a>. In most cases however, the reduced-form implied by the structural model does not have a closed-form expression so simulation becomes necessary.</p>
+<p>The choice of the auxiliary model is not unique. In the Roy model example where <span class="math notranslate nohighlight">\(\theta\)</span> is
+the structural parameter, a sensible starting point to construct the auxiliary model
+is the linear regression between <span class="math notranslate nohighlight">\(y_i\)</span> and <span class="math notranslate nohighlight">\(x_i\)</span>.
+A set of reduced-form parameters can be chosen as
+<span class="math notranslate nohighlight">\(\hat{b}=(\hat{b}_1,\hat{b}_2,\hat{b}_3)'\)</span>, where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\hat{b}_1 &amp; =  (X'X)^{-1}X'y \\
+\hat{b}_2 &amp; =  n^{-1}\sum_{y_i=1} (y_i - x_i' b_1)^2 = n^{-1}\sum_{y_i=1} (1 - x_i' b_1)^2  \\
+\hat{b}_3 &amp; =  n^{-1}\sum_{y_i=0} (y_i - x_i' b_1)^2 = n^{-1}\sum_{y_i=0} (x_i' b_1)^2.
+\end{align}
+\end{split}\]</div>
+<p>Here <span class="math notranslate nohighlight">\(\hat{b}_1\)</span> is associated with <span class="math notranslate nohighlight">\(\beta\)</span>, and <span class="math notranslate nohighlight">\((\hat{b}_2,\hat{b}_3)\)</span>
+are associated with <span class="math notranslate nohighlight">\((\sigma_1,\sigma_{12})\)</span>.</p>
+<p>Now we consider the structural parameter. Given a trial value <span class="math notranslate nohighlight">\(\theta\)</span>, the model
+is parametric and we can simulate artificial error <span class="math notranslate nohighlight">\((e_{i1}^*, e_{i2}^*)\)</span> conditional
+on <span class="math notranslate nohighlight">\(x_i\)</span>. In each simulation experiment,
+we can decide <span class="math notranslate nohighlight">\(y_i^*\)</span>, and we can further estimate the reduced-form parameter
+<span class="math notranslate nohighlight">\(\hat{b}^*=\hat{b}^*(\theta)\)</span>
+given the artificial data.
+<span class="math notranslate nohighlight">\(b(\theta)\)</span> is the binding function.
+Conducting such simulation for <span class="math notranslate nohighlight">\(S\)</span> times, we measure
+the distance between <span class="math notranslate nohighlight">\(\hat{b}\)</span> and <span class="math notranslate nohighlight">\(\hat{b}^*\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[
+Q(\theta) = \left(\hat{b} - S^{-1} \sum_{s=1}^S \hat{b}^*(\theta)^{s} \right)'
+W \left(\hat{b} - S^{-1} \sum_{s=1}^S \hat{b}^*(\theta)^{s}\right)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(s\)</span> indexes the simulation and <span class="math notranslate nohighlight">\(W\)</span> is a positive definite weighting matrix.
+The indirect inference estimator is <span class="math notranslate nohighlight">\(\hat{\theta} = \arg\min_{\theta} Q(\theta).\)</span>
+That is, we seek the value of <span class="math notranslate nohighlight">\(\theta\)</span>
+that minimizes the distance between the reduced-form parameter from the real data and that
+from the simulated artificial data.</p>
+</div>
+<div class="section" id="random-variable-generation">
+<h3><span class="section-number">9.4.3. </span>Random Variable Generation<a class="headerlink" href="#random-variable-generation" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>If the CDF <span class="math notranslate nohighlight">\(F(X)\)</span> is known, we can generate random variables that follow such a distribution.</p>
+<ul>
+<li><p>Draw <span class="math notranslate nohighlight">\(U\)</span> from  <span class="math notranslate nohighlight">\(\mathrm{Uniform}(0,1)\)</span></p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(X = F^{-1}(U)\)</span></p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="markov-chain-monte-carlo">
+<h2><span class="section-number">9.5. </span>Markov Chain Monte Carlo<a class="headerlink" href="#markov-chain-monte-carlo" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>If the pdf <span class="math notranslate nohighlight">\(f(X)\)</span> is known, we can generate a sample by <em>importance sampling</em></p>
+<ul>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm">Metropolis-Hastings algorithm</a>
+(MH algorithm) is such a method.</p></li>
+<li><p>MH is one of the <a class="reference external" href="https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">Markov Chain Monte Carlo</a> methods.</p></li>
+</ul>
+</li>
+<li><p>It can be implemented in the R package <code class="docutils literal notranslate"><span class="pre">mcmc</span></code>.</p>
+<ul>
+<li><p><a class="reference external" href="https://chi-feng.github.io/mcmc-demo/">This page</a> contains demonstrative
+examples of MCMC.</p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="metropolis-hastings-algorithm">
+<h3><span class="section-number">9.5.1. </span>Metropolis-Hastings Algorithm<a class="headerlink" href="#metropolis-hastings-algorithm" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Theory of the MH requires long derivation</p></li>
+<li><p>Implementation is straightforward.</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h3><span class="section-number">9.5.2. </span>Example<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<p>Use MH to generate a sample of normally distributed observations with
+<span class="math notranslate nohighlight">\(\mu = 1\)</span> and <span class="math notranslate nohighlight">\(\sigma = 0.5\)</span>.</p>
+<ul class="simple">
+<li><p>In the function <code class="docutils literal notranslate"><span class="pre">metrop</span></code>, we provide the logarithm of the density of</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\log f(x) = -\frac{1}{2} \log (2\pi) - \log \sigma - \frac{1}{2\sigma^2} (x-\mu)^2
+\]</div>
+<ul class="simple">
+<li><p>The first term can be omitted as it is irrelevant to the parameter.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">h</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mu</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">sd</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">y</span> <span class="o">&lt;-</span> <span class="o">-</span><span class="nf">log</span><span class="p">(</span><span class="n">sd</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span><span class="o">^</span><span class="m">2</span> <span class="o">/</span> <span class="p">(</span><span class="m">2</span> <span class="o">*</span> <span class="n">sd</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+  <span class="c1"># y &lt;- log( dnorm(x, 1, 0.5) )</span>
+<span class="p">}</span> <span class="c1"># un-normalized function (doesn&#39;t need to integrate as 1)</span>
+
+<span class="n">out</span> <span class="o">&lt;-</span> <span class="n">mcmc</span><span class="o">::</span><span class="nf">metrop</span><span class="p">(</span><span class="n">obj</span> <span class="o">=</span> <span class="n">h</span><span class="p">,</span> <span class="n">initial</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">nbatch</span> <span class="o">=</span> <span class="m">100</span><span class="p">,</span> <span class="n">nspac</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+
+<span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">1</span><span class="p">))</span>
+<span class="nf">par</span><span class="p">(</span><span class="n">mar</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">))</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">out</span><span class="o">$</span><span class="n">batch</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;l&quot;</span><span class="p">)</span> <span class="c1"># a time series with flat steps</span>
+
+<span class="n">out</span> <span class="o">&lt;-</span> <span class="n">mcmc</span><span class="o">::</span><span class="nf">metrop</span><span class="p">(</span><span class="n">obj</span> <span class="o">=</span> <span class="n">h</span><span class="p">,</span> <span class="n">initial</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">nbatch</span> <span class="o">=</span> <span class="m">100</span><span class="p">,</span> <span class="n">nspac</span> <span class="o">=</span> <span class="m">10</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">out</span><span class="o">$</span><span class="n">batch</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;l&quot;</span><span class="p">)</span> <span class="c1"># a time series looks like a white noise</span>
+
+<span class="n">out</span> <span class="o">&lt;-</span> <span class="n">mcmc</span><span class="o">::</span><span class="nf">metrop</span><span class="p">(</span><span class="n">obj</span> <span class="o">=</span> <span class="n">h</span><span class="p">,</span> <span class="n">initial</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">nbatch</span> <span class="o">=</span> <span class="m">10000</span><span class="p">,</span> <span class="n">nspac</span> <span class="o">=</span> <span class="m">10</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="nf">density</span><span class="p">(</span><span class="n">out</span><span class="o">$</span><span class="n">batch</span><span class="p">),</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+
+<span class="n">xbase</span> <span class="o">&lt;-</span> <span class="nf">seq</span><span class="p">(</span><span class="m">-2</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">0.01</span><span class="p">)</span>
+<span class="n">ynorm</span> <span class="o">&lt;-</span> <span class="nf">dnorm</span><span class="p">(</span><span class="n">xbase</span><span class="p">,</span> <span class="n">mean</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">sd</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">)</span>
+<span class="nf">lines</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">xbase</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">ynorm</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;l&quot;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;red&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="outcomes">
+<h3><span class="section-number">9.5.3. </span>Outcomes<a class="headerlink" href="#outcomes" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>The first panel is a time series where
+the marginal distribution of each observations follows <span class="math notranslate nohighlight">\(N(1,0.5^2)\)</span>.</p>
+<ul>
+<li><p>Time dependence is visible</p></li>
+<li><p>flat regions are observed when the Markov chain rejects a new proposal
+so the value does not update over two periods.</p></li>
+</ul>
+</li>
+<li><p>The middle panel collects the time series every 10 observations on the Markov chain</p>
+<ul>
+<li><p>serial correlation is weakened</p></li>
+<li><p>No flat region is observed</p></li>
+</ul>
+</li>
+<li><p>The third panel compares</p>
+<ul>
+<li><p>kernel density of the simulated observations (black curve)</p></li>
+<li><p>density function of <span class="math notranslate nohighlight">\(N(1,0.5^2)\)</span> (red curve).</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="bayesian-inference">
+<h3><span class="section-number">9.5.4. </span>Bayesian Inference<a class="headerlink" href="#bayesian-inference" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Bayesian framework offers a coherent and natural language for statistical decision.</p></li>
+<li><p>Bayesian views both the data <span class="math notranslate nohighlight">\(\mathbf{X}_{n}\)</span> and the
+parameter <span class="math notranslate nohighlight">\(\theta\)</span> as random variables</p></li>
+<li><p>Before observeing the data, researcher holds a <em>prior distribution</em> <span class="math notranslate nohighlight">\(\pi\)</span> about <span class="math notranslate nohighlight">\(\theta\)</span></p></li>
+<li><p>After observing the data, researcher updates the prior distribution to a <em>posterior distribution</em> <span class="math notranslate nohighlight">\(p(\theta|\mathbf{X}_{n})\)</span>.</p></li>
+</ul>
+</div>
+<div class="section" id="bayes-theorem">
+<h3><span class="section-number">9.5.5. </span>Bayes Theorem<a class="headerlink" href="#bayes-theorem" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Let <span class="math notranslate nohighlight">\(f(\mathbf{X}_{n}|\theta)\)</span> be the likelihood</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(\pi\)</span> be the prior</p></li>
+<li><p>The celebrated Bayes Theorem is</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+p(\theta|\mathbf{X}_{n})\propto f(\mathbf{X}_{n}|\theta)\pi(\theta)
+\]</div>
+</div>
+<div class="section" id="classical-analytical-example">
+<h3><span class="section-number">9.5.6. </span>Classical Analytical Example<a class="headerlink" href="#classical-analytical-example" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf{X}_{n}=(X_{1},\ldots,X_{n})\)</span> is an iid sample drawn from a normal distribution with unknown <span class="math notranslate nohighlight">\(\theta\)</span> and known <span class="math notranslate nohighlight">\(\sigma\)</span></p></li>
+<li><p>If a researcher’s prior distribution
+<span class="math notranslate nohighlight">\(\theta\sim N(\theta_{0},\sigma_{0}^{2})\)</span>, her posterior distribution
+is, by some routine calculation, also a normal distribution</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+p(\theta|\mathbf{x}_{n})\sim N\left(\tilde{\theta},\tilde{\sigma}^{2}\right),
+\]</div>
+<p>where
+<span class="math notranslate nohighlight">\(\tilde{\theta}=\frac{\sigma^{2}}{n\sigma_{0}^{2}+\sigma^{2}}\theta_{0}+\frac{n\sigma_{0}^{2}}{n\sigma_{0}^{2}+\sigma^{2}}\bar{x}\)</span>
+and
+<span class="math notranslate nohighlight">\(\tilde{\sigma}^{2}=\frac{\sigma_{0}^{2}\sigma^{2}}{n\sigma_{0}^{2}+\sigma^{2}}\)</span>.</p>
+</div>
+<div class="section" id="bayesian-credible-set">
+<h3><span class="section-number">9.5.7. </span>Bayesian Credible Set<a class="headerlink" href="#bayesian-credible-set" title="Permalink to this heading">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[
+\left(\tilde{\theta}-z_{1-\alpha/2}\cdot\tilde{\sigma},\ \tilde{\theta}+z_{1-\alpha/2}\cdot\tilde{\sigma}\right).
+\]</div>
+<ul class="simple">
+<li><p>Posterior distribution depends on <span class="math notranslate nohighlight">\(\theta_{0}\)</span> and <span class="math notranslate nohighlight">\(\sigma_{0}^{2}\)</span>
+from the prior.</p></li>
+<li><p>When the sample size is sufficiently, the data overwhelms the prior</p></li>
+</ul>
+</div>
+<div class="section" id="frequentist-confidence-internval">
+<h3><span class="section-number">9.5.8. </span>Frequentist Confidence Internval<a class="headerlink" href="#frequentist-confidence-internval" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{\theta}=\bar{x}\sim N(\theta,\sigma^{2}/n)\)</span>.</p></li>
+<li><p>Confidence interval is</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\left(\bar{x}-z_{1-\alpha/2}\cdot\sigma/\sqrt{n},\ \bar{x}-z_{1-\alpha/2}\cdot\sigma/\sqrt{n}\right).
+\]</div>
+</div>
+<div class="section" id="comparison">
+<h3><span class="section-number">9.5.9. </span>Comparison<a class="headerlink" href="#comparison" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Bayesian produces a posterior distribution</p>
+<ul>
+<li><p>The posterior distribution implies point estimates and credible set</p></li>
+<li><p>Data are fixed (invariant)</p></li>
+<li><p>A prior distribution is needed</p></li>
+</ul>
+</li>
+<li><p>Frequestist produces a point estimator</p>
+<ul>
+<li><p>Before data are observed, the point estimator is random</p></li>
+<li><p>Inference is imply by the point estimator <strong>before observation</strong></p></li>
+<li><p>Only data are realized, the point estimate is a fixed number</p></li>
+<li><p>No prior distribution is needed</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="code-example">
+<h3><span class="section-number">9.5.10. </span>Code Example<a class="headerlink" href="#code-example" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Prior distribution <span class="math notranslate nohighlight">\(\mu \sim Beta(2,5)\)</span></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Beta_distribution">Beta distribution</a> is flexible</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># prior distribution</span>
+<span class="n">xbase</span> <span class="o">=</span> <span class="nf">seq</span><span class="p">(</span><span class="m">0.01</span><span class="p">,</span> <span class="m">0.99</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="m">0.01</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span> <span class="n">x</span> <span class="o">=</span> <span class="n">xbase</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nf">dbeta</span><span class="p">(</span><span class="n">xbase</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">5</span><span class="p">),</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;l&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>The nature generates data</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">&lt;-</span> <span class="m">20</span>
+<span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="m">0.9</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">sort</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>The researcher correctly specifies the normal model</p></li>
+<li><p>Given the data, she infers <span class="math notranslate nohighlight">\(\theta\)</span> according to the posterior distribution</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">loglik</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="p">{</span>   <span class="n">y</span> <span class="o">&lt;-</span> <span class="nf">sum</span><span class="p">(</span> <span class="nf">log</span><span class="p">(</span> <span class="nf">dnorm</span><span class="p">(</span> <span class="n">x</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="m">1</span> <span class="p">)</span> <span class="p">)</span> <span class="p">)</span> <span class="p">}</span> 
+
+<span class="n">posterior</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="p">{</span> <span class="nf">loglik</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">+</span> <span class="nf">log</span><span class="p">(</span><span class="nf">dbeta</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">))</span>  <span class="p">}</span>
+
+<span class="n">nbatch</span> <span class="o">&lt;-</span> <span class="m">10000</span>
+<span class="n">out</span> <span class="o">&lt;-</span> <span class="n">mcmc</span><span class="o">::</span><span class="nf">metrop</span><span class="p">(</span><span class="n">obj</span> <span class="o">=</span> <span class="n">posterior</span><span class="p">,</span> <span class="n">initial</span> <span class="o">=</span> <span class="m">0.1</span><span class="p">,</span> <span class="n">nbatch</span> <span class="o">=</span> <span class="n">nbatch</span><span class="p">,</span> <span class="n">nspac</span> <span class="o">=</span> <span class="m">10</span><span class="p">)</span><span class="o">$</span><span class="n">batch</span>
+<span class="n">out</span> <span class="o">&lt;-</span> <span class="n">out</span><span class="p">[</span><span class="o">-</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">round</span><span class="p">(</span><span class="n">nbatch</span><span class="o">/</span><span class="m">10</span><span class="p">))]</span> <span class="c1"># remove the burn-in period</span>
+
+<span class="nf">plot</span><span class="p">(</span><span class="nf">density</span><span class="p">(</span><span class="n">out</span><span class="p">))</span>
+
+<span class="nf">print</span><span class="p">(</span> <span class="nf">quantile</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">probs</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0.025</span><span class="p">,</span> <span class="m">0.975</span><span class="p">)</span> <span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="laplace-type-estimator">
+<h3><span class="section-number">9.5.11. </span>Laplace-type Estimator<a class="headerlink" href="#laplace-type-estimator" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Some criterion functions in econometrics is difficult to optimize</p></li>
+<li><p>&#64;chernozhukov2003mcmc’s <em>Laplace-type estimator</em> replaces optimization by simulation</p></li>
+</ul>
+<ul class="simple">
+<li><p>Let <span class="math notranslate nohighlight">\(L_n(\theta)\)</span> be an criterion function (say, OLS, (negative) log likelihood, etc),</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+f_n (\theta) = \frac{\exp(-L_n(\theta))\pi(\theta)}{\int_{\Theta} \exp(-L_n(\theta))\pi(\theta)}
+\]</div>
+<p>and <span class="math notranslate nohighlight">\(\pi(\theta)\)</span> be the density of a prior.</p>
+<ul class="simple">
+<li><p>The smaller is the value of the objective function, the larger it weighs.</p></li>
+<li><p>Exponential transformation comes from <a class="reference external" href="https://en.wikipedia.org/wiki/Laplace%27s_method">Laplace approximation</a>.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Use MCMC to simulate the distribution of <span class="math notranslate nohighlight">\(\theta\)</span>.</p></li>
+<li><p>For a linear regression model, the code block compares the OLS estimator with the LTE estimator</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">magrittr</span><span class="p">)</span>
+
+<span class="c1"># DGP</span>
+<span class="n">n</span> <span class="o">&lt;-</span> <span class="m">100</span>
+<span class="n">b0</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="n">.</span><span class="m">1</span><span class="p">,</span> <span class="n">.</span><span class="m">1</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">&lt;-</span> <span class="nf">cbind</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="n">Y</span> <span class="o">&lt;-</span> <span class="n">X</span> <span class="o">%*%</span> <span class="n">b0</span> <span class="o">+</span> <span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Laplace-type estimator</span>
+<span class="c1"># L &lt;- function(b) -0.5 * sum((Y - X %*% b)^2) - 0.5 * crossprod(b - c(0, 0))</span>
+<span class="c1"># notice the &quot;minus&quot; sign of the OLS objective function</span>
+<span class="c1"># here we use a normal prior around (0,0) with var 1</span>
+
+<span class="n">L</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="m">-0.5</span><span class="o">*</span><span class="nf">sum</span><span class="p">((</span><span class="n">Y</span> <span class="o">-</span> <span class="n">X</span> <span class="o">%*%</span> <span class="n">b</span><span class="p">)</span><span class="o">^</span><span class="m">2</span><span class="p">)</span> <span class="c1"># flat prior</span>
+
+<span class="n">nbatch</span> <span class="o">&lt;-</span> <span class="m">10000</span>
+<span class="n">out</span> <span class="o">&lt;-</span> <span class="n">mcmc</span><span class="o">::</span><span class="nf">metrop</span><span class="p">(</span><span class="n">obj</span> <span class="o">=</span> <span class="n">L</span><span class="p">,</span> <span class="n">initial</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> <span class="n">nbatch</span> <span class="o">=</span> <span class="n">nbatch</span><span class="p">,</span> <span class="n">nspac</span> <span class="o">=</span> <span class="m">20</span><span class="p">)</span><span class="o">$</span><span class="n">batch</span>
+
+<span class="c1"># summarize the estimation</span>
+<span class="n">bhat2</span> <span class="o">&lt;-</span> <span class="n">out</span><span class="p">[</span><span class="o">-</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">round</span><span class="p">(</span><span class="n">nbatch</span> <span class="o">/</span> <span class="m">10</span><span class="p">)),</span> <span class="m">2</span><span class="p">]</span> <span class="c1"># remove the burn in</span>
+<span class="n">bhat2_point</span> <span class="o">&lt;-</span> <span class="nf">mean</span><span class="p">(</span><span class="n">bhat2</span><span class="p">)</span>
+<span class="n">bhat2_sd</span> <span class="o">&lt;-</span> <span class="nf">sd</span><span class="p">(</span><span class="n">bhat2</span><span class="p">)</span>
+<span class="n">bhat2_CI</span> <span class="o">&lt;-</span> <span class="nf">quantile</span><span class="p">(</span><span class="n">bhat2</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="n">.</span><span class="m">025</span><span class="p">,</span> <span class="n">.</span><span class="m">975</span><span class="p">))</span>
+
+<span class="c1"># report results</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">cat</span><span class="p">(</span>
+  <span class="s">&quot;The posterior mean =&quot;</span><span class="p">,</span> <span class="n">bhat2_point</span><span class="p">,</span> <span class="s">&quot; sd = &quot;</span><span class="p">,</span> <span class="n">bhat2_sd</span><span class="p">,</span>
+  <span class="s">&quot; \n and C.I.=(&quot;</span><span class="p">,</span> <span class="n">bhat2_CI</span><span class="p">,</span> <span class="s">&quot;)&quot;</span>
+<span class="p">))</span>
+
+<span class="nf">plot</span><span class="p">(</span><span class="nf">density</span><span class="p">(</span><span class="n">bhat2</span><span class="p">),</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;posterior from normal prior&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># OLS estimation</span>
+
+<span class="n">b2_OLS</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="nf">lm</span><span class="p">(</span><span class="n">Y</span> <span class="o">~</span> <span class="m">-1</span> <span class="o">+</span> <span class="n">X</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">summary</span><span class="p">()</span> <span class="o">%&gt;%</span> <span class="nf">coef</span><span class="p">())[</span><span class="m">2</span><span class="p">,</span> <span class="p">]</span>
+<span class="c1"># &quot;-1&quot; in lm( ) because X has contained intercept</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">cat</span><span class="p">(</span>
+  <span class="s">&quot;The OLS point est =&quot;</span><span class="p">,</span> <span class="n">b2_OLS</span><span class="p">[</span><span class="m">1</span><span class="p">],</span> <span class="s">&quot; sd = &quot;</span><span class="p">,</span> <span class="n">b2_OLS</span><span class="p">[</span><span class="m">2</span><span class="p">],</span>
+  <span class="s">&quot; \n and C.I.=(&quot;</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="n">b2_OLS</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="o">-</span> <span class="m">1.96</span> <span class="o">*</span> <span class="n">b2_OLS</span><span class="p">[</span><span class="m">2</span><span class="p">],</span> <span class="n">b2_OLS</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="o">+</span> <span class="m">1.96</span> <span class="o">*</span> <span class="n">b2_OLS</span><span class="p">[</span><span class="m">2</span><span class="p">]),</span> <span class="s">&quot;)&quot;</span>
+<span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="reading">
+<h2><span class="section-number">9.6. </span>Reading<a class="headerlink" href="#reading" title="Permalink to this heading">¶</a></h2>
+<p>CASI: Ch.2.1; 3.3–4; 13.4</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="slides_07_simulation.html" title="上一页 页">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">上一页</p>
+            <p class="prev-next-title"><span class="section-number">8. </span>Simulation and Bootstrap</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="slides_09_optimization.html" title="下一页 页">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Numerical Optimization</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      通过 史震涛 Shi Zhentao<br/>
+    
+        &copy; 版权 2023.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

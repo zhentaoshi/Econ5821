@@ -1,0 +1,2099 @@
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>27. Machine Learning &#8212; 经济学中的数据科学</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=cc3ee377" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=946197a6"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/translations.js?v=beaddf03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'py_09_ML';</script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="47. Neural Networks" href="py_10_NN.html" />
+    <link rel="prev" title="8. Time Series Analysis" href="py_08_time_series.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="00-preface.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">经济学中的数据科学</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">搜索</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="00-preface.html">
+                    Preface
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="py_01_basic.html">1. Lecture 1: Python for Scientific Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_02_data_sources.html">2. Lecture 2: Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_03_plot.html">3. Lecture 3: Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_04_advance.html">4. Lecture 4: Advanced Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_05_simulations.html">5. Lecture 5: Uncertainty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_06_integration.html">6. Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_07_optimization.html">7. ECON 5821: Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_08_time_series.html">8. Time Series Analysis</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">27. Machine Learning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="py_10_NN.html">47. Neural Networks</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="py_11_causal_inference.html">50. Lecture 11: Causal Inference and Program Evaluation</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="下载此页面">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/py_09_ML.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="下载源文件"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="列印成 PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全屏模式"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Machine Learning</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目录 </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">27. Machine Learning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">27.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-learning">27.2. Supervised Learning</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-learning">28. Unsupervised Learning</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conventional-statistics">29. Conventional Statistics</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-s-responses">30. Machine Learning’s Responses</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#toy-examples">30.1. Toy Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised">30.1.1. Unsupervised</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#first-generation">31. First Generation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nonparametric-estimation">31.1. Nonparametric Estimation</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example-density-estimation">32. Example: Density Estimation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-bias-tradeoff">32.1. Variance-Bias Tradeoff</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-conditional-mean">32.1.1. Example: Conditional Mean</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#series-estimation">33. Series Estimation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#penalization">34. Penalization</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tuning-parameter">35. Tuning Parameter</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#econometrics-workflow">36. Econometrics Workflow</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-splitting">36.1. Data Splitting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">36.2. Data Splitting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation-cross-sectional-data">36.2.1. Cross Validation (cross sectional data)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goodness-of-fit-out-of-sample">36.2.2. Goodness of Fit (Out of Sample)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation-time-series-data">36.2.3. Cross Validation (time series data)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-selection">36.3. Variable Selection</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso">37. Lasso</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-of-ols-lasso-and-ridge">37.1. Demo of OLS, Lasso and Ridge</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#scad">38. SCAD</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#adaptive-lasso">39. Adaptive Lasso</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#stagewise-forward-selection">40. Stagewise Forward Selection</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#second-generation">41. Second Generation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction-oriented-methods">42. Prediction-Oriented Methods</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-tree">43. Regression Tree</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#bagging">44. Bagging</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest">45. Random Forest</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-boosting">45.1. Gradient Boosting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-data-example">45.2. Real Data Example</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">46. Summary</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="machine-learning">
+<h1><span class="section-number">27. </span>Machine Learning<a class="headerlink" href="#machine-learning" title="Link to this heading">#</a></h1>
+<p>Zhentao Shi</p>
+<img src="graph/Ada_Lovelace.jpg" width="800"><section id="introduction">
+<h2><span class="section-number">27.1. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>Machine learning and artificial intelligence:</p>
+<ul class="simple">
+<li><p>Technology or alchemy?</p></li>
+<li><p>Statistics or biology?</p></li>
+<li><p><a class="reference external" href="https://www.project-syndicate.org/commentary/artificial-intelligence-new-economic-models-by-thomas-j-sargent-2019-11">Tom Sargent, (2019)</a></p></li>
+<li><p>Large language models</p></li>
+<li><p>Generative models</p></li>
+<li><p>The AI revolution</p></li>
+</ul>
+</section>
+<section id="supervised-learning">
+<h2><span class="section-number">27.2. </span>Supervised Learning<a class="headerlink" href="#supervised-learning" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Connection between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span></p></li>
+<li><p>Regression and classification</p></li>
+</ul>
+<p>A set of data fitting procedures focusing on out-of-sample prediction</p>
+<ul class="simple">
+<li><p>Repeat a scientific experiment for <span class="math notranslate nohighlight">\(n\)</span> times and obtain a dataset <span class="math notranslate nohighlight">\((y_i, x_i)_{i=1}^n\)</span>.</p></li>
+<li><p>How to best predict <span class="math notranslate nohighlight">\(y_{n+1}\)</span> given <span class="math notranslate nohighlight">\(x_{n+1}\)</span>?</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="unsupervised-learning">
+<h1><span class="section-number">28. </span>Unsupervised Learning<a class="headerlink" href="#unsupervised-learning" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Only about <span class="math notranslate nohighlight">\(X\)</span></p></li>
+<li><p>Density estimation, principal component analysis, and clustering</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="conventional-statistics">
+<h1><span class="section-number">29. </span>Conventional Statistics<a class="headerlink" href="#conventional-statistics" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Consistency</p></li>
+<li><p>Asymptotic distribution (hopefully normal)</p></li>
+<li><p>Efficiency</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="machine-learning-s-responses">
+<h1><span class="section-number">30. </span>Machine Learning’s Responses<a class="headerlink" href="#machine-learning-s-responses" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Efficiency is mostly irrelevant given big data</p></li>
+<li><p>Statistical inference may not be the goal</p>
+<ul>
+<li><p>Recommendation system on Amazon or Taobao</p></li>
+<li><p>Care about the prediction accuracy, not the causal link</p></li>
+</ul>
+</li>
+<li><p>Is there a data generating process (DGP)?</p></li>
+</ul>
+<section id="toy-examples">
+<h2><span class="section-number">30.1. </span>Toy Examples<a class="headerlink" href="#toy-examples" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_california_housing</span>
+
+
+<span class="c1"># Load California Housing Dataset</span>
+<span class="n">california</span> <span class="o">=</span> <span class="n">fetch_california_housing</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">california</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">california</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;MedHouseVal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">california</span><span class="o">.</span><span class="n">target</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\zhent\anaconda3\Lib\site-packages\pandas\core\arrays\masked.py:60: UserWarning: Pandas requires version &#39;1.3.6&#39; or newer of &#39;bottleneck&#39; (version &#39;1.3.5&#39; currently installed).
+  from pandas.core import (
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   MedInc  HouseAge  AveRooms  AveBedrms  Population  AveOccup  Latitude  \
+0  8.3252      41.0  6.984127   1.023810       322.0  2.555556     37.88   
+1  8.3014      21.0  6.238137   0.971880      2401.0  2.109842     37.86   
+2  7.2574      52.0  8.288136   1.073446       496.0  2.802260     37.85   
+3  5.6431      52.0  5.817352   1.073059       558.0  2.547945     37.85   
+4  3.8462      52.0  6.281853   1.081081       565.0  2.181467     37.85   
+
+   Longitude  MedHouseVal  
+0    -122.23        4.526  
+1    -122.22        3.585  
+2    -122.24        3.521  
+3    -122.25        3.413  
+4    -122.25        3.422  
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># display the summary statistics of the dataset df</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>             MedInc      HouseAge      AveRooms     AveBedrms    Population  \
+count  20640.000000  20640.000000  20640.000000  20640.000000  20640.000000   
+mean       3.870671     28.639486      5.429000      1.096675   1425.476744   
+std        1.899822     12.585558      2.474173      0.473911   1132.462122   
+min        0.499900      1.000000      0.846154      0.333333      3.000000   
+25%        2.563400     18.000000      4.440716      1.006079    787.000000   
+50%        3.534800     29.000000      5.229129      1.048780   1166.000000   
+75%        4.743250     37.000000      6.052381      1.099526   1725.000000   
+max       15.000100     52.000000    141.909091     34.066667  35682.000000   
+
+           AveOccup      Latitude     Longitude   MedHouseVal  
+count  20640.000000  20640.000000  20640.000000  20640.000000  
+mean       3.070655     35.631861   -119.569704      2.068558  
+std       10.386050      2.135952      2.003532      1.153956  
+min        0.692308     32.540000   -124.350000      0.149990  
+25%        2.429741     33.930000   -121.800000      1.196000  
+50%        2.818116     34.260000   -118.490000      1.797000  
+75%        3.282261     37.710000   -118.010000      2.647250  
+max     1243.333333     41.950000   -114.310000      5.000010  
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the problem</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;MedHouseVal&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;MedHouseVal&#39;</span><span class="p">]</span>
+
+<span class="c1"># Add a constant to the independent value</span>
+<span class="n">X1</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># Make regression model </span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X1</span><span class="p">)</span>
+
+<span class="c1"># Fit model and print results</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:            MedHouseVal   R-squared:                       0.606
+Model:                            OLS   Adj. R-squared:                  0.606
+Method:                 Least Squares   F-statistic:                     3970.
+Date:                Thu, 27 Mar 2025   Prob (F-statistic):               0.00
+Time:                        16:56:43   Log-Likelihood:                -22624.
+No. Observations:               20640   AIC:                         4.527e+04
+Df Residuals:                   20631   BIC:                         4.534e+04
+Df Model:                           8                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const        -36.9419      0.659    -56.067      0.000     -38.233     -35.650
+MedInc         0.4367      0.004    104.054      0.000       0.428       0.445
+HouseAge       0.0094      0.000     21.143      0.000       0.009       0.010
+AveRooms      -0.1073      0.006    -18.235      0.000      -0.119      -0.096
+AveBedrms      0.6451      0.028     22.928      0.000       0.590       0.700
+Population -3.976e-06   4.75e-06     -0.837      0.402   -1.33e-05    5.33e-06
+AveOccup      -0.0038      0.000     -7.769      0.000      -0.005      -0.003
+Latitude      -0.4213      0.007    -58.541      0.000      -0.435      -0.407
+Longitude     -0.4345      0.008    -57.682      0.000      -0.449      -0.420
+==============================================================================
+Omnibus:                     4393.650   Durbin-Watson:                   0.885
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):            14087.596
+Skew:                           1.082   Prob(JB):                         0.00
+Kurtosis:                       6.420   Cond. No.                     2.38e+05
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 2.38e+05. This might indicate that there are
+strong multicollinearity or other numerical problems.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Population&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Population&#39;</span><span class="p">])</span> <span class="c1"># log transformation of the population</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">nobs</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1"># randomly draw a number from each column of X</span>
+
+<span class="n">new_house</span> <span class="o">=</span> <span class="p">(</span><span class="n">X1</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1"># randomly generate features of a new house</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">X1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+    <span class="n">new_house</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">X1</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nobs</span><span class="p">),</span>  <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">new_house</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>const           1.000000
+MedInc          7.387800
+HouseAge        4.000000
+AveRooms        5.521040
+AveBedrms       1.001397
+Population    932.000000
+AveOccup        2.539708
+Latitude       38.580000
+Longitude    -122.320000
+Name: 0, dtype: float64
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\zhent\AppData\Local\Temp\ipykernel_66012\99423061.py:9: FutureWarning: Series.__setitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To set a value by position, use `ser.iloc[pos] = value`
+  new_house[i] = X1.iloc[ random.randint(0, nobs),  i].copy()
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># use new house to predict the price</span>
+<span class="n">results</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">exog</span> <span class="o">=</span> <span class="n">new_house</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>None    3.257554
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<section id="unsupervised">
+<h3><span class="section-number">30.1.1. </span>Unsupervised<a class="headerlink" href="#unsupervised" title="Link to this heading">#</a></h3>
+<p>MLE</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">pareto</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+
+<span class="c1"># Simulate a random dataset from a Pareto distribution</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">alpha_true</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pareto</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">alpha_true</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<span class="c1"># data = np.random.uniform(1.1, n) # a misspecified distribution</span>
+
+<span class="c1"># Define the log-likelihood function for Pareto distribution</span>
+<span class="k">def</span> <span class="nf">pareto_log_likelihood</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="n">params</span>
+    <span class="n">log_likelihood</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">alpha</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">log_likelihood</span>
+
+<span class="c1"># Find the MLE estimate</span>
+<span class="n">initial_guess</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">pareto_log_likelihood</span><span class="p">,</span> <span class="n">initial_guess</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">data</span><span class="p">,))</span>
+<span class="n">mle_alpha</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Print the MLE estimate</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estimated alpha:&quot;</span><span class="p">,</span> <span class="n">mle_alpha</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estimated alpha: 2.0969289210837068
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="first-generation">
+<h1><span class="section-number">31. </span>First Generation<a class="headerlink" href="#first-generation" title="Link to this heading">#</a></h1>
+<section id="nonparametric-estimation">
+<h2><span class="section-number">31.1. </span>Nonparametric Estimation<a class="headerlink" href="#nonparametric-estimation" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><em>Parametric</em>: a finite number of parameters</p></li>
+<li><p><em>Nonparametric</em>: an infinite number of parameters</p></li>
+<li><p>Some ideas in nonparametric estimation is directly related to machine learning</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="example-density-estimation">
+<h1><span class="section-number">32. </span>Example: Density Estimation<a class="headerlink" href="#example-density-estimation" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Density estimation given a sample <span class="math notranslate nohighlight">\((x_1,\ldots,x_n)\)</span></p></li>
+<li><p>If drawn from a parametric family, MLE for estimation</p></li>
+<li><p>Misspecification</p></li>
+</ul>
+<ul class="simple">
+<li><p>Histogram is nonparametric</p>
+<ul>
+<li><p>If grid too fine, small bias but large variance</p></li>
+<li><p>If grid too coarse, small variance but large bias</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">beta</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">x_base</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">breaks_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">60</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">axs</span><span class="o">.</span><span class="n">flat</span><span class="p">):</span>
+    <span class="n">ii</span> <span class="o">=</span> <span class="n">i</span> <span class="o">//</span> <span class="mi">3</span>
+    <span class="n">bb</span> <span class="o">=</span> <span class="n">breaks_list</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="mi">3</span><span class="p">]</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bb</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_base</span><span class="p">,</span> <span class="n">beta</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x_base</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Breaks=</span><span class="si">{</span><span class="n">bb</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/51b6009723a8268d3cde0264b37ac20961e83f1d20739505d398be1b37e01343.png" src="_images/51b6009723a8268d3cde0264b37ac20961e83f1d20739505d398be1b37e01343.png" />
+</div>
+</div>
+<section id="variance-bias-tradeoff">
+<h2><span class="section-number">32.1. </span>Variance-Bias Tradeoff<a class="headerlink" href="#variance-bias-tradeoff" title="Link to this heading">#</a></h2>
+<p><img alt="" src="_images/bias_variance.png" /></p>
+<section id="example-conditional-mean">
+<h3><span class="section-number">32.1.1. </span>Example: Conditional Mean<a class="headerlink" href="#example-conditional-mean" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Conditional mean $<span class="math notranslate nohighlight">\(f(x) = E[y_i |x_i = x]\)</span><span class="math notranslate nohighlight">\( given a sample \)</span>(y_i, x_i)$.</p></li>
+<li><p>Solve
+$<span class="math notranslate nohighlight">\(
+\min_f E[ (y_i - f(x_i) )^2 ]
+\)</span>$</p></li>
+<li><p>In general <span class="math notranslate nohighlight">\(f(x)\)</span> is a nonlinear function.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="series-estimation">
+<h1><span class="section-number">33. </span>Series Estimation<a class="headerlink" href="#series-estimation" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Series expansion to approximate <span class="math notranslate nohighlight">\(f(x)\)</span></p></li>
+<li><p>Generates many additive regressors</p>
+<ul>
+<li><p>Ex: bounded, continuous and differentiate function has a series
+representation <span class="math notranslate nohighlight">\(f(x) = \sum_{k=0}^{\infty} \beta_k \cos (\frac{k}{2}\pi x )\)</span>.</p></li>
+<li><p>In finite sample, choose a finite <span class="math notranslate nohighlight">\(K\)</span>, usually much smaller than <span class="math notranslate nohighlight">\(n\)</span></p></li>
+<li><p>Asymptotically <span class="math notranslate nohighlight">\(K \to \infty\)</span> as <span class="math notranslate nohighlight">\(n \to \infty\)</span> so that
+$<span class="math notranslate nohighlight">\(
+f_K(x) = \sum_{k=0}^{K} \beta_k \cos \left(\frac{k}{2}\pi x \right) \to f(x).
+\)</span>$</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Bias-variance trade-off</p>
+<ul>
+<li><p>Big <span class="math notranslate nohighlight">\(K\)</span>: small bias and large variance</p></li>
+<li><p>Small <span class="math notranslate nohighlight">\(K\)</span>: small variance and large bias</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="penalization">
+<h1><span class="section-number">34. </span>Penalization<a class="headerlink" href="#penalization" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Specify a sufficiently large <span class="math notranslate nohighlight">\(K\)</span>, and then add a penalty term to control the complexity</p></li>
+<li><p>Eg: <em>Ridge regression</em>:
+$$
+\min_\beta \  \frac{1}{n}  \sum_{i=1}^n \left(y_i - \sum_{k=0}^{K} \beta_k f_k(x_i) \right)^2</p></li>
+</ul>
+<ul class="simple">
+<li><p>\lambda \sum_{k=0}^K \beta_k^2,
+$<span class="math notranslate nohighlight">\(
+where \)</span>\lambda<span class="math notranslate nohighlight">\( is the tuning parameter such that \)</span>\lambda \to 0<span class="math notranslate nohighlight">\( as \)</span>n\to \infty<span class="math notranslate nohighlight">\(, and
+\)</span>f_k(x_i) = \cos \left(\frac{k}{2}\pi x_i \right)$.</p></li>
+</ul>
+<p>In compact notation, let <span class="math notranslate nohighlight">\(Y=(y_1,\ldots,y_n)'\)</span> and
+<span class="math notranslate nohighlight">\(X = (X_{ik} = f_k(x_i) )\)</span>, the above problem can be written as
+$<span class="math notranslate nohighlight">\(
+\frac{1}{n} (Y-X\beta)'(Y-X\beta) + \lambda \Vert \beta \Vert_2 ^2
+\)</span>$</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="tuning-parameter">
+<h1><span class="section-number">35. </span>Tuning Parameter<a class="headerlink" href="#tuning-parameter" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><em>Information criterion</em>: AIC, BIC</p></li>
+<li><p><em>Cross validation</em></p></li>
+<li><p>Active statistical research, but has little economics</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="econometrics-workflow">
+<h1><span class="section-number">36. </span>Econometrics Workflow<a class="headerlink" href="#econometrics-workflow" title="Link to this heading">#</a></h1>
+<p><img alt="" src="_images/metric_flow.png" /></p>
+<section id="data-splitting">
+<h2><span class="section-number">36.1. </span>Data Splitting<a class="headerlink" href="#data-splitting" title="Link to this heading">#</a></h2>
+<p><img alt=" " src="_images/ML_flow.png" /></p>
+</section>
+<section id="id1">
+<h2><span class="section-number">36.2. </span>Data Splitting<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Machine learning’s main purpose is often prediction</p></li>
+<li><p>Agnostic about the DGP.</p></li>
+<li><p>Models are measured by their performance in prediction.</p></li>
+<li><p>Tuning.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Training dataset</p></li>
+<li><p>Validation dataset</p></li>
+</ul>
+<ul class="simple">
+<li><p>Testing sample</p></li>
+</ul>
+<section id="cross-validation-cross-sectional-data">
+<h3><span class="section-number">36.2.1. </span>Cross Validation (cross sectional data)<a class="headerlink" href="#cross-validation-cross-sectional-data" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(S\)</span>-fold cross validation partitions the dataset into <span class="math notranslate nohighlight">\(S\)</span> disjoint sections</p></li>
+<li><p>Each iteration picks one of the sections as the (quasi) validation sample</p></li>
+<li><p>The other <span class="math notranslate nohighlight">\(S-1\)</span> sections as the training sample.</p></li>
+<li><p>Compute an out-of-sample goodness-of-fit measurement</p></li>
+</ul>
+</section>
+<section id="goodness-of-fit-out-of-sample">
+<h3><span class="section-number">36.2.2. </span>Goodness of Fit (Out of Sample)<a class="headerlink" href="#goodness-of-fit-out-of-sample" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><em>Mean-squared prediction error</em> <span class="math notranslate nohighlight">\({n_v}^{-1} \sum_{i \in val} (y_i - \hat{y}_i)^2\)</span> where <span class="math notranslate nohighlight">\(val\)</span> is the validation set and <span class="math notranslate nohighlight">\(n_v\)</span> is its cardinality,</p></li>
+<li><p><em>Mean-absolute prediction error</em> <span class="math notranslate nohighlight">\({n_v}^{-1}\sum_{i \in val} |y_i - \hat{y}_i|\)</span>.</p></li>
+<li><p><em>Out of sample R-squared</em> (OOS <span class="math notranslate nohighlight">\(R^2\)</span>):</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+1 - \frac{{n_v}^{-1} \sum_{i \in val} (y_i - \hat{y}_i)^2}{{n_v}^{-1} \sum_{i \in val} y_i^2}
+\]</div>
+<ul class="simple">
+<li><p>Repeat this process for <span class="math notranslate nohighlight">\(S\)</span> times so that each of the <span class="math notranslate nohighlight">\(S\)</span> sections are treated as the validation sample,</p></li>
+<li><p>Average the goodness-of-fit measurement over the <span class="math notranslate nohighlight">\(S\)</span> sections to determined the best tuning parameter.</p></li>
+<li><p>In practice we can use  <span class="math notranslate nohighlight">\(S=5\)</span> for 10</p></li>
+</ul>
+</section>
+<section id="cross-validation-time-series-data">
+<h3><span class="section-number">36.2.3. </span>Cross Validation (time series data)<a class="headerlink" href="#cross-validation-time-series-data" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>In time series context, cross validation must preserve the dependence structure.</p></li>
+<li><p>If the time series is stationary, we can partition the data into <span class="math notranslate nohighlight">\(S\)</span> consecutive blocks.</p></li>
+</ul>
+<p>(i will skip this slide)</p>
+<ul class="simple">
+<li><p>If the purpose is forecasting, then we can use nested CV.
+<img alt=" " src="_images/CV_Figure.png" /></p></li>
+<li><p>Nested CV with fixed-length rolling window scheme</p></li>
+<li><p>The sub-training data can also be an extending rolling window.</p></li>
+</ul>
+</section>
+</section>
+<section id="variable-selection">
+<h2><span class="section-number">36.3. </span>Variable Selection<a class="headerlink" href="#variable-selection" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Number of covariates <span class="math notranslate nohighlight">\(x_i\)</span> can be large.</p></li>
+<li><p>Conventional attitude: prior knowledge</p></li>
+<li><p>Recently economists wake up from the long lasting negligence.</p>
+<ul>
+<li><p>Stock and Watson (2012): forecasting 143 US macroeconomic indicators.</p></li>
+<li><p>A horse race of several variable selection methods.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="lasso">
+<h1><span class="section-number">37. </span>Lasso<a class="headerlink" href="#lasso" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>least-absolute-shrinkage-and-selection-operator
+(Lasso) (Tibshirani, 1996)</p></li>
+<li><p>Penalizes the <span class="math notranslate nohighlight">\(L_1\)</span> norm of the coefficients.
+The criterion function of Lasso is written as
+$<span class="math notranslate nohighlight">\(
+(2n)^{-1} (Y-X\beta)'(Y-X\beta) + \lambda \Vert \beta \Vert_1
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span>\lambda \geq 0$ is a tuning parameter.</p></li>
+</ul>
+<p>Lasso shrinks some coefficients exactly to 0, in a wide range of values of <span class="math notranslate nohighlight">\(\lambda\)</span></p>
+<p><img alt=" " src="_images/lasso_regression2.png" /></p>
+<section id="demo-of-ols-lasso-and-ridge">
+<h2><span class="section-number">37.1. </span>Demo of OLS, Lasso and Ridge<a class="headerlink" href="#demo-of-ols-lasso-and-ridge" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.kaggle.com/code/frankshi0/ols-and-regularization">kaggle link</a></p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="scad">
+<h1><span class="section-number">38. </span>SCAD<a class="headerlink" href="#scad" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Smoothly-clipped-absolute-deviation (SCAD) Fan and Li (2001):
+$<span class="math notranslate nohighlight">\(
+(2n)^{-1} (Y-X\beta)'(Y-X\beta) + \sum_{j=1}^d \rho_{\lambda}( |\beta_j| )
+\)</span><span class="math notranslate nohighlight">\(
+where
+\)</span><span class="math notranslate nohighlight">\(
+\rho_{\lambda}^{\prime} (\theta) = \lambda \left\{ 1\{\theta\leq \lambda \} +
+\frac{(a\lambda - \theta)_+}{(a-1)\lambda} \cdot 1 \{\theta &gt; \lambda\} \right\}
+\)</span><span class="math notranslate nohighlight">\(
+for some \)</span>a&gt;2<span class="math notranslate nohighlight">\( and \)</span>\theta&gt;0$.</p></li>
+<li><p>SCAD enjoys <em>oracle property</em>.</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="adaptive-lasso">
+<h1><span class="section-number">39. </span>Adaptive Lasso<a class="headerlink" href="#adaptive-lasso" title="Link to this heading">#</a></h1>
+<p><em>Adaptive Lasso</em> (Zou, 2006) also enjoys the oracle property.</p>
+<p>Two-step algorithm:</p>
+<ol class="arabic simple">
+<li><p>First run a Lasso or ridge regression and save the estimator <span class="math notranslate nohighlight">\(\hat{\beta}^{(1)}\)</span></p></li>
+<li><p>Solve
+<span class="math notranslate nohighlight">\((2n)^{-1} (Y-X\beta)'(Y-X\beta) + \lambda \sum_{j=1}^d  w_j |\beta_j|\)</span>
+where <span class="math notranslate nohighlight">\(w_j = 1 /  |\hat{\beta}_j^{(1)} |^a\)</span> and <span class="math notranslate nohighlight">\(a\geq 1\)</span> is a constant. (Common choice is <span class="math notranslate nohighlight">\(a = 1\)</span> or 2).</p></li>
+</ol>
+<ul class="simple">
+<li><p>Lee, Shi and Gao (2022)</p></li>
+</ul>
+<p><strong>Example</strong>: Lasso vs OLS</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">pinv</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LassoCV</span><span class="p">,</span> <span class="n">Lasso</span>
+
+<span class="c1"># Set up the data</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">b0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="mi">10</span><span class="p">)])</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">b0</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># OLS</span>
+<span class="n">ols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">pinv</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">x</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+
+<span class="c1"># Lasso</span>
+<span class="n">lasso_cv</span> <span class="o">=</span> <span class="n">LassoCV</span><span class="p">(</span><span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> 
+<span class="n">lasso_result</span> <span class="o">=</span> <span class="n">Lasso</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">lasso_cv</span><span class="o">.</span><span class="n">alpha_</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">lasso_result</span><span class="o">.</span><span class="n">coef_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 4.61394640e-01,  9.53775021e-01,  8.69780955e-01,  6.69552012e-01,
+        7.57265819e-01,  3.87792447e-01,  5.93992509e-01,  1.01126208e+00,
+        6.59576957e-01,  8.18880319e-01,  0.00000000e+00, -1.18012520e-01,
+       -2.18514707e-01,  1.87166924e-01, -0.00000000e+00,  2.52027371e-01,
+       -4.03979672e-02, -2.23565563e-01,  0.00000000e+00,  0.00000000e+00,
+        0.00000000e+00, -6.27379226e-02, -0.00000000e+00,  0.00000000e+00,
+       -3.86961333e-02,  0.00000000e+00,  0.00000000e+00,  9.92385697e-02,
+        0.00000000e+00, -0.00000000e+00, -4.81687497e-02,  0.00000000e+00,
+        3.95957961e-03, -1.82878829e-01, -0.00000000e+00,  0.00000000e+00,
+        1.15783965e-01,  0.00000000e+00,  0.00000000e+00, -4.38775478e-02,
+       -2.01971146e-01, -2.97302166e-05, -2.20585473e-01, -1.42422520e-01,
+       -0.00000000e+00, -0.00000000e+00,  0.00000000e+00, -0.00000000e+00,
+        1.94524486e-01, -0.00000000e+00])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Plot the coefficients</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ols</span><span class="p">)),</span> <span class="n">ols</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;OLS Coefficients&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lasso_result</span><span class="o">.</span><span class="n">coef_</span><span class="p">)),</span> <span class="n">lasso_result</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Lasso Coefficients&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add labels, legend, and title</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Coefficient Index&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Coefficient Value&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Comparison of OLS and Lasso Coefficients&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Show the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/68413f3780688bf171d770e56728f20e66c9c5f33f21964b087e630f12dedfbe.png" src="_images/68413f3780688bf171d770e56728f20e66c9c5f33f21964b087e630f12dedfbe.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="stagewise-forward-selection">
+<h1><span class="section-number">40. </span>Stagewise Forward Selection<a class="headerlink" href="#stagewise-forward-selection" title="Link to this heading">#</a></h1>
+<p>More methods are available if prediction of the response variables is the sole purpose of the regression.</p>
+<p>Eg: <em>stagewise forward selection</em></p>
+<ol class="arabic simple">
+<li><p>Start from an empty model.</p></li>
+<li><p>Given many candidate <span class="math notranslate nohighlight">\(x_j\)</span>, in each round we add the regressor that can
+produce the biggest <span class="math notranslate nohighlight">\(R^2\)</span>.</p></li>
+</ol>
+<p>Close to the idea of <em><span class="math notranslate nohighlight">\(L_2\)</span> componentwise boosting</em>
+which does not adjust the coefficients fitted earlier</p>
+<ul class="simple">
+<li><p>Shi and Huang (2023)</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="second-generation">
+<h1><span class="section-number">41. </span>Second Generation<a class="headerlink" href="#second-generation" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="prediction-oriented-methods">
+<h1><span class="section-number">42. </span>Prediction-Oriented Methods<a class="headerlink" href="#prediction-oriented-methods" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Methods that induces data-driven interaction of the covariates.</p></li>
+<li><p>Interaction makes the covariates much more flexible</p></li>
+<li><p>Insufficient theoretical understanding</p></li>
+<li><p>“Black-boxes” methods</p></li>
+<li><p>Surprisingly superior performance</p></li>
+<li><p>Industry insiders are pondering “alchemy”</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">AdaBoostClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
+
+<span class="c1"># Load data</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
+
+<span class="c1"># Split dataset into training set and test set</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span> <span class="c1"># 70% training and 30% test</span>
+
+<span class="c1"># Create adaboost classifer object</span>
+<span class="n">abc</span> <span class="o">=</span> <span class="n">AdaBoostClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+
+<span class="c1"># Train Adaboost Classifer</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">abc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Predict the response for test dataset</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Model Accuracy</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy:&quot;</span><span class="p">,</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 0.9555555555555556
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\zhent\anaconda3\envs\pytorch\Lib\site-packages\sklearn\ensemble\_weight_boosting.py:519: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="regression-tree">
+<h1><span class="section-number">43. </span>Regression Tree<a class="headerlink" href="#regression-tree" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Supervised learning: <span class="math notranslate nohighlight">\(x \to y \)</span></p></li>
+<li><p>Regression tree (Breiman, 1984) recursively partitions the space of the regressors</p>
+<ul>
+<li><p>Each time a covariate is split into two dummies</p></li>
+<li><p>Splitting criterion is aggressive reduction of the SSR</p></li>
+<li><p>Tuning parameter is the depth of the tree</p></li>
+<li><p>Given a dataset <span class="math notranslate nohighlight">\(d\)</span> and the depth of the tree, the fitted tree <span class="math notranslate nohighlight">\(\hat{r}(d)\)</span> is deterministic</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Example: Using longitude and latitude for Beijing housing price.</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="bagging">
+<h1><span class="section-number">44. </span>Bagging<a class="headerlink" href="#bagging" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Tree is unstable</p></li>
+<li><p><em>Bootstrap aggregation</em>, or <em>bagging</em>, reduces variance of trees (Breiman, 1996)</p>
+<ul>
+<li><p>Grow a tree for each bootstrap sample</p></li>
+<li><p>Simple average</p></li>
+</ul>
+</li>
+<li><p>An example of the <em>ensemble learning</em>.</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="random-forest">
+<h1><span class="section-number">45. </span>Random Forest<a class="headerlink" href="#random-forest" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><em>Random forest</em> (Breiman, 2001):</p>
+<ul>
+<li><p>Draw a bootstrap sample</p></li>
+<li><p>Before each split, shakes up the regressors by randomly sampling <span class="math notranslate nohighlight">\(m\)</span> out of the total <span class="math notranslate nohighlight">\(p\)</span> covarites. Stop until the depth of the tree is reached.</p></li>
+<li><p>Average the trees over the bootstrap samples</p></li>
+</ul>
+</li>
+<li><p>The tuning parameters are the tree depth and <span class="math notranslate nohighlight">\(m\)</span></p></li>
+<li><p>More stable than bagging thanks to “de-correlation”</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_california_housing</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Load California housing dataset</span>
+<span class="n">california</span> <span class="o">=</span> <span class="n">fetch_california_housing</span><span class="p">()</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">california</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">california</span><span class="o">.</span><span class="n">target</span>
+<span class="n">feature_names</span> <span class="o">=</span> <span class="n">california</span><span class="o">.</span><span class="n">feature_names</span>
+
+<span class="c1"># training Sample with 300 observations</span>
+<span class="n">train_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)),</span> <span class="n">size</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Fit Random Forest model</span>
+<span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">101</span><span class="p">)</span>
+<span class="c1"># document: https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html</span>
+<span class="c1"># &quot;n_estimators&quot; is the number of trees in a forest</span>
+
+<span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">train_indices</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">train_indices</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-1 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: black;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-1 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-1 pre {
+  padding: 0;
+}
+
+#sk-container-id-1 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-1 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-1 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-1 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-1 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-1 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-1 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-1 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-1 label.sk-toggleable__label {
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-1 div.sk-toggleable__content {
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  max-height: 200px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label label.sk-toggleable__label,
+#sk-container-id-1 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-1 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-1 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-1 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-1 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 1ex;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-1 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-1 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>RandomForestRegressor(n_estimators=500, random_state=101)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;RandomForestRegressor<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.ensemble.RandomForestRegressor.html">?<span>Documentation for RandomForestRegressor</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>RandomForestRegressor(n_estimators=500, random_state=101)</pre></div> </div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get feature importances from the random forest model</span>
+<span class="n">importances</span> <span class="o">=</span> <span class="n">rf</span><span class="o">.</span><span class="n">feature_importances_</span>
+
+<span class="c1"># Sort the feature importances in descending order</span>
+<span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">importances</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Plot the feature importances</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Feature Importances&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">importances</span><span class="p">[</span><span class="n">indices</span><span class="p">],</span> <span class="n">align</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="p">[</span><span class="n">feature_names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">],</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Feature&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Importance&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/7cfb02f7bc8aac94ec98e1ae7d50d8a547df2fdbebd1e95905c32cb17f50c4d9.png" src="_images/7cfb02f7bc8aac94ec98e1ae7d50d8a547df2fdbebd1e95905c32cb17f50c4d9.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Consistency of random forest is not proved
+until Scornet, Biau, and Vert (2015)</p></li>
+<li><p>Inferential theory was first established by
+Wager Athey (2018)  in the context of treatment effect estimation</p></li>
+<li><p>Athey, Tibshirani, and Wager (2019) generalizes CART to local maximum likelihood.</p></li>
+</ul>
+<section id="gradient-boosting">
+<h2><span class="section-number">45.1. </span>Gradient Boosting<a class="headerlink" href="#gradient-boosting" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Bagging and random forest use equal weight on each generated tree for the ensemble</p></li>
+<li><p>Tree boosting takes a deterministic approach for the weights</p>
+<ol class="arabic simple">
+<li><p>Use the original data <span class="math notranslate nohighlight">\(d^0=(x_i,y_i)\)</span> to grow a shallow tree <span class="math notranslate nohighlight">\(\hat{r}^{0}(d^0)\)</span>. Save the prediction <span class="math notranslate nohighlight">\(f^0_i = \alpha \cdot \hat{r}^0 (d^0, x_i)\)</span> where
+<span class="math notranslate nohighlight">\(\alpha\in [0,1]\)</span> is a shrinkage tuning parameter. Save
+the residual <span class="math notranslate nohighlight">\(e_i^{0} = y_i - f^0_i\)</span>. Set <span class="math notranslate nohighlight">\(m=1\)</span>.</p></li>
+<li><p>In the <span class="math notranslate nohighlight">\(m\)</span>-th iteration, use the data <span class="math notranslate nohighlight">\(d^m = (x_i,e_i^{m-1})\)</span> to grow a shallow tree <span class="math notranslate nohighlight">\(\hat{r}^{m}(d^m)\)</span>. Save the prediction <span class="math notranslate nohighlight">\(f^m_i =  f^{m-1}_i +  \alpha \cdot \hat{r}^m (d, x_i)\)</span>. Save
+the residual <span class="math notranslate nohighlight">\(e_i^{m} = y_i - f^m_i\)</span>. Update <span class="math notranslate nohighlight">\(m = m+1\)</span>.</p></li>
+<li><p>Repeat Step 2 until <span class="math notranslate nohighlight">\(m &gt; M\)</span>.</p></li>
+</ol>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Boosting has three tuning parameters: the tree depth,  the learning rate <span class="math notranslate nohighlight">\(\alpha\)</span>, and the number of iterations <span class="math notranslate nohighlight">\(M\)</span></p></li>
+<li><p>The algorithm can be sensitive to any of the three tuning parameters</p></li>
+<li><p>When a model is tuned well, it can performs remarkably</p>
+<ul>
+<li><p>Example: Beijing housing data.</p></li>
+<li><p>Gradient boosting via <code class="docutils literal notranslate"><span class="pre">GradientBoostingRegressor</span></code></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="real-data-example">
+<h2><span class="section-number">45.2. </span>Real Data Example<a class="headerlink" href="#real-data-example" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">GridSearchCV</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">make_scorer</span><span class="p">,</span> <span class="n">mean_squared_error</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\zhent\AppData\Local\Temp\ipykernel_10992\2089539295.py:1: DeprecationWarning: 
+Pyarrow will become a required dependency of pandas in the next major release of pandas (pandas 3.0),
+(to allow more performant data types, such as the Arrow string type, and better interoperability with other libraries)
+but was not found to be installed on your system.
+If this would cause problems for you,
+please provide us feedback at https://github.com/pandas-dev/pandas/issues/54466
+        
+  import pandas as pd
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the data</span>
+<span class="n">lianjia</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data_example/lianjia.csv&quot;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;gbk&#39;</span><span class="p">)</span>
+
+<span class="c1"># Sampling with a seed for reproducibility</span>
+<span class="n">lianjia</span> <span class="o">=</span> <span class="n">lianjia</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">predictors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;square&quot;</span><span class="p">,</span> <span class="s2">&quot;livingRoom&quot;</span><span class="p">,</span> <span class="s2">&quot;drawingRoom&quot;</span><span class="p">,</span> <span class="s2">&quot;kitchen&quot;</span><span class="p">,</span> <span class="s2">&quot;bathRoom&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;floor_total&quot;</span><span class="p">,</span> <span class="s2">&quot;elevator&quot;</span><span class="p">,</span> <span class="s2">&quot;ladderRatio&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="s2">&quot;DOM&quot;</span><span class="p">,</span> <span class="s2">&quot;followers&quot;</span><span class="p">,</span> <span class="s2">&quot;fiveYearsProperty&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;subway&quot;</span><span class="p">,</span> <span class="s2">&quot;district&quot;</span><span class="p">,</span> <span class="s2">&quot;Lng&quot;</span><span class="p">,</span> <span class="s2">&quot;Lat&quot;</span><span class="p">,</span> <span class="s2">&quot;t_trade&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;communityAverage&quot;</span><span class="p">]</span>
+
+
+<span class="c1"># Your target variable</span>
+<span class="n">target</span> <span class="o">=</span> <span class="s1">&#39;price&#39;</span>
+
+<span class="c1"># Prepare your predictor and target datasets</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">lianjia</span><span class="p">[</span><span class="n">predictors</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">lianjia</span><span class="p">[</span><span class="n">target</span><span class="p">]</span>
+
+<span class="c1"># Define the hyperparameters</span>
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># &#39;max_depth&#39;: [10, 20, 40],  # equivalent to interaction.depth in R&#39;s gbm</span>
+    <span class="c1"># &#39;n_estimators&#39;: [1000, 5000, 9000],  # equivalent to n.trees. (number of iterations)</span>
+    <span class="c1"># &#39;learning_rate&#39;: [0.001, 0.005, 0.01, 0.05, 0.1],  # equivalent to shrinkage</span>
+    <span class="c1"># &#39;min_samples_leaf&#39;: [10, 15, 20],  # equivalent to n.minobsinnode</span>
+
+    <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span>  <span class="c1"># equivalent to interaction.depth in R&#39;s gbm</span>
+    <span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span>  <span class="c1"># equivalent to n.trees. (number of iterations)</span>
+    <span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span>  <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span>  <span class="c1"># equivalent to shrinkage</span>
+    <span class="s1">&#39;min_samples_leaf&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">],</span>  <span class="c1"># equivalent to n.minobsinnode</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\zhent\AppData\Local\Temp\ipykernel_10992\2364535954.py:2: DtypeWarning: Columns (1) have mixed types. Specify dtype option on import or set low_memory=False.
+  lianjia = pd.read_csv(&quot;data_example/lianjia.csv&quot;,encoding=&#39;gbk&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+
+<span class="c1"># Create the Gradient Boosting Regressor</span>
+<span class="n">gbm</span> <span class="o">=</span> <span class="n">GradientBoostingRegressor</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;squared_error&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Start the timer</span>
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="c1"># Perform grid search</span>
+<span class="n">grid_search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">estimator</span> <span class="o">=</span> <span class="n">gbm</span><span class="p">,</span> 
+                           <span class="n">param_grid</span> <span class="o">=</span> <span class="n">param_grid</span><span class="p">,</span> 
+                           <span class="n">scoring</span> <span class="o">=</span> <span class="s1">&#39;neg_mean_squared_error&#39;</span><span class="p">,</span> 
+                           <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                           <span class="n">verbose</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> 
+                                                    <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> 
+                                                    <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">grid_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Calculate the time taken</span>
+<span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">duration</span> <span class="o">=</span> <span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span>
+
+<span class="c1"># Print the best parameters and the corresponding score</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best Parameters:&quot;</span><span class="p">,</span> <span class="n">grid_search</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best Score:&quot;</span><span class="p">,</span> <span class="o">-</span><span class="n">grid_search</span><span class="o">.</span><span class="n">best_score_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Time taken:&quot;</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="s2">&quot;seconds&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitting 5 folds for each of 18 candidates, totalling 90 fits
+[CV 1/5] END learning_rate=0.001, max_depth=10, min_samples_leaf=10, n_estimators=500;, score=-253511878.745 total time=   2.6s
+[CV 2/5] END learning_rate=0.001, max_depth=10, min_samples_leaf=10, n_estimators=500;, score=-212811904.343 total time=   2.7s
+[CV 3/5] END learning_rate=0.001, max_depth=10, min_samples_leaf=10, n_estimators=500;, score=-207580595.857 total time=   2.8s
+[CV 4/5] END learning_rate=0.001, max_depth=10, min_samples_leaf=10, n_estimators=500;, score=-203834085.610 total time=   2.5s
+[CV 5/5] END learning_rate=0.001, max_depth=10, min_samples_leaf=10, n_estimators=500;, score=-269730063.831 total time=   2.4s
+[CV 1/5] END learning_rate=0.001, max_depth=10, min_samples_leaf=10, n_estimators=1000;, score=-140416783.883 total time=   4.8s
+[CV 2/5] END learning_rate=0.001, max_depth=10, min_samples_leaf=10, n_estimators=1000;, score=-108685972.008 total time=   4.8s
+[CV 3/5] END learning_rate=0.001, max_depth=10, min_samples_leaf=10, n_estimators=1000;, score=-119655012.171 total time=   5.1s
+[CV 4/5] END learning_rate=0.001, max_depth=10, min_samples_leaf=10, n_estimators=1000;, score=-91680122.346 total time=   5.3s
+[CV 5/5] END learning_rate=0.001, max_depth=10, min_samples_leaf=10, n_estimators=1000;, score=-144042814.423 total time=   5.6s
+[CV 1/5] END learning_rate=0.001, max_depth=20, min_samples_leaf=10, n_estimators=500;, score=-253511878.745 total time=   3.6s
+[CV 2/5] END learning_rate=0.001, max_depth=20, min_samples_leaf=10, n_estimators=500;, score=-212811904.343 total time=   4.1s
+[CV 3/5] END learning_rate=0.001, max_depth=20, min_samples_leaf=10, n_estimators=500;, score=-207580595.857 total time=   4.1s
+[CV 4/5] END learning_rate=0.001, max_depth=20, min_samples_leaf=10, n_estimators=500;, score=-203834085.610 total time=   4.4s
+[CV 5/5] END learning_rate=0.001, max_depth=20, min_samples_leaf=10, n_estimators=500;, score=-269730063.831 total time=   3.8s
+[CV 1/5] END learning_rate=0.001, max_depth=20, min_samples_leaf=10, n_estimators=1000;, score=-140416339.388 total time=   8.0s
+[CV 2/5] END learning_rate=0.001, max_depth=20, min_samples_leaf=10, n_estimators=1000;, score=-108685972.008 total time=   7.6s
+[CV 3/5] END learning_rate=0.001, max_depth=20, min_samples_leaf=10, n_estimators=1000;, score=-119655012.171 total time=   8.3s
+[CV 4/5] END learning_rate=0.001, max_depth=20, min_samples_leaf=10, n_estimators=1000;, score=-91680122.346 total time=   8.6s
+[CV 5/5] END learning_rate=0.001, max_depth=20, min_samples_leaf=10, n_estimators=1000;, score=-144042664.632 total time=   8.4s
+[CV 1/5] END learning_rate=0.001, max_depth=40, min_samples_leaf=10, n_estimators=500;, score=-253511878.745 total time=   4.3s
+[CV 2/5] END learning_rate=0.001, max_depth=40, min_samples_leaf=10, n_estimators=500;, score=-212811904.343 total time=   4.1s
+[CV 3/5] END learning_rate=0.001, max_depth=40, min_samples_leaf=10, n_estimators=500;, score=-207580595.857 total time=   4.2s
+[CV 4/5] END learning_rate=0.001, max_depth=40, min_samples_leaf=10, n_estimators=500;, score=-203834085.610 total time=   4.0s
+[CV 5/5] END learning_rate=0.001, max_depth=40, min_samples_leaf=10, n_estimators=500;, score=-269730063.831 total time=   4.2s
+[CV 1/5] END learning_rate=0.001, max_depth=40, min_samples_leaf=10, n_estimators=1000;, score=-140416339.388 total time=   8.6s
+[CV 2/5] END learning_rate=0.001, max_depth=40, min_samples_leaf=10, n_estimators=1000;, score=-108685972.008 total time=   8.4s
+[CV 3/5] END learning_rate=0.001, max_depth=40, min_samples_leaf=10, n_estimators=1000;, score=-119655012.171 total time=   8.7s
+[CV 4/5] END learning_rate=0.001, max_depth=40, min_samples_leaf=10, n_estimators=1000;, score=-91680122.346 total time=   8.8s
+[CV 5/5] END learning_rate=0.001, max_depth=40, min_samples_leaf=10, n_estimators=1000;, score=-144042664.632 total time=   8.6s
+[CV 1/5] END learning_rate=0.01, max_depth=10, min_samples_leaf=10, n_estimators=500;, score=-63117166.467 total time=   4.9s
+[CV 2/5] END learning_rate=0.01, max_depth=10, min_samples_leaf=10, n_estimators=500;, score=-44600502.017 total time=   5.2s
+[CV 3/5] END learning_rate=0.01, max_depth=10, min_samples_leaf=10, n_estimators=500;, score=-73072674.739 total time=   5.0s
+[CV 4/5] END learning_rate=0.01, max_depth=10, min_samples_leaf=10, n_estimators=500;, score=-34645324.945 total time=   4.8s
+[CV 5/5] END learning_rate=0.01, max_depth=10, min_samples_leaf=10, n_estimators=500;, score=-47225452.327 total time=   4.0s
+[CV 1/5] END learning_rate=0.01, max_depth=10, min_samples_leaf=10, n_estimators=1000;, score=-63749836.578 total time=   6.7s
+[CV 2/5] END learning_rate=0.01, max_depth=10, min_samples_leaf=10, n_estimators=1000;, score=-46136144.782 total time=   7.0s
+[CV 3/5] END learning_rate=0.01, max_depth=10, min_samples_leaf=10, n_estimators=1000;, score=-74888563.194 total time=   6.5s
+[CV 4/5] END learning_rate=0.01, max_depth=10, min_samples_leaf=10, n_estimators=1000;, score=-35137554.957 total time=   6.9s
+[CV 5/5] END learning_rate=0.01, max_depth=10, min_samples_leaf=10, n_estimators=1000;, score=-46713636.912 total time=   6.9s
+[CV 1/5] END learning_rate=0.01, max_depth=20, min_samples_leaf=10, n_estimators=500;, score=-63086953.373 total time=   3.0s
+[CV 2/5] END learning_rate=0.01, max_depth=20, min_samples_leaf=10, n_estimators=500;, score=-44854243.889 total time=   3.2s
+[CV 3/5] END learning_rate=0.01, max_depth=20, min_samples_leaf=10, n_estimators=500;, score=-73155195.134 total time=   3.3s
+[CV 4/5] END learning_rate=0.01, max_depth=20, min_samples_leaf=10, n_estimators=500;, score=-35192301.295 total time=   3.2s
+[CV 5/5] END learning_rate=0.01, max_depth=20, min_samples_leaf=10, n_estimators=500;, score=-47678133.439 total time=   3.2s
+[CV 1/5] END learning_rate=0.01, max_depth=20, min_samples_leaf=10, n_estimators=1000;, score=-63014307.179 total time=   8.4s
+[CV 2/5] END learning_rate=0.01, max_depth=20, min_samples_leaf=10, n_estimators=1000;, score=-47169894.440 total time=   8.0s
+[CV 3/5] END learning_rate=0.01, max_depth=20, min_samples_leaf=10, n_estimators=1000;, score=-74802007.973 total time=   8.7s
+[CV 4/5] END learning_rate=0.01, max_depth=20, min_samples_leaf=10, n_estimators=1000;, score=-35701831.806 total time=   9.0s
+[CV 5/5] END learning_rate=0.01, max_depth=20, min_samples_leaf=10, n_estimators=1000;, score=-47319070.244 total time=   8.1s
+[CV 1/5] END learning_rate=0.01, max_depth=40, min_samples_leaf=10, n_estimators=500;, score=-63163687.965 total time=   3.4s
+[CV 2/5] END learning_rate=0.01, max_depth=40, min_samples_leaf=10, n_estimators=500;, score=-44849419.758 total time=   2.9s
+[CV 3/5] END learning_rate=0.01, max_depth=40, min_samples_leaf=10, n_estimators=500;, score=-73139561.065 total time=   3.4s
+[CV 4/5] END learning_rate=0.01, max_depth=40, min_samples_leaf=10, n_estimators=500;, score=-35116328.528 total time=   3.2s
+[CV 5/5] END learning_rate=0.01, max_depth=40, min_samples_leaf=10, n_estimators=500;, score=-47642403.388 total time=   2.9s
+[CV 1/5] END learning_rate=0.01, max_depth=40, min_samples_leaf=10, n_estimators=1000;, score=-63194472.558 total time=   8.4s
+[CV 2/5] END learning_rate=0.01, max_depth=40, min_samples_leaf=10, n_estimators=1000;, score=-47257326.967 total time=   8.4s
+[CV 3/5] END learning_rate=0.01, max_depth=40, min_samples_leaf=10, n_estimators=1000;, score=-74547259.203 total time=   8.8s
+[CV 4/5] END learning_rate=0.01, max_depth=40, min_samples_leaf=10, n_estimators=1000;, score=-36036204.928 total time=   8.9s
+[CV 5/5] END learning_rate=0.01, max_depth=40, min_samples_leaf=10, n_estimators=1000;, score=-47110137.725 total time=   8.6s
+[CV 1/5] END learning_rate=0.1, max_depth=10, min_samples_leaf=10, n_estimators=500;, score=-62466623.131 total time=   3.3s
+[CV 2/5] END learning_rate=0.1, max_depth=10, min_samples_leaf=10, n_estimators=500;, score=-47617706.967 total time=   3.3s
+[CV 3/5] END learning_rate=0.1, max_depth=10, min_samples_leaf=10, n_estimators=500;, score=-76148186.087 total time=   3.8s
+[CV 4/5] END learning_rate=0.1, max_depth=10, min_samples_leaf=10, n_estimators=500;, score=-37836996.627 total time=   3.3s
+[CV 5/5] END learning_rate=0.1, max_depth=10, min_samples_leaf=10, n_estimators=500;, score=-49470306.381 total time=   3.4s
+[CV 1/5] END learning_rate=0.1, max_depth=10, min_samples_leaf=10, n_estimators=1000;, score=-62605398.099 total time=   7.1s
+[CV 2/5] END learning_rate=0.1, max_depth=10, min_samples_leaf=10, n_estimators=1000;, score=-47562133.567 total time=   6.6s
+[CV 3/5] END learning_rate=0.1, max_depth=10, min_samples_leaf=10, n_estimators=1000;, score=-75944894.491 total time=   6.4s
+[CV 4/5] END learning_rate=0.1, max_depth=10, min_samples_leaf=10, n_estimators=1000;, score=-38005863.341 total time=   6.5s
+[CV 5/5] END learning_rate=0.1, max_depth=10, min_samples_leaf=10, n_estimators=1000;, score=-49582635.722 total time=   6.8s
+[CV 1/5] END learning_rate=0.1, max_depth=20, min_samples_leaf=10, n_estimators=500;, score=-64071718.821 total time=   4.5s
+[CV 2/5] END learning_rate=0.1, max_depth=20, min_samples_leaf=10, n_estimators=500;, score=-48407188.708 total time=   4.4s
+[CV 3/5] END learning_rate=0.1, max_depth=20, min_samples_leaf=10, n_estimators=500;, score=-75874065.202 total time=   4.8s
+[CV 4/5] END learning_rate=0.1, max_depth=20, min_samples_leaf=10, n_estimators=500;, score=-38629108.924 total time=   4.9s
+[CV 5/5] END learning_rate=0.1, max_depth=20, min_samples_leaf=10, n_estimators=500;, score=-49224070.780 total time=   4.5s
+[CV 1/5] END learning_rate=0.1, max_depth=20, min_samples_leaf=10, n_estimators=1000;, score=-64028136.349 total time=  10.2s
+[CV 2/5] END learning_rate=0.1, max_depth=20, min_samples_leaf=10, n_estimators=1000;, score=-48421460.072 total time=  10.3s
+[CV 3/5] END learning_rate=0.1, max_depth=20, min_samples_leaf=10, n_estimators=1000;, score=-75789547.267 total time=  10.4s
+[CV 4/5] END learning_rate=0.1, max_depth=20, min_samples_leaf=10, n_estimators=1000;, score=-38733036.606 total time=  10.4s
+[CV 5/5] END learning_rate=0.1, max_depth=20, min_samples_leaf=10, n_estimators=1000;, score=-49462969.453 total time=   9.9s
+[CV 1/5] END learning_rate=0.1, max_depth=40, min_samples_leaf=10, n_estimators=500;, score=-63135931.279 total time=   4.7s
+[CV 2/5] END learning_rate=0.1, max_depth=40, min_samples_leaf=10, n_estimators=500;, score=-48859438.726 total time=   4.3s
+[CV 3/5] END learning_rate=0.1, max_depth=40, min_samples_leaf=10, n_estimators=500;, score=-76001472.649 total time=   5.6s
+[CV 4/5] END learning_rate=0.1, max_depth=40, min_samples_leaf=10, n_estimators=500;, score=-38377452.705 total time=   6.1s
+[CV 5/5] END learning_rate=0.1, max_depth=40, min_samples_leaf=10, n_estimators=500;, score=-48783245.701 total time=   5.0s
+[CV 1/5] END learning_rate=0.1, max_depth=40, min_samples_leaf=10, n_estimators=1000;, score=-63249983.202 total time=   9.7s
+[CV 2/5] END learning_rate=0.1, max_depth=40, min_samples_leaf=10, n_estimators=1000;, score=-48878947.443 total time=   9.6s
+[CV 3/5] END learning_rate=0.1, max_depth=40, min_samples_leaf=10, n_estimators=1000;, score=-75759208.513 total time=  10.4s
+[CV 4/5] END learning_rate=0.1, max_depth=40, min_samples_leaf=10, n_estimators=1000;, score=-38433314.798 total time=   9.8s
+[CV 5/5] END learning_rate=0.1, max_depth=40, min_samples_leaf=10, n_estimators=1000;, score=-48816386.119 total time=  10.4s
+Best Parameters: {&#39;learning_rate&#39;: 0.01, &#39;max_depth&#39;: 10, &#39;min_samples_leaf&#39;: 10, &#39;n_estimators&#39;: 500}
+Best Score: 52532224.09893664
+Time taken: 552.0968976020813 seconds
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
+
+<span class="c1"># Get the best parameters from grid search</span>
+<span class="n">best_params</span> <span class="o">=</span> <span class="n">grid_search</span><span class="o">.</span><span class="n">best_params_</span>
+
+<span class="c1"># Set the best parameters to the new model</span>
+<span class="n">gbm</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="o">**</span><span class="n">best_params</span><span class="p">)</span>
+
+<span class="c1"># Now when you call fit on gbm, it will use the best parameters</span>
+<span class="n">gbm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Predict with GBM model</span>
+<span class="n">pred_boosting</span> <span class="o">=</span> <span class="n">gbm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit the linear regression model</span>
+<span class="n">lmReg</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">lmReg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Predict with linear regression model</span>
+<span class="n">pred_lm</span> <span class="o">=</span> <span class="n">lmReg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Comparison</span>
+<span class="n">r_squared_gbm</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">pred_boosting</span><span class="p">)</span>
+<span class="n">r_squared_lm</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">pred_lm</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;R-squared of GBM prediction =&quot;</span><span class="p">,</span> <span class="n">r_squared_gbm</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;R-squared of LM prediction =&quot;</span><span class="p">,</span> <span class="n">r_squared_lm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R-squared of GBM prediction = 0.9038893047465942
+R-squared of LM prediction = 0.7869620570884921
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Many variants of boosting algorithms</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(L_2\)</span>-boosting</p></li>
+<li><p>componentwise boosting</p></li>
+<li><p>AdaBoosting, etc</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="summary">
+<h1><span class="section-number">46. </span>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Mature algorithms for implementation</p></li>
+<li><p>Theoretical investigation is in progress</p></li>
+<li><p>Economic applications are emerging</p></li>
+</ul>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="py_08_time_series.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">上一页</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Time Series Analysis</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="py_10_NN.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title"><span class="section-number">47. </span>Neural Networks</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目录
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">27. Machine Learning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">27.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-learning">27.2. Supervised Learning</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-learning">28. Unsupervised Learning</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conventional-statistics">29. Conventional Statistics</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-s-responses">30. Machine Learning’s Responses</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#toy-examples">30.1. Toy Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised">30.1.1. Unsupervised</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#first-generation">31. First Generation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nonparametric-estimation">31.1. Nonparametric Estimation</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example-density-estimation">32. Example: Density Estimation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-bias-tradeoff">32.1. Variance-Bias Tradeoff</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-conditional-mean">32.1.1. Example: Conditional Mean</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#series-estimation">33. Series Estimation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#penalization">34. Penalization</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tuning-parameter">35. Tuning Parameter</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#econometrics-workflow">36. Econometrics Workflow</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-splitting">36.1. Data Splitting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">36.2. Data Splitting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation-cross-sectional-data">36.2.1. Cross Validation (cross sectional data)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goodness-of-fit-out-of-sample">36.2.2. Goodness of Fit (Out of Sample)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation-time-series-data">36.2.3. Cross Validation (time series data)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-selection">36.3. Variable Selection</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso">37. Lasso</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-of-ols-lasso-and-ridge">37.1. Demo of OLS, Lasso and Ridge</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#scad">38. SCAD</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#adaptive-lasso">39. Adaptive Lasso</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#stagewise-forward-selection">40. Stagewise Forward Selection</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#second-generation">41. Second Generation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction-oriented-methods">42. Prediction-Oriented Methods</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-tree">43. Regression Tree</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#bagging">44. Bagging</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest">45. Random Forest</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-boosting">45.1. Gradient Boosting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-data-example">45.2. Real Data Example</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">46. Summary</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+作者： 史震涛 Shi Zhentao
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
