@@ -39,6 +39,9 @@ Approach 4 – Use is freely permitted without acknowledgement
 * Week 2: git, basic python
 * Week 3: Jupyter notebook, basic python, data sources
 * Week 4: data sources, data manipulation
+* Week 5: plot, advance computing
+* Week 6: remote clusters, reproducibility, and simulations
+
 
 ## License
 
