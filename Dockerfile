@@ -26,6 +26,11 @@ WORKDIR /home/jovyan/work
 # RUN git clone --depth=1 https://github.com/zhentaoshi/Econ5821.git .
 COPY . /home/jovyan/work
 
+RUN python -m pip install --no-cache-dir \
+    emcee \
+    nlopt \
+    cvxpy
+
 RUN fix-permissions "/home/${NB_USER}"
 
 EXPOSE 8888
