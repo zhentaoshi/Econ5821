@@ -40,8 +40,8 @@ Approach 4 – Use is freely permitted without acknowledgement
 * Week 3: Jupyter notebook, basic python, data sources
 * Week 4: data sources, data manipulation
 * Week 5: plot, advance computing
-* Week 6: remote clusters, reproducibility, and simulations
-
+* Week 6: remote clusters, reproducibility (Docker), and simulations
+* Week 7: bootstrap, MCMC, Bayes (intro)
 
 ## License
 
