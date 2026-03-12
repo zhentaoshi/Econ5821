@@ -17,7 +17,8 @@
         "ms-toolsai.jupyter",
         "ms-python.python",
         "ms-toolsai.datawrangler",
-        "anthropic.claude-code"
+        "anthropic.claude-code",
+        "ms-toolsai.datawrangler"
       ]
     }
   }
