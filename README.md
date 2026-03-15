@@ -43,8 +43,8 @@ Approach 4 – Use is freely permitted without acknowledgement
 * Week 6: remote clusters, reproducibility (Docker), and simulations
 * Week 7: bootstrap, MCMC, Bayes
 * Week 8: Bayes, numerical optimization
-* Week 9: numerical optimization, time series
-* Week 10: machine learning
+* Week 9: convex optimization, time series
+* Week 10: time series, machine learning
 
 ## License
 
