@@ -35,7 +35,8 @@ RUN python -m pip install --no-cache-dir \
     cvxpy \
     ipykernel \
     pandas_datareader \
-    yfinance
+    yfinance \
+    torch
 
 # RUN fix-permissions "/home/${NB_USER}"
 
