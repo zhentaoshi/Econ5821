@@ -44,7 +44,9 @@ Approach 4 – Use is freely permitted without acknowledgement
 * Week 7: bootstrap, MCMC, Bayes
 * Week 8: Bayes, numerical optimization
 * Week 9: convex optimization, time series
-* Week 10: time series, machine learning
+* Week 10: time series
+* Week 11: machine learning
+* Week 12: neural networks
 
 ## License
 
