@@ -1,6 +1,6 @@
 {
-  "image": "ztshi/econ5821:v1.5.0",
-  // "image": "jupyter/pyspark-notebook-7.0.6",
+  // "image": "ztshi/econ5821:v1.2.0",
+  "image": "gperdrizet/datascience-mac:5.0.0", // for apple silicon
   // "image": "jupyter/datascience-notebook:x86_64-python-3.11",
   "hostRequirements": {
     "cpus": 2
@@ -17,7 +17,6 @@
         "ms-toolsai.jupyter",
         "ms-python.python",
         "ms-toolsai.datawrangler",
-        "anthropic.claude-code",
         "ms-toolsai.datawrangler"
       ]
     }
